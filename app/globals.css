@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f4f5;
+  --foreground: #111827;
+  --surface: #ffffff;
+  --surface-muted: #f9fafb;
+  --border-subtle: rgba(17, 24, 39, 0.08);
+  --shadow-xs:
+    0px 2px 6px rgba(17, 24, 39, 0.08),
+    0px 1px 2px rgba(17, 24, 39, 0.1);
+  --shadow-sm:
+    0px 8px 18px rgba(17, 24, 39, 0.1),
+    0px 3px 6px rgba(17, 24, 39, 0.08);
+  --shadow-md:
+    0px 12px 24px rgba(17, 24, 39, 0.12),
+    0px 4px 8px rgba(17, 24, 39, 0.08);
+  --shadow-lg:
+    0px 20px 40px rgba(17, 24, 39, 0.14),
+    0px 8px 16px rgba(17, 24, 39, 0.08);
+  --blue-50: #eaf2ff;
+  --blue-100: #c5daff;
+  --blue-200: #99beff;
+  --blue-300: #6aa1ff;
+  --blue-400: #3f86ff;
+  --blue-500: #257bfc;
+  --blue-600: #1a64d6;
+  --blue-700: #124fad;
+  --blue-800: #0c3a84;
+  --blue-900: #07265c;
+  --gray-50: #f9fafb;
+  --gray-100: #f2f4f7;
+  --gray-200: #e4e7ec;
+  --gray-300: #d0d5dd;
+  --gray-400: #98a2b3;
+  --gray-500: #667085;
+  --gray-600: #475467;
+  --gray-700: #344054;
+  --gray-800: #1d2939;
+  --gray-900: #111827;
+  --green-50: #edfaf2;
+  --green-100: #c7f0d6;
+  --green-300: #7dd7a1;
+  --green-500: #4db949;
+  --green-700: #2f8030;
+  --green-900: #174d18;
+  --orange-50: #fff6e8;
+  --orange-100: #ffe4b5;
+  --orange-300: #ffc966;
+  --orange-500: #ffa100;
+  --orange-700: #b36e00;
+  --orange-900: #663f00;
+  --red-50: #fde2e2;
+  --red-100: #fecaca;
+  --red-500: #ef4444;
+  --red-700: #b91c1c;
+  --purple-50: #f0ecfe;
+  --purple-100: #d5cafe;
+  --purple-300: #a98df9;
+  --purple-500: #775af4;
+  --purple-700: #4f35c2;
+  --purple-900: #2d1a80;
+  --cyan-50: #e8f8ff;
+  --cyan-100: #bdeaff;
+  --cyan-300: #7ad5fa;
+  --cyan-500: #34aff5;
+  --cyan-700: #1a7db5;
+  --cyan-900: #0a4d75;
+  --global-white: #ffffff;
+  --global-black: #000000;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border-subtle: var(--border-subtle);
+  --color-brand-50: var(--blue-50);
+  --color-brand-100: var(--blue-100);
+  --color-brand-200: var(--blue-200);
+  --color-brand-300: var(--blue-300);
+  --color-brand-400: var(--blue-400);
+  --color-brand-500: var(--blue-500);
+  --color-brand-600: var(--blue-600);
+  --color-brand-700: var(--blue-700);
+  --color-brand-800: var(--blue-800);
+  --color-brand-900: var(--blue-900);
+  --color-neutral-50: var(--gray-50);
+  --color-neutral-100: var(--gray-100);
+  --color-neutral-200: var(--gray-200);
+  --color-neutral-300: var(--gray-300);
+  --color-neutral-400: var(--gray-400);
+  --color-neutral-500: var(--gray-500);
+  --color-neutral-600: var(--gray-600);
+  --color-neutral-700: var(--gray-700);
+  --color-neutral-800: var(--gray-800);
+  --color-neutral-900: var(--gray-900);
+  --color-success-50: var(--green-50);
+  --color-success-100: var(--green-100);
+  --color-success-300: var(--green-300);
+  --color-success-500: var(--green-500);
+  --color-success-700: var(--green-700);
+  --color-success-900: var(--green-900);
+  --color-warning-50: var(--orange-50);
+  --color-warning-100: var(--orange-100);
+  --color-warning-300: var(--orange-300);
+  --color-warning-500: var(--orange-500);
+  --color-warning-700: var(--orange-700);
+  --color-warning-900: var(--orange-900);
+  --color-danger-50: var(--red-50);
+  --color-danger-100: var(--red-100);
+  --color-danger-500: var(--red-500);
+  --color-danger-700: var(--red-700);
+  --color-accent-50: var(--purple-50);
+  --color-accent-100: var(--purple-100);
+  --color-accent-300: var(--purple-300);
+  --color-accent-500: var(--purple-500);
+  --color-accent-700: var(--purple-700);
+  --color-accent-900: var(--purple-900);
+  --color-info-50: var(--cyan-50);
+  --color-info-100: var(--cyan-100);
+  --color-info-300: var(--cyan-300);
+  --color-info-500: var(--cyan-500);
+  --color-info-700: var(--cyan-700);
+  --color-info-900: var(--cyan-900);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes mui-ripple {
+  0% {
+    opacity: 0.32;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes mui-checkbox-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), sans-serif;
+}
