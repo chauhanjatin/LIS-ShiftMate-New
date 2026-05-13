@@ -70,24 +70,27 @@ export default function AddEmployeePage() {
           <h2 style={{ fontSize: "24px" }} className="font-semibold text-neutral-900 mb-10">Add Employee</h2>
 
           {/* Stepper */}
-          <div className="mb-12 flex items-center justify-center gap-10">
+          <div className="mb-20 mt-4 flex items-center justify-center max-w-[850px] mx-auto w-full px-4">
             {STEPS.map((step, index) => {
               const stepNumber = index + 1;
               const isActive = currentStep === stepNumber;
               const isCompleted = currentStep > stepNumber;
+              const words = step.split(' ');
+              const firstLine = words.slice(0, Math.ceil(words.length / 2)).join(' ');
+              const secondLine = words.slice(Math.ceil(words.length / 2)).join(' ');
 
               return (
-                <div key={step} className="flex items-center">
-                  <div className="flex flex-col items-center relative mb-10">
+                <div key={step} className="flex items-center flex-1 last:flex-none">
+                  <div className="flex flex-col items-center relative">
                     <div
-                      className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold transition-colors
+                      className={`flex h-[42px] w-[42px] items-center justify-center rounded-full text-[14px] font-semibold transition-colors
                       ${isActive || isCompleted
                           ? "bg-[#257BFC] text-white"
-                          : "bg-neutral-100 text-neutral-400"
+                          : "bg-[#F1F5F9] text-[#94A3B8]"
                         }`}
                     >
                       {isCompleted ? (
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
                       ) : (
@@ -95,24 +98,23 @@ export default function AddEmployeePage() {
                       )}
                     </div>
                     <span
-                      style={{ top: "50px" }}
-                      className={`absolute left-1/2 w-24 -translate-x-1/2 text-center text-[16px] font-medium
-                        ${isActive || isCompleted ? "text-black" : "text-neutral-400"
+                      className={`absolute top-[56px] w-[110px] text-center text-[13px] font-medium leading-[18px]
+                        ${isActive || isCompleted ? "text-[#0F172A]" : "text-[#94A3B8]"
                         }`}
                     >
-                      {step}
+                      {firstLine}
+                      {secondLine && <><br />{secondLine}</>}
                     </span>
                   </div>
                   {index < STEPS.length - 1 && (
-                    <div className="mx-4 h-[2px] w-12 bg-neutral-200 sm:w-20 lg:w-24">
+                    <div className="mx-4 h-[2px] flex-1 bg-[#E2E8F0]">
                       <div
                         style={{
                           backgroundColor: "#257BFC",
-                          height: "2px",
+                          height: "100%",
                           width: isCompleted ? "100%" : "0%",
                           transition: "width 0.3s ease",
                         }}
-                        className="h-full transition-all duration-300"
                       />
                     </div>
                   )}
