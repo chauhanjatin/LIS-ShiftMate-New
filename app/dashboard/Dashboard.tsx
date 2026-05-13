@@ -103,7 +103,7 @@ function StatCard({
           <Image
             src={icon}
             alt=""
-            width={24}
+            width={20}
             height={24}
             className="h-6 w-6 brightness-0 invert"
           />
