@@ -9,6 +9,7 @@ import roleIcon from "@/assets/images/icons/role.svg";
 import organisationIcon from "@/assets/images/icons/organisation.svg";
 import employeesIcon from "@/assets/images/icons/emplooye.svg";
 import closeLogoIcon from "@/assets/images/icons/close-logo.svg";
+import Link from "next/link";
 
 export default function Sidebar({ collapsed }: Readonly<{ collapsed: boolean }>) {
   const router = useRouter();
@@ -67,7 +68,7 @@ export default function Sidebar({ collapsed }: Readonly<{ collapsed: boolean }>)
 
   const employeeSubRoutes: Record<string, string> = {
     "All Employees": "/employees/all-employees",
-    "Add Employee": "/employees/add",
+    "Add Employee": "/employees/add-employee",
     Documents: "/employees/documents",
     Onboarding: "/employees/onboarding",
   };

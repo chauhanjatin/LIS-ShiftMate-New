@@ -9,6 +9,8 @@ import appRectangleIcon from "@/assets/images/icons/apps-rectangle.svg";
 import listViewIcon from "@/assets/images/icons/list-view-circle.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
+import deleteRedIcon from "@/assets/images/icons/delete-popup.svg";
+import Link from "next/link";
 
 type Status = "Active" | "On Leave" | "Inactive";
 
@@ -42,7 +44,7 @@ function StatusPill({ status }: { status: Status }) {
     Inactive: { bg: "#FFE8E8", text: "#EF4444" },
   };
   return (
-    <span 
+    <span
       className="inline-flex rounded-full px-4 py-1.5 text-[12px] font-semibold"
       style={{ backgroundColor: styles[status].bg, color: styles[status].text }}
     >
@@ -54,6 +56,16 @@ function StatusPill({ status }: { status: Status }) {
 export default function AllEmployeesPage() {
   const [view, setView] = useState<"list" | "grid">("list");
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [employeeToDelete, setEmployeeToDelete] = useState<string | null>(null);
+  const [employeesList, setEmployeesList] = useState<Employee[]>(employees);
+
+  const handleDelete = () => {
+    if (employeeToDelete) {
+      setEmployeesList(employeesList.filter(emp => emp.id !== employeeToDelete));
+      setDeleteModalOpen(false);
+      setEmployeeToDelete(null);
+    }
+  };
 
   return (
     <DashboardLayout title="Employees" subtitle="Home/ All Employees">
@@ -90,37 +102,32 @@ export default function AllEmployeesPage() {
               </button>
 
               {/* View Toggle */}
-              <div className="flex h-[42px] items-center rounded-xl border border-neutral-200 bg-neutral-50 p-1">
+              {view === "list" ? (
                 <button
                   onClick={() => setView("grid")}
-                  className={`flex h-full w-[34px] items-center justify-center rounded-lg transition-colors ${view === "grid" ? "bg-white shadow-sm text-brand-500" : "text-neutral-500 hover:text-neutral-700"}`}
+                  className="flex h-[42px] w-[42px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50"
                 >
-                  <Image src={appRectangleIcon}
-                    alt="Filter"
-                    width={24}
-                    height={24}
-                    className="pointer-events-none" />
+                  <Image src={appRectangleIcon} alt="Grid View" width={24} height={24} className="pointer-events-none" />
                 </button>
+              ) : (
                 <button
                   onClick={() => setView("list")}
-                  className={`flex h-full w-[34px] items-center justify-center rounded-lg transition-colors ${view === "list" ? "bg-white shadow-sm text-brand-500" : "text-neutral-500 hover:text-neutral-700"}`}
+                  className="flex h-[42px] w-[42px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50"
                 >
-                  <Image src={listViewIcon}
-                    alt="Filter"
-                    width={24}
-                    height={24}
-                    className="pointer-events-none" />
+                  <Image src={listViewIcon} alt="List View" width={24} height={24} className="pointer-events-none" />
                 </button>
-              </div>
+              )}
 
               {/* Add Employee Button */}
-              <button className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-5 py-3 text-[16px] text-white transition hover:bg-blue-600">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-                Add Employee
-              </button>
+              <Link href="/employees/add-employee">
+                <button className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-5 py-3 text-[16px] text-white transition hover:bg-blue-600">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Add Employee
+                </button>
+              </Link>
             </div>
           </div>
 
@@ -144,7 +151,7 @@ export default function AllEmployeesPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {employees.map((emp) => (
+                  {employeesList.map((emp) => (
                     <tr key={emp.id} className="group transition-colors hover:bg-neutral-50">
                       <td className="border-b border-[#D0D5DD] py-4 pl-6 pr-2">
                         <input type="checkbox" className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500" />
@@ -172,7 +179,7 @@ export default function AllEmployeesPage() {
                               height={24}
                               className="pointer-events-none" />
                           </button>
-                          <button onClick={() => setDeleteModalOpen(true)} className="text-neutral-400 hover:text-red-500">
+                          <button onClick={() => { setEmployeeToDelete(emp.id); setDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500">
                             <Image src={deleteIcon}
                               alt="Delete"
                               width={24}
@@ -213,12 +220,12 @@ export default function AllEmployeesPage() {
             </div>
           ) : (
             <div className="grid gap-6 p-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-              {employees.map((emp) => (
+              {employeesList.map((emp) => (
                 <div key={emp.id} className="relative rounded-2xl border border-neutral-200 bg-white p-5 shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)]">
                   {/* Top Bar */}
                   <div className="flex items-start justify-between">
                     <StatusPill status={emp.status} />
-                    <button className="text-neutral-400 transition hover:text-neutral-900">
+                    <button className="text-black cursor-po transition">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="1"></circle>
                         <circle cx="12" cy="5" r="1"></circle>
@@ -233,19 +240,19 @@ export default function AllEmployeesPage() {
                       <img src={emp.avatar} alt={emp.name} className="h-full w-full object-cover" />
                     </div>
                     <h3 className="text-[16px] font-bold text-neutral-900">{emp.name}</h3>
-                    <p className="mt-1 text-[13px] text-neutral-500">EMP ID : {emp.id.replace("EMP", "")}</p>
+                    <p className="mt-1 text-[12px] text-[#98A2B3]">EMP ID : {emp.id.replace("EMP", "")}</p>
                   </div>
 
                   {/* Bottom Stats */}
-                  <div className="mt-6 flex items-center justify-between border-t border-neutral-100 pt-5">
-                    <div className="flex-1 text-center">
-                      <p className="text-[12px] font-medium text-neutral-400">Department</p>
-                      <p className="mt-1 text-[14px] font-semibold text-neutral-900">{emp.dept}</p>
+                  <div className="mt-4 flex items-center justify-between border-t border-neutral-300">
+                    <div className="flex-1 text-center border-r border-neutral-300 pt-4">
+                      <p className="text-[16px] font-medium">Department</p>
+                      <p className="mt-1 text-[12px] font-normal text-[#98A2B3]">{emp.dept}</p>
                     </div>
                     <div className="h-8 w-px bg-neutral-100"></div>
-                    <div className="flex-1 text-center">
-                      <p className="text-[12px] font-medium text-neutral-400">Job Title</p>
-                      <p className="mt-1 text-[14px] font-semibold text-neutral-900">{emp.role}</p>
+                    <div className="flex-1 text-center pt-4">
+                      <p className="text-[16px] font-medium">Job Title</p>
+                      <p className="mt-1 text-[12px] font-normal text-[#98A2B3]">{emp.role}</p>
                     </div>
                   </div>
                 </div>
@@ -257,30 +264,40 @@ export default function AllEmployeesPage() {
 
       {/* Delete Confirmation Modal */}
       {deleteModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-          <div className="w-full max-w-md rounded-[24px] bg-white p-8 text-center shadow-xl">
-            <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-[20px] bg-[#FFE8E8]">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 6h18"></path>
-                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                <line x1="10" y1="11" x2="10" y2="17"></line>
-                <line x1="14" y1="11" x2="14" y2="17"></line>
-              </svg>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
+        style={{backgroundColor: "rgba(0, 0, 0, 0.40)"}}
+        >
+          <div className="max-w-[420px] rounded-xl bg-white p-6 text-center shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
+
+            {/* Icon Box */}
+            <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px] bg-[#FDEAEA]">
+              <Image
+                src={deleteRedIcon}
+                alt="Delete"
+                className="pointer-events-none"
+              />
             </div>
-            <h3 className="mb-8 text-[20px] font-bold text-[#1A1C21] px-4">
-              Are you sure you want to delete this Employee Record?
+
+            {/* Title */}
+            <h3 className="mx-auto mb-6 max-w-[260px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
+              Are you sure you want to delete this <br /> Employee Record?
             </h3>
-            <div className="flex items-center gap-4">
-              <button 
-                onClick={() => setDeleteModalOpen(false)}
-                className="flex-1 rounded-[14px] border border-[#D0D5DD] py-3.5 text-[16px] font-bold text-[#1A1C21] transition hover:bg-neutral-50"
+
+            {/* Buttons */}
+            <div className="flex gap-4">
+              <button
+                type="button"
+                onClick={() => { setDeleteModalOpen(false); setEmployeeToDelete(null); }}
+                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054]"
               >
                 Cancel
               </button>
-              <button 
-                onClick={() => setDeleteModalOpen(false)}
-                className="flex-1 rounded-[14px] bg-[#EF4444] py-3.5 text-[16px] font-bold text-white transition hover:bg-red-600"
+
+              <button
+                type="button"
+                onClick={handleDelete}
+                style={{ backgroundColor: "#F04438" }}
+                className="w-full rounded-xl px-6 py-3 text-[16px] font-semibold leading-none text-white"
               >
                 Delete
               </button>
