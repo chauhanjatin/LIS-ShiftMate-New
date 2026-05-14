@@ -1,0 +1,29 @@
+export type Status = "Active" | "On Leave" | "Inactive";
+
+export interface Employee {
+  id: string;
+  name: string;
+  dept: string;
+  role: string;
+  type: string;
+  status: Status;
+  joinDate: string;
+  avatar: string;
+  firstName?: string;
+  lastName?: string;
+  workEmail?: string;
+  personalEmail?: string;
+  workPhone?: string;
+}
+
+export const initialEmployees: Employee[] = [
+  { id: "EMP001", name: "Cameron Williamson", firstName: "Cameron", lastName: "Williamson", workEmail: "cameron.williamson@example.com", personalEmail: "cameron@personal.com", workPhone: "+1 (415) 555-0191", dept: "Engineering", role: "Senior Developer", type: "Full Time", status: "Active", joinDate: "October 25, 2026", avatar: "https://i.pravatar.cc/150?u=1" },
+  { id: "EMP002", name: "Devon Lane", firstName: "Devon", lastName: "Lane", workEmail: "devon.lane@example.com", personalEmail: "devon@personal.com", workPhone: "+1 (415) 555-0192", dept: "Marketing", role: "Marketing Manager", type: "Part Time", status: "Active", joinDate: "March 13, 2026", avatar: "https://i.pravatar.cc/150?u=2" },
+  { id: "EMP003", name: "Jane Cooper", firstName: "Jane", lastName: "Cooper", workEmail: "jane.cooper@example.com", personalEmail: "jane@personal.com", workPhone: "+1 (415) 555-0193", dept: "Finance", role: "Financial Analyst", type: "Contract", status: "Active", joinDate: "August 24, 2026", avatar: "https://i.pravatar.cc/150?u=3" },
+  { id: "EMP004", name: "Jane Cooper", firstName: "Jane", lastName: "Cooper", workEmail: "jane.cooper@example.com", personalEmail: "jane@personal.com", workPhone: "+1 (415) 555-0194", dept: "Engineering", role: "Senior Developer", type: "Part Time", status: "On Leave", joinDate: "October 31, 2026", avatar: "https://i.pravatar.cc/150?u=4" },
+  { id: "EMP005", name: "Jane Cooper", firstName: "Jane", lastName: "Cooper", workEmail: "jane.cooper@example.com", personalEmail: "jane@personal.com", workPhone: "+1 (415) 555-0195", dept: "Marketing", role: "Marketing Manager", type: "Full Time", status: "Active", joinDate: "December 2, 2026", avatar: "https://i.pravatar.cc/150?u=5" },
+  { id: "EMP006", name: "Jane Cooper", firstName: "Jane", lastName: "Cooper", workEmail: "jane.cooper@example.com", personalEmail: "jane@personal.com", workPhone: "+1 (415) 555-0196", dept: "Finance", role: "Financial Analyst", type: "Contract", status: "Inactive", joinDate: "December 19, 2026", avatar: "https://i.pravatar.cc/150?u=6" },
+  { id: "EMP007", name: "Jane Cooper", firstName: "Jane", lastName: "Cooper", workEmail: "jane.cooper@example.com", personalEmail: "jane@personal.com", workPhone: "+1 (415) 555-0197", dept: "Marketing", role: "Financial Analyst", type: "Full Time", status: "Active", joinDate: "November 28, 2026", avatar: "https://i.pravatar.cc/150?u=7" },
+  { id: "EMP008", name: "Jane Cooper", firstName: "Jane", lastName: "Cooper", workEmail: "jane.cooper@example.com", personalEmail: "jane@personal.com", workPhone: "+1 (415) 555-0198", dept: "Engineering", role: "Senior Developer", type: "Contract", status: "Inactive", joinDate: "May 12, 2026", avatar: "https://i.pravatar.cc/150?u=8" },
+  { id: "EMP009", name: "Jane Cooper", firstName: "Jane", lastName: "Cooper", workEmail: "jane.cooper@example.com", personalEmail: "jane@personal.com", workPhone: "+1 (415) 555-0199", dept: "Marketing", role: "Marketing Manager", type: "Full Time", status: "Active", joinDate: "August 24, 2026", avatar: "https://i.pravatar.cc/150?u=9" },
+];

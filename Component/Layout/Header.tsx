@@ -2,22 +2,25 @@ import Image from "next/image";
 import searchIcon from "@/assets/images/icons/search.svg";
 import notificationIcon from "@/assets/images/icons/notification.svg";
 import adminImage from "@/assets/images/admin-img.png";
+import Link from "next/link";
 
 function AdminDropdown() {
   return (
     <details className="relative">
-      <summary className="list-none cursor-pointer rounded-xl px-1 py-1 hover:bg-neutral-100">
-        <span className="flex items-center gap-3">
+      <summary className="list-none cursor-pointer rounded-xl px-1 py-1 hover:bg-neutral-100 outline-none">
+        <span className="flex items-center gap-2 sm:gap-3">
           <Image
             src={adminImage}
             alt="Mathieu Wade"
-            className="rounded-2xl object-cover"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-xl sm:rounded-2xl object-cover"
           />
-          <span className="text-left leading-tight">
-            <span className="block text-[20px] font-medium text-neutral-900">
+          <span className="hidden sm:block text-left leading-tight">
+            <span className="block text-base font-bold text-neutral-900">
               Mathieu Wade
             </span>
-            <span className="block text-[16px] text-[#98A2B3]">HR Admin</span>
+            <span className="block text-xs font-medium text-[#98A2B3]">HR Admin</span>
           </span>
           <svg
             viewBox="0 0 20 20"
@@ -35,7 +38,7 @@ function AdminDropdown() {
         </span>
       </summary>
 
-      <div className="absolute right-0 z-20 mt-3 w-72 rounded-2xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
+      <div className="absolute right-0 z-20 mt-3 w-[calc(100vw-2rem)] max-w-[280px] sm:w-72 rounded-2xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
         <button
           type="button"
           className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
@@ -102,22 +105,50 @@ function AdminDropdown() {
               strokeLinejoin="round"
             />
           </svg>
-          <span>Logout</span>
+          <Link href="/">
+            <span>Logout</span>
+          </Link>
         </button>
       </div>
     </details>
   );
 }
 
-export default function Header({ title, subtitle }: { title: string; subtitle: string }) {
+export default function Header({ 
+  title, 
+  subtitle,
+  onMenuClick
+}: { 
+  title: string; 
+  subtitle: string;
+  onMenuClick?: () => void;
+}) {
   return (
-    <header className="flex items-center justify-between border-b border-neutral-200 bg-white px-6 py-4">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
-        <p className="text-sm text-neutral-500">{subtitle}</p>
-      </div>
+    <header className="flex items-center justify-between border-b border-neutral-200 bg-white px-4 py-3 sm:px-6 sm:py-4">
       <div className="flex items-center gap-4">
-        <div className="relative w-56">
+        {/* HAMBURGER MENU BUTTON (MOBILE) */}
+        <button
+          type="button"
+          onClick={onMenuClick}
+          className="flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-50 text-neutral-600 lg:hidden"
+          aria-label="Open menu"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <div className="min-w-0">
+          <h1 className="truncate text-lg font-bold tracking-tight sm:text-2xl">{title}</h1>
+          <p className="hidden text-sm text-neutral-500 sm:block">{subtitle}</p>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-2 sm:gap-4">
+        {/* SEARCH BAR (HIDDEN ON MOBILE, SHOW ICON ONLY OR COLLAPSIBLE) */}
+        <div className="relative hidden w-40 sm:block lg:w-56">
           <Image
             src={searchIcon}
             alt="Search"
@@ -126,14 +157,26 @@ export default function Header({ title, subtitle }: { title: string; subtitle: s
             className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2"
           />
           <input
-            className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-2.5 pl-11 pr-4 text-sm"
+            className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-2 sm:py-2.5 pl-10 sm:pl-11 pr-4 text-sm outline-none focus:border-brand-500 transition-colors"
             placeholder="Search"
           />
         </div>
+
+        {/* MOBILE SEARCH ICON (ONLY ON MOBILE) */}
+        <button className="flex h-10 w-10 items-center justify-center rounded-xl hover:bg-neutral-50 sm:hidden">
+          <Image
+            src={searchIcon}
+            alt="Search"
+            width={20}
+            height={20}
+            className="h-5 w-5"
+          />
+        </button>
+
         <button
           type="button"
           aria-label="Notifications"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50"
+          className="inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-brand-50 transition-transform active:scale-95"
         >
           <Image
             src={notificationIcon}

@@ -101,12 +101,10 @@ export default function AddEmployeePage() {
     <DashboardLayout title="Employees" subtitle="Home/ Employees/ Add Employee">
       <div className="flex-1 p-6 flex">
         <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm flex-1 flex flex-col">
-          <h2 style={{ fontSize: "24px" }} className="font-semibold text-neutral-900 mb-10">Add Employee</h2>
+          <h2 className="text-[24px] font-semibold text-neutral-900 mb-10">Add Employee</h2>
 
           {/* Stepper */}
-          <div
-            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "48px", }}
-            className="mb-20 mt-4 px-4">
+          <div className="flex items-center justify-center gap-[48px] mb-20 mt-4 px-4">
             {STEPS.map((step, index) => {
               const stepNumber = index + 1;
               const isActive = currentStep === stepNumber;
@@ -128,14 +126,7 @@ export default function AddEmployeePage() {
                 <React.Fragment key={step}>
                   <div className="flex flex-col items-center relative shrink-0">
                     <div
-                      style={{
-                        height: "42px", width: "42px",
-                        backgroundColor:
-                          isActive || isCompleted ? "#257BFC" : "#F1F5F9",
-                        color:
-                          isActive || isCompleted ? "#FFFFFF" : "#94A3B8",
-                      }}
-                      className={`flex items-center justify-center rounded-full text-[14px] font-semibold transition-colors`}
+                      className={`h-[42px] w-[42px] flex items-center justify-center rounded-full text-[14px] font-semibold transition-colors ${isActive || isCompleted ? "bg-[#257BFC] text-[#FFFFFF]" : "bg-[#F1F5F9] text-[#94A3B8]"}`}
                     >
                       {isCompleted ? (
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -146,34 +137,15 @@ export default function AddEmployeePage() {
                       )}
                     </div>
                     <span
-                      style={{
-                        top: "52px",
-                        color:
-                          isActive || isCompleted ? "#0F172A" : "#94A3B8",
-                      }}
-                      className={`absolute w-[110px] text-center text-[13px] font-medium leading-[18px]
-                        `}
+                      className={`absolute top-[52px] w-[110px] text-center text-[13px] font-medium leading-[18px] ${isActive || isCompleted ? "text-[#0F172A]" : "text-[#94A3B8]"}`}
                     >
                       {firstLine}
                       {secondLine && <div className="whitespace-nowrap">{secondLine}</div>}
                     </span>
                   </div>
                   {index < STEPS.length - 1 && (
-                    <div
-                      style={{
-                        backgroundColor: "#E2E8F0",
-                        height: "2px",
-                        width: "115px",
-                        margin: "0 8px",
-                      }}>
-                      <div
-                        style={{
-                          backgroundColor: "#257BFC",
-                          height: "2px",
-                          width: isCompleted ? "100%" : "0%",
-                          transition: "width 0.3s ease",
-                        }}
-                      />
+                    <div className="bg-[#E2E8F0] h-[2px] w-[115px] mx-2">
+                      <div className={`bg-[#257BFC] h-[2px] transition-all duration-300 ease-in-out ${isCompleted ? "w-full" : "w-0"}`} />
                     </div>
                   )}
                 </React.Fragment>
@@ -181,18 +153,12 @@ export default function AddEmployeePage() {
             })}
           </div>
 
-          <div
-            style={{ marginTop: "110px" }}
-            className="mb-8">
-            <h3
-              style={{ marginBottom: "32px" }}
-              className="text-[20px] font-medium text-neutral-900">{STEPS[currentStep - 1]}</h3>
+          <div className="mt-[110px] mb-8">
+            <h3 className="mb-[32px] text-[20px] font-medium text-neutral-900">{STEPS[currentStep - 1]}</h3>
 
             {/* Forms Content */}
             {currentStep === 1 && (
-              <div
-                style={{ marginLeft: "6%", marginRight: "6%" }}
-                className="grid gap-6 sm:grid-cols-2">
+              <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">First name</label>
                   <input name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
@@ -236,9 +202,7 @@ export default function AddEmployeePage() {
             )}
 
             {currentStep === 2 && (
-              <div
-                style={{ marginLeft: "6%", marginRight: "6%" }}
-                className="grid gap-6 sm:grid-cols-2">
+              <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Employee ID</label>
                   <input name="employeeId" value={formData.employeeId} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
@@ -290,9 +254,7 @@ export default function AddEmployeePage() {
             )}
 
             {currentStep === 3 && (
-              <div
-                style={{ marginLeft: "6%", marginRight: "6%" }}
-                className="grid gap-6 sm:grid-cols-2">
+              <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Bank Account Number</label>
                   <input name="bankAccount" value={formData.bankAccount} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
@@ -326,9 +288,7 @@ export default function AddEmployeePage() {
             )}
 
             {currentStep === 4 && (
-              <div
-                style={{ marginLeft: "6%", marginRight: "6%" }}
-                className="grid gap-6 sm:grid-cols-2">
+              <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 {/* File Upload mock UI */}
                 {[
                   { label: "Right to Work document", desc: "PDF, PNG, JPG up to 10MB", field: "rightToWorkFile" },
@@ -374,12 +334,8 @@ export default function AddEmployeePage() {
                 className="grid grid-cols-1 sm:grid-cols-2 gap-6"
               >
                 {/* Personal Information */}
-                <div
-                  style={{ borderRadius: "16px", backgroundColor: "#F9FAFB" }}
-                  className="p-6">
-                  <div
-                    style={{ borderBottom: "1px solid #D0D5DD" }}
-                    className="flex items-center justify-between pb-4 mb-5">
+                <div className="rounded-[16px] bg-[#F9FAFB] p-6">
+                  <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
                     <h4 className="text-[20px] font-medium text-[#111827] mb-6">
                       Personal Information
                     </h4>
@@ -392,69 +348,58 @@ export default function AddEmployeePage() {
                     </button>
                   </div>
 
-                  <div
-                    style={{ gridTemplateColumns: "2fr 2fr", rowGap: "1rem", columnGap: "1rem" }}
-                    className="grid">
+                  <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <p
-                        style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Full Name</p>
+                      <p className="mb-[6px] text-[12px] font-normal text-[#98A2B3] leading-tight">Full Name</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.firstName} {formData.lastName}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Gender</p>
+                      <p className="mb-[6px] text-[12px] font-normal text-[#98A2B3] leading-tight">Gender</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.gender || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Email Address</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Email Address</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight break-words">
                         {formData.email || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Phone</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Phone</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.phone || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Phone</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Phone</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.phone || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Address</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Address</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight break-words">
                         {formData.email || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Date of Birth</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Date of Birth</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.dob || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">
                         Emergency Contact
                       </p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
@@ -465,12 +410,8 @@ export default function AddEmployeePage() {
                 </div>
 
                 {/* Employment Information */}
-                <div
-                  style={{ borderRadius: "16px", backgroundColor: "#F9FAFB" }}
-                  className="p-6">
-                  <div
-                    style={{ borderBottom: "1px solid #D0D5DD" }}
-                    className="flex items-center justify-between pb-4 mb-5">
+                <div className="rounded-[16px] bg-[#F9FAFB] p-6">
+                  <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
                     <h4 className="text-[20px] font-medium text-[#111827] mb-6">
                       Employment Information
                     </h4>
@@ -483,70 +424,58 @@ export default function AddEmployeePage() {
                     </button>
                   </div>
 
-                  <div
-                    style={{ gridTemplateColumns: "2fr 2fr", rowGap: "1rem", columnGap: "1rem" }}
-                    className="grid">
+                  <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <p
-                        style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Employee ID</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Employee ID</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.employeeId || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Job Title</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Job Title</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.jobTitle || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Employment Type</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Employment Type</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.employmentType || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p
-                        style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Location</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Location</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.location || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Department</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Department</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.department || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Manager</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Manager</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.manager || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Start Date</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Start Date</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.startDate || "-"}
                       </p>
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Contract Type</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Contract Type</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.contractType || "-"}
                       </p>
@@ -555,10 +484,8 @@ export default function AddEmployeePage() {
                 </div>
 
                 {/* Payroll Details */}
-                <div style={{ borderRadius: "16px", backgroundColor: "#F9FAFB" }}
-                  className="p-6">
-                  <div style={{ borderBottom: "1px solid #D0D5DD" }}
-                    className="flex items-center justify-between pb-4 mb-5">
+                <div className="rounded-[16px] bg-[#F9FAFB] p-6">
+                  <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
                     <h4 className="text-[16px] font-bold text-[#111827] mb-6">
                       Payroll Details
                     </h4>
@@ -571,11 +498,9 @@ export default function AddEmployeePage() {
                     </button>
                   </div>
 
-                  <div style={{ gridTemplateColumns: "2fr 2fr", rowGap: "1rem", columnGap: "1rem" }}
-                    className="grid">
+                  <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">
                         Bank Account Number
                       </p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
@@ -584,8 +509,7 @@ export default function AddEmployeePage() {
                     </div>
 
                     <div>
-                      <p style={{ marginBottom: "6px" }}
-                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Sort Code</p>
+                      <p className="mb-1.5 text-[12px] font-normal text-[#98A2B3] leading-tight">Sort Code</p>
                       <p className="text-[14px] font-medium text-[#111827] leading-tight">
                         {formData.sortCode || "-"}
                       </p>
@@ -622,10 +546,8 @@ export default function AddEmployeePage() {
                 </div>
 
                 {/* Compliance Documents */}
-                <div style={{ borderRadius: "16px", backgroundColor: "#F9FAFB" }}
-                  className="p-6">
-                  <div style={{ borderBottom: "1px solid #D0D5DD" }}
-                    className="flex items-center justify-between pb-4 mb-5">
+                <div className="rounded-[16px] bg-[#F9FAFB] p-6">
+                  <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
                     <h4 className="text-[16px] font-bold text-[#111827] mb-6">
                       Employment Information
                     </h4>
@@ -653,8 +575,7 @@ export default function AddEmployeePage() {
                     </div>
 
                     {formData.rightToWorkFile ? (
-                      <div style={{ backgroundColor: "#EDFAF2", border: "transparent", borderRadius: "100px", color: "#4DB949", gap: "8px" }}
-                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                      <div className="bg-[#EDFAF2] border-transparent rounded-full text-[#4DB949] gap-[8px] flex items-center px-3 py-1 text-[14px] font-normal">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                           <polyline points="22 4 12 14.01 9 11.01"></polyline>
@@ -662,8 +583,7 @@ export default function AddEmployeePage() {
                         Uploaded
                       </div>
                     ) : (
-                      <div style={{ backgroundColor: "#FEF6E7", border: "transparent", borderRadius: "100px", color: "#F79009", gap: "8px" }}
-                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                      <div className="bg-[#FEF6E7] border-transparent rounded-full text-[#F79009] gap-[8px] flex items-center px-3 py-1 text-[14px] font-normal">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <circle cx="12" cy="12" r="10"></circle>
                           <polyline points="12 6 12 12 16 14"></polyline>
@@ -688,8 +608,7 @@ export default function AddEmployeePage() {
                     </div>
 
                     {formData.passportFile ? (
-                      <div style={{ backgroundColor: "#EDFAF2", border: "transparent", borderRadius: "100px", color: "#4DB949", gap: "8px" }}
-                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                      <div className="bg-[#EDFAF2] border-transparent rounded-full text-[#4DB949] gap-2 flex items-center px-3 py-1 text-[14px] font-normal">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                           <polyline points="22 4 12 14.01 9 11.01"></polyline>
@@ -697,8 +616,7 @@ export default function AddEmployeePage() {
                         Uploaded
                       </div>
                     ) : (
-                      <div style={{ backgroundColor: "#FEF6E7", border: "transparent", borderRadius: "100px", color: "#F79009", gap: "8px" }}
-                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                      <div className="bg-[#FEF6E7] border-transparent rounded-full text-[#F79009] gap-2 flex items-center px-3 py-1 text-[14px] font-normal">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <circle cx="12" cy="12" r="10"></circle>
                           <polyline points="12 6 12 12 16 14"></polyline>
@@ -723,8 +641,7 @@ export default function AddEmployeePage() {
                     </div>
 
                     {formData.employmentContractFile ? (
-                      <div style={{ backgroundColor: "#EDFAF2", border: "transparent", borderRadius: "100px", color: "#4DB949", gap: "8px" }}
-                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                      <div className="bg-[#EDFAF2] border-transparent rounded-full text-[#4DB949] gap-2 flex items-center px-3 py-1 text-[14px] font-normal">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                           <polyline points="22 4 12 14.01 9 11.01"></polyline>
@@ -732,8 +649,7 @@ export default function AddEmployeePage() {
                         Uploaded
                       </div>
                     ) : (
-                      <div style={{ backgroundColor: "#FEF6E7", border: "transparent", borderRadius: "100px", color: "#F79009", gap: "8px" }}
-                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                      <div className="bg-[#FEF6E7] border-transparent rounded-full text-[#F79009] gap-2 flex items-center px-3 py-1 text-[14px] font-normal">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <circle cx="12" cy="12" r="10"></circle>
                           <polyline points="12 6 12 12 16 14"></polyline>
@@ -748,11 +664,7 @@ export default function AddEmployeePage() {
           </div>
 
           {/* Action Buttons */}
-          <div
-            style={{
-              marginTop: "48px"
-            }}
-            className="mt-auto flex justify-end gap-4 pt-8">
+          <div className="mt-[48px] flex justify-end gap-4 pt-8">
             {currentStep === 1 ? (
               <Link href="/employees/all-employees">
                 <button className="rounded-xl border border-neutral-300 bg-white px-6 py-3 text-[16px] font-semibold text-neutral-700 transition hover:bg-neutral-50">

@@ -11,13 +11,26 @@ import employeesIcon from "@/assets/images/icons/emplooye.svg";
 import closeLogoIcon from "@/assets/images/icons/close-logo.svg";
 import Link from "next/link";
 
-export default function Sidebar({ collapsed }: Readonly<{ collapsed: boolean }>) {
+export default function Sidebar({ 
+  collapsed, 
+  isMobileMenuOpen, 
+  setIsMobileMenuOpen 
+}: Readonly<{ 
+  collapsed: boolean;
+  isMobileMenuOpen?: boolean;
+  setIsMobileMenuOpen?: (open: boolean) => void;
+}>) {
   const router = useRouter();
   const pathname = usePathname();
 
   const [openMenu, setOpenMenu] = useState<string | null>("null");
   const [activeItem, setActiveItem] = useState("Dashboard");
   const [activeSubItem, setActiveSubItem] = useState("");
+
+  useEffect(() => {
+    // Close mobile menu on route change
+    if (setIsMobileMenuOpen) setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (pathname.includes("/employees")) {
@@ -83,10 +96,22 @@ export default function Sidebar({ collapsed }: Readonly<{ collapsed: boolean }>)
 
   return (
     <aside
-      className={`hidden shrink-0 border-r border-neutral-200 bg-white transition-[width] duration-500 ease-in-out lg:flex lg:flex-col ${
-        collapsed ? "w-28" : "w-64"
+      className={`fixed inset-y-0 left-0 z-50 flex flex-col border-r border-neutral-200 bg-white transition-all duration-500 ease-in-out lg:static lg:flex lg:shrink-0 ${
+        collapsed ? "lg:w-28" : "lg:w-64"
+      } ${
+        isMobileMenuOpen ? "translate-x-0 w-64" : "-translate-x-full lg:translate-x-0"
       }`}
     >
+      {/* MOBILE CLOSE BUTTON */}
+      <button
+        onClick={() => setIsMobileMenuOpen?.(false)}
+        className="absolute right-4 top-6 flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-50 text-neutral-500 lg:hidden"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
       {/* LOGO */}
       <div
         className={`relative h-[104px] py-6 ${
@@ -206,8 +231,7 @@ export default function Sidebar({ collapsed }: Readonly<{ collapsed: boolean }>)
               {/* EMPLOYEE DROPDOWN */}
               {!collapsed && item.label === "Employees" && isOpen && (
                 <div
-                  className="relative mt-2 animate-in slide-in-from-top-2 duration-300"
-                  style={{ marginLeft: "48px" }}
+                  className="relative mt-2 ml-[48px] animate-in slide-in-from-top-2 duration-300"
                 >
                   <div className="space-y-1">
                     {employeeSubMenus.map((subLabel) => {
@@ -222,13 +246,9 @@ export default function Sidebar({ collapsed }: Readonly<{ collapsed: boolean }>)
                             const route = employeeSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
-                          style={{
-                            backgroundColor: isSubActive
-                              ? "#EAF2FF"
-                              : "transparent",
-                            color: isSubActive ? "#257BFC" : "#111827",
-                          }}
-                          className="flex w-full items-center rounded-xl px-4 py-3 text-left text-[16px] font-medium transition-all duration-300"
+                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left text-[16px] font-medium transition-all duration-300 ${
+                            isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                          }`}
                         >
                           {subLabel}
                         </button>

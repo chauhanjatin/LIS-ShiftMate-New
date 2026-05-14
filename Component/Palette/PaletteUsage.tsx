@@ -18,11 +18,7 @@ const usageExamples = [
     code: `export function StatusDot() {
   return (
     <span
-      style={{
-        backgroundColor: "var(--green-500)",
-        boxShadow: "0 0 0 4px var(--green-50)",
-      }}
-      className="inline-block h-3 w-3 rounded-full"
+      className="inline-block h-3 w-3 rounded-full bg-[var(--green-500)] shadow-[0_0_0_4px_var(--green-50)]"
     />
   );
 }`,
@@ -36,6 +32,7 @@ const usageExamples = [
 const brandPalette = paletteGroups.find((group) => group.key === "blue");
 
 brandPalette?.shades.map((swatch) => (
+  // Use style for purely dynamic CSS variables
   <div key={swatch.label} style={{ backgroundColor: \`var(\${swatch.cssVar})\` }} />
 ));`,
   },

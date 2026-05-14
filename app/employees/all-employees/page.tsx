@@ -11,42 +11,18 @@ import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import deleteRedIcon from "@/assets/images/icons/delete-popup.svg";
 import Link from "next/link";
-
-type Status = "Active" | "On Leave" | "Inactive";
-
-interface Employee {
-  id: string;
-  name: string;
-  dept: string;
-  role: string;
-  type: string;
-  status: Status;
-  joinDate: string;
-  avatar: string;
-}
-
-const employees: Employee[] = [
-  { id: "EMP001", name: "Cameron Williamson", dept: "Engineering", role: "Senior Developer", type: "Full Time", status: "Active", joinDate: "October 25, 2026", avatar: "https://i.pravatar.cc/150?u=1" },
-  { id: "EMP002", name: "Devon Lane", dept: "Marketing", role: "Marketing Manager", type: "Part Time", status: "Active", joinDate: "March 13, 2026", avatar: "https://i.pravatar.cc/150?u=2" },
-  { id: "EMP003", name: "Jane Cooper", dept: "Finance", role: "Financial Analyst", type: "Contract", status: "Active", joinDate: "August 24, 2026", avatar: "https://i.pravatar.cc/150?u=3" },
-  { id: "EMP004", name: "Jane Cooper", dept: "Engineering", role: "Senior Developer", type: "Part Time", status: "On Leave", joinDate: "October 31, 2026", avatar: "https://i.pravatar.cc/150?u=4" },
-  { id: "EMP005", name: "Jane Cooper", dept: "Marketing", role: "Marketing Manager", type: "Full Time", status: "Active", joinDate: "December 2, 2026", avatar: "https://i.pravatar.cc/150?u=5" },
-  { id: "EMP006", name: "Jane Cooper", dept: "Finance", role: "Financial Analyst", type: "Contract", status: "Inactive", joinDate: "December 19, 2026", avatar: "https://i.pravatar.cc/150?u=6" },
-  { id: "EMP007", name: "Jane Cooper", dept: "Marketing", role: "Financial Analyst", type: "Full Time", status: "Active", joinDate: "November 28, 2026", avatar: "https://i.pravatar.cc/150?u=7" },
-  { id: "EMP008", name: "Jane Cooper", dept: "Engineering", role: "Senior Developer", type: "Contract", status: "Inactive", joinDate: "May 12, 2026", avatar: "https://i.pravatar.cc/150?u=8" },
-  { id: "EMP009", name: "Jane Cooper", dept: "Marketing", role: "Marketing Manager", type: "Full Time", status: "Active", joinDate: "August 24, 2026", avatar: "https://i.pravatar.cc/150?u=9" },
-];
+import { useEmployees } from "@/hooks/useEmployees";
+import { Employee, Status } from "@/Data/employees";
 
 function StatusPill({ status }: { status: Status }) {
   const styles = {
-    Active: { bg: "#EAF9EA", text: "#4DB949" },
-    "On Leave": { bg: "#FFF6E8", text: "#FFA100" },
-    Inactive: { bg: "#FFE8E8", text: "#EF4444" },
+    Active: "bg-[#EAF9EA] text-[#4DB949]",
+    "On Leave": "bg-[#FFF6E8] text-[#FFA100]",
+    Inactive: "bg-[#FFE8E8] text-[#EF4444]",
   };
   return (
     <span
-      className="inline-flex rounded-full px-4 py-1.5 text-[12px] font-semibold"
-      style={{ backgroundColor: styles[status].bg, color: styles[status].text }}
+      className={`inline-flex rounded-full px-4 py-1.5 text-[12px] font-semibold ${styles[status]}`}
     >
       {status === "Inactive" ? "In Active" : status}
     </span>
@@ -57,7 +33,7 @@ export default function AllEmployeesPage() {
   const [view, setView] = useState<"list" | "grid">("list");
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [employeeToDelete, setEmployeeToDelete] = useState<string | null>(null);
-  const [employeesList, setEmployeesList] = useState<Employee[]>(employees);
+  const { employees: employeesList, setEmployees: setEmployeesList } = useEmployees();
 
   const handleDelete = () => {
     if (employeeToDelete) {
@@ -158,10 +134,12 @@ export default function AllEmployeesPage() {
                       </td>
                       <td className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px] font-medium">{emp.id}</td>
                       <td className="border-b border-[#D0D5DD] py-4 pr-6">
-                        <div className="flex items-center gap-3">
-                          <img src={emp.avatar} alt={emp.name} className="h-9 w-9 rounded-full object-cover" />
-                          <span className="text-[14px] font-medium text-neutral-900">{emp.name}</span>
-                        </div>
+                        <Link href={`/employees/${emp.id}`}>
+                          <div className="flex items-center gap-3 cursor-pointer hover:underline">
+                            <img src={emp.avatar} alt={emp.name} className="h-9 w-9 rounded-full object-cover" />
+                            <span className="text-[14px] font-medium text-neutral-900">{emp.name}</span>
+                          </div>
+                        </Link>
                       </td>
                       <td className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px]">{emp.dept}</td>
                       <td className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px]">{emp.role}</td>
@@ -225,7 +203,7 @@ export default function AllEmployeesPage() {
                   {/* Top Bar */}
                   <div className="flex items-start justify-between">
                     <StatusPill status={emp.status} />
-                    <button className="text-black cursor-po transition">
+                    <button className="text-black cursor-pointer transition">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="1"></circle>
                         <circle cx="12" cy="5" r="1"></circle>
@@ -239,7 +217,9 @@ export default function AllEmployeesPage() {
                     <div className="mb-4 h-[88px] w-[88px] overflow-hidden rounded-full border-4 border-white shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
                       <img src={emp.avatar} alt={emp.name} className="h-full w-full object-cover" />
                     </div>
-                    <h3 className="text-[16px] font-bold text-neutral-900">{emp.name}</h3>
+                    <Link href={`/employees/${emp.id}`} className="hover:underline">
+                      <h3 className="text-[16px] font-bold text-neutral-900">{emp.name}</h3>
+                    </Link>
                     <p className="mt-1 text-[12px] text-[#98A2B3]">EMP ID : {emp.id.replace("EMP", "")}</p>
                   </div>
 
@@ -264,9 +244,7 @@ export default function AllEmployeesPage() {
 
       {/* Delete Confirmation Modal */}
       {deleteModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
-        style={{backgroundColor: "rgba(0, 0, 0, 0.40)"}}
-        >
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
           <div className="max-w-[420px] rounded-xl bg-white p-6 text-center shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
 
             {/* Icon Box */}
@@ -296,8 +274,7 @@ export default function AllEmployeesPage() {
               <button
                 type="button"
                 onClick={handleDelete}
-                style={{ backgroundColor: "#F04438" }}
-                className="w-full rounded-xl px-6 py-3 text-[16px] font-semibold leading-none text-white"
+                className="w-full rounded-xl px-6 py-3 text-[16px] font-semibold leading-none text-white bg-[#F04438]"
               >
                 Delete
               </button>
@@ -308,3 +285,4 @@ export default function AllEmployeesPage() {
     </DashboardLayout>
   );
 }
+

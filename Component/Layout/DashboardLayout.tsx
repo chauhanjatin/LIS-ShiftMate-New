@@ -14,10 +14,23 @@ type DashboardLayoutProps = Readonly<{
 
 export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="relative flex min-h-screen bg-[#f5f7fb] text-neutral-900">
-      <Sidebar collapsed={isSidebarCollapsed} />
+      <Sidebar 
+        collapsed={isSidebarCollapsed} 
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
+
+      {/* Sidebar Overlay for mobile */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
 
       <button
         type="button"
@@ -41,8 +54,14 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       </button>
 
       <section className="flex min-w-0 flex-1 flex-col">
-        <Header title={title} subtitle={subtitle} />
-        {children}
+        <Header 
+          title={title} 
+          subtitle={subtitle} 
+          onMenuClick={() => setIsMobileMenuOpen(true)}
+        />
+        <main className="flex-1 overflow-y-auto">
+          {children}
+        </main>
       </section>
     </div>
   );
