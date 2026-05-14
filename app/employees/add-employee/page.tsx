@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import upload from "@/assets/images/icons/upload.svg";
+import editIcon from "@/assets/images/icons/edit.svg";
+import fileTypeIcon from "@/assets/images/icons/file-typeicon.svg";
 
 // Define the steps
 const STEPS = [
@@ -18,7 +22,7 @@ export default function AddEmployeePage() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
-    firstName: "Michael",
+    firstName: "",
     lastName: "",
     dob: "",
     gender: "",
@@ -42,10 +46,39 @@ export default function AddEmployeePage() {
     taxCode: "",
     payrollFrequency: "",
     salary: "",
+    rightToWorkFile: "",
+    employmentContractFile: "",
+    passportFile: "",
+    hmrcChecklistFile: "",
   });
 
+  const validateStep = () => {
+    if (currentStep === 1) {
+      const { firstName, lastName, dob, gender, phone, email, address, emergencyContact } = formData;
+      if (!firstName || !lastName || !dob || !gender || !phone || !email || !address || !emergencyContact) {
+        alert("Please fill all Personal Details fields.");
+        return false;
+      }
+    }
+    if (currentStep === 2) {
+      const { employeeId, startDate, employmentType, department, jobTitle, location, manager, contractType } = formData;
+      if (!employeeId || !startDate || !employmentType || !department || !jobTitle || !location || !manager || !contractType) {
+        alert("Please fill all Employment Details fields.");
+        return false;
+      }
+    }
+    if (currentStep === 3) {
+      const { bankAccount, sortCode, niNumber, taxCode, payrollFrequency, salary } = formData;
+      if (!bankAccount || !sortCode || !niNumber || !taxCode || !payrollFrequency || !salary) {
+        alert("Please fill all Payroll Details fields.");
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handleNext = () => {
-    if (currentStep < 5) setCurrentStep(currentStep + 1);
+    if (validateStep() && currentStep < 5) setCurrentStep(currentStep + 1);
   };
 
   const handlePrevious = () => {
@@ -58,6 +91,7 @@ export default function AddEmployeePage() {
   };
 
   const handleSubmit = () => {
+    if (!validateStep()) return;
     // Submit logic here
     alert("Employee Created Successfully!");
     router.push("/employees/all-employees");
@@ -65,29 +99,43 @@ export default function AddEmployeePage() {
 
   return (
     <DashboardLayout title="Employees" subtitle="Home/ Employees/ Add Employee">
-      <div className="flex-1 p-6">
-        <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm min-h-[calc(100vh-120px)] relative pb-24">
+      <div className="flex-1 p-6 flex">
+        <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm flex-1 flex flex-col">
           <h2 style={{ fontSize: "24px" }} className="font-semibold text-neutral-900 mb-10">Add Employee</h2>
 
           {/* Stepper */}
-          <div className="mb-20 mt-4 flex items-center justify-center max-w-[850px] mx-auto w-full px-4">
+          <div
+            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "48px", }}
+            className="mb-20 mt-4 px-4">
             {STEPS.map((step, index) => {
               const stepNumber = index + 1;
               const isActive = currentStep === stepNumber;
               const isCompleted = currentStep > stepNumber;
-              const words = step.split(' ');
-              const firstLine = words.slice(0, Math.ceil(words.length / 2)).join(' ');
-              const secondLine = words.slice(Math.ceil(words.length / 2)).join(' ');
+              const words = step.split(" ");
+
+              let firstLine = "";
+              let secondLine = "";
+
+              if (words.length === 3) {
+                firstLine = words[0];
+                secondLine = `${words[1]} ${words[2]}`;
+              } else {
+                firstLine = words[0];
+                secondLine = words[1] || "";
+              }
 
               return (
-                <div key={step} className="flex items-center flex-1 last:flex-none">
-                  <div className="flex flex-col items-center relative">
+                <React.Fragment key={step}>
+                  <div className="flex flex-col items-center relative shrink-0">
                     <div
-                      className={`flex h-[42px] w-[42px] items-center justify-center rounded-full text-[14px] font-semibold transition-colors
-                      ${isActive || isCompleted
-                          ? "bg-[#257BFC] text-white"
-                          : "bg-[#F1F5F9] text-[#94A3B8]"
-                        }`}
+                      style={{
+                        height: "42px", width: "42px",
+                        backgroundColor:
+                          isActive || isCompleted ? "#257BFC" : "#F1F5F9",
+                        color:
+                          isActive || isCompleted ? "#FFFFFF" : "#94A3B8",
+                      }}
+                      className={`flex items-center justify-center rounded-full text-[14px] font-semibold transition-colors`}
                     >
                       {isCompleted ? (
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -98,53 +146,69 @@ export default function AddEmployeePage() {
                       )}
                     </div>
                     <span
-                      className={`absolute top-[56px] w-[110px] text-center text-[13px] font-medium leading-[18px]
-                        ${isActive || isCompleted ? "text-[#0F172A]" : "text-[#94A3B8]"
-                        }`}
+                      style={{
+                        top: "52px",
+                        color:
+                          isActive || isCompleted ? "#0F172A" : "#94A3B8",
+                      }}
+                      className={`absolute w-[110px] text-center text-[13px] font-medium leading-[18px]
+                        `}
                     >
                       {firstLine}
-                      {secondLine && <><br />{secondLine}</>}
+                      {secondLine && <div className="whitespace-nowrap">{secondLine}</div>}
                     </span>
                   </div>
                   {index < STEPS.length - 1 && (
-                    <div className="mx-4 h-[2px] flex-1 bg-[#E2E8F0]">
+                    <div
+                      style={{
+                        backgroundColor: "#E2E8F0",
+                        height: "2px",
+                        width: "115px",
+                        margin: "0 8px",
+                      }}>
                       <div
                         style={{
                           backgroundColor: "#257BFC",
-                          height: "100%",
+                          height: "2px",
                           width: isCompleted ? "100%" : "0%",
                           transition: "width 0.3s ease",
                         }}
                       />
                     </div>
                   )}
-                </div>
+                </React.Fragment>
               );
             })}
           </div>
 
-          <div className="mb-8 mt-16 max-w-5xl mx-auto">
-            <h3 className="mb-6 mt-10 text-[18px] font-bold text-neutral-900">{STEPS[currentStep - 1]}</h3>
+          <div
+            style={{ marginTop: "110px" }}
+            className="mb-8">
+            <h3
+              style={{ marginBottom: "32px" }}
+              className="text-[20px] font-medium text-neutral-900">{STEPS[currentStep - 1]}</h3>
 
             {/* Forms Content */}
             {currentStep === 1 && (
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div
+                style={{ marginLeft: "6%", marginRight: "6%" }}
+                className="grid gap-6 sm:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">First name</label>
-                  <input name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">First name</label>
+                  <input name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Last Name</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Last Name</label>
                   <input name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Enter your last name" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Date of Birth</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Date of Birth</label>
                   <div className="relative">
                     <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500" />
                   </div>
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Gender</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Gender</label>
                   <select name="gender" value={formData.gender} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white">
                     <option value="">Select your gender</option>
                     <option value="Male">Male</option>
@@ -153,36 +217,38 @@ export default function AddEmployeePage() {
                   </select>
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Phone</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Phone</label>
                   <input name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter your phone number" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Email</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Email</label>
                   <input name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" type="email" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Address</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Address</label>
                   <input name="address" value={formData.address} onChange={handleInputChange} placeholder="Enter your address" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Emergency Contact</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Emergency Contact</label>
                   <input name="emergencyContact" value={formData.emergencyContact} onChange={handleInputChange} placeholder="Enter your email" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
               </div>
             )}
 
             {currentStep === 2 && (
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div
+                style={{ marginLeft: "6%", marginRight: "6%" }}
+                className="grid gap-6 sm:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Employee ID</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Employee ID</label>
                   <input name="employeeId" value={formData.employeeId} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Start Date</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Start Date</label>
                   <input type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Employment Type</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Employment Type</label>
                   <select name="employmentType" value={formData.employmentType} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white">
                     <option value="">Select your employment type</option>
                     <option value="Full Time">Full Time</option>
@@ -191,7 +257,7 @@ export default function AddEmployeePage() {
                   </select>
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Department</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Department</label>
                   <select name="department" value={formData.department} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white">
                     <option value="">Select your department</option>
                     <option value="Engineering">Engineering</option>
@@ -201,19 +267,19 @@ export default function AddEmployeePage() {
                   </select>
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Job Title</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Job Title</label>
                   <input name="jobTitle" value={formData.jobTitle} onChange={handleInputChange} placeholder="Enter your job title" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Location</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Location</label>
                   <input name="location" value={formData.location} onChange={handleInputChange} placeholder="Enter your location" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Manager</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Manager</label>
                   <input name="manager" value={formData.manager} onChange={handleInputChange} placeholder="Enter your manager name" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Contract Type</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Contract Type</label>
                   <select name="contractType" value={formData.contractType} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white">
                     <option value="">Select your contract type</option>
                     <option value="Permanent">Permanent</option>
@@ -224,25 +290,27 @@ export default function AddEmployeePage() {
             )}
 
             {currentStep === 3 && (
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div
+                style={{ marginLeft: "6%", marginRight: "6%" }}
+                className="grid gap-6 sm:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Bank Account Number</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Bank Account Number</label>
                   <input name="bankAccount" value={formData.bankAccount} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Sort Code</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Sort Code</label>
                   <input name="sortCode" value={formData.sortCode} onChange={handleInputChange} placeholder="Enter your sort code" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">NI Number</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">NI Number</label>
                   <input name="niNumber" value={formData.niNumber} onChange={handleInputChange} placeholder="Enter your NI number" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Tax Code</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Tax Code</label>
                   <input name="taxCode" value={formData.taxCode} onChange={handleInputChange} placeholder="Enter your tax code" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Payroll Frequency</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Payroll Frequency</label>
                   <select name="payrollFrequency" value={formData.payrollFrequency} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white">
                     <option value="">Select your payroll</option>
                     <option value="Monthly">Monthly</option>
@@ -251,185 +319,428 @@ export default function AddEmployeePage() {
                   </select>
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-700">Salary / Hourly Rate</label>
+                  <label className="mb-2 block text-sm font-medium text-[#111827]">Salary / Hourly Rate</label>
                   <input name="salary" value={formData.salary} onChange={handleInputChange} placeholder="Enter your salary" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
                 </div>
               </div>
             )}
 
             {currentStep === 4 && (
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div
+                style={{ marginLeft: "6%", marginRight: "6%" }}
+                className="grid gap-6 sm:grid-cols-2">
                 {/* File Upload mock UI */}
                 {[
-                  { label: "Right to Work document", desc: "PDF, PNG, JPG up to 10MB" },
-                  { label: "Signed Employment Contract", desc: "PDF, DOCX up to 10MB" },
-                  { label: "Passport or Visa copy", desc: "PDF, PNG, JPG up to 10MB" },
-                  { label: "HMRC Starter Checklist or P45", desc: "PDF, PNG, JPG up to 10MB" },
-                ].map((doc, idx) => (
-                  <div key={idx}>
-                    <label className="mb-2 block text-sm font-medium text-neutral-700">{doc.label.split(' document')[0].split(' copy')[0]}</label>
-                    <div className="flex items-center justify-between rounded-xl border border-dashed border-neutral-300 p-4 bg-neutral-50">
-                      <div>
-                        <p className="text-sm font-medium text-neutral-900">{doc.label}</p>
-                        <p className="text-xs text-neutral-400 mt-1">{doc.desc}</p>
+                  { label: "Right to Work document", desc: "PDF, PNG, JPG up to 10MB", field: "rightToWorkFile" },
+                  { label: "Signed Employment Contract", desc: "PDF, DOCX up to 10MB", field: "employmentContractFile" },
+                  { label: "Passport or Visa copy", desc: "PDF, PNG, JPG up to 10MB", field: "passportFile" },
+                  { label: "HMRC Starter Checklist or P45", desc: "PDF, PNG, JPG up to 10MB", field: "hmrcChecklistFile" },
+                ].map((doc, idx) => {
+                  const uploadedFile = (formData as any)[doc.field];
+                  return (
+                    <div key={idx}>
+                      <label className="mb-2 block text-sm font-medium text-[#111827]">{doc.label.split(' document')[0].split(' copy')[0]}</label>
+                      <div className="flex items-center justify-between rounded-xl border border-dashed border-neutral-300 p-4 bg-neutral-50">
+                        <div>
+                          <p className="text-sm font-medium text-[#111827]">{uploadedFile ? uploadedFile : doc.label}</p>
+                          <p className="text-xs text-neutral-400 mt-1">{uploadedFile ? "File selected" : doc.desc}</p>
+                        </div>
+                        <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-50 transition">
+                          <Image
+                            src={upload}
+                            alt="upload"
+                            width={20}
+                            height={20}
+                          />
+                          {uploadedFile ? "Change file" : "Upload file"}
+                          <input
+                            type="file"
+                            className="hidden"
+                            onChange={(e) => {
+                              if (e.target.files && e.target.files[0]) {
+                                setFormData(prev => ({ ...prev, [doc.field]: e.target.files![0].name }));
+                              }
+                            }}
+                          />
+                        </label>
                       </div>
-                      <button className="flex items-center gap-2 rounded-lg border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-50 transition">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                          <polyline points="17 8 12 3 7 8"></polyline>
-                          <line x1="12" y1="3" x2="12" y2="15"></line>
-                        </svg>
-                        Upload file
-                      </button>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
-
             {currentStep === 5 && (
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div
+                className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+              >
                 {/* Personal Information */}
-                <div className="rounded-xl border border-neutral-200 p-5 relative">
-                  <div className="flex justify-between items-start mb-4">
-                    <h4 className="text-[16px] font-bold text-neutral-900">Personal Information</h4>
-                    <button onClick={() => setCurrentStep(1)} className="text-neutral-400 hover:text-[#257BFC] transition">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                      </svg>
+                <div
+                  style={{ borderRadius: "16px", backgroundColor: "#F9FAFB" }}
+                  className="p-6">
+                  <div
+                    style={{ borderBottom: "1px solid #D0D5DD" }}
+                    className="flex items-center justify-between pb-4 mb-5">
+                    <h4 className="text-[20px] font-medium text-[#111827] mb-6">
+                      Personal Information
+                    </h4>
+
+                    <button
+                      onClick={() => setCurrentStep(1)}
+                      className="hover:opacity-80 transition"
+                    >
+                      <Image src={editIcon} alt="edit" width={20} height={20} />
                     </button>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+
+                  <div
+                    style={{ gridTemplateColumns: "2fr 2fr", rowGap: "1rem", columnGap: "1rem" }}
+                    className="grid">
                     <div>
-                      <p className="text-xs text-neutral-400">Full Name</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.firstName} {formData.lastName}</p>
+                      <p
+                        style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Full Name</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.firstName} {formData.lastName}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Gender</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.gender || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Gender</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.gender || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Email Address</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.email || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Email Address</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight break-words">
+                        {formData.email || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Phone</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.phone || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Phone</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.phone || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Date of Birth</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.dob || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Phone</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.phone || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Address</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.address || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Address</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight break-words">
+                        {formData.email || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Emergency Contact</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.emergencyContact || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Date of Birth</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.dob || "-"}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">
+                        Emergency Contact
+                      </p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.emergencyContact || "-"}
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 {/* Employment Information */}
-                <div className="rounded-xl border border-neutral-200 p-5 relative">
-                  <div className="flex justify-between items-start mb-4">
-                    <h4 className="text-[16px] font-bold text-neutral-900">Employment Information</h4>
-                    <button onClick={() => setCurrentStep(2)} className="text-neutral-400 hover:text-[#257BFC] transition">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                      </svg>
+                <div
+                  style={{ borderRadius: "16px", backgroundColor: "#F9FAFB" }}
+                  className="p-6">
+                  <div
+                    style={{ borderBottom: "1px solid #D0D5DD" }}
+                    className="flex items-center justify-between pb-4 mb-5">
+                    <h4 className="text-[20px] font-medium text-[#111827] mb-6">
+                      Employment Information
+                    </h4>
+
+                    <button
+                      onClick={() => setCurrentStep(2)}
+                      className="hover:opacity-80 transition"
+                    >
+                      <Image src={editIcon} alt="edit" width={20} height={20} />
                     </button>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+
+                  <div
+                    style={{ gridTemplateColumns: "2fr 2fr", rowGap: "1rem", columnGap: "1rem" }}
+                    className="grid">
                     <div>
-                      <p className="text-xs text-neutral-400">Employee ID</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.employeeId || "-"}</p>
+                      <p
+                        style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Employee ID</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.employeeId || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Job Title</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.jobTitle || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Job Title</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.jobTitle || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Employment Type</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.employmentType || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Employment Type</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.employmentType || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Location</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.location || "-"}</p>
+                      <p
+                        style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Location</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.location || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Department</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.department || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Department</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.department || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Manager</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.manager || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Manager</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.manager || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Start Date</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.startDate || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Start Date</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.startDate || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Contract Type</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.contractType || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Contract Type</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.contractType || "-"}
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 {/* Payroll Details */}
-                <div className="rounded-xl border border-neutral-200 p-5 relative">
-                  <div className="flex justify-between items-start mb-4">
-                    <h4 className="text-[16px] font-bold text-neutral-900">Payroll Details</h4>
-                    <button onClick={() => setCurrentStep(3)} className="text-neutral-400 hover:text-[#257BFC] transition">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                      </svg>
+                <div style={{ borderRadius: "16px", backgroundColor: "#F9FAFB" }}
+                  className="p-6">
+                  <div style={{ borderBottom: "1px solid #D0D5DD" }}
+                    className="flex items-center justify-between pb-4 mb-5">
+                    <h4 className="text-[16px] font-bold text-[#111827] mb-6">
+                      Payroll Details
+                    </h4>
+
+                    <button
+                      onClick={() => setCurrentStep(3)}
+                      className="hover:opacity-80 transition"
+                    >
+                      <Image src={editIcon} alt="edit" width={20} height={20} />
                     </button>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+
+                  <div style={{ gridTemplateColumns: "2fr 2fr", rowGap: "1rem", columnGap: "1rem" }}
+                    className="grid">
                     <div>
-                      <p className="text-xs text-neutral-400">Bank Account Number</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.bankAccount || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">
+                        Bank Account Number
+                      </p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.bankAccount || "-"}
+                      </p>
                     </div>
+
                     <div>
-                      <p className="text-xs text-neutral-400">Sort Code</p>
-                      <p className="text-sm font-semibold text-neutral-900 mt-1">{formData.sortCode || "-"}</p>
+                      <p style={{ marginBottom: "6px" }}
+                        className="text-[12px] font-normal text-[#98A2B3] leading-tight">Sort Code</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.sortCode || "-"}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className="text-[12px] font-normal text-[#98A2B3] mb-1 leading-tight">NI Number</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.niNumber || "-"}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className="text-[12px] font-normal text-[#98A2B3] mb-1 leading-tight">Tax Code</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.taxCode || "-"}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className="text-[12px] font-normal text-[#98A2B3] mb-1 leading-tight">Payroll Frequency</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.payrollFrequency || "-"}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className="text-[12px] font-normal text-[#98A2B3] mb-1 leading-tight">Salary / Hourly Rate</p>
+                      <p className="text-[14px] font-medium text-[#111827] leading-tight">
+                        {formData.salary || "-"}
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 {/* Compliance Documents */}
-                <div className="rounded-xl border border-neutral-200 p-5 relative">
-                  <div className="flex justify-between items-start mb-4">
-                    <h4 className="text-[16px] font-bold text-neutral-900">Employment Information</h4>
-                    <button onClick={() => setCurrentStep(4)} className="text-neutral-400 hover:text-[#257BFC] transition">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                      </svg>
+                <div style={{ borderRadius: "16px", backgroundColor: "#F9FAFB" }}
+                  className="p-6">
+                  <div style={{ borderBottom: "1px solid #D0D5DD" }}
+                    className="flex items-center justify-between pb-4 mb-5">
+                    <h4 className="text-[16px] font-bold text-[#111827] mb-6">
+                      Employment Information
+                    </h4>
+
+                    <button
+                      onClick={() => setCurrentStep(4)}
+                      className="hover:opacity-80 transition"
+                    >
+                      <Image src={editIcon} alt="edit" width={20} height={20} />
                     </button>
                   </div>
-                  <div className="rounded-xl bg-neutral-50 px-4 py-3 border border-neutral-200 flex justify-between items-center mt-2">
+
+                  <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F04438" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                        <polyline points="10 9 9 9 8 9"></polyline>
-                      </svg>
-                      <span className="text-sm text-neutral-900 font-medium">Right to Work document</span>
+                      <div className="flex items-center gap-2">
+                        <Image
+                          src={fileTypeIcon}
+                          alt="file"
+                        />
+
+                        <span className="text-[14px] font-semibold text-[#111827]">
+                          Right to Work document
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1 text-green-600 bg-green-50 border border-green-200 px-3 py-1 rounded-full text-xs font-semibold">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                      Uploaded
+
+                    {formData.rightToWorkFile ? (
+                      <div style={{ backgroundColor: "#EDFAF2", border: "transparent", borderRadius: "100px", color: "#4DB949", gap: "8px" }}
+                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        Uploaded
+                      </div>
+                    ) : (
+                      <div style={{ backgroundColor: "#FEF6E7", border: "transparent", borderRadius: "100px", color: "#F79009", gap: "8px" }}
+                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        Pending
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-between mt-5">
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2">
+                        <Image
+                          src={fileTypeIcon}
+                          alt="file"
+                        />
+
+                        <span className="text-[14px] font-semibold text-[#111827]">
+                          Passport or Visa
+                        </span>
+                      </div>
                     </div>
+
+                    {formData.passportFile ? (
+                      <div style={{ backgroundColor: "#EDFAF2", border: "transparent", borderRadius: "100px", color: "#4DB949", gap: "8px" }}
+                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        Uploaded
+                      </div>
+                    ) : (
+                      <div style={{ backgroundColor: "#FEF6E7", border: "transparent", borderRadius: "100px", color: "#F79009", gap: "8px" }}
+                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        Pending
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-between mt-5">
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2">
+                        <Image
+                          src={fileTypeIcon}
+                          alt="file"
+                        />
+
+                        <span className="text-[14px] font-semibold text-[#111827]">
+                          Signed Employment Contract
+                        </span>
+                      </div>
+                    </div>
+
+                    {formData.employmentContractFile ? (
+                      <div style={{ backgroundColor: "#EDFAF2", border: "transparent", borderRadius: "100px", color: "#4DB949", gap: "8px" }}
+                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        Uploaded
+                      </div>
+                    ) : (
+                      <div style={{ backgroundColor: "#FEF6E7", border: "transparent", borderRadius: "100px", color: "#F79009", gap: "8px" }}
+                        className="flex items-center px-3 py-1 text-[14px] font-normal">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        Pending
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -437,7 +748,11 @@ export default function AddEmployeePage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="absolute bottom-8 right-8 flex gap-4">
+          <div
+            style={{
+              marginTop: "48px"
+            }}
+            className="mt-auto flex justify-end gap-4 pt-8">
             {currentStep === 1 ? (
               <Link href="/employees/all-employees">
                 <button className="rounded-xl border border-neutral-300 bg-white px-6 py-3 text-[16px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
@@ -465,3 +780,5 @@ export default function AddEmployeePage() {
     </DashboardLayout>
   );
 }
+
+

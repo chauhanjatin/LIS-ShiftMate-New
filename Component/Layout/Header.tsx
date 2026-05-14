@@ -38,7 +38,7 @@ function AdminDropdown() {
       <div className="absolute right-0 z-20 mt-3 w-72 rounded-2xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
         <button
           type="button"
-          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-xl font-medium text-neutral-800 hover:bg-neutral-100"
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
         >
           <svg
             viewBox="0 0 24 24"
@@ -57,7 +57,7 @@ function AdminDropdown() {
         </button>
         <button
           type="button"
-          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-xl font-medium text-neutral-800 hover:bg-neutral-100"
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
         >
           <svg
             viewBox="0 0 24 24"
@@ -81,7 +81,7 @@ function AdminDropdown() {
         </button>
         <button
           type="button"
-          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-xl font-medium text-neutral-800 hover:bg-neutral-100"
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
         >
           <svg
             viewBox="0 0 24 24"
