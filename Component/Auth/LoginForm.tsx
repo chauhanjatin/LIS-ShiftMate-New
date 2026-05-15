@@ -47,12 +47,12 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-[37.5rem] rounded-[2rem] bg-white px-6 py-7 shadow-[0_24px_60px_rgba(15,23,42,0.14)] sm:px-8 sm:py-9">
+    <div className="w-full max-w-[37.5rem] rounded-[2rem] px-6 py-7 xl:px-8 xl:py-9">
       <div className="text-center">
-        <h1 className="text-[2.5rem] font-black tracking-[-0.05em] text-neutral-900 sm:text-[3rem]">
+        <h1 className="xl:text-[32px] text-[30px] font-black tracking-[-0.05em] text-neutral-900">
           Welcome Back
         </h1>
-        <p className="mt-3 text-[1.15rem] tracking-tight text-neutral-800">
+        <p className="2xl:mt-3 mt-1 xl:text-[16px] text-[14px] font-normal tracking-tight text-[#98A2B3]">
           Manage schedules and teams in one place.
         </p>
       </div>

@@ -9,40 +9,34 @@ export default function AuthMarketingLayout({
   children,
 }: AuthMarketingLayoutProps) {
   return (
-    <main className="fixed inset-0 z-0 flex h-[100vh] max-h-[100vh] flex-col overflow-hidden bg-[#eaf2ff] px-4 py-5 sm:px-6 lg:px-8 lg:py-7">
-      <div className="mx-auto flex min-h-0 w-full max-w-[1850px] flex-1 flex-col">
-        <div className="grid min-h-0 flex-1 grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.03fr)_minmax(0,0.97fr)]">
-          <section className="relative hidden min-h-0 overflow-hidden rounded-[2rem] lg:flex">
-            <Image
-              src="/login/hero-background.png"
-              alt=""
-              fill
-              priority
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.1),transparent_28%)]" />
+    <main className="fixed inset-0 z-0 flex h-[100vh] max-h-[100vh] flex-col overflow-hidden bg-[#eaf2ff] ">
+      <div className="mx-auto flex min-h-0 w-full flex-1 flex-col">
+        <div className="grid min-h-0 flex-1 grid-cols-1  lg:grid-cols-[minmax(0,1.03fr)_minmax(0,0.97fr)]">
+          <section className="relative hidden min-h-0 overflow-hidden rounded-[2.5rem] lg:flex bg-[#4c51f5] m-[30px]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_-20%,rgba(255,255,255,0.15),transparent_45%),radial-gradient(circle_at_70%_120%,rgba(255,255,255,0.1),transparent_50%)]" />
 
-            <div className="relative z-10 flex min-h-0 flex-1 flex-col justify-between p-8 xl:p-14">
-              <div className="max-w-[42rem]">
-                <h2 className="text-[3.55rem] font-black leading-[1.08] tracking-[-0.06em] text-white xl:text-[4.15rem]">
-                  Manage your workforce, payroll and teams in one place.
+            <div className="relative z-10 flex min-h-0 flex-1 flex-col 2xl:p-[60px] xl:p-[45px] p-[40px]">
+              <div className="max-w-[45rem]">
+                <h2 className="2xl:text-[48px] text-[40px] font-black 2xl:leading-[72px] leading-[56px] tracking-[-0.02em] text-white">
+                  Manage your workforce, payroll and organization in one place.
                 </h2>
               </div>
 
-              <div className="relative flex min-h-0 flex-1 items-end justify-center">
+              <div className="absolute inset-x-0 bottom-0 flex min-h-0 items-end justify-center">
                 <Image
                   src="/login/hero-person.png"
                   alt="Smiling professional using a laptop"
-                  width={767}
-                  height={1032}
-                  className="h-auto max-h-full w-auto object-contain object-bottom"
+                  width={800}
+                  height={1080}
+                  priority
+                  className="h-auto 2xl:w-[66%] w-[100%] max-w-[700px] 2xl:max-w-[850px] object-contain object-bottom select-none pointer-events-none translate-y-[2px] 2xl:translate-x-[20%] translate-x-[2%]"
                 />
               </div>
             </div>
           </section>
 
           <section className="flex min-h-0 flex-1 flex-col justify-center">
-            <div className="flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto overscroll-y-contain justify-center">
+            <div className="flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto overscroll-y-contain justify-center bg-white">
               <div className="mx-auto flex w-full max-w-[40rem] flex-col items-center py-4">
                 <div className="mb-6 flex w-full shrink-0 justify-center lg:mb-10">
                   <Image
@@ -51,7 +45,7 @@ export default function AuthMarketingLayout({
                     width={560}
                     height={119}
                     priority
-                    className="h-auto w-[16rem] sm:w-[18rem] lg:w-[20rem]"
+                    className="h-auto w-[14rem] xl:w-[16rem] 2xl:w-[18rem] 2xl::w-[20rem]"
                   />
                 </div>
 

@@ -99,12 +99,12 @@ export default function AddEmployeePage() {
 
   return (
     <DashboardLayout title="Employees" subtitle="Home/ Employees/ Add Employee">
-      <div className="flex-1 p-6 flex">
+      <div className="flex-1 p-4 2xl:p-6 flex">
         <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm flex-1 flex flex-col">
           <h2 className="text-[24px] font-semibold text-neutral-900 mb-10">Add Employee</h2>
 
           {/* Stepper */}
-          <div className="flex items-center justify-center gap-[48px] mb-20 mt-4 px-4">
+          <div className="flex items-center justify-center 2xl:gap-[48px] gap-[14px] 2xl:mb-20 mb-15 2xl:mt-4 mt-3 px-4">
             {STEPS.map((step, index) => {
               const stepNumber = index + 1;
               const isActive = currentStep === stepNumber;
@@ -126,7 +126,7 @@ export default function AddEmployeePage() {
                 <React.Fragment key={step}>
                   <div className="flex flex-col items-center relative shrink-0">
                     <div
-                      className={`h-[42px] w-[42px] flex items-center justify-center rounded-full text-[14px] font-semibold transition-colors ${isActive || isCompleted ? "bg-[#257BFC] text-[#FFFFFF]" : "bg-[#F1F5F9] text-[#94A3B8]"}`}
+                      className={`2xl:h-[42px] 2xl:w-[42px] h-[38px] w-[38px] flex items-center justify-center rounded-full text-[14px] font-semibold transition-colors ${isActive || isCompleted ? "bg-[#257BFC] text-[#FFFFFF]" : "bg-[#F1F5F9] text-[#94A3B8]"}`}
                     >
                       {isCompleted ? (
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -144,7 +144,7 @@ export default function AddEmployeePage() {
                     </span>
                   </div>
                   {index < STEPS.length - 1 && (
-                    <div className="bg-[#E2E8F0] h-[2px] w-[115px] mx-2">
+                    <div className="bg-[#E2E8F0] h-[2px] 2xl:w-[115px] w-[80px] 2xl:mx-2 mx-1">
                       <div className={`bg-[#257BFC] h-[2px] transition-all duration-300 ease-in-out ${isCompleted ? "w-full" : "w-0"}`} />
                     </div>
                   )}
@@ -153,7 +153,7 @@ export default function AddEmployeePage() {
             })}
           </div>
 
-          <div className="mt-[110px] mb-8">
+          <div className="mt-[48px] mb-8">
             <h3 className="mb-[32px] text-[20px] font-medium text-neutral-900">{STEPS[currentStep - 1]}</h3>
 
             {/* Forms Content */}
@@ -336,7 +336,7 @@ export default function AddEmployeePage() {
                 {/* Personal Information */}
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
-                    <h4 className="text-[20px] font-medium text-[#111827] mb-6">
+                    <h4 className="text-[20px] font-medium text-[#111827] 2xl:mb-6">
                       Personal Information
                     </h4>
 
@@ -412,7 +412,7 @@ export default function AddEmployeePage() {
                 {/* Employment Information */}
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
-                    <h4 className="text-[20px] font-medium text-[#111827] mb-6">
+                    <h4 className="text-[20px] font-medium text-[#111827] 2xl:mb-6">
                       Employment Information
                     </h4>
 
@@ -486,7 +486,7 @@ export default function AddEmployeePage() {
                 {/* Payroll Details */}
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
-                    <h4 className="text-[16px] font-bold text-[#111827] mb-6">
+                    <h4 className="text-[16px] font-bold text-[#111827] 2xl:mb-6">
                       Payroll Details
                     </h4>
 
@@ -548,7 +548,7 @@ export default function AddEmployeePage() {
                 {/* Compliance Documents */}
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
-                    <h4 className="text-[16px] font-bold text-[#111827] mb-6">
+                    <h4 className="text-[16px] font-bold text-[#111827] 2xl:mb-6">
                       Employment Information
                     </h4>
 
@@ -593,7 +593,7 @@ export default function AddEmployeePage() {
                     )}
                   </div>
 
-                  <div className="flex items-center justify-between mt-5">
+                  <div className="flex items-center justify-between 2xl:mt-5 mt-6">
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-2">
                         <Image
@@ -626,7 +626,7 @@ export default function AddEmployeePage() {
                     )}
                   </div>
 
-                  <div className="flex items-center justify-between mt-5">
+                  <div className="flex items-center justify-between 2xl:mt-5 mt-6">
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-2">
                         <Image
@@ -667,7 +667,7 @@ export default function AddEmployeePage() {
           <div className="mt-[48px] flex justify-end gap-4 pt-8">
             {currentStep === 1 ? (
               <Link href="/employees/all-employees">
-                <button className="rounded-xl border border-neutral-300 bg-white px-6 py-3 text-[16px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
+                <button className="rounded-xl border border-neutral-300 bg-white 2xl:px-6 px-4 2xl:py-3 py-2 text-[16px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
                   Cancel
                 </button>
               </Link>
@@ -678,11 +678,11 @@ export default function AddEmployeePage() {
             )}
 
             {currentStep === 5 ? (
-              <button onClick={handleSubmit} className="rounded-xl bg-[#257BFC] px-6 py-3 text-[16px] font-semibold text-white transition hover:bg-blue-600">
+              <button onClick={handleSubmit} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 py-2 2xl:text-[16px] text-[12px] font-semibold text-white transition hover:bg-blue-600 2xl:w-28 w-30">
                 Submit & Create Employee
               </button>
             ) : (
-              <button onClick={handleNext} className="rounded-xl bg-[#257BFC] px-6 py-3 text-[16px] font-semibold text-white transition hover:bg-blue-600 w-28">
+              <button onClick={handleNext} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 py-2 text-[16px] font-semibold text-white transition hover:bg-blue-600 2xl:w-28 w-28">
                 Next
               </button>
             )}

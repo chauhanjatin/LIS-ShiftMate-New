@@ -45,14 +45,14 @@ export default function AllEmployeesPage() {
 
   return (
     <DashboardLayout title="Employees" subtitle="Home/ All Employees">
-      <div className="flex-1 p-6">
+      <div className="flex-1 p-4 2xl:p-6">
         <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
           {/* Toolbar */}
           <div className="flex items-center justify-between border-b border-neutral-100 p-5">
             <h2 className="text-[20px] font-bold text-neutral-900">Employee List</h2>
 
-            <div className="flex items-center gap-6">
-              <div className="relative w-75">
+            <div className="flex items-center gap-3 2xl:gap-6">
+              <div className="relative 2xl:w-75 w-60">
                 <Image
                   src={searchIcon}
                   alt="Search"
@@ -96,7 +96,7 @@ export default function AllEmployeesPage() {
 
               {/* Add Employee Button */}
               <Link href="/employees/add-employee">
-                <button className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-5 py-3 text-[16px] text-white transition hover:bg-blue-600">
+                <button className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-3 py-2.5 2xl:px-5 2xl:py-3 text-[14px] 2xl:text-[16px] text-white transition hover:bg-blue-600">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -109,60 +109,132 @@ export default function AllEmployeesPage() {
 
           {/* Main Content Area */}
           {view === "list" ? (
-            <div className="overflow-x-auto p-6">
-              <table className="w-full text-left">
+            <div className="overflow-x-auto p-3 2xl:p-6">
+              <table className="min-w-[1100px] w-full text-left">
                 <thead className="bg-white">
                   <tr>
-                    <th className="border-b border-[#D0D5DD] py-4 pl-6 pr-2 text-[14px] font-semibold text-neutral-900">
-                      <input type="checkbox" className="h-4 w-4 rounded border-[#D0D5DD] text-brand-500 focus:ring-brand-500" />
+                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
+                      <input
+                        type="checkbox"
+                        className="h-4 w-4 rounded border-[#D0D5DD] text-brand-500 focus:ring-brand-500"
+                      />
                     </th>
-                    <th className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px] font-semibold text-neutral-900">Employee ID</th>
-                    <th className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px] font-semibold text-neutral-900">Name</th>
-                    <th className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px] font-semibold text-neutral-900">Department</th>
-                    <th className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px] font-semibold text-neutral-900">Job Title</th>
-                    <th className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px] font-semibold text-neutral-900">Employment Type</th>
-                    <th className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px] font-semibold text-neutral-900">Status</th>
-                    <th className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px] font-semibold text-neutral-900">Joining Date</th>
-                    <th className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px] font-semibold text-neutral-900">Action</th>
+
+                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
+                      Employee ID
+                    </th>
+
+                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
+                      Name
+                    </th>
+
+                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
+                      Department
+                    </th>
+
+                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
+                      Job Title
+                    </th>
+
+                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
+                      Employment Type
+                    </th>
+
+                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
+                      Status
+                    </th>
+
+                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
+                      Joining Date
+                    </th>
+
+                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
+                      Action
+                    </th>
                   </tr>
                 </thead>
+
                 <tbody>
                   {employeesList.map((emp) => (
-                    <tr key={emp.id} className="group transition-colors hover:bg-neutral-50">
-                      <td className="border-b border-[#D0D5DD] py-4 pl-6 pr-2">
-                        <input type="checkbox" className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500" />
+                    <tr
+                      key={emp.id}
+                      className="group transition-colors hover:bg-neutral-50"
+                    >
+                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pl-6 pl-3 pr-2">
+                        <input
+                          type="checkbox"
+                          className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500"
+                        />
                       </td>
-                      <td className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px] font-medium">{emp.id}</td>
-                      <td className="border-b border-[#D0D5DD] py-4 pr-6">
+
+                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] font-medium whitespace-nowrap">
+                        {emp.id}
+                      </td>
+
+                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6">
                         <Link href={`/employees/${emp.id}`}>
-                          <div className="flex items-center gap-3 cursor-pointer hover:underline">
-                            <img src={emp.avatar} alt={emp.name} className="h-9 w-9 rounded-full object-cover" />
-                            <span className="text-[14px] font-medium text-neutral-900">{emp.name}</span>
+                          <div className="flex min-w-[180px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
+                            <img
+                              src={emp.avatar}
+                              alt={emp.name}
+                              className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover flex-shrink-0"
+                            />
+
+                            <span className="text-[12px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                              {emp.name}
+                            </span>
                           </div>
                         </Link>
                       </td>
-                      <td className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px]">{emp.dept}</td>
-                      <td className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px]">{emp.role}</td>
-                      <td className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px]">{emp.type}</td>
-                      <td className="border-b border-[#D0D5DD] py-4 pr-6">
+
+                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                        {emp.dept}
+                      </td>
+
+                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                        {emp.role}
+                      </td>
+
+                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                        {emp.type}
+                      </td>
+
+                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 whitespace-nowrap">
                         <StatusPill status={emp.status} />
                       </td>
-                      <td className="border-b border-[#D0D5DD] py-4 pr-6 text-[14px]">{emp.joinDate}</td>
-                      <td className="border-b border-[#D0D5DD] py-4 pr-6">
-                        <div className="flex items-center gap-4">
-                          <button className="text-neutral-400 hover:text-brand-500">
-                            <Image src={editIcon}
-                              alt="Filter"
-                              width={24}
-                              height={24}
-                              className="pointer-events-none" />
-                          </button>
-                          <button onClick={() => { setEmployeeToDelete(emp.id); setDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500">
-                            <Image src={deleteIcon}
+
+                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                        {emp.joinDate}
+                      </td>
+
+                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6">
+                        <div className="flex items-center gap-2 sm:gap-4">
+                          <Link href={`/employees/${emp.id}`}>
+                            <button className="text-neutral-400 hover:text-brand-500 mt-2 2xl:mt-0">
+                              <Image
+                                src={editIcon}
+                                alt="Filter"
+                                width={24}
+                                height={24}
+                                className="pointer-events-none h-5 w-5 sm:h-6 sm:w-6"
+                              />
+                            </button>
+                          </Link>
+
+                          <button
+                            onClick={() => {
+                              setEmployeeToDelete(emp.id);
+                              setDeleteModalOpen(true);
+                            }}
+                            className="text-neutral-400 hover:text-red-500"
+                          >
+                            <Image
+                              src={deleteIcon}
                               alt="Delete"
                               width={24}
                               height={24}
-                              className="pointer-events-none" />
+                              className="pointer-events-none h-5 w-5 sm:h-6 sm:w-6"
+                            />
                           </button>
                         </div>
                       </td>
@@ -172,24 +244,50 @@ export default function AllEmployeesPage() {
               </table>
 
               {/* Pagination */}
-              <div className="flex items-center justify-end gap-4 border-t border-neutral-100 px-6 py-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end border-t border-neutral-100 px-2 sm:px-6 py-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-[14px] text-neutral-500">Rows per page:</span>
-                  <select className="rounded-lg border border-neutral-200 bg-white px-2 py-1 text-[14px] text-neutral-900 outline-none">
+                  <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                    Rows per page:
+                  </span>
+
+                  <select className="rounded-lg border border-neutral-200 bg-white px-2 py-1 text-[12px] sm:text-[14px] text-neutral-900 outline-none">
                     <option>5</option>
                     <option>10</option>
                     <option>20</option>
                   </select>
                 </div>
-                <span className="text-[14px] text-neutral-500">1-5 of 12</span>
+
+                <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                  1-5 of 12
+                </span>
+
                 <div className="flex items-center gap-1">
                   <button className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <polyline points="15 18 9 12 15 6"></polyline>
                     </svg>
                   </button>
+
                   <button className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
                   </button>
@@ -197,14 +295,28 @@ export default function AllEmployeesPage() {
               </div>
             </div>
           ) : (
-            <div className="grid gap-6 p-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 p-3 sm:grid-cols-2 xl:gap-4 sm:p-4 lg:grid-cols-3 xl:grid-cols-4 2xl:gap-6 2xl:p-6">
               {employeesList.map((emp) => (
-                <div key={emp.id} className="relative rounded-2xl border border-neutral-200 bg-white p-5 shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)]">
+                <div
+                  key={emp.id}
+                  className="relative rounded-2xl border border-neutral-200 bg-white p-3 2xl:p-5 shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)]"
+                >
                   {/* Top Bar */}
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between gap-2">
                     <StatusPill status={emp.status} />
-                    <button className="text-black cursor-pointer transition">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+
+                    <button className="cursor-pointer text-black transition shrink-0">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="h-4 w-4 sm:h-5 sm:w-5"
+                      >
                         <circle cx="12" cy="12" r="1"></circle>
                         <circle cx="12" cy="5" r="1"></circle>
                         <circle cx="12" cy="19" r="1"></circle>
@@ -214,25 +326,47 @@ export default function AllEmployeesPage() {
 
                   {/* Center Content */}
                   <div className="mt-4 flex flex-col items-center text-center">
-                    <div className="mb-4 h-[88px] w-[88px] overflow-hidden rounded-full border-4 border-white shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
-                      <img src={emp.avatar} alt={emp.name} className="h-full w-full object-cover" />
+                    <div className="mb-4 h-[72px] w-[72px] overflow-hidden rounded-full border-4 border-white shadow-[0_4px_12px_rgba(0,0,0,0.08)] sm:h-[88px] sm:w-[88px]">
+                      <img
+                        src={emp.avatar}
+                        alt={emp.name}
+                        className="h-full w-full object-cover"
+                      />
                     </div>
+
                     <Link href={`/employees/${emp.id}`} className="hover:underline">
-                      <h3 className="text-[16px] font-bold text-neutral-900">{emp.name}</h3>
+                      <h3 className="text-[14px] sm:text-[16px] font-bold text-neutral-900 break-words">
+                        {emp.name}
+                      </h3>
                     </Link>
-                    <p className="mt-1 text-[12px] text-[#98A2B3]">EMP ID : {emp.id.replace("EMP", "")}</p>
+
+                    <p className="mt-1 text-[11px] sm:text-[12px] text-[#98A2B3]">
+                      EMP ID : {emp.id.replace("EMP", "")}
+                    </p>
                   </div>
 
                   {/* Bottom Stats */}
                   <div className="mt-4 flex items-center justify-between border-t border-neutral-300">
-                    <div className="flex-1 text-center border-r border-neutral-300 pt-4">
-                      <p className="text-[16px] font-medium">Department</p>
-                      <p className="mt-1 text-[12px] font-normal text-[#98A2B3]">{emp.dept}</p>
+                    <div className="flex-1 border-r border-neutral-300 pt-4 text-center min-w-0">
+                      <p className="2xl:text-[14px] xl:text-[13px] font-medium">
+                        Department
+                      </p>
+
+                      <p className="mt-1 truncate text-[11px] 2xl:text-[12px] font-normal text-[#98A2B3]">
+                        {emp.dept}
+                      </p>
                     </div>
+
                     <div className="h-8 w-px bg-neutral-100"></div>
-                    <div className="flex-1 text-center pt-4">
-                      <p className="text-[16px] font-medium">Job Title</p>
-                      <p className="mt-1 text-[12px] font-normal text-[#98A2B3]">{emp.role}</p>
+
+                    <div className="flex-1 pt-4 text-center min-w-0">
+                      <p className="2xl:text-[14px] xl:text-[13px] font-medium">
+                        Job Title
+                      </p>
+
+                      <p className="mt-1 truncate text-[11px] 2xl:text-[12px] font-normal text-[#98A2B3]">
+                        {emp.role}
+                      </p>
                     </div>
                   </div>
                 </div>

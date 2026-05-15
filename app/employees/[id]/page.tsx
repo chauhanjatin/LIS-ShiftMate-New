@@ -117,11 +117,11 @@ export default function EmployeeDetailsPage() {
 
   return (
     <DashboardLayout title="Employees" subtitle="Home/ All Employees/ Employee Details">
-      <div className="flex-1 p-6">
-        <div className="flex flex-col lg:flex-row gap-[34px] bg-white p-6 rounded-[20px] min-h-[800px]">
+      <div className="flex-1 2xl:p-6 p-4">
+        <div className="flex flex-col lg:flex-row 2xl:gap-[34px] gap-[28px] bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
 
           {/* Left Sidebar Profile Card */}
-          <div className="w-full lg:w-[353px] shrink-0">
+          <div className="w-full 2xl:w-[353px] lg:w-[320px] shrink-0">
             <div className="rounded-2xl border border-[#F3F4F6] bg-[#F9FAFB] p-8 text-center shadow-sm">
               <div className="relative mx-auto mb-6 h-[120px] w-[120px]">
                 <div className="h-full w-full overflow-hidden rounded-full shadow-sm">
@@ -142,7 +142,7 @@ export default function EmployeeDetailsPage() {
               <StatusPill status={employee.status} type={employee.type} />
             </div>
 
-            <div className="mt-8 px-2 flex flex-col gap-6">
+            <div className="mt-8 px-2 flex flex-col 2xl:gap-6 gap-4">
               <div>
                 <p className="text-[13px] font-medium text-[#9CA3AF] mb-1 m-0">Employee ID</p>
                 <p className="text-[15px] font-bold text-[#111827] mt-1 m-0">{employee.id}</p>
@@ -164,12 +164,12 @@ export default function EmployeeDetailsPage() {
           {/* Right Content Area */}
           <div className="flex-1 lg:pl-2 min-w-[300px]">
             {/* Tabs */}
-            <div className="flex items-center gap-1 justify-between overflow-x-auto mb-10 bg-[#F9FAFB] p-1.5 rounded-xl scrollbar-hide w-full">
+            <div className="flex items-center 2xl:gap-1 gap-2 justify-between overflow-x-auto mb-10 bg-[#F9FAFB] p-1.5 rounded-xl scrollbar-hide w-full">
               {TABS.map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`whitespace-nowrap rounded-lg px-4 py-2.5 text-[14px] font-medium flex items-center gap-2 transition-all duration-200 cursor-pointer border-none ${
+                  className={`whitespace-nowrap rounded-lg 2xl:px-4 px-3.5 2xl:py-2.5 py-2 text-[14px] font-medium flex items-center gap-2 transition-all duration-200 cursor-pointer border-none ${
                     activeTab === tab 
                       ? "bg-[#111827] text-white shadow-sm" 
                       : "bg-transparent text-[#6B7280] hover:text-[#111827]"
@@ -189,7 +189,7 @@ export default function EmployeeDetailsPage() {
                   <p className="text-[14px] text-[#6B7280] mt-1.5 mb-0">Quick summary of the employee's profile, role, and current status.</p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mb-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 2xl:gap-x-8 gap-x-6 2xl:gap-y-6 gap-y-5 mb-10">
                   <div>
                     <label className="block mb-2 text-[13px] font-medium text-[#111827]">First name</label>
                     <input
@@ -252,7 +252,7 @@ export default function EmployeeDetailsPage() {
                   </div>
                 </div>
 
-                <div className="flex justify-end gap-4 mt-10">
+                <div className="flex justify-end gap-4 2xl:mt-10 mt-[65px]">
                   <button
                     onClick={() => router.push("/employees/all-employees")}
                     className="rounded-xl bg-white px-6 py-3 text-[14px] font-semibold text-[#111827] border border-[#D0D5DD] cursor-pointer transition hover:bg-neutral-50"

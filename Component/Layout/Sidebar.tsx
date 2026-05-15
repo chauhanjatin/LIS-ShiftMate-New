@@ -97,7 +97,7 @@ export default function Sidebar({
   return (
     <aside
       className={`fixed inset-y-0 left-0 z-50 flex flex-col border-r border-neutral-200 bg-white transition-all duration-500 ease-in-out lg:static lg:flex lg:shrink-0 ${
-        collapsed ? "lg:w-28" : "lg:w-64"
+        collapsed ? "w-25 2xl:w-28" : "w-60 2xl:w-64"
       } ${
         isMobileMenuOpen ? "translate-x-0 w-64" : "-translate-x-full lg:translate-x-0"
       }`}
@@ -121,7 +121,7 @@ export default function Sidebar({
         <img
           src="/login/shiftmate-logo.png"
           alt="ShiftMate Logo"
-          className={`absolute left-5 top-1/2 h-auto w-[205px] -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${
+          className={`absolute left-5 top-1/2 h-auto w-[190px] 2xl:w-[205px] -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${
             collapsed
               ? "pointer-events-none translate-x-2 opacity-0"
               : "translate-x-0 opacity-100"
@@ -132,7 +132,7 @@ export default function Sidebar({
           alt="ShiftMate Logo"
           width={56}
           height={56}
-          className={`absolute left-1/2 top-1/2 h-14 w-14 -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${
+          className={`absolute left-1/2 top-1/2 2xl:h-14 2xl:w-14 h-12 w-12 -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${
             collapsed
               ? "-translate-x-1/2 opacity-100"
               : "pointer-events-none -translate-x-[40%] opacity-0"
@@ -142,7 +142,7 @@ export default function Sidebar({
 
       {/* MENU */}
       <nav
-        className={`mt-5 space-y-2 transition-all duration-500 ease-in-out ${
+        className={`2xl:mt-5 mt-3 space-y-2 transition-all duration-500 ease-in-out ${
           collapsed ? "px-2" : "px-3"
         }`}
       >
@@ -173,15 +173,15 @@ export default function Sidebar({
                 }}
                 className={
                   collapsed
-                    ? `mx-auto flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 ${
+                    ? `mx-auto flex 2xl:h-14 2xl:w-14 h-12 w-12 items-center justify-center rounded-2xl transition-all duration-300 ${
                         isActive
-                          ? "bg-brand-500 text-white shadow-[0_10px_20px_rgba(37,123,252,0.25)]"
-                          : "text-neutral-700 hover:bg-neutral-100"
+                          ? "bg-brand-500 text-white"
+                          : "text-[#111827] hover:bg-neutral-100"
                       }`
-                    : `group flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-[16px] font-semibold transition-all duration-300 ${
+                    : `group flex w-full items-center justify-between rounded-2xl px-4 2xl:py-3 py-2 text-left text-[16px] font-semibold transition-all duration-300 ${
                         isActive
-                          ? "bg-brand-500 text-white shadow-[0_10px_20px_rgba(37,123,252,0.25)]"
-                          : "text-neutral-600 hover:bg-neutral-100"
+                          ? "bg-brand-500 text-white"
+                          : "text-[#111827] hover:bg-neutral-100"
                       }`
                 }
               >
@@ -196,7 +196,7 @@ export default function Sidebar({
                     width={20}
                     height={20}
                     className={`transition-all duration-300 ${
-                      collapsed ? "h-7 w-7" : "h-5 w-5"
+                      collapsed ? "2xl:h-7 2xl:w-7 h-6 w-6" : "h-5 w-5"
                     } ${isActive ? "brightness-0 invert" : "brightness-0"}`}
                   />
 

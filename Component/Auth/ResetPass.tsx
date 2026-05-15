@@ -48,7 +48,7 @@ function ResetPass() {
   }
 
   return (
-    <div className="w-full max-w-[37.5rem] rounded-[2rem] bg-white px-6 py-7 shadow-[0_20px_50px_rgba(15,23,42,0.12)] sm:px-8 sm:py-9">
+    <div className="w-full max-w-[37.5rem] rounded-[2rem] px-6 py-7 sm:px-8 sm:py-9">
       <div className="text-center">
         <h1 className="text-[2.5rem] font-black tracking-[-0.05em] text-neutral-900 sm:text-[3rem]">
           Reset Passwords
