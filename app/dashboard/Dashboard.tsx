@@ -272,7 +272,7 @@ export default function DashboardPage() {
           </article>
         </div>
 
-        <div className="space-y-4 md:col-span-4">
+        <div className="space-y-4 xl:col-span-4 col-span-8">
           <article className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-[20px] font-medium tracking-tight">
@@ -371,7 +371,7 @@ export default function DashboardPage() {
           </article>
         </div>
 
-        <article className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] md:col-span-6">
+        <article className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8">
           {/* HEADER */}
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-lg font-bold tracking-tight sm:text-xl">
@@ -492,7 +492,7 @@ export default function DashboardPage() {
           </div>
         </article>
 
-        <article className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] md:col-span-6">
+        <article className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8">
           {/* HEADER */}
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-lg font-bold tracking-tight sm:text-xl">
