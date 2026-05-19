@@ -14,7 +14,7 @@ function AdminDropdown() {
             alt="Mathieu Wade"
             width={40}
             height={40}
-            className="h-10 w-10 rounded-xl sm:rounded-2xl object-cover"
+            className="md:h-10 h-8 md:w-10 w-8 rounded-xl sm:rounded-2xl object-cover"
           />
           <span className="hidden sm:block text-left leading-tight">
             <span className="block xl:text-base text-[14px] font-bold text-neutral-900">
@@ -38,10 +38,10 @@ function AdminDropdown() {
         </span>
       </summary>
 
-      <div className="absolute right-0 z-20 mt-3 w-[calc(100vw-2rem)] max-w-[280px] sm:w-72 rounded-2xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
+      <div className="absolute right-0 z-20 mt-3 w-[calc(100vw-2rem)] md:max-w-[280px] max-w-[198px] sm:w-72 rounded-2xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
         <button
           type="button"
-          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
+          className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
         >
           <svg
             viewBox="0 0 24 24"
@@ -60,7 +60,7 @@ function AdminDropdown() {
         </button>
         <button
           type="button"
-          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
+          className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
         >
           <svg
             viewBox="0 0 24 24"
@@ -84,7 +84,7 @@ function AdminDropdown() {
         </button>
         <button
           type="button"
-          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
+          className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
         >
           <svg
             viewBox="0 0 24 24"
@@ -124,8 +124,8 @@ export default function Header({
   onMenuClick?: () => void;
 }) {
   return (
-    <header className="flex items-center justify-between border-b border-neutral-200 bg-white px-4 py-3 xl:px-6 xl:py-4">
-      <div className="flex items-center gap-4">
+    <header className="flex items-center justify-between border-b border-neutral-200 bg-white px-2 md:px-4 py-3 xl:px-6 xl:py-4">
+      <div className="flex items-center md:gap-4 gap-2">
         {/* HAMBURGER MENU BUTTON (MOBILE) */}
         <button
           type="button"
@@ -146,7 +146,7 @@ export default function Header({
         </div>
       </div>
 
-      <div className="flex items-center gap-3 xl:gap-4">
+      <div className="flex items-center md:gap-3 gap-2 xl:gap-4">
         {/* SEARCH BAR (HIDDEN ON MOBILE, SHOW ICON ONLY OR COLLAPSIBLE) */}
         <div className="relative hidden sm:block xl:w-56 w-40">
           <Image
@@ -163,7 +163,7 @@ export default function Header({
         </div>
 
         {/* MOBILE SEARCH ICON (ONLY ON MOBILE) */}
-        <button className="flex h-10 w-10 items-center justify-center rounded-xl hover:bg-neutral-50 sm:hidden">
+        <button className="flex md:h-10 md:w-10 h-8 w-8 items-center justify-center rounded-xl hover:bg-neutral-50 sm:hidden">
           <Image
             src={searchIcon}
             alt="Search"
@@ -176,7 +176,7 @@ export default function Header({
         <button
           type="button"
           aria-label="Notifications"
-          className="inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-brand-50 transition-transform active:scale-95"
+          className="inline-flex md:h-10 md:w-10 h-8 w-8 items-center justify-center rounded-xl bg-brand-50 transition-transform active:scale-95"
         >
           <Image
             src={notificationIcon}

@@ -48,17 +48,17 @@ export default function AllEmployeesPage() {
       <div className="flex-1 p-4 2xl:p-6">
         <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
           {/* Toolbar */}
-          <div className="flex items-center justify-between border-b border-neutral-100 p-5">
-            <h2 className="text-[20px] font-bold text-neutral-900">Employee List</h2>
+          <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
+            <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Employee List</h2>
 
-            <div className="flex items-center gap-3 2xl:gap-6">
-              <div className="relative 2xl:w-75 w-60">
+            <div className="flex items-center gap-2 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+              <div className="relative 2xl:w-75 md:w-60 w-32">
                 <Image
                   src={searchIcon}
                   alt="Search"
                   width={20}
                   height={20}
-                  className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2"
+                  className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                 />
                 <input
                   className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-2.5 pl-11 pr-4 text-sm"
@@ -67,7 +67,7 @@ export default function AllEmployeesPage() {
               </div>
 
               {/* Filter Button */}
-              <button className="flex h-[42px] w-[42px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
+              <button className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
                 <Image
                   src={filterIcon}
                   alt="Filter"
@@ -81,7 +81,7 @@ export default function AllEmployeesPage() {
               {view === "list" ? (
                 <button
                   onClick={() => setView("grid")}
-                  className="flex h-[42px] w-[42px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50"
+                  className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50"
                 >
                   <Image src={appRectangleIcon} alt="Grid View" width={24} height={24} className="pointer-events-none" />
                 </button>
@@ -96,7 +96,7 @@ export default function AllEmployeesPage() {
 
               {/* Add Employee Button */}
               <Link href="/employees/add-employee">
-                <button className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-3 py-2.5 2xl:px-5 2xl:py-3 text-[14px] 2xl:text-[16px] text-white transition hover:bg-blue-600">
+                <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] px-2.5 py-2 md:px-5 md:py-3 text-[12px] md:text-[16px] text-white transition hover:bg-blue-600">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>

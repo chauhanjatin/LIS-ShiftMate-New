@@ -49,7 +49,7 @@ export default function AuthMarketingLayout({
                   />
                 </div>
 
-                <div className="mb-4 w-full shrink-0 rounded-[1.75rem] bg-[linear-gradient(135deg,#4f62ff_0%,#2a1ee0_100%)] px-6 py-6 text-white shadow-[0_14px_34px_rgba(37,123,252,0.22)] lg:hidden">
+                <div className="mb-4 w-full shrink-0 rounded-[1.75rem] bg-[linear-gradient(135deg,#4f62ff_0%,#2a1ee0_100%)] px-6 py-6 text-white shadow-[0_14px_34px_rgba(37,123,252,0.22)] hidden">
                   <p className="max-w-[22rem] text-[1.8rem] font-black leading-[1.12] tracking-[-0.05em]">
                     Manage your workforce, payroll and teams in one place.
                   </p>

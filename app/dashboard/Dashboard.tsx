@@ -128,8 +128,8 @@ export default function DashboardPage() {
   return (
     <DashboardLayout title="Dashboard" subtitle="Overview of your workforce and HR activities">
       <div className="grid flex-1 gap-4 p-4 xl:grid-cols-12 grid-cols-1 2xl:p-6">
-        <div className="space-y-4 md:col-span-8">
-          <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-4 col-span-8">
+          <div className="grid gap-2 ms:gap-4 sm:grid-cols-2">
             <StatCard
               value="500"
               label="Total Employees"
@@ -324,7 +324,7 @@ export default function DashboardPage() {
               Employees by Department
             </h2>
 
-            <div className="flex flex-col items-center justify-center gap-3.5 2xl::flex-row lg:justify-between 2xl:gap-10">
+            <div className="flex xl:flex-col lg:flex-row items-center justify-center gap-3.5 lg:justify-between 2xl:gap-10">
               {/* Chart Section */}
               <div className="h-[240px] w-[240px] shrink-0">
                 <PieChart

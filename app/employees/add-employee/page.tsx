@@ -100,11 +100,11 @@ export default function AddEmployeePage() {
   return (
     <DashboardLayout title="Employees" subtitle="Home/ Employees/ Add Employee">
       <div className="flex-1 p-4 2xl:p-6 flex">
-        <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm flex-1 flex flex-col">
+        <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm flex-1 flex flex-col">
           <h2 className="text-[24px] font-semibold text-neutral-900 mb-10">Add Employee</h2>
 
           {/* Stepper */}
-          <div className="flex items-center justify-center 2xl:gap-[48px] xl:gap-[14px] gap-[8px] 2xl:mb-20 mb-15 2xl:mt-4 mt-3 px-4">
+          <div className="flex max-[425px]:flex-col max-[425px]:items-start items-center justify-center 2xl:gap-[48px] xl:gap-[14px] gap-[8px] max-[425px]:gap-0 2xl:mb-20 mb-15 2xl:mt-4 mt-3 px-4">
             {STEPS.map((step, index) => {
               const stepNumber = index + 1;
               const isActive = currentStep === stepNumber;
@@ -124,7 +124,7 @@ export default function AddEmployeePage() {
 
               return (
                 <React.Fragment key={step}>
-                  <div className="flex flex-col items-center relative shrink-0">
+                  <div className="flex flex-col max-[425px]:flex-row max-[425px]:items-center items-center relative shrink-0">
                     <div
                       className={`2xl:h-[42px] 2xl:w-[42px] h-[38px] w-[38px] flex items-center justify-center rounded-full text-[14px] font-semibold transition-colors ${isActive || isCompleted ? "bg-[#257BFC] text-[#FFFFFF]" : "bg-[#F1F5F9] text-[#94A3B8]"}`}
                     >
@@ -137,15 +137,15 @@ export default function AddEmployeePage() {
                       )}
                     </div>
                     <span
-                      className={`absolute top-[52px] w-[110px] text-center text-[13px] font-medium leading-[18px] ${isActive || isCompleted ? "text-[#0F172A]" : "text-[#94A3B8]"}`}
+                      className={`absolute top-[52px] max-[425px]:static max-[425px]:ml-4 w-[110px] max-[425px]:w-auto text-center max-[425px]:text-left text-[13px] font-medium leading-[18px] ${isActive || isCompleted ? "text-[#0F172A]" : "text-[#94A3B8]"}`}
                     >
                       {firstLine}
-                      {secondLine && <div className="whitespace-nowrap">{secondLine}</div>}
+                      {secondLine && <div className="whitespace-nowrap max-[425px]:inline max-[425px]:ml-1">{secondLine}</div>}
                     </span>
                   </div>
                   {index < STEPS.length - 1 && (
-                    <div className="bg-[#E2E8F0] h-[2px] 2xl:w-[115px] xl:w-[80px] w-[68px] 2xl:mx-2 mx-1">
-                      <div className={`bg-[#257BFC] h-[2px] transition-all duration-300 ease-in-out ${isCompleted ? "w-full" : "w-0"}`} />
+                    <div className="bg-[#E2E8F0] h-[2px] 2xl:w-[115px] xl:w-[80px] w-[68px] 2xl:mx-2 mx-1 max-[425px]:mx-0 max-[425px]:ml-[18px] max-[425px]:my-1 max-[425px]:h-[30px] max-[425px]:w-[2px]">
+                      <div className={`bg-[#257BFC] max-[425px]:w-full transition-all duration-300 ease-in-out ${isCompleted ? "h-[2px] max-[425px]:h-full w-full" : "h-[2px] max-[425px]:h-0 w-0"}`} />
                     </div>
                   )}
                 </React.Fragment>
