@@ -105,7 +105,7 @@ export default function Sidebar({
       {/* MOBILE CLOSE BUTTON */}
       <button
         onClick={() => setIsMobileMenuOpen?.(false)}
-        className="absolute lg:right-4 right-2 lg:top-6 top-2 flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-50 text-neutral-500 lg:hidden"
+        className="absolute lg:right-4 right-2 lg:top-6 top-2 z-50 flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-50 text-neutral-500 lg:hidden hover:bg-neutral-100 cursor-pointer"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
