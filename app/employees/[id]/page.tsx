@@ -118,10 +118,10 @@ export default function EmployeeDetailsPage() {
   return (
     <DashboardLayout title="Employees" subtitle="Home/ All Employees/ Employee Details">
       <div className="flex-1 2xl:p-6 p-4">
-        <div className="flex flex-col lg:flex-row 2xl:gap-[34px] gap-[28px] bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
+        <div className="flex flex-col xl:flex-row 2xl:gap-[34px] gap-[28px] bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
 
           {/* Left Sidebar Profile Card */}
-          <div className="w-full 2xl:w-[353px] lg:w-[320px] shrink-0">
+          <div className="w-full 2xl:w-[353px] xl:w-[320px] shrink-0">
             <div className="rounded-2xl border border-[#F3F4F6] bg-[#F9FAFB] p-8 text-center shadow-sm">
               <div className="relative mx-auto mb-6 h-[120px] w-[120px]">
                 <div className="h-full w-full overflow-hidden rounded-full shadow-sm">

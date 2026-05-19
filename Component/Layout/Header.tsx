@@ -17,7 +17,7 @@ function AdminDropdown() {
             className="h-10 w-10 rounded-xl sm:rounded-2xl object-cover"
           />
           <span className="hidden sm:block text-left leading-tight">
-            <span className="block text-base font-bold text-neutral-900">
+            <span className="block xl:text-base text-[14px] font-bold text-neutral-900">
               Mathieu Wade
             </span>
             <span className="block text-xs font-medium text-[#98A2B3]">HR Admin</span>
@@ -124,7 +124,7 @@ export default function Header({
   onMenuClick?: () => void;
 }) {
   return (
-    <header className="flex items-center justify-between border-b border-neutral-200 bg-white px-4 py-3 sm:px-6 sm:py-4">
+    <header className="flex items-center justify-between border-b border-neutral-200 bg-white px-4 py-3 xl:px-6 xl:py-4">
       <div className="flex items-center gap-4">
         {/* HAMBURGER MENU BUTTON (MOBILE) */}
         <button
@@ -142,13 +142,13 @@ export default function Header({
 
         <div className="min-w-0">
           <h1 className="truncate text-lg font-bold tracking-tight sm:text-2xl">{title}</h1>
-          <p className="hidden text-sm text-neutral-500 sm:block">{subtitle}</p>
+          <p className="hidden xl:text-sm text-[12px] text-neutral-500 sm:block">{subtitle}</p>
         </div>
       </div>
 
-      <div className="flex items-center gap-2 sm:gap-4">
+      <div className="flex items-center gap-3 xl:gap-4">
         {/* SEARCH BAR (HIDDEN ON MOBILE, SHOW ICON ONLY OR COLLAPSIBLE) */}
-        <div className="relative hidden w-40 sm:block lg:w-56">
+        <div className="relative hidden sm:block xl:w-56 w-40">
           <Image
             src={searchIcon}
             alt="Search"

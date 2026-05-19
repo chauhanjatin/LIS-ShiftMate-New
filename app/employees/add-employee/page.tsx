@@ -104,7 +104,7 @@ export default function AddEmployeePage() {
           <h2 className="text-[24px] font-semibold text-neutral-900 mb-10">Add Employee</h2>
 
           {/* Stepper */}
-          <div className="flex items-center justify-center 2xl:gap-[48px] gap-[14px] 2xl:mb-20 mb-15 2xl:mt-4 mt-3 px-4">
+          <div className="flex items-center justify-center 2xl:gap-[48px] xl:gap-[14px] gap-[8px] 2xl:mb-20 mb-15 2xl:mt-4 mt-3 px-4">
             {STEPS.map((step, index) => {
               const stepNumber = index + 1;
               const isActive = currentStep === stepNumber;
@@ -144,7 +144,7 @@ export default function AddEmployeePage() {
                     </span>
                   </div>
                   {index < STEPS.length - 1 && (
-                    <div className="bg-[#E2E8F0] h-[2px] 2xl:w-[115px] w-[80px] 2xl:mx-2 mx-1">
+                    <div className="bg-[#E2E8F0] h-[2px] 2xl:w-[115px] xl:w-[80px] w-[68px] 2xl:mx-2 mx-1">
                       <div className={`bg-[#257BFC] h-[2px] transition-all duration-300 ease-in-out ${isCompleted ? "w-full" : "w-0"}`} />
                     </div>
                   )}
