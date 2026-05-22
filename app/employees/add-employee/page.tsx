@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import upload from "@/assets/images/icons/upload.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import fileTypeIcon from "@/assets/images/icons/file-typeicon.svg";
+import { useEmployees } from "@/hooks/useEmployees";
 
 // Define the steps
 const STEPS = [
@@ -20,7 +21,9 @@ const STEPS = [
 
 export default function AddEmployeePage() {
   const router = useRouter();
+  const { addEmployee } = useEmployees();
   const [currentStep, setCurrentStep] = useState(1);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -53,28 +56,41 @@ export default function AddEmployeePage() {
   });
 
   const validateStep = () => {
+    const newErrors: { [key: string]: string } = {};
     if (currentStep === 1) {
       const { firstName, lastName, dob, gender, phone, email, address, emergencyContact } = formData;
-      if (!firstName || !lastName || !dob || !gender || !phone || !email || !address || !emergencyContact) {
-        alert("Please fill all Personal Details fields.");
-        return false;
-      }
+      if (!firstName) newErrors.firstName = "Please enter first name";
+      if (!lastName) newErrors.lastName = "Please enter last name";
+      if (!dob) newErrors.dob = "Please select date of birth";
+      if (!gender) newErrors.gender = "Please select gender";
+      if (!phone) newErrors.phone = "Please enter phone number";
+      if (!email) newErrors.email = "Please enter email";
+      if (!address) newErrors.address = "Please enter address";
+      if (!emergencyContact) newErrors.emergencyContact = "Please enter emergency contact";
     }
     if (currentStep === 2) {
       const { employeeId, startDate, employmentType, department, jobTitle, location, manager, contractType } = formData;
-      if (!employeeId || !startDate || !employmentType || !department || !jobTitle || !location || !manager || !contractType) {
-        alert("Please fill all Employment Details fields.");
-        return false;
-      }
+      if (!employeeId) newErrors.employeeId = "Please enter employee ID";
+      if (!startDate) newErrors.startDate = "Please enter start date";
+      if (!employmentType) newErrors.employmentType = "Please select employment type";
+      if (!department) newErrors.department = "Please select department";
+      if (!jobTitle) newErrors.jobTitle = "Please enter job title";
+      if (!location) newErrors.location = "Please enter location";
+      if (!manager) newErrors.manager = "Please enter manager";
+      if (!contractType) newErrors.contractType = "Please select contract type";
     }
     if (currentStep === 3) {
       const { bankAccount, sortCode, niNumber, taxCode, payrollFrequency, salary } = formData;
-      if (!bankAccount || !sortCode || !niNumber || !taxCode || !payrollFrequency || !salary) {
-        alert("Please fill all Payroll Details fields.");
-        return false;
-      }
+      if (!bankAccount) newErrors.bankAccount = "Please enter bank account";
+      if (!sortCode) newErrors.sortCode = "Please enter sort code";
+      if (!niNumber) newErrors.niNumber = "Please enter NI number";
+      if (!taxCode) newErrors.taxCode = "Please enter tax code";
+      if (!payrollFrequency) newErrors.payrollFrequency = "Please select payroll frequency";
+      if (!salary) newErrors.salary = "Please enter salary";
     }
-    return true;
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleNext = () => {
@@ -88,11 +104,21 @@ export default function AddEmployeePage() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleSubmit = () => {
     if (!validateStep()) return;
-    // Submit logic here
+    addEmployee({
+        id: formData.employeeId,
+        name: `${formData.firstName} ${formData.lastName}`,
+        dept: formData.department,
+        role: formData.jobTitle,
+        type: formData.employmentType as any,
+        status: "Active",
+        joinDate: new Date(formData.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        avatar: "https://i.pravatar.cc/150?u=" + Math.floor(Math.random() * 100),
+    });
     alert("Employee Created Successfully!");
     router.push("/employees/all-employees");
   };
@@ -161,42 +187,50 @@ export default function AddEmployeePage() {
               <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">First name</label>
-                  <input name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" className={`w-full rounded-xl border ${errors.firstName ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Last Name</label>
-                  <input name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Enter your last name" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Enter your last name" className={`w-full rounded-xl border ${errors.lastName ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Date of Birth</label>
                   <div className="relative">
-                    <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500" />
+                    <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.dob ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500`} />
                   </div>
+                  {errors.dob && <p className="text-red-500 text-xs mt-1">{errors.dob}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Gender</label>
-                  <select name="gender" value={formData.gender} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white">
+                  <select name="gender" value={formData.gender} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.gender ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
                     <option value="">Select your gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                   </select>
+                  {errors.gender && <p className="text-red-500 text-xs mt-1">{errors.gender}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Phone</label>
-                  <input name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter your phone number" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter your phone number" className={`w-full rounded-xl border ${errors.phone ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Email</label>
-                  <input name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" type="email" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" type="email" className={`w-full rounded-xl border ${errors.email ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Address</label>
-                  <input name="address" value={formData.address} onChange={handleInputChange} placeholder="Enter your address" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="address" value={formData.address} onChange={handleInputChange} placeholder="Enter your address" className={`w-full rounded-xl border ${errors.address ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Emergency Contact</label>
-                  <input name="emergencyContact" value={formData.emergencyContact} onChange={handleInputChange} placeholder="Enter your email" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="emergencyContact" value={formData.emergencyContact} onChange={handleInputChange} placeholder="Enter emergency contact number" className={`w-full rounded-xl border ${errors.emergencyContact ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.emergencyContact && <p className="text-red-500 text-xs mt-1">{errors.emergencyContact}</p>}
                 </div>
               </div>
             )}
@@ -205,50 +239,58 @@ export default function AddEmployeePage() {
               <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Employee ID</label>
-                  <input name="employeeId" value={formData.employeeId} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="employeeId" value={formData.employeeId} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.employeeId ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.employeeId && <p className="text-red-500 text-xs mt-1">{errors.employeeId}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Start Date</label>
-                  <input type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500" />
+                  <input type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.startDate ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500`} />
+                  {errors.startDate && <p className="text-red-500 text-xs mt-1">{errors.startDate}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Employment Type</label>
-                  <select name="employmentType" value={formData.employmentType} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white">
+                  <select name="employmentType" value={formData.employmentType} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.employmentType ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
                     <option value="">Select your employment type</option>
                     <option value="Full Time">Full Time</option>
                     <option value="Part Time">Part Time</option>
                     <option value="Contract">Contract</option>
                   </select>
+                  {errors.employmentType && <p className="text-red-500 text-xs mt-1">{errors.employmentType}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Department</label>
-                  <select name="department" value={formData.department} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white">
+                  <select name="department" value={formData.department} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.department ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
                     <option value="">Select your department</option>
                     <option value="Engineering">Engineering</option>
                     <option value="Marketing">Marketing</option>
                     <option value="Finance">Finance</option>
                     <option value="HR">HR</option>
                   </select>
+                  {errors.department && <p className="text-red-500 text-xs mt-1">{errors.department}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Job Title</label>
-                  <input name="jobTitle" value={formData.jobTitle} onChange={handleInputChange} placeholder="Enter your job title" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="jobTitle" value={formData.jobTitle} onChange={handleInputChange} placeholder="Enter your job title" className={`w-full rounded-xl border ${errors.jobTitle ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.jobTitle && <p className="text-red-500 text-xs mt-1">{errors.jobTitle}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Location</label>
-                  <input name="location" value={formData.location} onChange={handleInputChange} placeholder="Enter your location" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="location" value={formData.location} onChange={handleInputChange} placeholder="Enter your location" className={`w-full rounded-xl border ${errors.location ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.location && <p className="text-red-500 text-xs mt-1">{errors.location}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Manager</label>
-                  <input name="manager" value={formData.manager} onChange={handleInputChange} placeholder="Enter your manager name" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="manager" value={formData.manager} onChange={handleInputChange} placeholder="Enter your manager name" className={`w-full rounded-xl border ${errors.manager ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.manager && <p className="text-red-500 text-xs mt-1">{errors.manager}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Contract Type</label>
-                  <select name="contractType" value={formData.contractType} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white">
+                  <select name="contractType" value={formData.contractType} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.contractType ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
                     <option value="">Select your contract type</option>
                     <option value="Permanent">Permanent</option>
                     <option value="Fixed Term">Fixed Term</option>
                   </select>
+                  {errors.contractType && <p className="text-red-500 text-xs mt-1">{errors.contractType}</p>}
                 </div>
               </div>
             )}
@@ -257,32 +299,38 @@ export default function AddEmployeePage() {
               <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Bank Account Number</label>
-                  <input name="bankAccount" value={formData.bankAccount} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="bankAccount" value={formData.bankAccount} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.bankAccount ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.bankAccount && <p className="text-red-500 text-xs mt-1">{errors.bankAccount}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Sort Code</label>
-                  <input name="sortCode" value={formData.sortCode} onChange={handleInputChange} placeholder="Enter your sort code" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="sortCode" value={formData.sortCode} onChange={handleInputChange} placeholder="Enter your sort code" className={`w-full rounded-xl border ${errors.sortCode ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.sortCode && <p className="text-red-500 text-xs mt-1">{errors.sortCode}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">NI Number</label>
-                  <input name="niNumber" value={formData.niNumber} onChange={handleInputChange} placeholder="Enter your NI number" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="niNumber" value={formData.niNumber} onChange={handleInputChange} placeholder="Enter your NI number" className={`w-full rounded-xl border ${errors.niNumber ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.niNumber && <p className="text-red-500 text-xs mt-1">{errors.niNumber}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Tax Code</label>
-                  <input name="taxCode" value={formData.taxCode} onChange={handleInputChange} placeholder="Enter your tax code" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="taxCode" value={formData.taxCode} onChange={handleInputChange} placeholder="Enter your tax code" className={`w-full rounded-xl border ${errors.taxCode ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.taxCode && <p className="text-red-500 text-xs mt-1">{errors.taxCode}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Payroll Frequency</label>
-                  <select name="payrollFrequency" value={formData.payrollFrequency} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white">
+                  <select name="payrollFrequency" value={formData.payrollFrequency} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.payrollFrequency ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
                     <option value="">Select your payroll</option>
                     <option value="Monthly">Monthly</option>
                     <option value="Bi-weekly">Bi-weekly</option>
                     <option value="Weekly">Weekly</option>
                   </select>
+                  {errors.payrollFrequency && <p className="text-red-500 text-xs mt-1">{errors.payrollFrequency}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Salary / Hourly Rate</label>
-                  <input name="salary" value={formData.salary} onChange={handleInputChange} placeholder="Enter your salary" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC]" />
+                  <input name="salary" value={formData.salary} onChange={handleInputChange} placeholder="Enter your salary" className={`w-full rounded-xl border ${errors.salary ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  {errors.salary && <p className="text-red-500 text-xs mt-1">{errors.salary}</p>}
                 </div>
               </div>
             )}

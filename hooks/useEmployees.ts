@@ -24,9 +24,25 @@ export function useEmployees() {
     });
   };
 
+  const addEmployee = (newEmployee: Employee) => {
+    setEmployees((prev) => {
+      const newEmployees = [newEmployee, ...prev];
+      localStorage.setItem("shiftmate_employees", JSON.stringify(newEmployees));
+      return newEmployees;
+    });
+  };
+
+  const removeEmployee = (id: string) => {
+    setEmployees((prev) => {
+      const newEmployees = prev.filter(emp => emp.id !== id);
+      localStorage.setItem("shiftmate_employees", JSON.stringify(newEmployees));
+      return newEmployees;
+    });
+  };
+
   const getEmployee = (id: string) => {
     return employees.find((emp) => emp.id === id);
   };
 
-  return { employees, updateEmployee, getEmployee, setEmployees };
+  return { employees, updateEmployee, addEmployee, removeEmployee, getEmployee, setEmployees };
 }

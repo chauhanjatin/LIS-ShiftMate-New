@@ -34,6 +34,23 @@ export default function AllEmployeesPage() {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [employeeToDelete, setEmployeeToDelete] = useState<string | null>(null);
   const { employees: employeesList, setEmployees: setEmployeesList } = useEmployees();
+  const [selectedEmployees, setSelectedEmployees] = useState<string[]>([]);
+
+  const allSelected = employeesList.length > 0 && selectedEmployees.length === employeesList.length;
+
+  const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.checked) {
+          setSelectedEmployees(employeesList.map((emp) => emp.id));
+      } else {
+          setSelectedEmployees([]);
+      }
+  };
+
+  const handleSelectEmployee = (id: string) => {
+      setSelectedEmployees((prev) =>
+          prev.includes(id) ? prev.filter((eid) => eid !== id) : [...prev, id]
+      );
+  };
 
   const handleDelete = () => {
     if (employeeToDelete) {
@@ -51,7 +68,7 @@ export default function AllEmployeesPage() {
           <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
             <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Employee List</h2>
 
-            <div className="flex items-center gap-2 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
               <div className="relative 2xl:w-75 md:w-60 w-32">
                 <Image
                   src={searchIcon}
@@ -61,7 +78,7 @@ export default function AllEmployeesPage() {
                   className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                 />
                 <input
-                  className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-2.5 pl-11 pr-4 text-sm"
+                  className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-1.5 md:py-2.5 pl-11 pr-4 text-sm"
                   placeholder="Search"
                 />
               </div>
@@ -116,6 +133,8 @@ export default function AllEmployeesPage() {
                     <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
                       <input
                         type="checkbox"
+                        checked={allSelected}
+                        onChange={handleSelectAll}
                         className="h-4 w-4 rounded border-[#D0D5DD] text-brand-500 focus:ring-brand-500"
                       />
                     </th>
@@ -163,6 +182,8 @@ export default function AllEmployeesPage() {
                       <td className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pl-6 pl-3 pr-2">
                         <input
                           type="checkbox"
+                          checked={selectedEmployees.includes(emp.id)}
+                          onChange={() => handleSelectEmployee(emp.id)}
                           className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500"
                         />
                       </td>
@@ -210,7 +231,7 @@ export default function AllEmployeesPage() {
                       <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6">
                         <div className="flex items-center gap-2 sm:gap-4">
                           <Link href={`/employees/${emp.id}`}>
-                            <button className="text-neutral-400 hover:text-brand-500 mt-2 2xl:mt-0">
+                            <button className="text-neutral-400 hover:text-brand-500 mt-2">
                               <Image
                                 src={editIcon}
                                 alt="Filter"

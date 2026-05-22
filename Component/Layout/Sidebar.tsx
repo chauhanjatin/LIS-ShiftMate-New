@@ -11,11 +11,11 @@ import employeesIcon from "@/assets/images/icons/emplooye.svg";
 import closeLogoIcon from "@/assets/images/icons/close-logo.svg";
 import Link from "next/link";
 
-export default function Sidebar({ 
-  collapsed, 
-  isMobileMenuOpen, 
-  setIsMobileMenuOpen 
-}: Readonly<{ 
+export default function Sidebar({
+  collapsed,
+  isMobileMenuOpen,
+  setIsMobileMenuOpen
+}: Readonly<{
   collapsed: boolean;
   isMobileMenuOpen?: boolean;
   setIsMobileMenuOpen?: (open: boolean) => void;
@@ -47,6 +47,15 @@ export default function Sidebar({
       setActiveItem("Roles");
     } else if (pathname.includes("/organization")) {
       setActiveItem("Organization");
+      setOpenMenu("Organization");
+      if (pathname.includes("/company-profile"))
+        setActiveSubItem("Company Profile");
+      if (pathname.includes("/departments")) 
+        setActiveSubItem("Departments");
+      if (pathname.includes("/locations")) 
+        setActiveSubItem("Locations");
+      if (pathname.includes("/job-titles")) 
+        setActiveSubItem("Job Titles");
     } else {
       setActiveItem("Dashboard");
     }
@@ -68,7 +77,7 @@ export default function Sidebar({
     Dashboard: "/dashboard",
     Users: "/users",
     Roles: "/roles",
-    Organization: "/organization",
+    Organization: "",
     Employees: "",
   };
 
@@ -86,6 +95,20 @@ export default function Sidebar({
     Onboarding: "/employees/onboarding",
   };
 
+  const organizationSubMenus = [
+    "Company Profile",
+    "Departments",
+    "Locations",
+    "Job Titles",
+  ];
+
+  const organizationSubRoutes: Record<string, string> = {
+    "Company Profile": "/organization/company-profile",
+    "Departments": "/organization/departments",
+    "Locations": "",
+    "Job Titles": "",
+  };
+
   const iconMap = {
     dashboard: dashboardIcon,
     users: usersIcon,
@@ -96,11 +119,9 @@ export default function Sidebar({
 
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-50 flex flex-col border-r border-neutral-200 bg-white transition-all duration-500 ease-in-out lg:static lg:flex lg:shrink-0 ${
-        collapsed ? "w-25 2xl:w-28" : "w-60 2xl:w-64"
-      } ${
-        isMobileMenuOpen ? "translate-x-0 w-64" : "-translate-x-full lg:translate-x-0"
-      }`}
+      className={`fixed inset-y-0 left-0 z-50 flex flex-col border-r border-neutral-200 bg-white transition-all duration-500 ease-in-out lg:static lg:flex lg:shrink-0 ${collapsed ? "w-25 2xl:w-28" : "w-60 2xl:w-64"
+        } ${isMobileMenuOpen ? "translate-x-0 w-64" : "-translate-x-full lg:translate-x-0"
+        }`}
     >
       {/* MOBILE CLOSE BUTTON */}
       <button
@@ -114,37 +135,33 @@ export default function Sidebar({
       </button>
       {/* LOGO */}
       <div
-        className={`relative h-[104px] py-6 ${
-          collapsed ? "px-0" : "px-5"
-        } text-3xl font-black tracking-tight text-brand-500 transition-all duration-500 ease-in-out`}
+        className={`relative h-[104px] py-6 ${collapsed ? "px-0" : "px-5"
+          } text-3xl font-black tracking-tight text-brand-500 transition-all duration-500 ease-in-out`}
       >
         <img
           src="/login/shiftmate-logo.png"
           alt="ShiftMate Logo"
-          className={`absolute left-5 top-1/2 h-auto w-[190px] 2xl:w-[205px] -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${
-            collapsed
+          className={`absolute left-5 top-1/2 h-auto w-[190px] 2xl:w-[205px] -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${collapsed
               ? "pointer-events-none translate-x-2 opacity-0"
               : "translate-x-0 opacity-100"
-          }`}
+            }`}
         />
         <Image
           src={closeLogoIcon}
           alt="ShiftMate Logo"
           width={56}
           height={56}
-          className={`absolute left-1/2 top-1/2 2xl:h-14 2xl:w-14 h-12 w-12 -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${
-            collapsed
+          className={`absolute left-1/2 top-1/2 2xl:h-14 2xl:w-14 h-12 w-12 -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${collapsed
               ? "-translate-x-1/2 opacity-100"
               : "pointer-events-none -translate-x-[40%] opacity-0"
-          }`}
+            }`}
         />
       </div>
 
       {/* MENU */}
       <nav
-        className={`2xl:mt-5 mt-3 space-y-2 transition-all duration-500 ease-in-out ${
-          collapsed ? "px-2" : "px-3"
-        }`}
+        className={`2xl:mt-5 mt-3 space-y-2 transition-all duration-500 ease-in-out ${collapsed ? "px-2" : "px-3"
+          }`}
       >
         {items.map((item) => {
           const isActive = activeItem === item.label;
@@ -173,37 +190,32 @@ export default function Sidebar({
                 }}
                 className={
                   collapsed
-                    ? `mx-auto flex 2xl:h-14 2xl:w-14 h-12 w-12 items-center justify-center rounded-2xl transition-all duration-300 ${
-                        isActive
-                          ? "bg-brand-500 text-white"
-                          : "text-[#111827] hover:bg-neutral-100"
-                      }`
-                    : `group flex w-full items-center justify-between rounded-2xl px-4 2xl:py-3 py-2 text-left text-[16px] font-semibold transition-all duration-300 ${
-                        isActive
-                          ? "bg-brand-500 text-white"
-                          : "text-[#111827] hover:bg-neutral-100"
-                      }`
+                    ? `mx-auto flex 2xl:h-14 2xl:w-14 h-12 w-12 items-center justify-center rounded-2xl transition-all duration-300 ${isActive
+                      ? "bg-brand-500 text-white"
+                      : "text-[#111827] hover:bg-neutral-100"
+                    }`
+                    : `group flex w-full items-center justify-between rounded-2xl px-4 2xl:py-3 py-2 text-left text-[16px] font-semibold transition-all duration-300 ${isActive
+                      ? "bg-brand-500 text-white"
+                      : "text-[#111827] hover:bg-neutral-100"
+                    }`
                 }
               >
                 <span
-                  className={`inline-flex items-center ${
-                    collapsed ? "justify-center" : "gap-3"
-                  }`}
+                  className={`inline-flex items-center ${collapsed ? "justify-center" : "gap-3"
+                    }`}
                 >
                   <Image
                     src={iconMap[item.icon]}
                     alt=""
                     width={20}
                     height={20}
-                    className={`transition-all duration-300 ${
-                      collapsed ? "2xl:h-7 2xl:w-7 h-6 w-6" : "h-5 w-5"
-                    } ${isActive ? "brightness-0 invert" : "brightness-0"}`}
+                    className={`transition-all duration-300 ${collapsed ? "2xl:h-7 2xl:w-7 h-6 w-6" : "h-5 w-5"
+                      } ${isActive ? "brightness-0 invert" : "brightness-0"}`}
                   />
 
                   <span
-                    className={`overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out ${
-                      collapsed ? "max-w-0 opacity-0" : "max-w-40 opacity-100"
-                    }`}
+                    className={`overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out ${collapsed ? "max-w-0 opacity-0" : "max-w-40 opacity-100"
+                      }`}
                   >
                     {item.label}
                   </span>
@@ -213,9 +225,8 @@ export default function Sidebar({
                   <svg
                     viewBox="0 0 20 20"
                     fill="none"
-                    className={`h-4 w-4 transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
+                    className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+                      }`}
                   >
                     <path
                       d="M5.5 7.5L10 12L14.5 7.5"
@@ -246,9 +257,37 @@ export default function Sidebar({
                             const route = employeeSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
-                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left text-[16px] font-medium transition-all duration-300 ${
-                            isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
-                          }`}
+                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left text-[16px] font-medium transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                            }`}
+                        >
+                          {subLabel}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* ORGANIZATION DROPDOWN */}
+              {!collapsed && item.label === "Organization" && isOpen && (
+                <div
+                  className="relative mt-2 ml-[48px] animate-in slide-in-from-top-2 duration-300"
+                >
+                  <div className="space-y-1">
+                    {organizationSubMenus.map((subLabel) => {
+                      const isSubActive = activeSubItem === subLabel;
+
+                      return (
+                        <button
+                          key={subLabel}
+                          onClick={() => {
+                            setActiveSubItem(subLabel);
+
+                            const route = organizationSubRoutes[subLabel];
+                            if (route) router.push(route);
+                          }}
+                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left text-[16px] font-medium transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                            }`}
                         >
                           {subLabel}
                         </button>
