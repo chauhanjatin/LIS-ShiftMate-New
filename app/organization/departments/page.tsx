@@ -65,13 +65,13 @@ export default function DepartmentsPage() {
       <div className="flex-1 p-4 2xl:p-6">
         <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
           {/* Toolbar */}
-          <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
+          <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 lg:p-5 p-3">
             <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">
               Departments List
             </h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-              <div className="relative 2xl:w-75 md:w-60 w-32">
+              <div className="relative 2xl:w-75 lg:w-60 md:w-50 w-32">
                 <Image
                   src={searchIcon}
                   alt="Search"
@@ -86,7 +86,7 @@ export default function DepartmentsPage() {
               </div>
 
               {/* Filter Button */}
-              <button className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
+              <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
                 <Image
                   src={filterIcon}
                   alt="Filter"
@@ -99,7 +99,7 @@ export default function DepartmentsPage() {
               {/* Add Department Button */}
               <button 
                 onClick={() => setCreateModalOpen(true)}
-                className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] px-2.5 py-2 md:px-5 md:py-3 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600"
+                className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] p-2 md:px-2.5 md:py-3 lg:px-5 text-[12px] md:text-[13px] lg:text-[14px] font-semibold text-white transition hover:bg-blue-600"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -115,19 +115,19 @@ export default function DepartmentsPage() {
             <table className="min-w-full w-full text-left">
               <thead className="bg-[#F8FAFC]">
                 <tr>
-                  <th className="py-3 sm:py-4 2xl:pl-6 pl-3 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold text-neutral-900 whitespace-nowrap rounded-tl-xl border-b border-neutral-200 w-[25%]">
+                  <th className="py-3 sm:py-4 2xl:pl-6 pl-3 md:pr-4 pr-11 text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold text-neutral-900 whitespace-nowrap rounded-tl-xl border-b border-neutral-200 w-[25%]">
                     Department Name
                   </th>
-                  <th className="py-3 sm:py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold text-neutral-900 whitespace-nowrap border-b border-neutral-200 w-[15%]">
+                  <th className="py-3 sm:py-4 md:pr-4 pr-11 text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold text-neutral-900 whitespace-nowrap border-b border-neutral-200 w-[15%]">
                     Code
                   </th>
-                  <th className="py-3 sm:py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold text-neutral-900 whitespace-nowrap border-b border-neutral-200 w-[35%]">
+                  <th className="py-3 sm:py-4 md:pr-4 pr-11 text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold text-neutral-900 whitespace-nowrap border-b border-neutral-200 w-[35%]">
                     Manager
                   </th>
-                  <th className="py-3 sm:py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold text-neutral-900 whitespace-nowrap border-b border-neutral-200 w-[15%]">
+                  <th className="py-3 sm:py-4 md:pr-4 pr-11 text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold text-neutral-900 whitespace-nowrap border-b border-neutral-200 w-[15%]">
                     Employee count
                   </th>
-                  <th className="py-3 sm:py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold text-neutral-900 whitespace-nowrap border-b border-neutral-200 rounded-tr-xl w-[10%]">
+                  <th className="py-3 sm:py-4 md:pr-4 pr-11 text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold text-neutral-900 whitespace-nowrap border-b border-neutral-200 rounded-tr-xl w-[10%]">
                     Action
                   </th>
                 </tr>
@@ -137,19 +137,19 @@ export default function DepartmentsPage() {
                   const manager = employees.find((e) => e.id === dept.managerId);
                   return (
                     <tr key={dept.id} className="group transition-colors hover:bg-neutral-50 border-b border-neutral-100 last:border-0">
-                      <td className="py-4 2xl:pl-6 pl-3 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                      <td className="md:py-4 py-2 2xl:pl-6 pl-3 md:pr-4 pr-18 text-[12px] sm:text-[13px] 2xl:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
                         {dept.name}
                       </td>
-                      <td className="py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-medium text-neutral-900">
+                      <td className="md:py-4 py-2 md:pr-4 pr-18 text-[12px] sm:text-[13px] 2xl:text-[14px] font-medium text-neutral-900">
                         {dept.code}
                       </td>
-                      <td className="py-4 pr-4">
+                      <td className="py-4 md:pr-4 pr-18">
                         {manager ? (
                           <div className="flex items-center gap-3">
                             <img src={manager.avatar} alt={manager.name} className="h-9 w-9 rounded-full object-cover" />
                             <div>
-                              <p className="text-[14px] font-semibold text-neutral-900 leading-tight">{manager.name}</p>
-                              <p className="text-[12px] text-[#98A2B3] leading-tight mt-0.5">{manager.role}</p>
+                              <p className="md:text-[14px] text-[12px] font-semibold text-neutral-900 leading-tight">{manager.name}</p>
+                              <p className="md:text-[12px] text-[10px] text-[#98A2B3] leading-tight mt-0.5">{manager.role}</p>
                             </div>
                           </div>
                         ) : (
@@ -237,7 +237,7 @@ export default function DepartmentsPage() {
               <p className="text-[12px] text-neutral-500">Provide essential details to define and identify the department.</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
               <div>
                 <label className="block text-[13px] font-semibold text-neutral-900 mb-1.5">Department Name</label>
                 <input

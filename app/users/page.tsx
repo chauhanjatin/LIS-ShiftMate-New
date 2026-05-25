@@ -52,7 +52,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
         if (!firstName) newErrors.firstName = "Please enter first name";
         if (!lastName) newErrors.lastName = "Please enter last name";
         if (!email) newErrors.email = "Please enter email";
-        
+
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
@@ -91,21 +91,21 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                     <div>
                         <h3 className="text-[16px] font-semibold text-neutral-900">Basic Information</h3>
                         <p className="mt-1 text-[12px] text-neutral-500">Enter the employee's basic personal information for identification and contact purposes.</p>
-                        
+
                         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-[14px] font-medium text-neutral-900 mb-1.5">First Name</label>
-                                <input type="text" value={firstName} onChange={e => { setFirstName(e.target.value); setErrors(prev => ({...prev, firstName: ""})) }} placeholder="Michael" className={`w-full rounded-xl border ${errors.firstName ? 'border-red-500' : 'border-neutral-200'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
+                                <input type="text" value={firstName} onChange={e => { setFirstName(e.target.value); setErrors(prev => ({ ...prev, firstName: "" })) }} placeholder="Michael" className={`w-full rounded-xl border ${errors.firstName ? 'border-red-500' : 'border-neutral-200'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
                                 {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
                             </div>
                             <div>
                                 <label className="block text-[14px] font-medium text-neutral-900 mb-1.5">Last Name</label>
-                                <input type="text" value={lastName} onChange={e => { setLastName(e.target.value); setErrors(prev => ({...prev, lastName: ""})) }} placeholder="Enter your last name" className={`w-full rounded-xl border ${errors.lastName ? 'border-red-500' : 'border-neutral-200'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
+                                <input type="text" value={lastName} onChange={e => { setLastName(e.target.value); setErrors(prev => ({ ...prev, lastName: "" })) }} placeholder="Enter your last name" className={`w-full rounded-xl border ${errors.lastName ? 'border-red-500' : 'border-neutral-200'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
                                 {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
                             </div>
                             <div className="md:col-span-2">
                                 <label className="block text-[14px] font-medium text-neutral-900 mb-1.5">Email</label>
-                                <input type="email" value={email} onChange={e => { setEmail(e.target.value); setErrors(prev => ({...prev, email: ""})) }} placeholder="Enter your email" className={`w-full rounded-xl border ${errors.email ? 'border-red-500' : 'border-neutral-200'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
+                                <input type="email" value={email} onChange={e => { setEmail(e.target.value); setErrors(prev => ({ ...prev, email: "" })) }} placeholder="Enter your email" className={`w-full rounded-xl border ${errors.email ? 'border-red-500' : 'border-neutral-200'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
                                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                             </div>
                             <div>
@@ -136,10 +136,10 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                     <div>
                         <h3 className="text-[16px] font-semibold text-neutral-900">Access Method</h3>
                         <p className="mt-1 text-[12px] text-neutral-500">Enter the employee's basic personal information for identification and contact purposes.</p>
-                        
+
                         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                             {/* Temp Password Option */}
-                            <div 
+                            <div
                                 onClick={() => setAccessMethod("temp_password")}
                                 className={`cursor-pointer rounded-2xl border-2 p-4 transition-all ${accessMethod === "temp_password" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-neutral-200 bg-white"}`}
                             >
@@ -153,7 +153,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                                 </div>
                                 <h4 className="mt-3 text-[16px] font-semibold text-neutral-900">Temporary Password</h4>
                                 <p className="mt-1 text-[12px] text-neutral-500">Generate a secure temporary password</p>
-                                
+
                                 <ul className="mt-3 space-y-1.5">
                                     <li className="flex items-center gap-2 text-[12px] text-neutral-600">
                                         <svg className="text-[#4DB949]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -171,7 +171,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                             </div>
 
                             {/* Invite Email Option */}
-                            <div 
+                            <div
                                 onClick={() => setAccessMethod("invite_email")}
                                 className={`cursor-pointer rounded-2xl border-2 p-4 transition-all ${accessMethod === "invite_email" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-neutral-200 bg-white"}`}
                             >
@@ -185,7 +185,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                                 </div>
                                 <h4 className="mt-3 text-[16px] font-semibold text-neutral-900">Send Invite Email</h4>
                                 <p className="mt-1 text-[12px] text-neutral-500">User will set their own password</p>
-                                
+
                                 <ul className="mt-3 space-y-1.5">
                                     <li className="flex items-center gap-2 text-[12px] text-neutral-600">
                                         <svg className="text-[#4DB949]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -208,11 +208,11 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                             <div className="mt-4 rounded-xl bg-[#F8FAFC] p-4">
                                 <label className="block text-[12px] font-medium text-neutral-900 mb-1.5">Temporary Password</label>
                                 <div className="flex gap-3">
-                                    <input 
-                                        type="text" 
-                                        value={tempPassword} 
+                                    <input
+                                        type="text"
+                                        value={tempPassword}
                                         readOnly
-                                        className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-[14px] outline-none" 
+                                        className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-[14px] outline-none"
                                     />
                                     <button onClick={generatePassword} type="button" className="flex items-center gap-2 rounded-xl bg-[#E2E8F0] px-4 py-2.5 text-[14px] font-semibold text-neutral-700 whitespace-nowrap hover:bg-[#CBD5E1] transition">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
@@ -291,7 +291,7 @@ export default function UsersPage() {
                         <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Users List</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative 2xl:w-75 md:w-60 w-32">
+                            <div className="relative xl:w-75 md:w-50 w-32">
                                 <Image
                                     src={searchIcon}
                                     alt="Search"
@@ -300,13 +300,13 @@ export default function UsersPage() {
                                     className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                                 />
                                 <input
-                                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-1.5 md:py-2.5 pl-11 pr-4 text-sm"
+                                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-1.5 md:py-2.5 md:pl-11 pl-8 pr-4 text-sm"
                                     placeholder="Search User"
                                 />
                             </div>
 
                             {/* Filter Button */}
-                            <button className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
+                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
                                 <Image
                                     src={filterIcon}
                                     alt="Filter"
@@ -315,15 +315,15 @@ export default function UsersPage() {
                                     className="pointer-events-none"
                                 />
                             </button>
-                            
-                            <button className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
+
+                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                             </button>
 
                             {/* Add User Button */}
-                            <button 
+                            <button
                                 onClick={() => setCreateModalOpen(true)}
-                                className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] px-2.5 py-2 md:px-5 md:py-3 text-[12px] md:text-[16px] text-white transition hover:bg-blue-600"
+                                className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] p-1.5 md:px-2.5 md:py-2 xl:px-5 xl:py-3 text-[12px] md:text-[15px] xl:text-[16px] text-white transition hover:bg-blue-600"
                             >
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -391,7 +391,7 @@ export default function UsersPage() {
 
                                         <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6">
                                             <Link href={`/users/edit/${user.id}`}>
-                                                <div className="flex min-w-[180px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
+                                                <div className="flex md:min-w-[180px] min-w-[150px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
                                                     <img
                                                         src={user.avatar}
                                                         alt={user.name}

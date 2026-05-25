@@ -33,7 +33,7 @@ export default function CompanyProfilePage() {
         <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm">
 
           {/* Banner Card */}
-          <div className="flex items-center gap-5 rounded-2xl bg-[#F8FAFC] border border-neutral-100 p-6 mb-10">
+          <div className="flex items-center gap-4 md:gap-5 rounded-2xl bg-[#F8FAFC] border border-neutral-100 md:p-6 p-4 md:mb-10 mb-8">
             <Image
               src={appLogo}
               alt="App Logo"
@@ -42,7 +42,7 @@ export default function CompanyProfilePage() {
               className="rounded-2xl"
             />
             <div>
-              <h1 className="text-[24px] font-bold text-neutral-900 mb-2">HRMetheus Inc.</h1>
+              <h1 className="md:text-[24px] text-[22px] font-bold text-neutral-900 mb-2">HRMetheus Inc.</h1>
               <div className="inline-flex items-center gap-1.5 rounded-full bg-[#EDFAF2] px-3 py-1">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4DB949" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12"></polyline>
@@ -72,7 +72,7 @@ export default function CompanyProfilePage() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[13px] font-medium text-neutral-900 mb-1.5">Registration Number</label>
                     <input
@@ -102,7 +102,7 @@ export default function CompanyProfilePage() {
               </div>
 
               <div className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[13px] font-medium text-neutral-900 mb-1.5">Phone Number</label>
                     <input
@@ -136,7 +136,7 @@ export default function CompanyProfilePage() {
                   />
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-[13px] font-medium text-neutral-900 mb-1.5">City</label>
                     <input
@@ -179,7 +179,7 @@ export default function CompanyProfilePage() {
               </div>
 
               <div className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[13px] font-medium text-neutral-900 mb-1.5">Tax ID</label>
                     <input
@@ -202,7 +202,7 @@ export default function CompanyProfilePage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[13px] font-medium text-neutral-900 mb-1.5">PAYE Reference</label>
                     <input

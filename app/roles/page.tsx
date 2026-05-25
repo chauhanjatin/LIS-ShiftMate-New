@@ -37,7 +37,7 @@ export default function RolesPage() {
             </h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-              <div className="relative 2xl:w-75 md:w-60 w-32">
+              <div className="relative 2xl:w-75 lg:w-60 md:w-50 w-32">
                 <Image
                   src={searchIcon}
                   alt="Search"
@@ -46,13 +46,13 @@ export default function RolesPage() {
                   className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                 />
                 <input
-                  className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-1.5 md:py-2.5 pl-11 pr-4 text-sm"
+                  className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-1.5 md:py-2.5 md:pl-11 pl-8 pr-4 text-sm"
                   placeholder="Search Role"
                 />
               </div>
 
               {/* Filter Button */}
-              <button className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
+              <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
                 <Image
                   src={filterIcon}
                   alt="Filter"
@@ -62,7 +62,7 @@ export default function RolesPage() {
                 />
               </button>
 
-              <button className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
+              <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
                 <Image
                   src={appRectangleIcon}
                   alt="Grid View"
@@ -74,7 +74,7 @@ export default function RolesPage() {
 
               {/* Add Role Button */}
               <Link href="/roles/add">
-                <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] px-2.5 py-2 md:px-5 md:py-3 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] p-1.5 md:px-2.5 md:py-2 lg:px-5 lg:py-3 text-[11px] md:text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>

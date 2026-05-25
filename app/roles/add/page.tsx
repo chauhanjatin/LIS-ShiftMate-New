@@ -75,7 +75,7 @@ export default function AddRolePage() {
         <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm flex-1 flex flex-col xl:flex-row gap-6">
           
           {/* Left Column: Role Details */}
-          <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-2xl p-6">
+          <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-2xl lg:p-6 p-3">
             <h2 className="text-[20px] font-bold text-neutral-900 mb-2">Create New Role</h2>
             
             <div className="mt-6 mb-8">
@@ -113,7 +113,7 @@ export default function AddRolePage() {
           </div>
 
           {/* Right Column: Permissions Matrix */}
-          <div className="flex-1 bg-white p-6 border-l border-neutral-200 overflow-hidden flex flex-col">
+          <div className="flex-1 bg-white lg:p-6 p-3 lg:border-l border-[#E4E7EC] overflow-hidden flex flex-col">
             <h3 className="text-[18px] font-bold text-neutral-900 mb-6">Permissions Matrix</h3>
             
             <div className="flex-1 overflow-x-auto overflow-y-auto">
