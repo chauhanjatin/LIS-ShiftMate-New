@@ -74,7 +74,7 @@ export default function RolesPage() {
 
               {/* Add Role Button */}
               <Link href="/roles/add">
-                <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] p-1.5 md:px-2.5 md:py-2 lg:px-5 lg:py-3 text-[11px] md:text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] p-1.5 md:px-2.5 md:py-2.5 lg:px-5 lg:py-3 text-[11px] md:text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -90,13 +90,13 @@ export default function RolesPage() {
             <table className="min-w-full w-full text-left">
               <thead className="bg-white">
                 <tr>
-                  <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pl-6 pl-3 pr-4 text-[12px] sm:text-[14px] 2xl:text-[15px] font-semibold text-neutral-900 whitespace-nowrap">
+                  <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pl-6 pl-3 lg:pr-4 pr-10 text-[12px] sm:text-[14px] 2xl:text-[15px] font-semibold text-neutral-900 whitespace-nowrap">
                     Role Name
                   </th>
                   <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] 2xl:text-[15px] font-semibold text-neutral-900 whitespace-nowrap">
                     Description
                   </th>
-                  <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] 2xl:text-[15px] font-semibold text-neutral-900 whitespace-nowrap">
+                  <th className="border-b border-[#D0D5DD] py-3 sm:py-4 lg:pr-4 pr-10 text-[12px] sm:text-[14px] 2xl:text-[15px] font-semibold text-neutral-900 whitespace-nowrap">
                     Number of Users
                   </th>
                   <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] 2xl:text-[15px] font-semibold text-neutral-900 whitespace-nowrap w-[120px]">
@@ -107,10 +107,10 @@ export default function RolesPage() {
               <tbody>
                 {roles.map((role) => (
                   <tr key={role.id} className="group transition-colors hover:bg-neutral-50 border-b border-neutral-100 last:border-0">
-                    <td className="py-3 sm:py-4 2xl:pl-6 pl-3 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                    <td className="py-3 sm:py-4 2xl:pl-6 pl-3 lg:pr-4 pr-10 text-[12px] sm:text-[13px] 2xl:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
                       {role.name}
                     </td>
-                    <td className="py-3 sm:py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-normal text-neutral-600">
+                    <td className="py-3 sm:py-4 lg:pr-4 pr-10 text-[12px] sm:text-[13px] 2xl:text-[14px] font-normal text-neutral-600">
                       {role.description}
                     </td>
                     <td className="py-3 sm:py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-normal text-neutral-900 whitespace-nowrap">

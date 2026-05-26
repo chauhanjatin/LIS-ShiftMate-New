@@ -78,7 +78,7 @@ export default function AddRolePage() {
           <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-2xl lg:p-6 p-3">
             <h2 className="text-[20px] font-bold text-neutral-900 mb-2">Create New Role</h2>
             
-            <div className="mt-6 mb-8">
+            <div className="mt-6 lg:mb-8">
               <h3 className="text-[16px] font-semibold text-neutral-900 mb-1">Role Details</h3>
               <p className="text-[12px] text-neutral-500 mb-6 leading-relaxed">
                 Enter the employee's basic personal information for identification and contact purposes.
