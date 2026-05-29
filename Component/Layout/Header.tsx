@@ -120,7 +120,7 @@ export default function Header({
   onMenuClick
 }: { 
   title: string; 
-  subtitle: string;
+  subtitle: React.ReactNode | string;
   onMenuClick?: () => void;
 }) {
   return (

@@ -7,8 +7,20 @@ import dashboardIcon from "@/assets/images/icons/dashboard.svg";
 import usersIcon from "@/assets/images/icons/users.svg";
 import roleIcon from "@/assets/images/icons/role.svg";
 import organisationIcon from "@/assets/images/icons/organisation.svg";
-import employeesIcon from "@/assets/images/icons/emplooye.svg";
+import employeesIcon from "@/assets/images/icons/employee.svg";
 import closeLogoIcon from "@/assets/images/icons/close-logo.svg";
+import payrollSetting from "@/assets/images/icons/payrollsetting.svg";
+import payCalendarIcon from "@/assets/images/icons/pay-calendar.svg";
+import dollarIcon from "@/assets/images/icons/dollar.svg";
+import deductionIcon from "@/assets/images/icons/deduction.svg";
+import salaryStructureIcon from "@/assets/images/icons/salary-structure.svg";
+import employeePayrollIcon from "@/assets/images/icons/employee-payroll.svg";
+import payrollRunsIcon from "@/assets/images/icons/payroll-runs.svg";
+import pendingApprovalIcon from "@/assets/images/icons/pending-approval.svg";
+import taxRuleIcon from "@/assets/images/icons/tax-rule.svg";
+import nationalRuleIcon from "@/assets/images/icons/national-rule.svg";
+import studentLoanIcon from "@/assets/images/icons/student-loan.svg";
+import payslipListIcon from "@/assets/images/icons/payslip-list.svg";
 import Link from "next/link";
 
 export default function Sidebar({
@@ -45,16 +57,40 @@ export default function Sidebar({
       setActiveItem("Users");
     } else if (pathname.includes("/roles")) {
       setActiveItem("Roles");
+      } else if (pathname.includes("/payroll-settings")) {
+      setActiveItem("Payroll Settings");
+    } else if (pathname.includes("/payroll-calendar")) {
+      setActiveItem("Payroll Calendar");
+    } else if (pathname.includes("/pay-components")) {
+      setActiveItem("Pay Components");
+    } else if (pathname.includes("/deduction-components")) {
+      setActiveItem("Deduction Components");
+    } else if (pathname.includes("/salary-structure")) {
+      setActiveItem("Salary Structure");
+    } else if (pathname.includes("/employee-payroll-setup")) {
+      setActiveItem("Employee Payroll Setup");
+    } else if (pathname.includes("/payroll-runs")) {
+      setActiveItem("Payroll Runs");
+    } else if (pathname.includes("/payroll-approval")) {
+      setActiveItem("Payroll Approval");
+    } else if (pathname.includes("/tax-rules")) {
+      setActiveItem("Tax Rules");
+    } else if (pathname.includes("/national-insurance-rule")) {
+      setActiveItem("National Insurance Rule");
+    } else if (pathname.includes("/student-loan-rules")) {
+      setActiveItem("Student Loan Rules");
+    } else if (pathname.includes("/payslip-list")) {
+      setActiveItem("Payslip List");
     } else if (pathname.includes("/organization")) {
       setActiveItem("Organization");
       setOpenMenu("Organization");
       if (pathname.includes("/company-profile"))
         setActiveSubItem("Company Profile");
-      if (pathname.includes("/departments")) 
+      if (pathname.includes("/departments"))
         setActiveSubItem("Departments");
-      if (pathname.includes("/locations")) 
+      if (pathname.includes("/locations"))
         setActiveSubItem("Locations");
-      if (pathname.includes("/job-titles")) 
+      if (pathname.includes("/job-titles"))
         setActiveSubItem("Job Titles");
     } else {
       setActiveItem("Dashboard");
@@ -63,7 +99,7 @@ export default function Sidebar({
 
   const items: Array<{
     label: string;
-    icon: "dashboard" | "users" | "role" | "organisation" | "employees";
+    icon: "dashboard" | "users" | "role" | "organisation" | "employees" | "payrollsetting" | "paycalendar" | "dollar" | "deduction" | "salarystructure" | "employeepayroll" | "payrollruns" | "payrollapproval" | "taxrules" | "nationalrule" | "studentloan" | "paysliplist";
     expandable?: boolean;
   }> = [
     { label: "Dashboard", icon: "dashboard" },
@@ -71,6 +107,18 @@ export default function Sidebar({
     { label: "Roles", icon: "role" },
     { label: "Organization", icon: "organisation", expandable: true },
     { label: "Employees", icon: "employees", expandable: true },
+    { label: "Payroll Settings", icon: "payrollsetting" },
+    { label: "Payroll Calendar", icon: "paycalendar" },
+    { label: "Pay Components", icon: "dollar" },
+    { label: "Deduction Components", icon: "deduction" },
+    { label: "Salary Structure", icon: "salarystructure" },
+    { label: "Employee Payroll Setup", icon: "employeepayroll" },
+    { label: "Payroll Runs", icon: "payrollruns" },
+    { label: "Payroll Approval", icon: "payrollapproval" },
+    { label: "Tax Rules", icon: "taxrules" },
+    { label: "National Insurance Rule", icon: "nationalrule" },
+    { label: "Student Loan Rules", icon: "studentloan" },
+    { label: "Payslip List", icon: "paysliplist" },
   ] as const;
 
   const routesMap: Record<string, string> = {
@@ -79,6 +127,18 @@ export default function Sidebar({
     Roles: "/roles",
     Organization: "",
     Employees: "",
+    "Payroll Settings": "/payroll-settings",
+    "Payroll Calendar": "/payroll-calendar",
+    "Pay Components": "/pay-components",
+    "Deduction Components": "/deduction-components",
+    "Salary Structure": "/salary-structure",
+    "Employee Payroll Setup": "/employee-payroll-setup",
+    "Payroll Runs": "/payroll-runs",
+    "Payroll Approval": "/payroll-approval",
+    "Tax Rules": "/tax-rules",
+    "National Insurance Rule": "/national-insurance-rule",
+    "Student Loan Rules": "/student-loan-rules",
+    "Payslip List": "/payslip-list",
   };
 
   const employeeSubMenus = [
@@ -115,11 +175,23 @@ export default function Sidebar({
     role: roleIcon,
     organisation: organisationIcon,
     employees: employeesIcon,
+    payrollsetting: payrollSetting,
+    paycalendar: payCalendarIcon,
+    dollar: dollarIcon,
+    deduction: deductionIcon,
+    salarystructure: salaryStructureIcon,
+    employeepayroll: employeePayrollIcon,
+    payrollruns: payrollRunsIcon,
+    payrollapproval: pendingApprovalIcon,
+    taxrules: taxRuleIcon,
+    nationalrule: nationalRuleIcon,
+    studentloan: studentLoanIcon,
+    paysliplist: payslipListIcon,
   } as const;
 
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-50 flex flex-col border-r border-neutral-200 bg-white transition-all duration-500 ease-in-out lg:static lg:flex lg:shrink-0 ${collapsed ? "w-25 2xl:w-28" : "w-60 2xl:w-64"
+      className={`fixed inset-y-0 left-0 z-50 flex flex-col overflow-y-auto border-r border-neutral-200 bg-white transition-all duration-500 ease-in-out lg:static lg:flex lg:shrink-0 ${collapsed ? "w-25 2xl:w-28" : "w-64 2xl:w-[280px]"
         } ${isMobileMenuOpen ? "translate-x-0 w-64" : "-translate-x-full lg:translate-x-0"
         }`}
     >
@@ -142,8 +214,8 @@ export default function Sidebar({
           src="/login/shiftmate-logo.png"
           alt="ShiftMate Logo"
           className={`absolute left-5 top-1/2 h-auto w-[190px] 2xl:w-[205px] -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${collapsed
-              ? "pointer-events-none translate-x-2 opacity-0"
-              : "translate-x-0 opacity-100"
+            ? "pointer-events-none translate-x-2 opacity-0"
+            : "translate-x-0 opacity-100"
             }`}
         />
         <Image
@@ -152,8 +224,8 @@ export default function Sidebar({
           width={56}
           height={56}
           className={`absolute left-1/2 top-1/2 2xl:h-14 2xl:w-14 h-12 w-12 -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${collapsed
-              ? "-translate-x-1/2 opacity-100"
-              : "pointer-events-none -translate-x-[40%] opacity-0"
+            ? "-translate-x-1/2 opacity-100"
+            : "pointer-events-none -translate-x-[40%] opacity-0"
             }`}
         />
       </div>
@@ -194,7 +266,7 @@ export default function Sidebar({
                       ? "bg-brand-500 text-white"
                       : "text-[#111827] hover:bg-neutral-100"
                     }`
-                    : `group flex w-full items-center justify-between rounded-2xl px-4 2xl:py-3 py-2 text-left text-[16px] font-semibold transition-all duration-300 ${isActive
+                    : `group flex w-full items-center justify-between rounded-2xl px-4 2xl:py-3 py-2 text-left text-[16px] font-semibold cursor-pointer transition-all duration-300 ${isActive
                       ? "bg-brand-500 text-white"
                       : "text-[#111827] hover:bg-neutral-100"
                     }`
@@ -214,7 +286,7 @@ export default function Sidebar({
                   />
 
                   <span
-                    className={`overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out ${collapsed ? "max-w-0 opacity-0" : "max-w-40 opacity-100"
+                    className={`overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out ${collapsed ? "max-w-0 opacity-0" : "max-w-[220px] opacity-100"
                       }`}
                   >
                     {item.label}
@@ -257,7 +329,7 @@ export default function Sidebar({
                             const route = employeeSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
-                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left text-[16px] font-medium transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left text-[16px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
                             }`}
                         >
                           {subLabel}
@@ -286,7 +358,7 @@ export default function Sidebar({
                             const route = organizationSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
-                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left text-[16px] font-medium transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left text-[16px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
                             }`}
                         >
                           {subLabel}

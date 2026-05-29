@@ -231,7 +231,7 @@ export default function AllEmployeesPage() {
                       <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6">
                         <div className="flex items-center gap-2 sm:gap-4">
                           <Link href={`/employees/${emp.id}`}>
-                            <button className="text-neutral-400 hover:text-brand-500 mt-2">
+                            <button className="text-neutral-400 hover:text-brand-500 mt-2 cursor-pointer">
                               <Image
                                 src={editIcon}
                                 alt="Filter"
@@ -247,7 +247,7 @@ export default function AllEmployeesPage() {
                               setEmployeeToDelete(emp.id);
                               setDeleteModalOpen(true);
                             }}
-                            className="text-neutral-400 hover:text-red-500"
+                            className="text-neutral-400 hover:text-red-500 cursor-pointer"
                           >
                             <Image
                               src={deleteIcon}
@@ -412,7 +412,7 @@ export default function AllEmployeesPage() {
             </div>
 
             {/* Title */}
-            <h3 className="mx-auto mb-6 max-w-[260px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
+            <h3 className="mx-auto mb-6 max-w-[275px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
               Are you sure you want to delete this <br /> Employee Record?
             </h3>
 

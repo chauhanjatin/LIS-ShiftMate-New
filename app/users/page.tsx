@@ -78,7 +78,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
             <div className="w-full max-w-[720px] rounded-2xl bg-white p-6 shadow-[0px_8px_30px_rgba(0,0,0,0.12)] max-h-[800px] overflow-y-auto relative">
                 <div className="flex items-center justify-between mb-6 sticky top-0 bg-white z-10 pb-2">
                     <h2 className="text-[20px] font-bold text-neutral-900">Create New User</h2>
-                    <button onClick={onClose} className="text-neutral-400 hover:text-neutral-900 bg-white rounded-full p-1">
+                    <button onClick={onClose} className="text-neutral-400 hover:text-neutral-900 bg-white rounded-full p-1 cursor-pointer">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -234,10 +234,10 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                 </div>
 
                 <div className="mt-8 flex justify-end gap-3 border-t border-neutral-100 pt-6">
-                    <button onClick={onClose} className="rounded-xl border border-neutral-200 bg-white px-6 py-2.5 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
+                    <button onClick={onClose} className="rounded-xl border border-neutral-200 bg-white px-6 py-2.5 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer">
                         Cancel
                     </button>
-                    <button onClick={handleCreate} className="rounded-xl bg-[#257BFC] px-6 py-2.5 text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                    <button onClick={handleCreate} className="rounded-xl bg-[#257BFC] px-6 py-2.5 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                         Create User
                     </button>
                 </div>
@@ -306,24 +306,24 @@ export default function UsersPage() {
                             </div>
 
                             {/* Filter Button */}
-                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
+                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-neutral-200 cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
                                 <Image
                                     src={filterIcon}
                                     alt="Filter"
                                     width={24}
                                     height={24}
-                                    className="pointer-events-none"
+                                    className="cursor-pointer"
                                 />
                             </button>
 
-                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
+                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-neutral-200 cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                             </button>
 
                             {/* Add User Button */}
                             <button
                                 onClick={() => setCreateModalOpen(true)}
-                                className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] p-1.5 md:px-2.5 md:py-2 xl:px-5 xl:py-3 text-[12px] md:text-[15px] xl:text-[16px] text-white transition hover:bg-blue-600"
+                                className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-1.5 md:px-2.5 md:py-2 xl:px-5 xl:py-3 text-[12px] md:text-[15px] xl:text-[16px] text-white transition hover:bg-blue-600"
                             >
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -344,7 +344,7 @@ export default function UsersPage() {
                                             type="checkbox"
                                             checked={allSelected}
                                             onChange={handleSelectAll}
-                                            className="h-4 w-4 rounded border-[#D0D5DD] text-brand-500 focus:ring-brand-500"
+                                            className="h-4 w-4 rounded border-[#D0D5DD] text-brand-500 focus:ring-brand-500 cursor-pointer"
                                         />
                                     </th>
 
@@ -385,7 +385,7 @@ export default function UsersPage() {
                                                 type="checkbox"
                                                 checked={selectedUsers.includes(user.id)}
                                                 onChange={() => handleSelectUser(user.id)}
-                                                className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500"
+                                                className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
                                             />
                                         </td>
 
@@ -429,7 +429,7 @@ export default function UsersPage() {
                                                             alt="Edit"
                                                             width={24}
                                                             height={24}
-                                                            className="pointer-events-none h-5 w-5 sm:h-6 sm:w-6"
+                                                            className="cursor-pointer h-5 w-5 sm:h-6 sm:w-6"
                                                         />
                                                     </button>
                                                 </Link>
@@ -445,7 +445,7 @@ export default function UsersPage() {
                                                         alt="Delete"
                                                         width={24}
                                                         height={24}
-                                                        className="pointer-events-none h-5 w-5 sm:h-6 sm:w-6"
+                                                        className="cursor-pointer h-5 w-5 sm:h-6 sm:w-6"
                                                     />
                                                 </button>
                                             </div>
@@ -495,7 +495,7 @@ export default function UsersPage() {
                         <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px] bg-[#FDEAEA]">
                             <Image src={deleteRedIcon} alt="Delete" className="pointer-events-none" />
                         </div>
-                        <h3 className="mx-auto mb-6 max-w-[260px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
+                        <h3 className="mx-auto mb-6 max-w-[275px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
                             Are you sure you want to delete this <br /> User?
                         </h3>
                         <div className="flex gap-4">

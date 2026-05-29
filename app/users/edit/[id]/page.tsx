@@ -12,6 +12,7 @@ export default function EditUserPage() {
     const id = params?.id as string;
 
     const [user, setUser] = useState<User | null>(null);
+    const [isLoaded, setIsLoaded] = useState(false);
     const [selectedStatus, setSelectedStatus] = useState<UserStatus | "">("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -20,10 +21,10 @@ export default function EditUserPage() {
     const [company, setCompany] = useState("");
     const [department, setDepartment] = useState("");
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
-    const { getUser, updateUser } = useUsers();
+    const { getUser, updateUser, users } = useUsers();
 
     useEffect(() => {
-        if (id) {
+        if (id && users.length > 0 && !isLoaded) {
             const foundUser = getUser(id);
             if (foundUser) {
                 setUser(foundUser);
@@ -34,9 +35,10 @@ export default function EditUserPage() {
                 setRole(foundUser.role || "");
                 setCompany(foundUser.company || "");
                 setDepartment(foundUser.department || "");
+                setIsLoaded(true);
             }
         }
-    }, [id]);
+    }, [id, users, isLoaded]);
 
     const handleUpdate = () => {
         if (!user) return;

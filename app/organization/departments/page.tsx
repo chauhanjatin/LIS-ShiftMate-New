@@ -99,7 +99,7 @@ export default function DepartmentsPage() {
               {/* Add Department Button */}
               <button 
                 onClick={() => setCreateModalOpen(true)}
-                className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] p-2 md:px-2.5 md:py-3 lg:px-5 text-[12px] md:text-[13px] lg:text-[14px] font-semibold text-white transition hover:bg-blue-600"
+                className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-2 md:px-2.5 md:py-3 lg:px-5 text-[12px] md:text-[13px] lg:text-[14px] font-semibold text-white transition hover:bg-blue-600"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -169,7 +169,7 @@ export default function DepartmentsPage() {
                               setDeptToDelete(dept.id);
                               setDeleteModalOpen(true);
                             }}
-                            className="text-neutral-400 hover:text-red-500 transition-colors"
+                            className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer"
                           >
                             <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none opacity-60 hover:opacity-100" />
                           </button>
@@ -198,21 +198,21 @@ export default function DepartmentsPage() {
             <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px] bg-[#FDEAEA]">
               <Image src={deleteRedIcon} alt="Delete" className="pointer-events-none" />
             </div>
-            <h3 className="mx-auto mb-6 max-w-[260px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
+            <h3 className="mx-auto mb-6 max-w-[275px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
               Are you sure you want to delete this <br /> Department?
             </h3>
             <div className="flex gap-4">
               <button
                 type="button"
                 onClick={() => { setDeleteModalOpen(false); setDeptToDelete(null); }}
-                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054] transition hover:bg-neutral-50"
+                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold cursor-pointer leading-none text-[#344054] transition hover:bg-neutral-50"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={handleDelete}
-                className="w-full rounded-xl px-6 py-3 text-[16px] font-semibold leading-none text-white bg-[#F04438] transition hover:bg-red-600"
+                className="w-full rounded-xl px-6 py-3 text-[16px] font-semibold leading-none text-white bg-[#F04438] cursor-pointer transition hover:bg-red-600"
               >
                 Delete
               </button>
@@ -299,13 +299,13 @@ export default function DepartmentsPage() {
             <div className="flex justify-end gap-4 pt-6">
               <button 
                 onClick={() => setCreateModalOpen(false)}
-                className="px-6 py-2.5 rounded-xl border border-neutral-300 bg-white text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition"
+                className="px-6 py-2.5 rounded-xl border border-neutral-300 bg-white text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition cursor-pointer"
               >
                 Cancel
               </button>
               <button 
                 onClick={handleCreateDepartment}
-                className="px-6 py-2.5 rounded-xl bg-[#257BFC] text-[14px] font-semibold text-white hover:bg-blue-600 transition"
+                className="px-6 py-2.5 rounded-xl bg-[#257BFC] text-[14px] font-semibold text-white hover:bg-blue-600 transition cursor-pointer"
               >
                 Create Department
               </button>

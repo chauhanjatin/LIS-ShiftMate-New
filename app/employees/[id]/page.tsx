@@ -132,7 +132,7 @@ export default function EmployeeDetailsPage() {
                   className="absolute bottom-0 right-0 flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-md border border-neutral-200 transition hover:bg-neutral-50 cursor-pointer"
                   title="Change image"
                 >
-                  <Image src={editIcon} alt="edit" width={14} height={14} />
+                  <Image src={editIcon} alt="edit" width={14} height={14} />  
                 </button>
                 <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleImageChange} />
               </div>

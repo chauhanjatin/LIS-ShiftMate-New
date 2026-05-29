@@ -125,7 +125,7 @@ export default function AddEmployeePage() {
 
   return (
     <DashboardLayout title="Employees" subtitle="Home/ Employees/ Add Employee">
-      <div className="flex-1 p-4 2xl:p-6 flex">
+      <div className="flex-1 p-4 2xl:p-6 flex overflow-auto">
         <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm flex-1 flex flex-col">
           <h2 className="text-[24px] font-semibold text-neutral-900 mb-10">Add Employee</h2>
 
@@ -715,22 +715,22 @@ export default function AddEmployeePage() {
           <div className="mt-[48px] flex justify-end gap-4 pt-8">
             {currentStep === 1 ? (
               <Link href="/employees/all-employees">
-                <button className="rounded-xl border border-neutral-300 bg-white 2xl:px-6 px-4 2xl:py-3 py-2 text-[16px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
+                <button className="rounded-xl cursor-pointer border border-neutral-300 bg-white 2xl:px-6 px-4 2xl:py-3 py-2 text-[16px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
                   Cancel
                 </button>
               </Link>
             ) : (
-              <button onClick={handlePrevious} className="rounded-xl border border-neutral-300 bg-white px-6 py-3 text-[16px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
+              <button onClick={handlePrevious} className="rounded-xl cursor-pointer border border-neutral-300 bg-white px-6 py-3 text-[16px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
                 Previous
               </button>
             )}
 
             {currentStep === 5 ? (
-              <button onClick={handleSubmit} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 py-2 2xl:text-[16px] text-[12px] font-semibold text-white transition hover:bg-blue-600 2xl:w-28 w-30">
+              <button onClick={handleSubmit} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 py-2 2xl:text-[16px] text-[12px] font-semibold cursor-pointer text-white transition hover:bg-blue-600 2xl:w-28 w-30">
                 Submit & Create Employee
               </button>
             ) : (
-              <button onClick={handleNext} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 py-2 text-[16px] font-semibold text-white transition hover:bg-blue-600 2xl:w-28 w-28">
+              <button onClick={handleNext} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 py-2 text-[16px] font-semibold cursor-pointer text-white transition hover:bg-blue-600 2xl:w-28 w-28">
                 Next
               </button>
             )}

@@ -378,7 +378,7 @@ export default function DashboardPage() {
               Pending Approvals Table
             </h2>
 
-            <button className="w-full rounded-lg bg-[#257BFC] px-4 py-2 text-sm font-medium text-white sm:w-auto">
+            <button className="w-full rounded-lg bg-[#257BFC] px-4 py-2 text-sm font-medium text-white sm:w-auto cursor-pointer">
               View All
             </button>
           </div>
@@ -499,7 +499,7 @@ export default function DashboardPage() {
               Recently Added Employees
             </h2>
 
-            <button className="w-full rounded-lg bg-[#257BFC] px-4 py-2 text-sm font-semibold text-white sm:w-auto">
+            <button className="w-full rounded-lg bg-[#257BFC] px-4 py-2 text-sm font-semibold text-white sm:w-auto cursor-pointer">
               View All
             </button>
           </div>

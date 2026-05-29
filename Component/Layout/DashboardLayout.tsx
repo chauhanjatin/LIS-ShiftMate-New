@@ -9,7 +9,7 @@ import dashboardOpenIcon from "@/assets/images/icons/dashboard-openicon.svg";
 type DashboardLayoutProps = Readonly<{
   children: React.ReactNode;
   title: string;
-  subtitle: string;
+  subtitle: React.ReactNode | string;
 }>;
 
 export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
@@ -38,8 +38,8 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
           isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
         }
         onClick={() => setIsSidebarCollapsed((prev) => !prev)}
-        className={`absolute top-[66px] z-100 hidden h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white shadow-sm transition-all duration-500 ease-in-out lg:inline-flex ${
-          isSidebarCollapsed ? "2xl:left-28 left-25" : "2xl:left-64 left-60"
+        className={`absolute top-[66px] z-70 hidden h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white cursor-pointer shadow-sm transition-all duration-500 ease-in-out lg:inline-flex ${
+          isSidebarCollapsed ? "2xl:left-28 left-25" : "2xl:left-70 left-64"
         }`}
       >
         <Image

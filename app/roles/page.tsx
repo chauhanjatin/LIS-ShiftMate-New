@@ -74,7 +74,7 @@ export default function RolesPage() {
 
               {/* Add Role Button */}
               <Link href="/roles/add">
-                <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] p-1.5 md:px-2.5 md:py-2.5 lg:px-5 lg:py-3 text-[11px] md:text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                <button className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-1.5 md:px-2.5 md:py-2.5 lg:px-5 lg:py-3 text-[11px] md:text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -110,7 +110,7 @@ export default function RolesPage() {
                     <td className="py-3 sm:py-4 2xl:pl-6 pl-3 lg:pr-4 pr-10 text-[12px] sm:text-[13px] 2xl:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
                       {role.name}
                     </td>
-                    <td className="py-3 sm:py-4 lg:pr-4 pr-10 text-[12px] sm:text-[13px] 2xl:text-[14px] font-normal text-neutral-600">
+                    <td className="py-3 sm:py-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-normal text-neutral-600">
                       {role.description}
                     </td>
                     <td className="py-3 sm:py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-normal text-neutral-900 whitespace-nowrap">
@@ -132,7 +132,7 @@ export default function RolesPage() {
                             setRoleToDelete(role.id);
                             setDeleteModalOpen(true);
                           }}
-                          className="text-neutral-400 hover:text-red-500 transition-colors"
+                          className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer"
                         >
                           <Image
                             src={deleteIcon}
@@ -166,7 +166,7 @@ export default function RolesPage() {
             <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px] bg-[#FDEAEA]">
               <Image src={deleteRedIcon} alt="Delete" className="pointer-events-none" />
             </div>
-            <h3 className="mx-auto mb-6 max-w-[260px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
+            <h3 className="mx-auto mb-6 max-w-[275px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
               Are you sure you want to delete this <br /> Role?
             </h3>
             <div className="flex gap-4">

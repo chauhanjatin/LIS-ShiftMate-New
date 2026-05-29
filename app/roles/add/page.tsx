@@ -215,13 +215,13 @@ export default function AddRolePage() {
             <div className="flex items-center justify-end gap-4 pt-6 mt-4 border-t border-neutral-100">
               <button 
                 onClick={() => router.push('/roles')}
-                className="px-6 py-2.5 rounded-xl border border-neutral-300 bg-white text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition"
+                className="px-6 py-2.5 rounded-xl cursor-pointer border border-neutral-300 bg-white text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition"
               >
                 Cancel
               </button>
               <button 
                 onClick={handleCreateRole}
-                className="px-6 py-2.5 rounded-xl bg-[#257BFC] text-[14px] font-semibold text-white hover:bg-blue-600 transition"
+                className="px-6 py-2.5 rounded-xl bg-[#257BFC] text-[14px] font-semibold text-white hover:bg-blue-600 transition cursor-pointer"
               >
                 Create Role
               </button>
