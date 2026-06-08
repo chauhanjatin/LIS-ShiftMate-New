@@ -205,9 +205,7 @@ export default function SalaryStructurePage() {
             {/* Add/Edit Salary Structure Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
-                    {/* Modal */}
                     <div className="w-full max-w-[700px] overflow-hidden rounded-3xl bg-white shadow-2xl max-h-[90vh] overflow-y-auto">
-                        {/* Header */}
                         <div className="flex items-center justify-between border-b border-neutral-200 px-8 py-6 sticky top-0 bg-white z-10">
                             <h2 className="text-[24px] font-bold text-[#1D2939]">
                                 {modalMode === 'add' ? 'Create Salary Structure' : 'Edit Salary Structure'}
@@ -221,7 +219,6 @@ export default function SalaryStructurePage() {
                             </button>
                         </div>
 
-                        {/* Body */}
                         <div className="px-8 py-6">
                             
                             <div className="mb-6">
@@ -236,7 +233,6 @@ export default function SalaryStructurePage() {
                                 />
                             </div>
 
-                            {/* Earning Components */}
                             <div className="mb-8 bg-[#F8FAFC] rounded-2xl p-6 border border-neutral-100">
                                 <h3 className="text-[16px] font-semibold text-[#1D2939] mb-4 border-b border-neutral-200 pb-3">
                                     Earning Components
@@ -261,7 +257,6 @@ export default function SalaryStructurePage() {
                                 </div>
                             </div>
 
-                            {/* Deductions Components */}
                             <div className="mb-6 bg-[#F8FAFC] rounded-2xl p-6 border border-neutral-100">
                                 <h3 className="text-[16px] font-semibold text-[#1D2939] mb-4 border-b border-neutral-200 pb-3">
                                     Deductions Components
@@ -269,7 +264,6 @@ export default function SalaryStructurePage() {
                                 
                                 <div className="grid grid-cols-2 gap-4">
                                     {["PAYE(Income Tax)", "Workplace Pension", "National Insurance", "Student Loan"].map(item => {
-                                        // Handle formatting diffs in mock data vs image text
                                         const isChecked = selectedStructure?.deductions.some(d => item.includes(d) || d.includes(item)) || false;
                                         return (
                                             <label key={item} className="flex items-center gap-3 cursor-pointer">
@@ -288,7 +282,6 @@ export default function SalaryStructurePage() {
                             </div>
 
 
-                            {/* Footer Buttons */}
                             <div className="mt-8 flex items-center justify-end gap-4 border-t border-neutral-200 pt-6">
                                 <button
                                     onClick={() => setIsModalOpen(false)}

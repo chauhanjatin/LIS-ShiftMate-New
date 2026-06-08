@@ -80,7 +80,6 @@ export default function PayrollRunsPage() {
         <DashboardLayout title="Payroll Runs" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6">
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    {/* Toolbar */}
                     <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
                         <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Employee Records</h2>
 
@@ -111,7 +110,6 @@ export default function PayrollRunsPage() {
                         </div>
                     </div>
 
-                    {/* Table */}
                     <div className="overflow-x-auto p-3 2xl:p-6">
                         <table className="min-w-[1000px] w-full text-left">
                             <thead className="bg-[#F8FAFC]">
@@ -163,9 +161,7 @@ export default function PayrollRunsPage() {
             {/* Create New Payroll Run Modal */}
             {isAddModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
-                    {/* Modal */}
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl max-h-[90vh] flex flex-col">
-                        {/* Header */}
                         <div className="flex items-center justify-between border-b border-neutral-200 px-8 py-6 shrink-0">
                             <h2 className="text-[24px] font-bold text-[#1D2939]">
                                 Create New Payroll Run
@@ -179,11 +175,9 @@ export default function PayrollRunsPage() {
                             </button>
                         </div>
 
-                        {/* Body */}
                         <div className="px-8 py-6 overflow-y-auto">
                             
                             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mb-6">
-                                {/* Payroll Period */}
                                 <div>
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Payroll Period
@@ -199,7 +193,6 @@ export default function PayrollRunsPage() {
                                     </div>
                                 </div>
 
-                                {/* Pay Date */}
                                 <div>
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Pay Date
@@ -215,7 +208,6 @@ export default function PayrollRunsPage() {
                                     </div>
                                 </div>
                                 
-                                {/* Pay Group */}
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Pay Group
@@ -233,7 +225,6 @@ export default function PayrollRunsPage() {
                                     </div>
                                 </div>
                                 
-                                {/* Notes */}
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Notes
@@ -246,7 +237,6 @@ export default function PayrollRunsPage() {
                                 </div>
                             </div>
 
-                            {/* Include Employees Summary */}
                             <div className="mb-4 rounded-2xl bg-[#F8FAFC] p-6">
                                 <h3 className="mb-4 text-[16px] font-semibold text-neutral-900">
                                     Include Employees
@@ -273,7 +263,6 @@ export default function PayrollRunsPage() {
                             </div>
                         </div>
                         
-                        {/* Footer Buttons */}
                         <div className="flex items-center justify-end gap-4 px-8 py-6 shrink-0">
                             <button
                                 onClick={() => setIsAddModalOpen(false)}

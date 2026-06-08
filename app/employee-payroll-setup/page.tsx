@@ -33,7 +33,6 @@ export default function EmployeePayrollSetupPage() {
     const [employees, setEmployees] = useState<EmployeePayroll[]>(initialPayrollSetup);
     const [searchQuery, setSearchQuery] = useState("");
 
-    // Load from local storage on mount
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_employee_payroll_setup");
         if (stored) {
@@ -46,7 +45,6 @@ export default function EmployeePayrollSetupPage() {
         setIsLoaded(true);
     }, []);
 
-    // Save to local storage on change
     useEffect(() => {
         if (isLoaded) {
             localStorage.setItem("shiftmate_employee_payroll_setup", JSON.stringify(employees));
@@ -86,7 +84,6 @@ export default function EmployeePayrollSetupPage() {
         <DashboardLayout title="Employee Payroll Setup" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6">
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    {/* Toolbar */}
                     <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
                         <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Employee Records</h2>
 
@@ -109,7 +106,6 @@ export default function EmployeePayrollSetupPage() {
                         </div>
                     </div>
 
-                    {/* Table */}
                     <div className="overflow-x-auto p-3 2xl:p-6">
                         <table className="min-w-[1100px] w-full text-left">
                             <thead className="bg-white">
@@ -171,7 +167,6 @@ export default function EmployeePayrollSetupPage() {
             {/* Edit Employee Payroll Modal */}
             {isEditModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
-                    {/* Modal */}
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
                         <div className="flex items-center justify-between border-b border-neutral-200 px-8 py-6">
                             <h2 className="text-[24px] font-bold text-[#1D2939]">
@@ -311,8 +306,6 @@ export default function EmployeePayrollSetupPage() {
 
                             </div>
 
-
-                            {/* Footer Buttons */}
                             <div className="mt-10 flex items-center justify-end gap-4">
                                 <button
                                     onClick={() => setIsEditModalOpen(false)}

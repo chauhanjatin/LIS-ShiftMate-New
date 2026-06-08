@@ -130,7 +130,6 @@ export default function EmployeeDetailsPage({ params }: { params: Promise<{ id: 
       <div className="flex-1 2xl:p-6 p-4">
         <div className="flex flex-col xl:flex-row 2xl:gap-[34px] gap-[28px] bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
 
-          {/* Left Sidebar Profile Card */}
           <div className="w-full 2xl:w-[353px] xl:w-[320px] shrink-0">
             <div className="rounded-2xl border border-[#F3F4F6] bg-[#F9FAFB] p-8 text-center shadow-sm">
               <div className="relative mx-auto mb-6 h-[120px] w-[120px]">
@@ -142,7 +141,7 @@ export default function EmployeeDetailsPage({ params }: { params: Promise<{ id: 
                   className="absolute bottom-0 right-0 flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-md border border-neutral-200 transition hover:bg-neutral-50 cursor-pointer"
                   title="Change image"
                 >
-                  <Image src={editIcon} alt="edit" width={14} height={14} />  
+                  <Image src={editIcon} alt="edit" width={14} height={14} />
                 </button>
                 <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleImageChange} />
               </div>
@@ -168,12 +167,9 @@ export default function EmployeeDetailsPage({ params }: { params: Promise<{ id: 
             </div>
           </div>
 
-          {/* Vertical Divider */}
           <div className="w-[1px] bg-[#E5E7EB] self-stretch hidden lg:block"></div>
 
-          {/* Right Content Area */}
           <div className="flex-1 lg:pl-2 min-w-[300px]">
-            {/* Tabs */}
             <div className="flex items-center 2xl:gap-1 gap-2 justify-between overflow-x-auto mb-10 bg-[#F9FAFB] p-1.5 rounded-xl scrollbar-hide w-full">
               {TABS.map(tab => (
                 <button
@@ -191,7 +187,6 @@ export default function EmployeeDetailsPage({ params }: { params: Promise<{ id: 
               ))}
             </div>
 
-            {/* Tab Content */}
             {activeTab === "Overview" ? (
               <div className="w-full">
                 <div className="mb-8">

@@ -195,7 +195,6 @@ export default function Sidebar({
         } ${isMobileMenuOpen ? "translate-x-0 w-64" : "-translate-x-full lg:translate-x-0"
         }`}
     >
-      {/* MOBILE CLOSE BUTTON */}
       <button
         onClick={() => setIsMobileMenuOpen?.(false)}
         className="absolute lg:right-4 right-2 lg:top-6 top-2 z-50 flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-50 text-neutral-500 lg:hidden hover:bg-neutral-100 cursor-pointer"
@@ -205,7 +204,6 @@ export default function Sidebar({
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
-      {/* LOGO */}
       <div
         className={`relative h-[104px] py-6 ${collapsed ? "px-0" : "px-5"
           } text-3xl font-black tracking-tight text-brand-500 transition-all duration-500 ease-in-out`}
