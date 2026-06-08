@@ -30,7 +30,6 @@ export default function RolesPage() {
     <DashboardLayout title="Roles" subtitle="Home/ Roles List">
       <div className="flex-1 p-4 2xl:p-6">
         <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          {/* Toolbar */}
           <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
             <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">
               Roles List
@@ -51,7 +50,6 @@ export default function RolesPage() {
                 />
               </div>
 
-              {/* Filter Button */}
               <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
                 <Image
                   src={filterIcon}
@@ -72,7 +70,6 @@ export default function RolesPage() {
                 />
               </button>
 
-              {/* Add Role Button */}
               <Link href="/roles/add">
                 <button className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-1.5 md:px-2.5 md:py-2.5 lg:px-5 lg:py-3 text-[11px] md:text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -85,7 +82,6 @@ export default function RolesPage() {
             </div>
           </div>
 
-          {/* Table */}
           <div className="overflow-x-auto p-3 2xl:p-6">
             <table className="min-w-full w-full text-left">
               <thead className="bg-white">

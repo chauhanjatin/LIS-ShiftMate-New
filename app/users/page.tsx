@@ -87,7 +87,6 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                 </div>
 
                 <div className="space-y-6">
-                    {/* Basic Information */}
                     <div>
                         <h3 className="text-[16px] font-semibold text-neutral-900">Basic Information</h3>
                         <p className="mt-1 text-[12px] text-neutral-500">Enter the employee's basic personal information for identification and contact purposes.</p>
@@ -132,13 +131,11 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                         </div>
                     </div>
 
-                    {/* Access Method */}
                     <div>
                         <h3 className="text-[16px] font-semibold text-neutral-900">Access Method</h3>
                         <p className="mt-1 text-[12px] text-neutral-500">Enter the employee's basic personal information for identification and contact purposes.</p>
 
                         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {/* Temp Password Option */}
                             <div
                                 onClick={() => setAccessMethod("temp_password")}
                                 className={`cursor-pointer rounded-2xl border-2 p-4 transition-all ${accessMethod === "temp_password" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-neutral-200 bg-white"}`}
@@ -170,7 +167,6 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                                 </ul>
                             </div>
 
-                            {/* Invite Email Option */}
                             <div
                                 onClick={() => setAccessMethod("invite_email")}
                                 className={`cursor-pointer rounded-2xl border-2 p-4 transition-all ${accessMethod === "invite_email" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-neutral-200 bg-white"}`}
@@ -203,7 +199,6 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                             </div>
                         </div>
 
-                        {/* Temp Password Input Area */}
                         {accessMethod === "temp_password" && (
                             <div className="mt-4 rounded-xl bg-[#F8FAFC] p-4">
                                 <label className="block text-[12px] font-medium text-neutral-900 mb-1.5">Temporary Password</label>
@@ -286,7 +281,6 @@ export default function UsersPage() {
         <DashboardLayout title="Users" subtitle="Home/ Users List">
             <div className="flex-1 p-4 2xl:p-6">
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    {/* Toolbar */}
                     <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
                         <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Users List</h2>
 
@@ -305,7 +299,6 @@ export default function UsersPage() {
                                 />
                             </div>
 
-                            {/* Filter Button */}
                             <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-neutral-200 cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
                                 <Image
                                     src={filterIcon}
@@ -320,7 +313,6 @@ export default function UsersPage() {
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                             </button>
 
-                            {/* Add User Button */}
                             <button
                                 onClick={() => setCreateModalOpen(true)}
                                 className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-1.5 md:px-2.5 md:py-2 xl:px-5 xl:py-3 text-[12px] md:text-[15px] xl:text-[16px] text-white transition hover:bg-blue-600"
@@ -334,7 +326,6 @@ export default function UsersPage() {
                         </div>
                     </div>
 
-                    {/* Main Content Area - Table */}
                     <div className="overflow-x-auto p-3 2xl:p-6">
                         <table className="min-w-[1100px] w-full text-left">
                             <thead className="bg-white">
@@ -455,7 +446,6 @@ export default function UsersPage() {
                             </tbody>
                         </table>
 
-                        {/* Pagination */}
                         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end border-t border-neutral-100 px-2 sm:px-6 py-4 mt-2">
                             <div className="flex items-center gap-2">
                                 <span className="text-[12px] sm:text-[14px] text-neutral-500">

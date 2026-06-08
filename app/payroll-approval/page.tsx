@@ -29,7 +29,6 @@ export default function PayrollApprovalPage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [employees, setEmployees] = useState<PayrollApprovalRow[]>(initialApprovals);
 
-    // Load from local storage on mount
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_payroll_approvals");
         if (stored) {
@@ -42,7 +41,6 @@ export default function PayrollApprovalPage() {
         setIsLoaded(true);
     }, []);
 
-    // Save to local storage on change
     useEffect(() => {
         if (isLoaded) {
             localStorage.setItem("shiftmate_payroll_approvals", JSON.stringify(employees));
@@ -61,13 +59,11 @@ export default function PayrollApprovalPage() {
         <DashboardLayout title="Payroll Approval" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6 space-y-6">
                 
-                {/* Summary Section */}
-                <div className="bg-white rounded-2xl border border-neutral-200 p-6 shadow-sm">
+                <div className="bg-white rounded-2xl border border-neutral-200 md:p-6 p-4 shadow-sm">
                     <h2 className="text-[18px] font-bold text-neutral-900 mb-6">Payroll Summary</h2>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
-                        {/* Employees Included */}
-                        <div className="rounded-2xl border border-neutral-200 p-5 flex items-center justify-between">
+                        <div className="rounded-2xl border border-neutral-200 md:p-5 p-4 flex items-center justify-between">
                             <div>
                                 <h3 className="text-[24px] font-bold text-neutral-900">324</h3>
                                 <p className="text-[13px] text-neutral-500 font-medium mt-1">Employees Included</p>
@@ -77,8 +73,7 @@ export default function PayrollApprovalPage() {
                             </div>
                         </div>
 
-                        {/* Total Gross Pay */}
-                        <div className="rounded-2xl border border-neutral-200 p-5 flex items-center justify-between">
+                        <div className="rounded-2xl border border-neutral-200 md:p-5 p-4 flex items-center justify-between">
                             <div>
                                 <h3 className="text-[24px] font-bold text-neutral-900">$487,500</h3>
                                 <p className="text-[13px] text-neutral-500 font-medium mt-1">Total Gross Pay</p>
@@ -88,8 +83,7 @@ export default function PayrollApprovalPage() {
                             </div>
                         </div>
 
-                        {/* Total Deductions */}
-                        <div className="rounded-2xl border border-neutral-200 p-5 flex items-center justify-between">
+                        <div className="rounded-2xl border border-neutral-200 md:p-5 p-4 flex items-center justify-between">
                             <div>
                                 <h3 className="text-[24px] font-bold text-neutral-900">$152,750</h3>
                                 <p className="text-[13px] text-neutral-500 font-medium mt-1">Total Deductions</p>
@@ -99,8 +93,7 @@ export default function PayrollApprovalPage() {
                             </div>
                         </div>
 
-                        {/* Total Net Pay */}
-                        <div className="rounded-2xl border border-neutral-200 p-5 flex items-center justify-between">
+                        <div className="rounded-2xl border border-neutral-200 md:p-5 p-4 flex items-center justify-between">
                             <div>
                                 <h3 className="text-[24px] font-bold text-neutral-900">$332,500</h3>
                                 <p className="text-[13px] text-neutral-500 font-medium mt-1">Total Net Pay</p>
@@ -131,10 +124,8 @@ export default function PayrollApprovalPage() {
                     </div>
                 </div>
 
-                {/* Errors and Warnings */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Errors */}
-                    <div className="bg-[#FEF6F6] rounded-2xl border border-[#FCA5A5] p-5 shadow-sm">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                    <div className="bg-[#FEF6F6] rounded-2xl border border-[#FCA5A5] p-4 md:p-5 shadow-sm">
                         <div className="mb-4">
                             <h3 className="text-[16px] font-bold text-neutral-900">Errors (2)</h3>
                             <p className="text-[12px] text-neutral-500 mt-1">Must be resolved before approval</p>
@@ -142,7 +133,7 @@ export default function PayrollApprovalPage() {
                         
                         <div className="space-y-4">
                             {[1, 2, 3].map((item, index) => (
-                                <div key={index} className="flex items-center justify-between">
+                                <div key={index} className="md:flex items-center justify-between">
                                     <div className="flex items-center gap-3">
                                         <img src={`https://i.pravatar.cc/150?u=${10 + item}`} alt="Avatar" className="h-10 w-10 rounded-full object-cover" />
                                         <div>
@@ -150,7 +141,7 @@ export default function PayrollApprovalPage() {
                                             <p className="text-[12px] text-neutral-500 mt-0.5">{index % 2 === 0 ? 'No valid tax code assigned for this period.' : 'National Insurance category not set.'}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-4 mt-2 md:mt-0">
                                         <span className="text-[12px] font-medium text-[#F04438]">{index % 2 === 0 ? 'Missing Tax Code' : 'NI Category Missing'}</span>
                                         <button className="text-[13px] font-bold text-[#1D2939] hover:underline cursor-pointer">Fix Now</button>
                                     </div>
@@ -159,8 +150,7 @@ export default function PayrollApprovalPage() {
                         </div>
                     </div>
 
-                    {/* Warnings */}
-                    <div className="bg-[#FFFAF0] rounded-2xl border border-[#FCD34D] p-5 shadow-sm">
+                    <div className="bg-[#FFFAF0] rounded-2xl border border-[#FCD34D] p-4 md:p-5 shadow-sm">
                         <div className="mb-4">
                             <h3 className="text-[16px] font-bold text-neutral-900">Warnings (2)</h3>
                             <p className="text-[12px] text-neutral-500 mt-1">Review recommended</p>
@@ -168,7 +158,7 @@ export default function PayrollApprovalPage() {
                         
                         <div className="space-y-4">
                             {[1, 2, 3].map((item, index) => (
-                                <div key={index} className="flex items-center justify-between">
+                                <div key={index} className="md:flex items-center justify-between">
                                     <div className="flex items-center gap-3">
                                         <img src={`https://i.pravatar.cc/150?u=${20 + item}`} alt="Avatar" className="h-10 w-10 rounded-full object-cover" />
                                         <div>
@@ -178,7 +168,7 @@ export default function PayrollApprovalPage() {
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-4 mt-2 md:mt-0">
                                         <span className="text-[12px] font-medium text-[#D97706]">
                                             {index === 0 ? 'Overtime Cap' : index === 1 ? 'Pension Opt-Out' : 'Salary Change'}
                                         </span>
@@ -190,7 +180,6 @@ export default function PayrollApprovalPage() {
                     </div>
                 </div>
 
-                {/* Employees Included Table */}
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                     <div className="border-b border-neutral-100 p-5">
                         <h2 className="text-[18px] font-bold text-neutral-900">Employees Included</h2>
@@ -211,7 +200,7 @@ export default function PayrollApprovalPage() {
                             <tbody>
                                 {employees.map((emp) => (
                                     <tr key={emp.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#F1F5F9] last:border-none">
-                                        <td className="py-4 pl-4 pr-6">
+                                        <td className="py-4 pl-4 md:pr-6 pr-16">
                                             <div className="flex items-center gap-3">
                                                 <img src={emp.avatar} alt={emp.name} className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover" />
                                                 <span className="text-[13px] sm:text-[14px] font-medium text-neutral-900">{emp.name}</span>
@@ -241,15 +230,14 @@ export default function PayrollApprovalPage() {
                         </table>
                     </div>
 
-                    {/* Bottom Actions */}
                     <div className="border-t border-neutral-200 p-5 flex flex-wrap items-center justify-end gap-4 bg-white rounded-b-2xl">
-                        <button className="h-[48px] rounded-xl border border-[#F04438] px-8 text-[14px] font-semibold text-[#F04438] transition hover:bg-[#F04438] hover:text-white cursor-pointer">
+                        <button className="xl:h-[48px] h-[42px] rounded-xl border border-[#F04438] xl:px-8 px-3 text-[14px] font-semibold text-[#F04438] transition hover:bg-[#F04438] hover:text-white cursor-pointer">
                             Reject
                         </button>
-                        <button className="h-[48px] rounded-xl border border-[#1D2939] px-8 text-[14px] font-semibold text-[#1D2939] transition hover:bg-neutral-100 cursor-pointer">
+                        <button className="xl:h-[48px] h-[42px] rounded-xl border border-[#1D2939] xl:px-8 px-3 text-[14px] font-semibold text-[#1D2939] transition hover:bg-neutral-100 cursor-pointer">
                             Lock payroll
                         </button>
-                        <button className="h-[48px] rounded-xl bg-[#257BFC] px-8 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                        <button className="xl:h-[48px] h-[42px] rounded-xl bg-[#257BFC] xl:px-8 px-3 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                             Approve Payroll
                         </button>
                     </div>

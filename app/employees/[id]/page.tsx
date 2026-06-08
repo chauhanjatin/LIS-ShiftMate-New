@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
+import React, { use, useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import { useEmployees } from "@/hooks/useEmployees";
@@ -31,9 +32,8 @@ function StatusPill({ status, type }: { status: Status; type: string }) {
   );
 }
 
-export default function EmployeeDetailsPage() {
-  const params = useParams();
-  const id = params.id as string;
+export default function EmployeeDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const router = useRouter();
   const { employees, updateEmployee } = useEmployees();
 
@@ -113,10 +113,20 @@ export default function EmployeeDetailsPage() {
     }
   };
 
-  if (!employee) return <DashboardLayout title="Employees" subtitle="Home/ All Employees/ Employee Details"><div className="p-6">Loading...</div></DashboardLayout>;
+  const breadcrumb = (
+    <span className="text-[#98A2B3]">
+        <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+        <span className="mx-1">/</span>
+        <Link href="/employees/all-employees" className="hover:text-brand-500 transition-colors">All Employees</Link>
+        <span className="mx-1">/</span>
+        <span className="text-neutral-900">Employee Details</span>
+    </span>
+  );
+
+  if (!employee) return <DashboardLayout title="Employees" subtitle={breadcrumb}><div className="p-6">Loading...</div></DashboardLayout>;
 
   return (
-    <DashboardLayout title="Employees" subtitle="Home/ All Employees/ Employee Details">
+    <DashboardLayout title="Employees" subtitle={breadcrumb}>
       <div className="flex-1 2xl:p-6 p-4">
         <div className="flex flex-col xl:flex-row 2xl:gap-[34px] gap-[28px] bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
 

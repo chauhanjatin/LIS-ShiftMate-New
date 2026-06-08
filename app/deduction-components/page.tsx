@@ -133,10 +133,10 @@ export default function DeductionComponentsPage() {
                             <tbody>
                                 {filteredDeductions.map((deduction) => (
                                     <tr key={deduction.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#F1F5F9] last:border-none">
-                                        <td className="py-4 pl-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{deduction.name}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{deduction.type}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{deduction.rate}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] text-neutral-900">
+                                        <td className="py-4 pl-4 pr-26 text-[13px] sm:text-[14px] font-medium text-neutral-900">{deduction.name}</td>
+                                        <td className="py-4 pr-26 text-[13px] sm:text-[14px] font-medium text-neutral-900">{deduction.type}</td>
+                                        <td className="py-4 pr-26 text-[13px] sm:text-[14px] font-medium text-neutral-900">{deduction.rate}</td>
+                                        <td className="py-4 pr-26 text-[13px] sm:text-[14px] text-neutral-900">
                                             <div className="flex items-start gap-2 max-w-[500px]">
                                                 <input 
                                                     type="checkbox" 

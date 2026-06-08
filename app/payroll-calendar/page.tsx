@@ -31,7 +31,6 @@ export default function PayrollCalendarPage() {
     const [calendars, setCalendars] = useState<Calendar[]>(initialCalendars);
     const [searchQuery, setSearchQuery] = useState("");
 
-    // Load from local storage on mount
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_payroll_calendars");
         if (stored) {
@@ -44,14 +43,12 @@ export default function PayrollCalendarPage() {
         setIsLoaded(true);
     }, []);
 
-    // Save to local storage on change
     useEffect(() => {
         if (isLoaded) {
             localStorage.setItem("shiftmate_payroll_calendars", JSON.stringify(calendars));
         }
     }, [calendars, isLoaded]);
 
-    // Modal states
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -59,7 +56,6 @@ export default function PayrollCalendarPage() {
     const [currentCalendar, setCurrentCalendar] = useState<Calendar | null>(null);
     const [calendarToDelete, setCalendarToDelete] = useState<number | null>(null);
 
-    // Form states
     const [formData, setFormData] = useState({
         payPeriod: "",
         startDate: "",
@@ -137,12 +133,11 @@ export default function PayrollCalendarPage() {
         <DashboardLayout title="Payroll Calendar" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6">
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    {/* Toolbar */}
                     <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
                         <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Pay Periods</h2>
 
-                        <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative 2xl:w-75 md:w-60 w-32">
+                        <div className="flex items-center gap-4.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+                            <div className="relative 2xl:w-75 md:w-60 w-36">
                                 <Image
                                     src={searchIcon}
                                     alt="Search"
@@ -168,7 +163,6 @@ export default function PayrollCalendarPage() {
                         </div>
                     </div>
 
-                    {/* Table */}
                     <div className="overflow-x-auto p-3 2xl:p-6">
                         <table className="min-w-[1000px] w-full text-left">
                             <thead className="bg-white">
@@ -212,8 +206,8 @@ export default function PayrollCalendarPage() {
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
                     <div className="w-full max-w-[700px] rounded-[24px] bg-white shadow-xl animate-in fade-in zoom-in-95 duration-200">
                         <div className="flex items-center justify-between border-b border-neutral-100 p-6 md:px-8 md:py-6">
-                            <h2 className="text-[22px] font-bold text-[#111827]">
-                                {isEditModalOpen ? "Generate New Calendar" : "Generate New Calendar"}
+                            <h2 className="md:text-[22px] text-[20px] font-bold text-[#111827]">
+                                {isEditModalOpen ? "Edit Calendar" : "Generate New Calendar"}
                             </h2>
                             <button onClick={() => isEditModalOpen ? setIsEditModalOpen(false) : setIsAddModalOpen(false)} className="text-neutral-400 hover:text-neutral-700 cursor-pointer">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -227,31 +221,31 @@ export default function PayrollCalendarPage() {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
                                 <div>
                                     <label className="mb-2 block text-sm font-medium text-[#111827]">Pay period</label>
-                                    <input name="payPeriod" value={formData.payPeriod} onChange={handleInputChange} placeholder="e.g., Basic Salary, Overtime, Bonus" className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-[#4B5563]" />
+                                    <input name="payPeriod" value={formData.payPeriod} onChange={handleInputChange} placeholder="e.g., Basic Salary, Overtime, Bonus" className="w-full rounded-xl border border-neutral-200 md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#4B5563]" />
                                 </div>
                                 <div>
                                     <label className="mb-2 block text-sm font-medium text-[#111827]">Start Date</label>
-                                    <input type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-[#9CA3AF]" />
+                                    <input type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#9CA3AF]" />
                                 </div>
                                 <div>
                                     <label className="mb-2 block text-sm font-medium text-[#111827]">End Date</label>
-                                    <input type="date" name="endDate" value={formData.endDate} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-[#9CA3AF]" />
+                                    <input type="date" name="endDate" value={formData.endDate} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#9CA3AF]" />
                                 </div>
                                 <div>
                                     <label className="mb-2 block text-sm font-medium text-[#111827]">Pay Date</label>
-                                    <input type="date" name="payDate" value={formData.payDate} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] text-[#9CA3AF]" />
+                                    <input type="date" name="payDate" value={formData.payDate} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#9CA3AF]" />
                                 </div>
                                 <div>
                                     <label className="mb-2 block text-sm font-medium text-[#111827]">Status</label>
-                                    <select name="status" value={formData.status} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 p-3 outline-none focus:border-[#257BFC] bg-white text-[#9CA3AF]">
+                                    <select name="status" value={formData.status} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] bg-white text-[#9CA3AF]">
                                         <option value="Active">Active</option>
                                         <option value="Completed">Completed</option>
                                     </select>
                                 </div>
                             </div>
                             <div className="mt-10 flex justify-end gap-3">
-                                <button onClick={() => isEditModalOpen ? setIsEditModalOpen(false) : setIsAddModalOpen(false)} className="rounded-xl cursor-pointer border border-neutral-200 px-8 py-2.5 text-[15px] font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors">Cancel</button>
-                                <button onClick={isEditModalOpen ? handleEdit : handleAdd} className="rounded-xl cursor-pointer bg-[#257BFC] px-8 py-2.5 text-[15px] font-semibold text-white hover:bg-blue-600 transition-colors">
+                                <button onClick={() => isEditModalOpen ? setIsEditModalOpen(false) : setIsAddModalOpen(false)} className="rounded-xl cursor-pointer border border-neutral-200 md:px-8 px-4 py-2 text-[13px] md:text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors">Cancel</button>
+                                <button onClick={isEditModalOpen ? handleEdit : handleAdd} className="rounded-xl cursor-pointer bg-[#257BFC] md:px-8 px-4 py-2 text-[13px] md:text-[14px] font-semibold text-white hover:bg-blue-600 transition-colors">
                                     {isEditModalOpen ? "Save Change" : "Generate Calendar"}
                                 </button>
                             </div>

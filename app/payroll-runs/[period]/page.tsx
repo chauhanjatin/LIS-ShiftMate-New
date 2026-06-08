@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
@@ -27,10 +27,10 @@ const initialEmployees: EmployeePayroll[] = [
     { id: "EMP005", name: "Guy Hawkins", department: "Sales", gross: "$5416.67", deductions: "$1804.16", net: "$3612.51", avatar: "/login/admin-avatar.png" },
 ];
 
-export default function PayrollRunDetailsPage() {
-    const params = useParams();
+export default function PayrollRunDetailsPage({ params }: { params: Promise<{ period: string }> }) {
+    const { period: periodParam } = use(params);
     const router = useRouter();
-    const period = decodeURIComponent(params.period as string || "March 2024");
+    const period = decodeURIComponent(periodParam || "March 2024");
     
     const [employees, setEmployees] = useState<EmployeePayroll[]>(initialEmployees);
     const [searchQuery, setSearchQuery] = useState("");

@@ -38,7 +38,7 @@ function AdminDropdown() {
         </span>
       </summary>
 
-      <div className="absolute right-0 z-20 mt-3 w-[calc(100vw-2rem)] md:max-w-[280px] max-w-[198px] sm:w-72 rounded-2xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
+      <div className="absolute right-0 z-20 mt-3 w-[calc(100vw-2rem)] xl:max-w-[280px] max-w-[215px] sm:w-72 rounded-2xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
         <button
           type="button"
           className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
@@ -126,7 +126,6 @@ export default function Header({
   return (
     <header className="flex items-center justify-between border-b border-neutral-200 bg-white px-2 md:px-4 py-3 xl:px-6 xl:py-4">
       <div className="flex items-center md:gap-4 gap-2">
-        {/* HAMBURGER MENU BUTTON (MOBILE) */}
         <button
           type="button"
           onClick={onMenuClick}
@@ -141,13 +140,12 @@ export default function Header({
         </button>
 
         <div className="min-w-0">
-          <h1 className="truncate text-lg font-bold tracking-tight sm:text-2xl">{title}</h1>
+          <h1 className="truncate font-bold tracking-tight text-[19px] md:text-[22px] xl:text-[24px]">{title}</h1>
           <p className="hidden xl:text-sm text-[12px] text-neutral-500 sm:block">{subtitle}</p>
         </div>
       </div>
 
       <div className="flex items-center md:gap-3 gap-2 xl:gap-4">
-        {/* SEARCH BAR (HIDDEN ON MOBILE, SHOW ICON ONLY OR COLLAPSIBLE) */}
         <div className="relative hidden sm:block xl:w-56 w-40">
           <Image
             src={searchIcon}
@@ -162,7 +160,6 @@ export default function Header({
           />
         </div>
 
-        {/* MOBILE SEARCH ICON (ONLY ON MOBILE) */}
         <button className="flex md:h-10 md:w-10 h-8 w-8 items-center justify-center rounded-xl hover:bg-neutral-50 sm:hidden">
           <Image
             src={searchIcon}

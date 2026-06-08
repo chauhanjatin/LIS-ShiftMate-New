@@ -64,7 +64,6 @@ export default function DepartmentsPage() {
     <DashboardLayout title="Departments" subtitle="Home/ Departments">
       <div className="flex-1 p-4 2xl:p-6">
         <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          {/* Toolbar */}
           <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 lg:p-5 p-3">
             <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">
               Departments List
@@ -85,7 +84,6 @@ export default function DepartmentsPage() {
                 />
               </div>
 
-              {/* Filter Button */}
               <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
                 <Image
                   src={filterIcon}
@@ -96,7 +94,6 @@ export default function DepartmentsPage() {
                 />
               </button>
 
-              {/* Add Department Button */}
               <button 
                 onClick={() => setCreateModalOpen(true)}
                 className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-2 md:px-2.5 md:py-3 lg:px-5 text-[12px] md:text-[13px] lg:text-[14px] font-semibold text-white transition hover:bg-blue-600"
@@ -110,7 +107,6 @@ export default function DepartmentsPage() {
             </div>
           </div>
 
-          {/* Table */}
           <div className="overflow-x-auto p-3 2xl:p-6">
             <table className="min-w-full w-full text-left">
               <thead className="bg-[#F8FAFC]">
@@ -295,6 +291,7 @@ export default function DepartmentsPage() {
                 </div>
               )}
             </div>
+
 
             <div className="flex justify-end gap-4 pt-6">
               <button 

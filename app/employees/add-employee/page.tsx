@@ -123,8 +123,18 @@ export default function AddEmployeePage() {
     router.push("/employees/all-employees");
   };
 
+  const breadcrumb = (
+    <span className="text-[#98A2B3]">
+        <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+        <span className="mx-1">/</span>
+        <Link href="/employees/all-employees" className="hover:text-brand-500 transition-colors">Employees</Link>
+        <span className="mx-1">/</span>
+        <span className="text-neutral-900">Add Employee</span>
+    </span>
+  );
+
   return (
-    <DashboardLayout title="Employees" subtitle="Home/ Employees/ Add Employee">
+    <DashboardLayout title="Employees" subtitle={breadcrumb}>
       <div className="flex-1 p-4 2xl:p-6 flex overflow-auto">
         <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm flex-1 flex flex-col">
           <h2 className="text-[24px] font-semibold text-neutral-900 mb-10">Add Employee</h2>

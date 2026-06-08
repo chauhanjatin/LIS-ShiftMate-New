@@ -26,7 +26,6 @@ export default function TaxRulesPage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [rules, setRules] = useState<TaxRule[]>(initialRules);
 
-    // Load from local storage on mount
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_tax_rules");
         if (stored) {
@@ -62,6 +61,21 @@ export default function TaxRulesPage() {
         }
     };
 
+    const handleEditSave = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!selectedRule) return;
+        const formData = new FormData(e.currentTarget);
+        const updatedRule = {
+            ...selectedRule,
+            bandName: formData.get('bandName') as string,
+            lower: formData.get('lower') as string,
+            upper: formData.get('upper') as string,
+            rate: formData.get('rate') as string,
+        };
+        setRules(rules.map(r => r.id === selectedRule.id ? updatedRule : r));
+        setIsEditModalOpen(false);
+    };
+
     const breadcrumb = (
         <span className="text-[#98A2B3]">
             <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
@@ -74,7 +88,6 @@ export default function TaxRulesPage() {
         <DashboardLayout title="Tax Rules" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6">
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    {/* Toolbar */}
                     <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
                         <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Tax Rules</h2>
 
@@ -91,7 +104,6 @@ export default function TaxRulesPage() {
                         </div>
                     </div>
 
-                    {/* Table */}
                     <div className="overflow-x-auto p-3 2xl:p-6">
                         <table className="min-w-[900px] w-full text-left">
                             <thead className="bg-[#F8FAFC]">
@@ -132,10 +144,8 @@ export default function TaxRulesPage() {
             {/* Edit Tax Rule Modal */}
             {isEditModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
-                    {/* Modal */}
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                        {/* Header */}
-                        <div className="flex items-center justify-between border-b border-neutral-200 px-8 py-6">
+                        <div className="flex items-center justify-between border-b border-neutral-200 px-4 md:px-8 py-4 md:py-6">
                             <h2 className="text-[24px] font-bold text-[#1D2939]">
                                 Edit Tax Rules
                             </h2>
@@ -148,11 +158,9 @@ export default function TaxRulesPage() {
                             </button>
                         </div>
 
-                        {/* Body */}
-                        <div className="px-8 py-6">
+                        <form onSubmit={handleEditSave} className="px-4 md:px-8 py-4 md:py-6">
                             
                             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                                {/* Band Name */}
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Band Name
@@ -160,12 +168,12 @@ export default function TaxRulesPage() {
 
                                     <input
                                         type="text"
+                                        name="bandName"
                                         defaultValue={selectedRule?.bandName || ""}
-                                        className="h-[52px] w-full rounded-2xl border border-[#D0D5DD] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                        className="md:h-[52px] h-[42px] w-full rounded-2xl border border-[#D0D5DD] px-4 md:text-[14px] text-[12px] outline-none transition focus:border-[#257BFC]"
                                     />
                                 </div>
 
-                                {/* Lower Threshold($) */}
                                 <div>
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Lower Threshold($)
@@ -173,8 +181,9 @@ export default function TaxRulesPage() {
 
                                     <div className="relative">
                                         <select 
+                                            name="lower"
                                             defaultValue={selectedRule?.lower || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="md:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
                                             <option value="$0">$0</option>
                                             <option value="$12,571">$12,571</option>
@@ -185,7 +194,6 @@ export default function TaxRulesPage() {
                                     </div>
                                 </div>
 
-                                {/* Upper Threshold($) */}
                                 <div>
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Upper Threshold($)
@@ -193,8 +201,9 @@ export default function TaxRulesPage() {
 
                                     <div className="relative">
                                         <select 
+                                            name="upper"
                                             defaultValue={selectedRule?.upper || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="md:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
                                             <option value="$12,570">$12,570</option>
                                             <option value="$50,270">$50,270</option>
@@ -205,7 +214,6 @@ export default function TaxRulesPage() {
                                     </div>
                                 </div>
                                 
-                                {/* Tax Rate (%) */}
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Tax Rate (%)
@@ -213,8 +221,9 @@ export default function TaxRulesPage() {
 
                                     <div className="relative">
                                         <select 
+                                            name="rate"
                                             defaultValue={selectedRule?.rate || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="md:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
                                             <option value="0%">0%</option>
                                             <option value="20%">20%</option>
@@ -226,20 +235,20 @@ export default function TaxRulesPage() {
                                 </div>
                             </div>
 
-                            {/* Footer Buttons */}
-                            <div className="mt-10 flex items-center justify-end gap-4">
+                            <div className="mt-10 flex items-center justify-end md:gap-4 gap-2">
                                 <button
+                                    type="button"
                                     onClick={() => setIsEditModalOpen(false)}
-                                    className="h-[48px] rounded-2xl border border-[#D0D5DD] px-8 text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
+                                    className="md:h-[48px] h-[40px] rounded-2xl border border-[#D0D5DD] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
 
-                                <button onClick={() => setIsEditModalOpen(false)} className="h-[48px] rounded-2xl bg-[#257BFC] px-8 text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                <button type="submit" className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                     Save Change
                                 </button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             )}

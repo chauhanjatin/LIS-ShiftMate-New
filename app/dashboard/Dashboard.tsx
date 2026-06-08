@@ -11,7 +11,6 @@ import departmentsIcon from "@/assets/images/icons/departments.svg";
 import pendingApprovalIcon from "@/assets/images/icons/pending-approval.svg";
 import { PieChart } from "@mui/x-charts/PieChart";
 
-// Sparkline data sized for small cards (keeps visible peaks).
 const statLineData = [5, 12, 7, 20, 10, 18, 13, 16];
 const statXLabels = ["A", "B", "C", "D", "E", "F", "G", "H"];
 const workforceXLabels = [
@@ -325,7 +324,6 @@ export default function DashboardPage() {
             </h2>
 
             <div className="flex 2xl:flex-row xl:flex-col md:flex-row flex-col items-center justify-center gap-3.5 lg:justify-between 2xl:gap-10">
-              {/* Chart Section */}
               <div className="h-[240px] w-[240px] shrink-0">
                 <PieChart
                   series={[
@@ -346,7 +344,6 @@ export default function DashboardPage() {
                 />
               </div>
 
-              {/* Custom Legend to match image perfectly */}
               <div className="2xl:flex w-full flex-1 2xl:flex-col grid grid-cols-2 gap-3 2xl:gap-6">
                 {data.map((item) => (
                   <div
@@ -372,7 +369,6 @@ export default function DashboardPage() {
         </div>
 
         <article className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8">
-          {/* HEADER */}
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-lg font-bold tracking-tight sm:text-xl">
               Pending Approvals Table
@@ -383,7 +379,6 @@ export default function DashboardPage() {
             </button>
           </div>
 
-          {/* TABLE WRAPPER */}
           <div className="overflow-x-auto">
             <table className="min-w-[700px] w-full text-left">
               <thead className="text-[#111827]">
@@ -453,7 +448,6 @@ export default function DashboardPage() {
                       </span>
                     </td>
 
-                    {/* ACTION */}
                     <td className="border-b border-neutral-100 py-4 sm:py-5 2xl:py-6">
                       <button className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-neutral-100">
                         <svg
@@ -493,7 +487,6 @@ export default function DashboardPage() {
         </article>
 
         <article className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8">
-          {/* HEADER */}
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-lg font-bold tracking-tight sm:text-xl">
               Recently Added Employees
@@ -504,7 +497,7 @@ export default function DashboardPage() {
             </button>
           </div>
 
-          {/* TABLE */}
+
           <div className="overflow-x-auto">
             <table className="min-w-[700px] w-full text-left">
               <thead className="text-[#111827]">

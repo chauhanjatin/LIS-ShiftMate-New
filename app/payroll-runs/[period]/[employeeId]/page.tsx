@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { use } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
 
-export default function EmployeePayrollBreakdownPage() {
-    const params = useParams();
-    const period = decodeURIComponent(params.period as string || "March 2024");
+export default function EmployeePayrollBreakdownPage({ params }: { params: Promise<{ period: string; employeeId: string }> }) {
+    const { period: periodParam } = use(params);
+    const period = decodeURIComponent(periodParam || "March 2024");
     // In a real app we'd fetch the employee using employeeId. For now, use dummy data.
     const employeeName = "Devon Lane"; 
 

@@ -17,14 +17,13 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="relative flex min-h-screen bg-[#f5f7fb] text-neutral-900">
+    <div className="relative flex h-screen overflow-hidden bg-[#f5f7fb] text-neutral-900">
       <Sidebar 
         collapsed={isSidebarCollapsed} 
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
       />
 
-      {/* Sidebar Overlay for mobile */}
       {isMobileMenuOpen && (
         <div 
           className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden"

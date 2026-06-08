@@ -32,7 +32,6 @@ export default function CompanyProfilePage() {
       <div className="flex-1 p-4 2xl:p-6">
         <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm">
 
-          {/* Banner Card */}
           <div className="flex items-center gap-4 md:gap-5 rounded-2xl bg-[#F8FAFC] border border-neutral-100 md:p-6 p-4 md:mb-10 mb-8">
             <Image
               src={appLogo}
@@ -53,7 +52,6 @@ export default function CompanyProfilePage() {
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-12 gap-y-12">
-            {/* Left Column */}
             <div>
               <div className="mb-8">
                 <h2 className="text-[18px] font-bold text-neutral-900 mb-1">Basic Information</h2>
@@ -171,7 +169,6 @@ export default function CompanyProfilePage() {
               </div>
             </div>
 
-            {/* Right Column */}
             <div>
               <div className="mb-8">
                 <h2 className="text-[18px] font-bold text-neutral-900 mb-1">Tax & Payroll Details</h2>

@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import { User, UserStatus } from "@/Data/users";
 import { useUsers } from "@/hooks/useUsers";
 
-export default function EditUserPage() {
-    const params = useParams();
+export default function EditUserPage({ params }: { params: Promise<{ id: string }> }) {
     const router = useRouter();
-    const id = params?.id as string;
+    const { id } = use(params);
 
     const [user, setUser] = useState<User | null>(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -65,9 +65,19 @@ export default function EditUserPage() {
         router.push('/users');
     };
 
+    const breadcrumb = (
+        <span className="text-[#98A2B3]">
+            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <span className="mx-1">/</span>
+            <Link href="/users" className="hover:text-brand-500 transition-colors">Users</Link>
+            <span className="mx-1">/</span>
+            <span className="text-neutral-900">Edit User</span>
+        </span>
+    );
+
     if (!user) {
         return (
-            <DashboardLayout title="Users" subtitle="Home/ Edit User">
+            <DashboardLayout title="Users" subtitle={breadcrumb}>
                 <div className="flex h-full items-center justify-center p-6">
                     <p className="text-neutral-500">Loading user data...</p>
                 </div>
@@ -103,11 +113,10 @@ export default function EditUserPage() {
     ];
 
     return (
-        <DashboardLayout title="Users" subtitle="Home/ Edit User">
+        <DashboardLayout title="Users" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6 overflow-y-auto">
                 <div className="flex flex-col lg:flex-row gap-6 bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
 
-                    {/* Left Column - Profile Summary */}
                     <div className="w-full lg:w-[353px] shrink-0">
                         <div className="rounded-2xl border border-neutral-200 p-6 bg-[#F9FAFB]">
                             <div className="flex flex-col items-center text-center">
@@ -141,14 +150,11 @@ export default function EditUserPage() {
                         </div>
                     </div>
 
-                    {/* Vertical Divider */}
                     <div className="w-[1px] bg-[#E5E7EB] self-stretch hidden lg:block"></div>
 
-                    {/* Right Column - Forms */}
                     <div className="flex-1">
                         <div className="bg-white">
 
-                            {/* Basic Information */}
                             <div className="mb-8">
                                 <h2 className="text-[18px] font-bold text-neutral-900">Basic Information</h2>
                                 <p className="mt-1 text-[13px] text-neutral-500 mb-6">Enter the employee's basic personal information for identification and contact purposes.</p>
@@ -237,7 +243,6 @@ export default function EditUserPage() {
                                 </div>
                             </div>
 
-                            {/* Account Status */}
                             <div>
                                 <h2 className="text-[18px] font-bold text-neutral-900">Account Status</h2>
                                 <p className="mt-1 text-[13px] text-neutral-500 mb-6">Enter the employee's basic personal information for identification and contact purposes.</p>
@@ -265,7 +270,6 @@ export default function EditUserPage() {
                                 </div>
                             </div>
 
-                            {/* Action Buttons */}
                             <div className="mt-12 flex justify-end gap-3">
                                 <button
                                     onClick={() => router.push('/users')}

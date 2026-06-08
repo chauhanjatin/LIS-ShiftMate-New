@@ -170,3 +170,23 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
 }
+
+
+.slim-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.slim-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.slim-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #111827;
+  border-radius: 10px;
+}
+
+.slim-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #111827 transparent;
+}

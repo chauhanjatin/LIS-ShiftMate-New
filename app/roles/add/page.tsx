@@ -74,7 +74,6 @@ export default function AddRolePage() {
       <div className="flex-1 p-4 2xl:p-6 h-full flex flex-col">
         <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm flex-1 flex flex-col xl:flex-row gap-6">
           
-          {/* Left Column: Role Details */}
           <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-2xl lg:p-6 p-3">
             <h2 className="text-[20px] font-bold text-neutral-900 mb-2">Create New Role</h2>
             
@@ -112,7 +111,6 @@ export default function AddRolePage() {
             </div>
           </div>
 
-          {/* Right Column: Permissions Matrix */}
           <div className="flex-1 bg-white lg:p-6 p-3 lg:border-l border-[#E4E7EC] overflow-hidden flex flex-col">
             <h3 className="text-[18px] font-bold text-neutral-900 mb-6">Permissions Matrix</h3>
             
@@ -211,7 +209,6 @@ export default function AddRolePage() {
               </table>
             </div>
             
-            {/* Action Buttons */}
             <div className="flex items-center justify-end gap-4 pt-6 mt-4 border-t border-neutral-100">
               <button 
                 onClick={() => router.push('/roles')}
