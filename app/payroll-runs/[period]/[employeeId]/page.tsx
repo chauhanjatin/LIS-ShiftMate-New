@@ -8,7 +8,6 @@ import DashboardLayout from '@/Component/Layout/DashboardLayout';
 export default function EmployeePayrollBreakdownPage({ params }: { params: Promise<{ period: string; employeeId: string }> }) {
     const { period: periodParam } = use(params);
     const period = decodeURIComponent(periodParam || "March 2024");
-    // In a real app we'd fetch the employee using employeeId. For now, use dummy data.
     const employeeName = "Devon Lane"; 
 
     const breadcrumb = (
@@ -25,9 +24,7 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
 
     return (
         <DashboardLayout title="Employee Payroll Breakdown" subtitle={breadcrumb}>
-            <div className="flex-1 p-4 2xl:p-6 pb-24">
-                
-                {/* Header Card */}
+            <div className="flex-1 p-4 2xl:p-6 lg:pb-24 pb-8">
                 <div className="mb-6 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
                     <h3 className="mb-6 text-[18px] font-bold text-[#101828]">
                         {employeeName} - {period}
@@ -53,7 +50,6 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
                     </div>
                 </div>
 
-                {/* Details Section */}
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
                     <h3 className="text-[18px] font-bold text-[#101828]">Details</h3>
                     <div className="flex items-center gap-3">
@@ -68,9 +64,7 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
                     </div>
                 </div>
 
-                {/* Earnings & Deductions Cards */}
                 <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                    {/* Earnings Card */}
                     <div className="rounded-2xl border border-neutral-200 bg-[#F8FAFC] p-6">
                         <h4 className="mb-4 text-[16px] font-bold text-neutral-900">Earnings</h4>
                         
@@ -94,7 +88,6 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
                         </div>
                     </div>
 
-                    {/* Deductions Card */}
                     <div className="rounded-2xl border border-neutral-200 bg-[#F8FAFC] p-6">
                         <h4 className="mb-4 text-[16px] font-bold text-neutral-900">Deductions</h4>
                         
@@ -119,7 +112,6 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
                     </div>
                 </div>
 
-                {/* Tax Breakdown Table */}
                 <div className="mb-6">
                     <h3 className="mb-4 text-[18px] font-bold text-[#101828]">Tax Breakdown</h3>
                     
@@ -155,7 +147,6 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
                     </div>
                 </div>
 
-                {/* Footer Buttons */}
                 <div className="mt-8 flex items-center justify-end gap-4">
                     <button className="h-[48px] rounded-2xl border border-[#D0D5DD] bg-white px-8 text-[15px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer">
                         Adjust Pay

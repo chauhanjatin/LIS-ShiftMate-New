@@ -64,7 +64,6 @@ export default function AllEmployeesPage() {
     <DashboardLayout title="Employees" subtitle="Home/ All Employees">
       <div className="flex-1 p-4 2xl:p-6">
         <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          {/* Toolbar */}
           <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
             <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Employee List</h2>
 
@@ -83,7 +82,6 @@ export default function AllEmployeesPage() {
                 />
               </div>
 
-              {/* Filter Button */}
               <button className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
                 <Image
                   src={filterIcon}
@@ -94,7 +92,6 @@ export default function AllEmployeesPage() {
                 />
               </button>
 
-              {/* View Toggle */}
               {view === "list" ? (
                 <button
                   onClick={() => setView("grid")}
@@ -111,7 +108,6 @@ export default function AllEmployeesPage() {
                 </button>
               )}
 
-              {/* Add Employee Button */}
               <Link href="/employees/add-employee">
                 <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] px-2.5 py-2 md:px-5 md:py-3 text-[12px] md:text-[16px] text-white transition hover:bg-blue-600">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -124,7 +120,6 @@ export default function AllEmployeesPage() {
             </div>
           </div>
 
-          {/* Main Content Area */}
           {view === "list" ? (
             <div className="overflow-x-auto p-3 2xl:p-6">
               <table className="min-w-[1100px] w-full text-left">
@@ -264,7 +259,6 @@ export default function AllEmployeesPage() {
                 </tbody>
               </table>
 
-              {/* Pagination */}
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end border-t border-neutral-100 px-2 sm:px-6 py-4">
                 <div className="flex items-center gap-2">
                   <span className="text-[12px] sm:text-[14px] text-neutral-500">
@@ -322,7 +316,6 @@ export default function AllEmployeesPage() {
                   key={emp.id}
                   className="relative rounded-2xl border border-neutral-200 bg-white p-3 2xl:p-5 shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)]"
                 >
-                  {/* Top Bar */}
                   <div className="flex items-start justify-between gap-2">
                     <StatusPill status={emp.status} />
 
@@ -345,7 +338,6 @@ export default function AllEmployeesPage() {
                     </button>
                   </div>
 
-                  {/* Center Content */}
                   <div className="mt-4 flex flex-col items-center text-center">
                     <div className="mb-4 h-[72px] w-[72px] overflow-hidden rounded-full border-4 border-white shadow-[0_4px_12px_rgba(0,0,0,0.08)] sm:h-[88px] sm:w-[88px]">
                       <img
@@ -366,7 +358,6 @@ export default function AllEmployeesPage() {
                     </p>
                   </div>
 
-                  {/* Bottom Stats */}
                   <div className="mt-4 flex items-center justify-between border-t border-neutral-300">
                     <div className="flex-1 border-r border-neutral-300 pt-4 text-center min-w-0">
                       <p className="2xl:text-[14px] xl:text-[13px] font-medium">
@@ -402,7 +393,6 @@ export default function AllEmployeesPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
           <div className="max-w-[420px] rounded-xl bg-white p-6 text-center shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
 
-            {/* Icon Box */}
             <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px] bg-[#FDEAEA]">
               <Image
                 src={deleteRedIcon}
@@ -411,12 +401,10 @@ export default function AllEmployeesPage() {
               />
             </div>
 
-            {/* Title */}
             <h3 className="mx-auto mb-6 max-w-[275px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
               Are you sure you want to delete this <br /> Employee Record?
             </h3>
 
-            {/* Buttons */}
             <div className="flex gap-4">
               <button
                 type="button"

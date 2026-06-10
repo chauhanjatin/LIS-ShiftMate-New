@@ -144,7 +144,8 @@ export default function PayslipListPage() {
                                         <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{payslip.netPay}</td>
 
                                         <td className="py-4 pr-6 text-center">
-                                            <span className={`inline-flex rounded-full px-3 py-1 text-[12px] font-medium ${getStatusColor(payslip.status)}`}>
+                                            <span className={`inl
+                                                ine-flex rounded-full px-3 py-1 text-[12px] font-medium ${getStatusColor(payslip.status)}`}>
                                                 {payslip.status}
                                             </span>
                                         </td>

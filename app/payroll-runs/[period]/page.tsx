@@ -52,12 +52,8 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
     return (
         <DashboardLayout title="Payroll Runs" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6">
-                
-                {/* Stats Cards */}
                 <h3 className="text-[18px] font-bold text-[#101828] mb-4">Payroll Run Details - {period}</h3>
-                
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 mb-6">
-                    {/* Card 1 */}
                     <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm flex items-center justify-between">
                         <div>
                             <h3 className="text-[28px] font-bold text-neutral-900">5</h3>
@@ -67,7 +63,6 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                         </div>
                     </div>
-                    {/* Card 2 */}
                     <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm flex items-center justify-between">
                         <div>
                             <h3 className="text-[28px] font-bold text-neutral-900">$122,500</h3>
@@ -77,7 +72,6 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
                         </div>
                     </div>
-                    {/* Card 3 */}
                     <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm flex items-center justify-between">
                         <div>
                             <h3 className="text-[28px] font-bold text-neutral-900">$11712.49</h3>
@@ -87,7 +81,6 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         </div>
                     </div>
-                    {/* Card 4 */}
                     <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm flex items-center justify-between">
                         <div>
                             <h3 className="text-[28px] font-bold text-neutral-900">$23037.51</h3>
@@ -100,7 +93,6 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                 </div>
 
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    {/* Toolbar */}
                     <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
                         <h2 className="md:text-[18px] text-[16px] font-bold text-neutral-900">Employees Included</h2>
 
@@ -133,7 +125,6 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                         </div>
                     </div>
 
-                    {/* Table */}
                     <div className="overflow-x-auto p-3 2xl:p-6">
                         <table className="min-w-[1000px] w-full text-left">
                             <thead className="bg-[#F8FAFC]">
@@ -155,7 +146,6 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                                                 onClick={() => router.push(`/payroll-runs/${encodeURIComponent(period)}/${emp.id}`)}
                                             >
                                                 <div className="h-10 w-10 overflow-hidden rounded-full bg-neutral-200">
-                                                    {/* In a real app you'd use emp.avatar, here we just use a fallback or the image */}
                                                     <Image src={emp.avatar} alt={emp.name} width={40} height={40} className="h-full w-full object-cover" />
                                                 </div>
                                                 <span className="text-[13px] sm:text-[14px] font-medium text-neutral-900">{emp.name}</span>

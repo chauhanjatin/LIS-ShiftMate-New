@@ -8,7 +8,7 @@ import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import searchIcon from "@/assets/images/icons/search.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
-import eyeIcon from "@/assets/images/icons/eye.svg"; // Fallback if eye icon isn't present, but we used inline SVG before. Let's use inline SVG for eye.
+import eyeIcon from "@/assets/images/icons/eye.svg";
 
 interface PayrollRun {
     id: number;
@@ -33,7 +33,6 @@ export default function PayrollRunsPage() {
     const [runs, setRuns] = useState<PayrollRun[]>(initialRuns);
     const [searchQuery, setSearchQuery] = useState("");
 
-    // Load from local storage on mount
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_payroll_runs");
         if (stored) {
@@ -46,7 +45,6 @@ export default function PayrollRunsPage() {
         setIsLoaded(true);
     }, []);
 
-    // Save to local storage on change
     useEffect(() => {
         if (isLoaded) {
             localStorage.setItem("shiftmate_payroll_runs", JSON.stringify(runs));

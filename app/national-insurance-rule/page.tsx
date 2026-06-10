@@ -75,7 +75,7 @@ export default function NationalInsuranceRulePage() {
         <DashboardLayout title="National Insurance" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6">
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
+                    <div className="flex lg:flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
                         <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">National Insurance Rule</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">

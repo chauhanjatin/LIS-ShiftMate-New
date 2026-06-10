@@ -33,7 +33,6 @@ export default function DeductionComponentsPage() {
     const [deductions, setDeductions] = useState<DeductionComponent[]>(initialDeductions);
     const [searchQuery, setSearchQuery] = useState("");
     
-    // Load from local storage on mount
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_deduction_components");
         if (stored) {
@@ -46,7 +45,6 @@ export default function DeductionComponentsPage() {
         setIsLoaded(true);
     }, []);
 
-    // Save to local storage on change
     useEffect(() => {
         if (isLoaded) {
             localStorage.setItem("shiftmate_deduction_components", JSON.stringify(deductions));
@@ -87,7 +85,6 @@ export default function DeductionComponentsPage() {
         <DashboardLayout title="Deduction Components" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6">
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    {/* Toolbar */}
                     <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
                         <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Deduction Components</h2>
 
@@ -118,7 +115,6 @@ export default function DeductionComponentsPage() {
                         </div>
                     </div>
 
-                    {/* Table */}
                     <div className="overflow-x-auto p-3 2xl:p-6">
                         <table className="min-w-[1100px] w-full text-left">
                             <thead className="bg-[#F8FAFC]">
@@ -168,9 +164,7 @@ export default function DeductionComponentsPage() {
             {/* Add Deduction Component Modal */}
             {isAddModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
-                    {/* Modal */}
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                        {/* Header */}
                         <div className="flex items-center justify-between border-b border-neutral-200 px-8 py-6">
                             <h2 className="text-[24px] font-bold text-[#1D2939]">
                                 Add Deduction Component
@@ -184,10 +178,8 @@ export default function DeductionComponentsPage() {
                             </button>
                         </div>
 
-                        {/* Body */}
                         <div className="px-8 py-6">
                             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                                {/* Deduction Name */}
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Deduction Name
@@ -200,7 +192,6 @@ export default function DeductionComponentsPage() {
                                     />
                                 </div>
 
-                                {/* Deduction Type */}
                                 <div>
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Deduction Type
@@ -219,7 +210,6 @@ export default function DeductionComponentsPage() {
                                     </div>
                                 </div>
 
-                                {/* Method */}
                                 <div>
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Method
@@ -237,8 +227,7 @@ export default function DeductionComponentsPage() {
                                         </svg>
                                     </div>
                                 </div>
-                                
-                                {/* Rate */}
+
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Rate(%)
@@ -251,7 +240,6 @@ export default function DeductionComponentsPage() {
                                     />
                                 </div>
                                 
-                                {/* Applicable Rules */}
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Applicable Rules
@@ -264,8 +252,6 @@ export default function DeductionComponentsPage() {
                                 </div>
                             </div>
 
-
-                            {/* Footer Buttons */}
                             <div className="mt-8 flex items-center justify-end gap-4">
                                 <button
                                     onClick={() => setIsAddModalOpen(false)}

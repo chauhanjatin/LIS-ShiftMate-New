@@ -106,7 +106,7 @@ export default function RolesPage() {
                     <td className="py-3 sm:py-4 2xl:pl-6 pl-3 lg:pr-4 pr-10 text-[12px] sm:text-[13px] 2xl:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
                       {role.name}
                     </td>
-                    <td className="py-3 sm:py-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-normal text-neutral-600">
+                    <td className="py-3 sm:py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-normal text-neutral-600">
                       {role.description}
                     </td>
                     <td className="py-3 sm:py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-normal text-neutral-900 whitespace-nowrap">

@@ -10,7 +10,6 @@ import editIcon from "@/assets/images/icons/edit.svg";
 import fileTypeIcon from "@/assets/images/icons/file-typeicon.svg";
 import { useEmployees } from "@/hooks/useEmployees";
 
-// Define the steps
 const STEPS = [
   "Personal Details",
   "Employment Details",
@@ -139,7 +138,6 @@ export default function AddEmployeePage() {
         <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm flex-1 flex flex-col">
           <h2 className="text-[24px] font-semibold text-neutral-900 mb-10">Add Employee</h2>
 
-          {/* Stepper */}
           <div className="flex max-[425px]:flex-col max-[425px]:items-start items-center justify-center 2xl:gap-[48px] xl:gap-[14px] gap-[8px] max-[425px]:gap-0 2xl:mb-20 mb-15 2xl:mt-4 mt-3 px-4">
             {STEPS.map((step, index) => {
               const stepNumber = index + 1;
@@ -192,7 +190,6 @@ export default function AddEmployeePage() {
           <div className="mt-[48px] mb-8">
             <h3 className="mb-[32px] text-[20px] font-medium text-neutral-900">{STEPS[currentStep - 1]}</h3>
 
-            {/* Forms Content */}
             {currentStep === 1 && (
               <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
@@ -347,7 +344,6 @@ export default function AddEmployeePage() {
 
             {currentStep === 4 && (
               <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
-                {/* File Upload mock UI */}
                 {[
                   { label: "Right to Work document", desc: "PDF, PNG, JPG up to 10MB", field: "rightToWorkFile" },
                   { label: "Signed Employment Contract", desc: "PDF, DOCX up to 10MB", field: "employmentContractFile" },
@@ -391,7 +387,6 @@ export default function AddEmployeePage() {
               <div
                 className="grid grid-cols-1 sm:grid-cols-2 gap-6"
               >
-                {/* Personal Information */}
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
                     <h4 className="text-[20px] font-medium text-[#111827] 2xl:mb-6">
@@ -467,7 +462,6 @@ export default function AddEmployeePage() {
                   </div>
                 </div>
 
-                {/* Employment Information */}
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
                     <h4 className="text-[20px] font-medium text-[#111827] 2xl:mb-6">
@@ -541,7 +535,6 @@ export default function AddEmployeePage() {
                   </div>
                 </div>
 
-                {/* Payroll Details */}
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
                     <h4 className="text-[16px] font-bold text-[#111827] 2xl:mb-6">
@@ -603,7 +596,6 @@ export default function AddEmployeePage() {
                   </div>
                 </div>
 
-                {/* Compliance Documents */}
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
                     <h4 className="text-[16px] font-bold text-[#111827] 2xl:mb-6">
@@ -721,7 +713,6 @@ export default function AddEmployeePage() {
             )}
           </div>
 
-          {/* Action Buttons */}
           <div className="mt-[48px] flex justify-end gap-4 pt-8">
             {currentStep === 1 ? (
               <Link href="/employees/all-employees">

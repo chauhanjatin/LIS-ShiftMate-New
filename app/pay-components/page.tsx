@@ -32,7 +32,6 @@ export default function PayComponentsPage() {
     const [components, setComponents] = useState<PayComponent[]>(initialComponents);
     const [searchQuery, setSearchQuery] = useState("");
 
-    // Load from local storage on mount
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_pay_components");
         if (stored) {
@@ -45,7 +44,6 @@ export default function PayComponentsPage() {
         setIsLoaded(true);
     }, []);
 
-    // Save to local storage on change
     useEffect(() => {
         if (isLoaded) {
             localStorage.setItem("shiftmate_pay_components", JSON.stringify(components));
@@ -79,12 +77,11 @@ export default function PayComponentsPage() {
         <DashboardLayout title="Pay Components" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6">
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    {/* Toolbar */}
-                    <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
-                        <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Pay Components (Earnings)</h2>
+                    <div className="flex lg:flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
+                        <h2 className="lg:text-[20px] text-[17px] font-bold text-neutral-900">Pay Components (Earnings)</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative 2xl:w-75 md:w-60 w-32">
+                            <div className="relative 2xl:w-75 lg:w-60 w-36">
                                 <Image
                                     src={searchIcon}
                                     alt="Search"
@@ -100,7 +97,7 @@ export default function PayComponentsPage() {
                                 />
                             </div>
 
-                            <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 md:px-5 md:py-2.5 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                            <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 lg:px-5 md:py-2.5 text-[12px] lg:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -110,7 +107,6 @@ export default function PayComponentsPage() {
                         </div>
                     </div>
 
-                    {/* Table */}
                     <div className="overflow-x-auto p-3 2xl:p-6">
                         <table className="min-w-[1000px] w-full text-left">
                             <thead className="bg-[#F8FAFC]">
@@ -137,7 +133,6 @@ export default function PayComponentsPage() {
                                             {comp.type}
                                         </td>
 
-                                        {/* TAXABLE */}
                                         <td className="py-4 pr-6 text-center">
                                             <input
                                                 type="checkbox"
@@ -147,7 +142,7 @@ export default function PayComponentsPage() {
                                                         prev.map((item) =>
                                                             item.id === comp.id
                                                                 ? { ...item, taxable: !item.taxable }
-                                                                : item
+                                                                 : item
                                                         )
                                                     );
                                                 }}
@@ -155,7 +150,6 @@ export default function PayComponentsPage() {
                                             />
                                         </td>
 
-                                        {/* PENSIONABLE */}
                                         <td className="py-4 pr-6 text-center">
                                             <input
                                                 type="checkbox"
@@ -176,7 +170,6 @@ export default function PayComponentsPage() {
                                             />
                                         </td>
 
-                                        {/* NI APPLICABLE */}
                                         <td className="py-4 pr-6 text-center">
                                             <input
                                                 type="checkbox"
@@ -235,10 +228,8 @@ export default function PayComponentsPage() {
             {/* Add Pay Component Modal */}
             {isAddModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
-                    {/* Modal */}
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                        {/* Header */}
-                        <div className="flex items-center justify-between border-b border-neutral-200 px-8 py-6">
+                        <div className="flex items-center justify-between border-b border-neutral-200 lg:px-8 px-6 lg:py-6 py-4">
                             <h2 className="text-[24px] font-bold text-[#1D2939]">
                                 Add Pay Component
                             </h2>
@@ -251,9 +242,7 @@ export default function PayComponentsPage() {
                             </button>
                         </div>
 
-                        {/* Body */}
-                        <div className="px-8 py-6">
-                            {/* Section Title */}
+                        <div className="lg:px-8 px-6 lg:py-6 py-4">
                             <h3 className="text-[20px] font-semibold text-[#1D2939]">
                                 Basic Information
                             </h3>
@@ -263,9 +252,7 @@ export default function PayComponentsPage() {
                                 in employee payroll calculations.
                             </p>
 
-                            {/* Form */}
                             <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
-                                {/* Component Name */}
                                 <div>
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Component Name
@@ -278,7 +265,6 @@ export default function PayComponentsPage() {
                                     />
                                 </div>
 
-                                {/* Component Type */}
                                 <div>
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Component Type
@@ -300,7 +286,6 @@ export default function PayComponentsPage() {
                                 </div>
                             </div>
 
-                            {/* Checkboxes */}
                             <div className="mt-8 space-y-4">
                                 <label className="flex items-center gap-3 cursor-pointer">
                                     <input
@@ -336,8 +321,7 @@ export default function PayComponentsPage() {
                                 </label>
                             </div>
 
-                            {/* Footer Buttons */}
-                            <div className="mt-12 flex items-center justify-end gap-4">
+                            <div className="lg:mt-12 mt-6 flex items-center justify-end gap-4">
                                 <button
                                     onClick={() => setIsAddModalOpen(false)}
                                     className="h-[48px] rounded-2xl border border-[#101828] px-8 text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"

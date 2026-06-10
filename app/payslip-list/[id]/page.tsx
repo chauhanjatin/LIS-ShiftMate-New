@@ -36,7 +36,6 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
                     </div>
                 </div>
 
-                {/* Payslip Card container */}
                 <div className="mx-auto w-full max-w-[850px] overflow-hidden rounded-2xl bg-white shadow-sm border border-neutral-200 relative">
 
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden opacity-[0.03]">
@@ -45,7 +44,7 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
                         </span>
                     </div>
 
-                    <div className="bg-[#257BFC] p-8 md:p-10 text-white flex flex-col md:flex-row justify-between items-start md:items-center rounded-t-2xl m-2">
+                    <div className="bg-[#257BFC] p-5 md:p-8 lg:p-10 text-white flex flex-col md:flex-row justify-between items-start md:items-center rounded-t-2xl m-2">
                         <div>
                             <h1 className="text-[24px] md:text-[28px] font-bold">Shiftmate Corporation Ltd</h1>
                             <p className="mt-1 text-[13px] text-white/80">123 Business Street, London, EC1A 1BB</p>
@@ -56,7 +55,7 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
                         </div>
                     </div>
 
-                    <div className="p-8 md:p-10 relative z-10">
+                    <div className="md:p-8 p-5 lg:p-10 relative z-10">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 mb-10 border-b border-neutral-100 pb-10">
                             <div>
                                 <p className="text-[12px] font-medium text-neutral-500 mb-1">Full Name</p>

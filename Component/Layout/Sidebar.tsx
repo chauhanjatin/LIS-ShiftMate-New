@@ -40,7 +40,6 @@ export default function Sidebar({
   const [activeSubItem, setActiveSubItem] = useState("");
 
   useEffect(() => {
-    // Close mobile menu on route change
     if (setIsMobileMenuOpen) setIsMobileMenuOpen(false);
   }, [pathname]);
 
@@ -192,7 +191,7 @@ export default function Sidebar({
   return (
     <aside
       className={`slim-scrollbar fixed inset-y-0 left-0 z-50 flex flex-col overflow-y-auto border-r border-neutral-200 bg-white transition-all duration-500 ease-in-out lg:static lg:flex lg:shrink-0 ${collapsed ? "w-25 2xl:w-28" : "w-64 2xl:w-[280px]"
-        } ${isMobileMenuOpen ? "translate-x-0 w-64" : "-translate-x-full lg:translate-x-0"
+        } ${isMobileMenuOpen ? "translate-x-0 w-68" : "-translate-x-full lg:translate-x-0"
         }`}
     >
       <button
@@ -228,7 +227,6 @@ export default function Sidebar({
         />
       </div>
 
-      {/* MENU */}
       <nav
         className={`2xl:mt-5 mt-3 space-y-2 transition-all duration-500 ease-in-out ${collapsed ? "px-2" : "px-3"
           }`}
@@ -264,7 +262,7 @@ export default function Sidebar({
                       ? "bg-brand-500 text-white"
                       : "text-[#111827] hover:bg-neutral-100"
                     }`
-                    : `group flex w-full items-center justify-between rounded-2xl px-4 2xl:py-3 py-2 text-left text-[16px] font-semibold cursor-pointer transition-all duration-300 ${isActive
+                    : `group flex w-full items-center justify-between rounded-2xl px-3 lg:px-4 2xl:py-3 py-2 text-left text-[16px] font-semibold cursor-pointer transition-all duration-300 ${isActive
                       ? "bg-brand-500 text-white"
                       : "text-[#111827] hover:bg-neutral-100"
                     }`
@@ -309,7 +307,6 @@ export default function Sidebar({
                 )}
               </button>
 
-              {/* EMPLOYEE DROPDOWN */}
               {!collapsed && item.label === "Employees" && isOpen && (
                 <div
                   className="relative mt-2 ml-[48px] animate-in slide-in-from-top-2 duration-300"
@@ -338,7 +335,6 @@ export default function Sidebar({
                 </div>
               )}
 
-              {/* ORGANIZATION DROPDOWN */}
               {!collapsed && item.label === "Organization" && isOpen && (
                 <div
                   className="relative mt-2 ml-[48px] animate-in slide-in-from-top-2 duration-300"

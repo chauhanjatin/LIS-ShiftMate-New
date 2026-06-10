@@ -93,8 +93,7 @@ export default function TaxRulesPage() {
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <div className="relative">
-                                <select 
-                                    className="h-[40px] appearance-none rounded-xl border border-[#D0D5DD] bg-white px-4 pr-10 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                <select className="h-[40px] appearance-none rounded-xl border border-[#D0D5DD] bg-white px-4 pr-10 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                 >
                                     <option>2025/2026</option>
                                     <option>2024/2025</option>
@@ -122,7 +121,7 @@ export default function TaxRulesPage() {
                                         <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{rule.lower}</td>
                                         <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{rule.upper}</td>
                                         <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{rule.rate}</td>
-                                        
+
                                         <td className="py-4 pr-6">
                                             <div className="flex items-center justify-center gap-3">
                                                 <button onClick={() => openEditModal(rule)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
@@ -145,7 +144,7 @@ export default function TaxRulesPage() {
             {isEditModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-neutral-200 px-4 md:px-8 py-4 md:py-6">
+                        <div className="flex items-center justify-between border-b border-neutral-200 px-4 lg:px-8 py-4 lg:py-6">
                             <h2 className="text-[24px] font-bold text-[#1D2939]">
                                 Edit Tax Rules
                             </h2>
@@ -159,7 +158,7 @@ export default function TaxRulesPage() {
                         </div>
 
                         <form onSubmit={handleEditSave} className="px-4 md:px-8 py-4 md:py-6">
-                            
+
                             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
@@ -170,7 +169,7 @@ export default function TaxRulesPage() {
                                         type="text"
                                         name="bandName"
                                         defaultValue={selectedRule?.bandName || ""}
-                                        className="md:h-[52px] h-[42px] w-full rounded-2xl border border-[#D0D5DD] px-4 md:text-[14px] text-[12px] outline-none transition focus:border-[#257BFC]"
+                                        className="lg:h-[52px] h-[42px] w-full rounded-2xl border border-[#D0D5DD] px-4 md:text-[14px] text-[12px] outline-none transition focus:border-[#257BFC]"
                                     />
                                 </div>
 
@@ -180,10 +179,10 @@ export default function TaxRulesPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select 
+                                        <select
                                             name="lower"
                                             defaultValue={selectedRule?.lower || ""}
-                                            className="md:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="lg:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
                                             <option value="$0">$0</option>
                                             <option value="$12,571">$12,571</option>
@@ -200,10 +199,10 @@ export default function TaxRulesPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select 
+                                        <select
                                             name="upper"
                                             defaultValue={selectedRule?.upper || ""}
-                                            className="md:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="lg:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
                                             <option value="$12,570">$12,570</option>
                                             <option value="$50,270">$50,270</option>
@@ -213,17 +212,17 @@ export default function TaxRulesPage() {
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                 </div>
-                                
+
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Tax Rate (%)
                                     </label>
 
                                     <div className="relative">
-                                        <select 
+                                        <select
                                             name="rate"
                                             defaultValue={selectedRule?.rate || ""}
-                                            className="md:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="lg:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
                                             <option value="0%">0%</option>
                                             <option value="20%">20%</option>
@@ -239,12 +238,12 @@ export default function TaxRulesPage() {
                                 <button
                                     type="button"
                                     onClick={() => setIsEditModalOpen(false)}
-                                    className="md:h-[48px] h-[40px] rounded-2xl border border-[#D0D5DD] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
+                                    className="lg:h-[48px] h-[40px] rounded-2xl border border-[#D0D5DD] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
 
-                                <button type="submit" className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                <button type="submit" className="lg:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                     Save Change
                                 </button>
                             </div>

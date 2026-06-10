@@ -45,7 +45,6 @@ export default function SalaryStructurePage() {
     const [structures, setStructures] = useState<SalaryStructure[]>(initialStructures);
     const [searchQuery, setSearchQuery] = useState("");
 
-    // Load from local storage on mount
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_salary_structures");
         if (stored) {
@@ -58,7 +57,6 @@ export default function SalaryStructurePage() {
         setIsLoaded(true);
     }, []);
 
-    // Save to local storage on change
     useEffect(() => {
         if (isLoaded) {
             localStorage.setItem("shiftmate_salary_structures", JSON.stringify(structures));
@@ -106,7 +104,6 @@ export default function SalaryStructurePage() {
         <DashboardLayout title="Salary Structure" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6">
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    {/* Toolbar */}
                     <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
                         <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Salary Structure</h2>
 
@@ -137,7 +134,6 @@ export default function SalaryStructurePage() {
                         </div>
                     </div>
 
-                    {/* Table */}
                     <div className="overflow-x-auto p-3 2xl:p-6">
                         <table className="min-w-[1100px] w-full text-left">
                             <thead className="bg-[#F8FAFC]">
@@ -280,7 +276,6 @@ export default function SalaryStructurePage() {
                                     })}
                                 </div>
                             </div>
-
 
                             <div className="mt-8 flex items-center justify-end gap-4 border-t border-neutral-200 pt-6">
                                 <button
