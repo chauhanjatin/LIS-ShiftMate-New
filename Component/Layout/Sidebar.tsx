@@ -56,7 +56,7 @@ export default function Sidebar({
       setActiveItem("Users");
     } else if (pathname.includes("/roles")) {
       setActiveItem("Roles");
-      } else if (pathname.includes("/payroll-settings")) {
+    } else if (pathname.includes("/payroll-settings")) {
       setActiveItem("Payroll Settings");
     } else if (pathname.includes("/payroll-calendar")) {
       setActiveItem("Payroll Calendar");
@@ -91,6 +91,30 @@ export default function Sidebar({
         setActiveSubItem("Locations");
       if (pathname.includes("/job-titles"))
         setActiveSubItem("Job Titles");
+    } else if (pathname.includes("/leave-management")) {
+      setActiveItem("Leave Management");
+      setOpenMenu("Leave Management");
+      if (pathname.includes("/leave-types-and-policies"))
+        setActiveSubItem("Leave Types & Policies");
+      if (pathname.includes("/leave-requests"))
+        setActiveSubItem("Leave Requests");
+      if (pathname.includes("/leave-calendar"))
+        setActiveSubItem("Leave Calendar");
+      if (pathname.includes("/leave-balances"))
+        setActiveSubItem("Leave Balances");
+    } else if (pathname.includes("/pension")) {
+      setActiveItem("Pension");
+      setOpenMenu("Pension");
+      if (pathname.includes("/pension-settings"))
+        setActiveSubItem("Pension Settings");
+      if (pathname.includes("/pension-assessment"))
+        setActiveSubItem("Pension Assessment");
+      if (pathname.includes("/pension-contribution"))
+        setActiveSubItem("Pension Contribution");
+    } else if (pathname.includes("/statutory-payments")) {
+      setActiveItem("Statutory Payments");
+    } else if (pathname.includes("/hmrc-rti")) {
+      setActiveItem("HMRC RTI");
     } else {
       setActiveItem("Dashboard");
     }
@@ -98,7 +122,7 @@ export default function Sidebar({
 
   const items: Array<{
     label: string;
-    icon: "dashboard" | "users" | "role" | "organisation" | "employees" | "payrollsetting" | "paycalendar" | "dollar" | "deduction" | "salarystructure" | "employeepayroll" | "payrollruns" | "payrollapproval" | "taxrules" | "nationalrule" | "studentloan" | "paysliplist";
+    icon: "dashboard" | "users" | "role" | "organisation" | "employees" | "payrollsetting" | "paycalendar" | "dollar" | "deduction" | "salarystructure" | "employeepayroll" | "payrollruns" | "payrollapproval" | "taxrules" | "nationalrule" | "studentloan" | "paysliplist" | "leavemanagement" | "pension" | "statutory" | "hmrc";
     expandable?: boolean;
   }> = [
     { label: "Dashboard", icon: "dashboard" },
@@ -118,6 +142,10 @@ export default function Sidebar({
     { label: "National Insurance Rule", icon: "nationalrule" },
     { label: "Student Loan Rules", icon: "studentloan" },
     { label: "Payslip List", icon: "paysliplist" },
+    { label: "Leave Management", icon: "leavemanagement", expandable: true },
+    { label: "Pension", icon: "pension", expandable: true },
+    { label: "Statutory Payments", icon: "statutory", expandable: true },
+    { label: "HMRC RTI", icon: "hmrc", expandable: true },
   ] as const;
 
   const routesMap: Record<string, string> = {
@@ -138,6 +166,10 @@ export default function Sidebar({
     "National Insurance Rule": "/national-insurance-rule",
     "Student Loan Rules": "/student-loan-rules",
     "Payslip List": "/payslip-list",
+    "Leave Management": "",
+    "Pension": "",
+    "Statutory Payments": "",
+    "HMRC RTI": "",
   };
 
   const employeeSubMenus = [
@@ -168,6 +200,32 @@ export default function Sidebar({
     "Job Titles": "",
   };
 
+  const leaveManagementSubMenus = [
+    "Leave Types & Policies",
+    "Leave Requests",
+    "Leave Calendar",
+    "Leave Balances",
+  ];
+
+  const leaveManagementSubRoutes: Record<string, string> = {
+    "Leave Types & Policies": "/leave-management/leave-types-and-policies",
+    "Leave Requests": "/leave-management/leave-requests",
+    "Leave Calendar": "/leave-management/leave-calendar",
+    "Leave Balances": "/leave-management/leave-balances",
+  };
+
+  const pensionSubMenus = [
+    "Pension Settings",
+    "Pension Assessment",
+    "Pension Contribution",
+  ];
+
+  const pensionSubRoutes: Record<string, string> = {
+    "Pension Settings": "/pension/pension-settings",
+    "Pension Assessment": "/pension/pension-assessment",
+    "Pension Contribution": "",
+  };
+
   const iconMap = {
     dashboard: dashboardIcon,
     users: usersIcon,
@@ -186,6 +244,10 @@ export default function Sidebar({
     nationalrule: nationalRuleIcon,
     studentloan: studentLoanIcon,
     paysliplist: payslipListIcon,
+    leavemanagement: payCalendarIcon,
+    pension: dollarIcon,
+    statutory: organisationIcon,
+    hmrc: payslipListIcon,
   } as const;
 
   return (
@@ -220,7 +282,7 @@ export default function Sidebar({
           alt="ShiftMate Logo"
           width={56}
           height={56}
-          className={`absolute left-1/2 top-1/2 2xl:h-14 2xl:w-14 h-12 w-12 -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${collapsed
+          className={`absolute left-1/2 top-[70%] 2xl:h-14 2xl:w-14 h-12 w-12 -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${collapsed
             ? "-translate-x-1/2 opacity-100"
             : "pointer-events-none -translate-x-[40%] opacity-0"
             }`}
@@ -228,7 +290,7 @@ export default function Sidebar({
       </div>
 
       <nav
-        className={`2xl:mt-5 mt-3 space-y-2 transition-all duration-500 ease-in-out ${collapsed ? "px-2" : "px-3"
+        className={`2xl:mt-8 mt-3 space-y-1 transition-all duration-500 ease-in-out ${collapsed ? "px-2" : "px-3"
           }`}
       >
         {items.map((item) => {
@@ -262,7 +324,7 @@ export default function Sidebar({
                       ? "bg-brand-500 text-white"
                       : "text-[#111827] hover:bg-neutral-100"
                     }`
-                    : `group flex w-full items-center justify-between rounded-2xl px-3 lg:px-4 2xl:py-3 py-2 text-left text-[16px] font-semibold cursor-pointer transition-all duration-300 ${isActive
+                    : `group flex w-full items-center justify-between rounded-2xl px-2 xl:px-4 2xl:py-3 py-2 text-left text-[16px] font-semibold cursor-pointer transition-all duration-300 ${isActive
                       ? "bg-brand-500 text-white"
                       : "text-[#111827] hover:bg-neutral-100"
                     }`
@@ -353,6 +415,62 @@ export default function Sidebar({
                             if (route) router.push(route);
                           }}
                           className={`flex w-full items-center rounded-xl px-4 py-3 text-left text-[16px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                            }`}
+                        >
+                          {subLabel}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {!collapsed && item.label === "Leave Management" && isOpen && (
+                <div
+                  className="relative mt-2 ml-[44px] animate-in slide-in-from-top-2 duration-300"
+                >
+                  <div className="space-y-1">
+                    {leaveManagementSubMenus.map((subLabel) => {
+                      const isSubActive = activeSubItem === subLabel;
+
+                      return (
+                        <button
+                          key={subLabel}
+                          onClick={() => {
+                            setActiveSubItem(subLabel);
+
+                            const route = leaveManagementSubRoutes[subLabel];
+                            if (route) router.push(route);
+                          }}
+                          className={`flex w-full items-center rounded-xl xl:px-4 px-3 py-3 text-left xl:text-[16px] text-[15px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                            }`}
+                        >
+                          {subLabel}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {!collapsed && item.label === "Pension" && isOpen && (
+                <div
+                  className="relative mt-2 ml-[44px] animate-in slide-in-from-top-2 duration-300"
+                >
+                  <div className="space-y-1">
+                    {pensionSubMenus.map((subLabel) => {
+                      const isSubActive = activeSubItem === subLabel;
+
+                      return (
+                        <button
+                          key={subLabel}
+                          onClick={() => {
+                            setActiveSubItem(subLabel);
+
+                            const route = pensionSubRoutes[subLabel];
+                            if (route) router.push(route);
+                          }}
+                          className={`flex w-full items-center rounded-xl xl:px-4 px-3 py-3 text-left xl:text-[16px] text-[15px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
                             }`}
                         >
                           {subLabel}

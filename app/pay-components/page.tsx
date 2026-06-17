@@ -153,6 +153,7 @@ export default function PayComponentsPage() {
                                         <td className="py-4 pr-6 text-center">
                                             <input
                                                 type="checkbox"
+
                                                 checked={comp.pensionable}
                                                 onChange={() => {
                                                     setComponents((prev) =>

@@ -55,7 +55,7 @@ export default function EmployeePayrollSetupPage() {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [employeeToDelete, setEmployeeToDelete] = useState<number | null>(null);
 
-    const filteredEmployees = employees.filter(e => 
+    const filteredEmployees = employees.filter(e =>
         e.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -133,19 +133,18 @@ export default function EmployeePayrollSetupPage() {
                                         <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{emp.taxCode}</td>
                                         <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{emp.niCategory}</td>
                                         <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{emp.studentLoanPlan}</td>
-                                        
+
                                         <td className="py-4 pr-6 text-center">
-                                            <span className={`inline-flex rounded-full px-3 py-1 text-[12px] font-medium ${
-                                                emp.pensionStatus === "Auto-enrolled" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FDEAEA] text-[#F04438]"
-                                            }`}>
+                                            <span className={`inline-flex rounded-full px-3 py-1 text-[12px] font-medium ${emp.pensionStatus === "Auto-enrolled" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FDEAEA] text-[#F04438]"
+                                                }`}>
                                                 {emp.pensionStatus}
                                             </span>
                                         </td>
-                                        
+
                                         <td className="py-4 pr-6 text-center text-[13px] sm:text-[14px] font-medium text-neutral-900">
                                             {emp.payFrequency}
                                         </td>
-                                        
+
                                         <td className="py-4 pr-6">
                                             <div className="flex items-center justify-center gap-3">
                                                 <button onClick={() => openEditModal(emp)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
@@ -202,7 +201,7 @@ export default function EmployeePayrollSetupPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select 
+                                        <select
                                             defaultValue={selectedEmployee?.salary || ""}
                                             className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
@@ -220,7 +219,7 @@ export default function EmployeePayrollSetupPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select 
+                                        <select
                                             defaultValue={selectedEmployee?.taxCode || ""}
                                             className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
@@ -238,7 +237,7 @@ export default function EmployeePayrollSetupPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select 
+                                        <select
                                             defaultValue={selectedEmployee?.niCategory || ""}
                                             className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
@@ -256,7 +255,7 @@ export default function EmployeePayrollSetupPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select 
+                                        <select
                                             defaultValue={selectedEmployee?.studentLoanPlan || ""}
                                             className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
@@ -268,14 +267,14 @@ export default function EmployeePayrollSetupPage() {
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                 </div>
-                                
+
                                 <div>
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Pension Status
                                     </label>
 
                                     <div className="relative">
-                                        <select 
+                                        <select
                                             defaultValue={selectedEmployee?.pensionStatus || ""}
                                             className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
@@ -292,7 +291,7 @@ export default function EmployeePayrollSetupPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select 
+                                        <select
                                             defaultValue={selectedEmployee?.payFrequency || ""}
                                             className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
                                         >
