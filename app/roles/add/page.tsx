@@ -72,7 +72,7 @@ export default function AddRolePage() {
   return (
     <DashboardLayout title="Roles" subtitle="Home/ Roles List/ Add Role">
       <div className="flex-1 p-4 2xl:p-6 h-full flex flex-col">
-        <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm flex-1 flex flex-col xl:flex-row gap-6">
+        <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-2 shadow-sm flex-1 flex flex-col xl:flex-row gap-6">
           
           <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-2xl lg:p-6 p-3">
             <h2 className="text-[20px] font-bold text-neutral-900 mb-2">Create New Role</h2>

@@ -13,11 +13,24 @@ export default function AuthMarketingLayout({
       <div className="mx-auto flex min-h-0 w-full flex-1 flex-col">
         <div className="grid min-h-0 flex-1 grid-cols-1  lg:grid-cols-[minmax(0,1.03fr)_minmax(0,0.97fr)]">
           <section className="relative hidden min-h-0 overflow-hidden rounded-[2.5rem] lg:flex bg-[#4c51f5] m-[30px]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_-20%,rgba(255,255,255,0.15),transparent_45%),radial-gradient(circle_at_70%_120%,rgba(255,255,255,0.1),transparent_50%)]" />
+            <Image
+              src="/login/login-gif.gif"
+              alt="Background animation"
+              fill
+              unoptimized
+              className="absolute inset-0 object-cover opacity-80"
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_-20%,rgba(255,255,255,0.15),transparent_45%),radial-gradient(circle_at_70%_120%,rgba(255,255,255,0.1),transparent_50%)] mix-blend-overlay" />
 
             <div className="relative z-10 flex min-h-0 flex-1 flex-col 2xl:p-[60px] xl:p-[45px] p-[40px]">
               <div className="max-w-[45rem]">
-                <h2 className="2xl:text-[48px] text-[40px] font-black 2xl:leading-[72px] leading-[56px] tracking-[-0.02em] text-white">
+                <h2
+                  className="2xl:text-[48px] text-[40px] font-black 2xl:leading-[72px] leading-[56px] text-white"
+                  style={{
+                    WebkitTextStroke: "1px rgba(0,0,0,1)",
+                    textShadow: "0px 8px 16px rgba(0,0,0,0.12)",
+                  }}
+                >
                   Manage your workforce, payroll and organization in one place.
                 </h2>
               </div>

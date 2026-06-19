@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
+import Toast from '@/Component/UI/Toast';
 import searchIcon from "@/assets/images/icons/search.svg";
 
 interface PensionAssessment {
@@ -27,6 +28,7 @@ const mockAssessments: PensionAssessment[] = [
 
 export default function PensionAssessmentPage() {
   const [assessments] = useState<PensionAssessment[]>(mockAssessments);
+  const [showToast, setShowToast] = useState(false);
 
   const breadcrumb = (
     <span className="text-[#98A2B3]">
@@ -70,7 +72,10 @@ export default function PensionAssessmentPage() {
                 />
               </div>
 
-              <button className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2 md:py-2.5 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer">
+              <button 
+                onClick={() => setShowToast(true)}
+                className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2 md:py-2.5 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer"
+              >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 Export
               </button>
@@ -118,6 +123,11 @@ export default function PensionAssessmentPage() {
           </div>
         </div>
       </div>
+      <Toast
+        show={showToast}
+        message="Pension Assessment Exported Successfully"
+        onClose={() => setShowToast(false)}
+      />
     </DashboardLayout>
   );
 }

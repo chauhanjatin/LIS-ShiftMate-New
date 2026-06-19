@@ -113,6 +113,13 @@ export default function Sidebar({
         setActiveSubItem("Pension Contribution");
     } else if (pathname.includes("/statutory-payments")) {
       setActiveItem("Statutory Payments");
+      setOpenMenu("Statutory Payments");
+      if (pathname.includes("/payments-dashboard"))
+        setActiveSubItem("Payments Dashboard");
+      if (pathname.includes("/ssp-management"))
+        setActiveSubItem("SSP Management");
+      if (pathname.includes("/maternity-paternity"))
+        setActiveSubItem("Maternity/Paternity");
     } else if (pathname.includes("/hmrc-rti")) {
       setActiveItem("HMRC RTI");
     } else {
@@ -223,7 +230,19 @@ export default function Sidebar({
   const pensionSubRoutes: Record<string, string> = {
     "Pension Settings": "/pension/pension-settings",
     "Pension Assessment": "/pension/pension-assessment",
-    "Pension Contribution": "",
+    "Pension Contribution": "/pension/pension-contribution",
+  };
+
+  const statutoryPaymentsSubMenus = [
+    "Payments Dashboard",
+    "SSP Management",
+    "Maternity/Paternity",
+  ];
+
+  const statutoryPaymentsSubRoutes: Record<string, string> = {
+    "Payments Dashboard": "/statutory-payments/payments-dashboard",
+    "SSP Management": "/statutory-payments/ssp-management",
+    "Maternity/Paternity": "/statutory-payments/maternity-paternity",
   };
 
   const iconMap = {
@@ -282,7 +301,7 @@ export default function Sidebar({
           alt="ShiftMate Logo"
           width={56}
           height={56}
-          className={`absolute left-1/2 top-[70%] 2xl:h-14 2xl:w-14 h-12 w-12 -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${collapsed
+          className={`absolute left-1/2 top-[70%] 2xl:h-12 2xl:w-12 h-11 w-11 -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${collapsed
             ? "-translate-x-1/2 opacity-100"
             : "pointer-events-none -translate-x-[40%] opacity-0"
             }`}
@@ -339,7 +358,7 @@ export default function Sidebar({
                     alt=""
                     width={20}
                     height={20}
-                    className={`transition-all duration-300 ${collapsed ? "2xl:h-7 2xl:w-7 h-6 w-6" : "h-5 w-5"
+                    className={`transition-all duration-300 ${collapsed ? "2xl:h-6 2xl:w-6 h-5 w-5" : "h-5 w-5"
                       } ${isActive ? "brightness-0 invert" : "brightness-0"}`}
                   />
 
@@ -468,6 +487,34 @@ export default function Sidebar({
                             setActiveSubItem(subLabel);
 
                             const route = pensionSubRoutes[subLabel];
+                            if (route) router.push(route);
+                          }}
+                          className={`flex w-full items-center rounded-xl xl:px-4 px-3 py-3 text-left xl:text-[16px] text-[15px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                            }`}
+                        >
+                          {subLabel}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {!collapsed && item.label === "Statutory Payments" && isOpen && (
+                <div
+                  className="relative mt-2 ml-[44px] animate-in slide-in-from-top-2 duration-300"
+                >
+                  <div className="space-y-1">
+                    {statutoryPaymentsSubMenus.map((subLabel) => {
+                      const isSubActive = activeSubItem === subLabel;
+
+                      return (
+                        <button
+                          key={subLabel}
+                          onClick={() => {
+                            setActiveSubItem(subLabel);
+
+                            const route = statutoryPaymentsSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
                           className={`flex w-full items-center rounded-xl xl:px-4 px-3 py-3 text-left xl:text-[16px] text-[15px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"

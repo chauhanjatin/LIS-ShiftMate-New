@@ -187,7 +187,7 @@ export default function AddEmployeePage() {
             })}
           </div>
 
-          <div className="mt-[48px] mb-8">
+          <div className="md:mt-[48px] mb-8">
             <h3 className="mb-[32px] text-[20px] font-medium text-neutral-900">{STEPS[currentStep - 1]}</h3>
 
             {currentStep === 1 && (
