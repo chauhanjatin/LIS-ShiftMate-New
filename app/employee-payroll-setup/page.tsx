@@ -4,9 +4,13 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
+import Toast from '@/Component/UI/Toast';
 import searchIcon from "@/assets/images/icons/search.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 interface EmployeePayroll {
     id: number;
@@ -54,6 +58,7 @@ export default function EmployeePayrollSetupPage() {
     const [selectedEmployee, setSelectedEmployee] = useState<EmployeePayroll | null>(null);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [employeeToDelete, setEmployeeToDelete] = useState<number | null>(null);
+    const [showToast, setShowToast] = useState(false);
 
     const filteredEmployees = employees.filter(e =>
         e.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -73,7 +78,7 @@ export default function EmployeePayrollSetupPage() {
     };
 
     const breadcrumb = (
-        <span className="text-[#98A2B3]">
+        <span className={`${lexendDeca.className} text-[#98A2B3]`}>
             <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <span className="text-neutral-900">Employee Payroll Setup</span>
@@ -82,10 +87,10 @@ export default function EmployeePayrollSetupPage() {
 
     return (
         <DashboardLayout title="Employee Payroll Setup" subtitle={breadcrumb}>
-            <div className="flex-1 p-4 2xl:p-6">
-                <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
-                        <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Employee Records</h2>
+            <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                    <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+                        <h2 className="md:text-[20px] text-[16px] font-medium text-[#2E334E]">Employee Records</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <div className="relative 2xl:w-75 md:w-60 w-48">
@@ -97,7 +102,7 @@ export default function EmployeePayrollSetupPage() {
                                     className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                                 />
                                 <input
-                                    className="w-full rounded-xl border border-neutral-200 bg-white py-1.5 md:py-2.5 pl-11 pr-4 text-sm outline-none focus:border-[#257BFC]"
+                                    className="w-full rounded-xl border border-[#E2E8F0] bg-white py-1.5 md:py-2.5 pl-11 pr-4 text-sm outline-none focus:border-[#257BFC] overflow-hidden"
                                     placeholder="Search..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -106,59 +111,63 @@ export default function EmployeePayrollSetupPage() {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto p-3 2xl:p-6">
-                        <table className="min-w-[1100px] w-full text-left">
-                            <thead className="bg-white">
-                                <tr>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pl-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Name</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Salary</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Tax Code</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">NI Category</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Student Loan Plan</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900 text-center">Pension Status</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900 text-center">Pay Frequency</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900 text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredEmployees.map((emp) => (
-                                    <tr key={emp.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#F1F5F9] last:border-none">
-                                        <td className="py-4 pl-4 pr-6">
-                                            <div className="flex items-center gap-3">
-                                                <img src={emp.avatar} alt={emp.name} className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover" />
-                                                <span className="text-[13px] sm:text-[14px] font-medium text-neutral-900">{emp.name}</span>
-                                            </div>
-                                        </td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{emp.salary}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{emp.taxCode}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{emp.niCategory}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{emp.studentLoanPlan}</td>
+                    <div className="p-3 2xl:p-6">
+                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                            <div className="overflow-x-auto">
+                                <table className="min-w-[1100px] w-full text-left border-collapse">
+                                    <thead className="bg-[#F8F9FC]">
+                                        <tr>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E]">Name</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E]">Salary</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E]">Tax Code</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E]">NI Category</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E]">Student Loan Plan</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E] text-center">Pension Status</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E] text-center">Pay Frequency</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-neutral-500 text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white">
+                                        {filteredEmployees.map((emp) => (
+                                            <tr key={emp.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
+                                                <td className="px-4 py-4 sm:px-6">
+                                                    <div className="flex items-center gap-3">
+                                                        <img src={emp.avatar} alt={emp.name} className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover" />
+                                                        <span className="text-[13px] sm:text-[14px] font-normal text-[#2E334E]">{emp.name}</span>
+                                                    </div>
+                                                </td>
+                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#2E334E]">{emp.salary}</td>
+                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#2E334E]">{emp.taxCode}</td>
+                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#2E334E]">{emp.niCategory}</td>
+                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#2E334E]">{emp.studentLoanPlan}</td>
 
-                                        <td className="py-4 pr-6 text-center">
-                                            <span className={`inline-flex rounded-full px-3 py-1 text-[12px] font-medium ${emp.pensionStatus === "Auto-enrolled" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FDEAEA] text-[#F04438]"
-                                                }`}>
-                                                {emp.pensionStatus}
-                                            </span>
-                                        </td>
+                                                <td className="px-4 py-4 sm:px-6 text-center">
+                                                    <span className={`inline-flex rounded-full px-3 py-1 text-[12px] font-normal ${emp.pensionStatus === "Auto-enrolled" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FDEAEA] text-[#F04438]"
+                                                        }`}>
+                                                        {emp.pensionStatus}
+                                                    </span>
+                                                </td>
 
-                                        <td className="py-4 pr-6 text-center text-[13px] sm:text-[14px] font-medium text-neutral-900">
-                                            {emp.payFrequency}
-                                        </td>
+                                                <td className="px-4 py-4 sm:px-6 text-center text-[13px] sm:text-[14px] font-normal text-[#2E334E]">
+                                                    {emp.payFrequency}
+                                                </td>
 
-                                        <td className="py-4 pr-6">
-                                            <div className="flex items-center justify-center gap-3">
-                                                <button onClick={() => openEditModal(emp)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
-                                                    <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
-                                                </button>
-                                                <button onClick={() => { setEmployeeToDelete(emp.id); setIsDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
-                                                    <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none" />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                                <td className="px-4 py-4 sm:px-6">
+                                                    <div className="flex items-center justify-center gap-3">
+                                                        <button onClick={() => openEditModal(emp)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
+                                                            <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
+                                                        </button>
+                                                        <button onClick={() => { setEmployeeToDelete(emp.id); setIsDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
+                                                            <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none" />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -167,7 +176,7 @@ export default function EmployeePayrollSetupPage() {
             {isEditModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-neutral-200 lg:px-8 px-6 lg:py-6 py-4">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] lg:px-8 px-6 lg:py-6 py-4">
                             <h2 className="text-[24px] font-bold text-[#1D2939]">
                                 Edit Employee Payroll
                             </h2>
@@ -191,7 +200,7 @@ export default function EmployeePayrollSetupPage() {
                                         type="text"
                                         defaultValue={selectedEmployee?.name || ""}
                                         readOnly
-                                        className="h-[52px] w-full rounded-2xl border border-[#D0D5DD] px-4 text-[14px] bg-neutral-50 outline-none text-[#667085]"
+                                        className="h-[52px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] bg-neutral-50 outline-none text-[#667085]"
                                     />
                                 </div>
 
@@ -203,7 +212,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.salary || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="$58,000">$58,000</option>
                                             <option value="$60,000">$60,000</option>
@@ -221,7 +230,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.taxCode || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="1257L">1257L</option>
                                             <option value="BR">BR</option>
@@ -239,7 +248,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.niCategory || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="A">A</option>
                                             <option value="B">B</option>
@@ -257,7 +266,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.studentLoanPlan || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="Plan 1">Plan 1</option>
                                             <option value="Plan 2">Plan 2</option>
@@ -276,7 +285,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.pensionStatus || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="Auto-enrolled">Auto-enrolled</option>
                                             <option value="Opted Out">Opted Out</option>
@@ -293,7 +302,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.payFrequency || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="Weekly">Weekly</option>
                                             <option value="Monthly">Monthly</option>
@@ -308,12 +317,12 @@ export default function EmployeePayrollSetupPage() {
                             <div className="mt-10 flex items-center justify-end gap-4">
                                 <button
                                     onClick={() => setIsEditModalOpen(false)}
-                                    className="h-[48px] rounded-2xl border border-[#D0D5DD] px-8 text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
+                                    className="h-[48px] rounded-2xl border border-[#E2E8F0] px-8 text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
 
-                                <button onClick={() => setIsEditModalOpen(false)} className="h-[48px] rounded-2xl bg-[#257BFC] px-8 text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                <button onClick={() => { setIsEditModalOpen(false); setShowToast(true); }} className="h-[48px] rounded-2xl bg-[#257BFC] px-8 text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                     Save Change
                                 </button>
                             </div>
@@ -333,12 +342,17 @@ export default function EmployeePayrollSetupPage() {
                             <p className="text-sm text-neutral-500">Are you sure you want to remove this employee from payroll? This action cannot be undone.</p>
                         </div>
                         <div className="flex gap-3">
-                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-neutral-200 px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
+                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
                             <button onClick={handleDelete} className="flex-1 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-700 cursor-pointer">Remove</button>
                         </div>
                     </div>
                 </div>
             )}
+            <Toast
+                show={showToast}
+                message="Employee Payroll Updated Successfully"
+                onClose={() => setShowToast(false)}
+            />
         </DashboardLayout>
     );
 }

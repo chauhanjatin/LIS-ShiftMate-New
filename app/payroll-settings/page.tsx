@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
+import Toast from '@/Component/UI/Toast';
 import Link from "next/link";
 
 export default function PayrollSettingsPage() {
@@ -13,6 +14,7 @@ export default function PayrollSettingsPage() {
         currency: "",
         payrollCutoffDate: "25",
     });
+    const [showToast, setShowToast] = useState(false);
 
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_payroll_settings");
@@ -28,7 +30,7 @@ export default function PayrollSettingsPage() {
 
     const handleSave = () => {
         localStorage.setItem("shiftmate_payroll_settings", JSON.stringify(formData));
-        alert("Settings saved successfully!");
+        setShowToast(true);
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -105,6 +107,11 @@ export default function PayrollSettingsPage() {
                     </div>
                 </div>
             </div>
+            <Toast
+                show={showToast}
+                message="Settings Saved Successfully"
+                onClose={() => setShowToast(false)}
+            />
         </DashboardLayout>
     );
 }

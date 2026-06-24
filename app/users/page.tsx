@@ -11,6 +11,10 @@ import deleteIcon from "@/assets/images/icons/delete.svg";
 import deleteRedIcon from "@/assets/images/icons/delete-popup.svg";
 import Link from "next/link";
 import { User, UserStatus } from "@/Data/users";
+import Toast from '@/Component/UI/Toast';
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 function StatusPill({ status }: { status: UserStatus }) {
     const styles = {
@@ -18,7 +22,7 @@ function StatusPill({ status }: { status: UserStatus }) {
         "On Leave": "bg-[#FFF6E8] text-[#FFA100]",
         Inactive: "bg-[#EEF2FF] text-[#6366F1]",
         Suspended: "bg-[#FEE2E2] text-[#EF4444]",
-        Pending: "bg-[#F8FAFC] text-[#64748B]",
+        Pending: "bg-white text-[#64748B]",
     };
     return (
         <span
@@ -94,23 +98,23 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-[14px] font-medium text-neutral-900 mb-1.5">First Name</label>
-                                <input type="text" value={firstName} onChange={e => { setFirstName(e.target.value); setErrors(prev => ({ ...prev, firstName: "" })) }} placeholder="Michael" className={`w-full rounded-xl border ${errors.firstName ? 'border-red-500' : 'border-neutral-200'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
+                                <input type="text" value={firstName} onChange={e => { setFirstName(e.target.value); setErrors(prev => ({ ...prev, firstName: "" })) }} placeholder="Michael" className={`w-full rounded-xl border ${errors.firstName ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
                                 {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
                             </div>
                             <div>
                                 <label className="block text-[14px] font-medium text-neutral-900 mb-1.5">Last Name</label>
-                                <input type="text" value={lastName} onChange={e => { setLastName(e.target.value); setErrors(prev => ({ ...prev, lastName: "" })) }} placeholder="Enter your last name" className={`w-full rounded-xl border ${errors.lastName ? 'border-red-500' : 'border-neutral-200'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
+                                <input type="text" value={lastName} onChange={e => { setLastName(e.target.value); setErrors(prev => ({ ...prev, lastName: "" })) }} placeholder="Enter your last name" className={`w-full rounded-xl border ${errors.lastName ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
                                 {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
                             </div>
                             <div className="md:col-span-2">
                                 <label className="block text-[14px] font-medium text-neutral-900 mb-1.5">Email</label>
-                                <input type="email" value={email} onChange={e => { setEmail(e.target.value); setErrors(prev => ({ ...prev, email: "" })) }} placeholder="Enter your email" className={`w-full rounded-xl border ${errors.email ? 'border-red-500' : 'border-neutral-200'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
+                                <input type="email" value={email} onChange={e => { setEmail(e.target.value); setErrors(prev => ({ ...prev, email: "" })) }} placeholder="Enter your email" className={`w-full rounded-xl border ${errors.email ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500`} />
                                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                             </div>
                             <div>
                                 <label className="block text-[14px] font-medium text-neutral-900 mb-1.5">Role</label>
                                 <div className="relative">
-                                    <select value={role} onChange={e => setRole(e.target.value)} className="w-full appearance-none rounded-xl border border-neutral-200 px-4 py-2.5 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white">
+                                    <select value={role} onChange={e => setRole(e.target.value)} className="w-full appearance-none rounded-xl border border-[#E2E8F0] px-4 py-2.5 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white overflow-hidden">
                                         <option value="Admin">Admin</option>
                                         <option value="Manager">Manager</option>
                                         <option value="HR">HR</option>
@@ -122,7 +126,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                             <div>
                                 <label className="block text-[14px] font-medium text-neutral-900 mb-1.5">Company</label>
                                 <div className="relative">
-                                    <select value={company} onChange={e => setCompany(e.target.value)} className="w-full appearance-none rounded-xl border border-neutral-200 px-4 py-2.5 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white">
+                                    <select value={company} onChange={e => setCompany(e.target.value)} className="w-full appearance-none rounded-xl border border-[#E2E8F0] px-4 py-2.5 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white overflow-hidden">
                                         <option value="Shiftmate">Shiftmate</option>
                                     </select>
                                     <svg className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-500" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -138,7 +142,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div
                                 onClick={() => setAccessMethod("temp_password")}
-                                className={`cursor-pointer rounded-2xl border-2 p-4 transition-all ${accessMethod === "temp_password" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-neutral-200 bg-white"}`}
+                                className={`cursor-pointer rounded-2xl border-2 p-4 transition-all ${accessMethod === "temp_password" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-[#E2E8F0] bg-white"}`}
                             >
                                 <div className="flex items-start justify-between">
                                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#257BFC] text-white">
@@ -169,7 +173,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
 
                             <div
                                 onClick={() => setAccessMethod("invite_email")}
-                                className={`cursor-pointer rounded-2xl border-2 p-4 transition-all ${accessMethod === "invite_email" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-neutral-200 bg-white"}`}
+                                className={`cursor-pointer rounded-2xl border-2 p-4 transition-all ${accessMethod === "invite_email" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-[#E2E8F0] bg-white"}`}
                             >
                                 <div className="flex items-start justify-between">
                                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-neutral-100 text-neutral-600">
@@ -200,14 +204,14 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                         </div>
 
                         {accessMethod === "temp_password" && (
-                            <div className="mt-4 rounded-xl bg-[#F8FAFC] p-4">
+                            <div className="mt-4 rounded-xl bg-white p-4">
                                 <label className="block text-[12px] font-medium text-neutral-900 mb-1.5">Temporary Password</label>
                                 <div className="flex gap-3">
                                     <input
                                         type="text"
                                         value={tempPassword}
                                         readOnly
-                                        className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-[14px] outline-none"
+                                        className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-2.5 text-[14px] outline-none overflow-hidden"
                                     />
                                     <button onClick={generatePassword} type="button" className="flex items-center gap-2 rounded-xl bg-[#E2E8F0] px-4 py-2.5 text-[14px] font-semibold text-neutral-700 whitespace-nowrap hover:bg-[#CBD5E1] transition">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
@@ -228,8 +232,8 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                     </div>
                 </div>
 
-                <div className="mt-8 flex justify-end gap-3 border-t border-neutral-100 pt-6">
-                    <button onClick={onClose} className="rounded-xl border border-neutral-200 bg-white px-6 py-2.5 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer">
+                <div className="mt-8 flex justify-end gap-3 border-t border-[#E2E8F0] pt-6">
+                    <button onClick={onClose} className="rounded-xl border border-[#E2E8F0] bg-white px-6 py-2.5 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer overflow-hidden">
                         Cancel
                     </button>
                     <button onClick={handleCreate} className="rounded-xl bg-[#257BFC] px-6 py-2.5 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
@@ -247,6 +251,7 @@ export default function UsersPage() {
     const [userToDelete, setUserToDelete] = useState<string | null>(null);
     const { users, addUser, removeUser } = useUsers();
     const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+    const [showToast, setShowToast] = useState(false);
 
     const allSelected = users.length > 0 && selectedUsers.length === users.length;
 
@@ -267,6 +272,7 @@ export default function UsersPage() {
     const handleCreateUser = (newUser: User) => {
         addUser(newUser);
         setCreateModalOpen(false);
+        setShowToast(true);
     };
 
     const handleDelete = () => {
@@ -279,10 +285,10 @@ export default function UsersPage() {
 
     return (
         <DashboardLayout title="Users" subtitle="Home/ Users List">
-            <div className="flex-1 p-4 2xl:p-6">
-                <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
-                        <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Users List</h2>
+            <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+                <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
+                    <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+                        <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">Users List</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <div className="relative xl:w-75 md:w-50 w-32">
@@ -294,12 +300,12 @@ export default function UsersPage() {
                                     className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                                 />
                                 <input
-                                    className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-1.5 md:py-2.5 md:pl-11 pl-8 pr-4 text-sm"
+                                    className="w-full rounded-xl border border-[#E2E8F0] bg-neutral-50 py-1.5 md:py-2.5 md:pl-11 pl-8 pr-4 text-sm"
                                     placeholder="Search User"
                                 />
                             </div>
 
-                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-neutral-200 cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
+                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-[#E2E8F0] cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
                                 <Image
                                     src={filterIcon}
                                     alt="Filter"
@@ -309,7 +315,7 @@ export default function UsersPage() {
                                 />
                             </button>
 
-                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-neutral-200 cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
+                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-[#E2E8F0] cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                             </button>
 
@@ -326,132 +332,136 @@ export default function UsersPage() {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto p-3 2xl:p-6">
-                        <table className="min-w-[1100px] w-full text-left">
-                            <thead className="bg-white">
-                                <tr>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                                        <input
-                                            type="checkbox"
-                                            checked={allSelected}
-                                            onChange={handleSelectAll}
-                                            className="h-4 w-4 rounded border-[#D0D5DD] text-brand-500 focus:ring-brand-500 cursor-pointer"
-                                        />
-                                    </th>
+                    <div className="p-3 2xl:p-6">
+                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                            <div className="overflow-x-auto">
+                                <table className="min-w-[1100px] w-full text-left border-collapse">
+                                    <thead className="bg-[#F2F4F7]">
+                                        <tr>
+                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] text-[#2E334E] whitespace-nowrap">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={allSelected}
+                                                    onChange={handleSelectAll}
+                                                    className="h-4 w-4 rounded border-[#D0D5DD] text-brand-500 focus:ring-brand-500 cursor-pointer"
+                                                />
+                                            </th>
 
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                                        Name
-                                    </th>
+                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                Name
+                                            </th>
 
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                                        Email
-                                    </th>
+                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                Email
+                                            </th>
 
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                                        Role
-                                    </th>
+                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                Role
+                                            </th>
 
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                                        Company
-                                    </th>
+                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                Company
+                                            </th>
 
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                                        Status
-                                    </th>
+                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                Status
+                                            </th>
 
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
+                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
 
-                            <tbody>
-                                {users.map((user) => (
-                                    <tr
-                                        key={user.id}
-                                        className="group transition-colors hover:bg-neutral-50"
-                                    >
-                                        <td className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pl-6 pl-3 pr-2">
-                                            <input
-                                                type="checkbox"
-                                                checked={selectedUsers.includes(user.id)}
-                                                onChange={() => handleSelectUser(user.id)}
-                                                className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
-                                            />
-                                        </td>
-
-                                        <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6">
-                                            <Link href={`/users/edit/${user.id}`}>
-                                                <div className="flex md:min-w-[180px] min-w-[150px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
-                                                    <img
-                                                        src={user.avatar}
-                                                        alt={user.name}
-                                                        className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover flex-shrink-0"
+                                    <tbody className="bg-white">
+                                        {users.map((user) => (
+                                            <tr
+                                                key={user.id}
+                                                className="group transition-colors hover:bg-neutral-50"
+                                            >
+                                                <td className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pl-6 pl-3 pr-2">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={selectedUsers.includes(user.id)}
+                                                        onChange={() => handleSelectUser(user.id)}
+                                                        className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
                                                     />
-                                                    <span className="text-[12px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
-                                                        {user.name}
-                                                    </span>
-                                                </div>
-                                            </Link>
-                                        </td>
+                                                </td>
 
-                                        <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700">
-                                            {user.email}
-                                        </td>
+                                                <td className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 pr-6">
+                                                    <Link href={`/users/edit/${user.id}`}>
+                                                        <div className="flex md:min-w-[180px] min-w-[150px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
+                                                            <img
+                                                                src={user.avatar}
+                                                                alt={user.name}
+                                                                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover flex-shrink-0"
+                                                            />
+                                                            <span className="text-[12px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                                                                {user.name}
+                                                            </span>
+                                                        </div>
+                                                    </Link>
+                                                </td>
 
-                                        <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700">
-                                            {user.role}
-                                        </td>
+                                                <td className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700">
+                                                    {user.email}
+                                                </td>
 
-                                        <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700">
-                                            {user.company}
-                                        </td>
+                                                <td className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700">
+                                                    {user.role}
+                                                </td>
 
-                                        <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 whitespace-nowrap">
-                                            <StatusPill status={user.status} />
-                                        </td>
+                                                <td className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700">
+                                                    {user.company}
+                                                </td>
 
-                                        <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6">
-                                            <div className="flex items-center gap-2 sm:gap-4">
-                                                <Link href={`/users/edit/${user.id}`}>
-                                                    <button className="text-neutral-400 hover:text-brand-500 mt-2 transition-colors">
-                                                        <Image
-                                                            src={editIcon}
-                                                            alt="Edit"
-                                                            width={24}
-                                                            height={24}
-                                                            className="cursor-pointer h-5 w-5 sm:h-6 sm:w-6"
-                                                        />
-                                                    </button>
-                                                </Link>
-                                                <button
-                                                    onClick={() => {
-                                                        setUserToDelete(user.id);
-                                                        setDeleteModalOpen(true);
-                                                    }}
-                                                    className="text-neutral-400 hover:text-red-500 transition-colors"
-                                                >
-                                                    <Image
-                                                        src={deleteIcon}
-                                                        alt="Delete"
-                                                        width={24}
-                                                        height={24}
-                                                        className="cursor-pointer h-5 w-5 sm:h-6 sm:w-6"
-                                                    />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                                <td className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 pr-6 whitespace-nowrap">
+                                                    <StatusPill status={user.status} />
+                                                </td>
 
-                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end border-t border-neutral-100 px-2 sm:px-6 py-4 mt-2">
+                                                <td className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 pr-6">
+                                                    <div className="flex items-center gap-2 sm:gap-4">
+                                                        <Link href={`/users/edit/${user.id}`}>
+                                                            <button className="text-neutral-400 hover:text-brand-500 mt-2 transition-colors">
+                                                                <Image
+                                                                    src={editIcon}
+                                                                    alt="Edit"
+                                                                    width={24}
+                                                                    height={24}
+                                                                    className="cursor-pointer h-5 w-5 sm:h-6 sm:w-6"
+                                                                />
+                                                            </button>
+                                                        </Link>
+                                                        <button
+                                                            onClick={() => {
+                                                                setUserToDelete(user.id);
+                                                                setDeleteModalOpen(true);
+                                                            }}
+                                                            className="text-neutral-400 hover:text-red-500 transition-colors"
+                                                        >
+                                                            <Image
+                                                                src={deleteIcon}
+                                                                alt="Delete"
+                                                                width={24}
+                                                                height={24}
+                                                                className="cursor-pointer h-5 w-5 sm:h-6 sm:w-6"
+                                                            />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
                             <div className="flex items-center gap-2">
                                 <span className="text-[12px] sm:text-[14px] text-neutral-500">
                                     Rows per page:
                                 </span>
-                                <select className="rounded-lg border border-neutral-200 bg-white px-2 py-1 text-[12px] sm:text-[14px] text-neutral-900 outline-none">
+                                <select className="rounded-lg border border-[#E2E8F0] bg-white px-2 py-1 text-[12px] sm:text-[14px] text-neutral-900 outline-none">
                                     <option>5</option>
                                     <option>10</option>
                                     <option>20</option>
@@ -492,7 +502,7 @@ export default function UsersPage() {
                             <button
                                 type="button"
                                 onClick={() => { setDeleteModalOpen(false); setUserToDelete(null); }}
-                                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054]"
+                                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054] overflow-hidden"
                             >
                                 Cancel
                             </button>
@@ -507,6 +517,11 @@ export default function UsersPage() {
                     </div>
                 </div>
             )}
+            <Toast
+                show={showToast}
+                message="User Created Successfully!"
+                onClose={() => setShowToast(false)}
+            />
         </DashboardLayout>
     );
 }

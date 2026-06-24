@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -43,16 +43,16 @@ export default function LoginForm() {
     setIsSubmitting(true);
     await new Promise((resolve) => window.setTimeout(resolve, 900));
     setIsSubmitting(false);
-    router.push("/dashboard");
+    router.push("/selection");
   }
 
   return (
     <div className="w-full max-w-[37.5rem] rounded-[2rem] px-6 py-7 xl:px-8 xl:py-9">
       <div className="text-center">
-        <h1 className="xl:text-[32px] text-[30px] font-black tracking-[-0.05em] text-neutral-900">
+        <h1 className="xl:text-[32px] text-[30px] font-black text-neutral-900">
           Welcome Back
         </h1>
-        <p className="2xl:mt-3 mt-1 xl:text-[16px] text-[14px] font-normal tracking-tight text-[#98A2B3]">
+        <p className="2xl:mt-3 mt-1 xl:text-[16px] text-[14px] font-normal text-[#98A2B3]">
           Manage schedules and teams in one place.
         </p>
       </div>

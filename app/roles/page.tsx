@@ -12,6 +12,9 @@ import appRectangleIcon from "@/assets/images/icons/apps-rectangle.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import deleteRedIcon from "@/assets/images/icons/delete-popup.svg";
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 export default function RolesPage() {
   const { roles, removeRole } = useRoles();
@@ -28,10 +31,10 @@ export default function RolesPage() {
 
   return (
     <DashboardLayout title="Roles" subtitle="Home/ Roles List">
-      <div className="flex-1 p-4 2xl:p-6">
-        <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
-            <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">
+      <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+        <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+            <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">
               Roles List
             </h2>
 
@@ -45,12 +48,12 @@ export default function RolesPage() {
                   className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                 />
                 <input
-                  className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-1.5 md:py-2.5 md:pl-11 pl-8 pr-4 text-sm"
+                  className="w-full rounded-xl border border-[#E2E8F0] bg-neutral-50 py-1.5 md:py-2.5 md:pl-11 pl-8 pr-4 text-sm"
                   placeholder="Search Role"
                 />
               </div>
 
-              <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
+              <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50">
                 <Image
                   src={filterIcon}
                   alt="Filter"
@@ -60,7 +63,7 @@ export default function RolesPage() {
                 />
               </button>
 
-              <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
+              <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50">
                 <Image
                   src={appRectangleIcon}
                   alt="Grid View"
@@ -82,75 +85,79 @@ export default function RolesPage() {
             </div>
           </div>
 
-          <div className="overflow-x-auto p-3 2xl:p-6">
-            <table className="min-w-full w-full text-left">
-              <thead className="bg-white">
-                <tr>
-                  <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pl-6 pl-3 lg:pr-4 pr-10 text-[12px] sm:text-[14px] 2xl:text-[15px] font-semibold text-neutral-900 whitespace-nowrap">
-                    Role Name
-                  </th>
-                  <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] 2xl:text-[15px] font-semibold text-neutral-900 whitespace-nowrap">
-                    Description
-                  </th>
-                  <th className="border-b border-[#D0D5DD] py-3 sm:py-4 lg:pr-4 pr-10 text-[12px] sm:text-[14px] 2xl:text-[15px] font-semibold text-neutral-900 whitespace-nowrap">
-                    Number of Users
-                  </th>
-                  <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] 2xl:text-[15px] font-semibold text-neutral-900 whitespace-nowrap w-[120px]">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {roles.map((role) => (
-                  <tr key={role.id} className="group transition-colors hover:bg-neutral-50 border-b border-neutral-100 last:border-0">
-                    <td className="py-3 sm:py-4 2xl:pl-6 pl-3 lg:pr-4 pr-10 text-[12px] sm:text-[13px] 2xl:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
-                      {role.name}
-                    </td>
-                    <td className="py-3 sm:py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-normal text-neutral-600">
-                      {role.description}
-                    </td>
-                    <td className="py-3 sm:py-4 pr-4 text-[12px] sm:text-[13px] 2xl:text-[14px] font-normal text-neutral-900 whitespace-nowrap">
-                      {role.userCount} users
-                    </td>
-                    <td className="py-3 sm:py-4 pr-4">
-                      <div className="flex items-center gap-2 sm:gap-3">
-                        <button className="text-neutral-400 hover:text-brand-500 transition-colors">
-                          <Image
-                            src={editIcon}
-                            alt="Edit"
-                            width={20}
-                            height={20}
-                            className="pointer-events-none opacity-60 hover:opacity-100"
-                          />
-                        </button>
-                        <button
-                          onClick={() => {
-                            setRoleToDelete(role.id);
-                            setDeleteModalOpen(true);
-                          }}
-                          className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer"
-                        >
-                          <Image
-                            src={deleteIcon}
-                            alt="Delete"
-                            width={20}
-                            height={20}
-                            className="pointer-events-none opacity-60 hover:opacity-100"
-                          />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-                {roles.length === 0 && (
-                  <tr>
-                    <td colSpan={4} className="py-8 text-center text-sm text-neutral-500">
-                      No roles found.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+          <div className="p-3 2xl:p-6">
+            <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="min-w-[800px] w-full text-left border-collapse">
+                  <thead className="bg-[#F2F4F7]">
+                    <tr>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                        Role Name
+                      </th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                        Description
+                      </th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                        Number of Users
+                      </th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#2E334E] whitespace-nowrap w-[120px]">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white">
+                    {roles.map((role) => (
+                      <tr key={role.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-0">
+                        <td className="px-4 py-6 sm:px-6 text-[14px] font-medium text-[#111827] whitespace-nowrap">
+                          {role.name}
+                        </td>
+                        <td className="px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827]">
+                          {role.description}
+                        </td>
+                        <td className="px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827] whitespace-nowrap">
+                          {role.userCount} users
+                        </td>
+                        <td className="px-4 py-6 sm:px-6">
+                          <div className="flex items-center gap-3">
+                            <button className="text-[#111827] hover:text-brand-500">
+                              <Image
+                                src={editIcon}
+                                alt="Edit"
+                                width={20}
+                                height={20}
+                                className="opacity-60 hover:opacity-100 cursor-pointer"
+                              />
+                            </button>
+                            <button
+                              onClick={() => {
+                                setRoleToDelete(role.id);
+                                setDeleteModalOpen(true);
+                              }}
+                              className="text-[#111827] hover:text-red-500 cursor-pointer"
+                            >
+                              <Image
+                                src={deleteIcon}
+                                alt="Delete"
+                                width={20}
+                                height={20}
+                                className="opacity-60 hover:opacity-100 cursor-pointer"
+                              />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                    {roles.length === 0 && (
+                      <tr>
+                        <td colSpan={4} className="py-8 text-center text-sm text-neutral-500">
+                          No roles found.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -172,7 +179,7 @@ export default function RolesPage() {
                   setDeleteModalOpen(false);
                   setRoleToDelete(null);
                 }}
-                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054] transition hover:bg-neutral-50"
+                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054] transition hover:bg-neutral-50 overflow-hidden"
               >
                 Cancel
               </button>

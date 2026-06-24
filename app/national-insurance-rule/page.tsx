@@ -6,6 +6,9 @@ import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 interface TaxRule {
     id: number;
@@ -64,7 +67,7 @@ export default function NationalInsuranceRulePage() {
     };
 
     const breadcrumb = (
-        <span className="text-[#98A2B3]">
+        <span className={`${lexendDeca.className} text-[#98A2B3]`}>
             <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <span className="text-neutral-900">National Insurance Rule</span>
@@ -73,61 +76,68 @@ export default function NationalInsuranceRulePage() {
 
     return (
         <DashboardLayout title="National Insurance" subtitle={breadcrumb}>
-            <div className="flex-1 p-4 2xl:p-6">
-                <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    <div className="flex lg:flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
-                        <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">National Insurance Rule</h2>
+            <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                    <div className="flex lg:flex-wrap items-center justify-between px-6 pt-6">
+                        <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">National Insurance Categories</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <div className="relative">
+                            <p className="text-[14px] text-[#111827]">Tax Year</p>
                                 <select
-                                    className="h-[40px] appearance-none rounded-xl border border-[#D0D5DD] bg-white px-4 pr-10 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                    className="h-[40px] appearance-none rounded-xl border border-[#344054] bg-white px-4 pr-10 mt-2 text-[14px] text-[#344054] outline-none transition overflow-hidden"
                                 >
                                     <option>2025/2026</option>
                                     <option>2024/2025</option>
+                                    <option>2023/2024</option>
+                                    <option>2022/2023</option>
                                 </select>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-3 top-[72%] -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
                             </div>
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto p-3 2xl:p-6">
-                        <table className="min-w-[900px] w-full text-left">
-                            <thead className="bg-[#F8FAFC]">
-                                <tr>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pl-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900 rounded-l-lg">NI Category</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Description</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Lower Threshold($)</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Upper Threshold($)</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Employee rate (%)</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Employer Rate(%)</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900 rounded-r-lg text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {rules.map((rule) => (
-                                    <tr key={rule.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#F1F5F9] last:border-none">
-                                        <td className="py-4 pl-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{rule.niCategory}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{rule.description}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{rule.lowerThreshold}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{rule.upperThreshold}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{rule.employeeRate}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{rule.employerRate}</td>
+                    <div className="p-3 2xl:p-6">
+                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                            <div className="overflow-x-auto">
+                                <table className="min-w-[900px] w-full text-left border-collapse">
+                                    <thead className="bg-[#F8F9FC]">
+                                        <tr>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] rounded-l-lg">NI Category</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Description</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Lower Threshold($)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Upper Threshold($)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Employee rate (%)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Employer Rate(%)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white">
+                                        {rules.map((rule) => (
+                                            <tr key={rule.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
+                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{rule.niCategory}</td>
+                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{rule.description}</td>
+                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{rule.lowerThreshold}</td>
+                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{rule.upperThreshold}</td>
+                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{rule.employeeRate}</td>
+                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{rule.employerRate}</td>
 
-                                        <td className="py-4 pr-6">
-                                            <div className="flex items-center justify-center gap-3">
-                                                <button onClick={() => openEditModal(rule)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
-                                                    <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
-                                                </button>
-                                                <button onClick={() => { setRuleToDelete(rule.id); setIsDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
-                                                    <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none" />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                                <td className="px-4 py-6 sm:px-6">
+                                                    <div className="flex items-center justify-center gap-3">
+                                                        <button onClick={() => openEditModal(rule)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
+                                                            <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
+                                                        </button>
+                                                        <button onClick={() => { setRuleToDelete(rule.id); setIsDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
+                                                            <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none" />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,7 +153,7 @@ export default function NationalInsuranceRulePage() {
                             <p className="text-sm text-neutral-500">Are you sure you want to delete this national insurance rule? This action cannot be undone.</p>
                         </div>
                         <div className="flex gap-3">
-                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-neutral-200 px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
+                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
                             <button onClick={handleDelete} className="flex-1 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-700 cursor-pointer">Delete</button>
                         </div>
                     </div>

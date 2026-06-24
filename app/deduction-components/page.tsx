@@ -7,6 +7,9 @@ import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import searchIcon from "@/assets/images/icons/search.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 interface DeductionComponent {
     id: number;
@@ -32,7 +35,7 @@ export default function DeductionComponentsPage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [deductions, setDeductions] = useState<DeductionComponent[]>(initialDeductions);
     const [searchQuery, setSearchQuery] = useState("");
-    
+
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_deduction_components");
         if (stored) {
@@ -55,7 +58,7 @@ export default function DeductionComponentsPage() {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [deductionToDelete, setDeductionToDelete] = useState<number | null>(null);
 
-    const filteredDeductions = deductions.filter(d => 
+    const filteredDeductions = deductions.filter(d =>
         d.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -68,13 +71,13 @@ export default function DeductionComponentsPage() {
     };
 
     const toggleApplicable = (id: number) => {
-        setDeductions(deductions.map(d => 
+        setDeductions(deductions.map(d =>
             d.id === id ? { ...d, applicable: !d.applicable } : d
         ));
     };
 
     const breadcrumb = (
-        <span className="text-[#98A2B3]">
+        <span className={`${lexendDeca.className} text-[#98A2B3]`}>
             <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <span className="text-neutral-900">Deduction Components</span>
@@ -83,10 +86,10 @@ export default function DeductionComponentsPage() {
 
     return (
         <DashboardLayout title="Deduction Components" subtitle={breadcrumb}>
-            <div className="flex-1 p-4 2xl:p-6">
-                <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
-                        <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Deduction Components</h2>
+            <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                    <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+                        <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Deduction Components</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <div className="relative 2xl:w-75 md:w-60 w-32">
@@ -98,7 +101,7 @@ export default function DeductionComponentsPage() {
                                     className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                                 />
                                 <input
-                                    className="w-full rounded-xl border border-neutral-200 bg-white py-1.5 md:py-2.5 pl-11 pr-4 text-sm outline-none focus:border-[#257BFC]"
+                                    className="w-full rounded-xl border border-[#E2E8F0] bg-white py-1.5 md:py-2.5 pl-11 pr-4 text-sm outline-none focus:border-[#257BFC] overflow-hidden"
                                     placeholder="Search..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -115,48 +118,53 @@ export default function DeductionComponentsPage() {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto p-3 2xl:p-6">
-                        <table className="min-w-[1100px] w-full text-left">
-                            <thead className="bg-[#F8FAFC]">
-                                <tr>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pl-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900 rounded-l-lg">Deduction Name</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Type</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Rate</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Applicable Rules</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900 rounded-r-lg">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredDeductions.map((deduction) => (
-                                    <tr key={deduction.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#F1F5F9] last:border-none">
-                                        <td className="py-4 pl-4 pr-26 text-[13px] sm:text-[14px] font-medium text-neutral-900">{deduction.name}</td>
-                                        <td className="py-4 pr-26 text-[13px] sm:text-[14px] font-medium text-neutral-900">{deduction.type}</td>
-                                        <td className="py-4 pr-26 text-[13px] sm:text-[14px] font-medium text-neutral-900">{deduction.rate}</td>
-                                        <td className="py-4 pr-26 text-[13px] sm:text-[14px] text-neutral-900">
-                                            <div className="flex items-start gap-2 max-w-[500px]">
-                                                <input 
-                                                    type="checkbox" 
-                                                    checked={deduction.applicable} 
-                                                    onChange={() => toggleApplicable(deduction.id)}
-                                                    className="mt-1 h-4 w-4 rounded border-[#D0D5DD] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer flex-shrink-0"
-                                                />
-                                                <span className="leading-snug">{deduction.rules}</span>
-                                            </div>
-                                        </td>
-                                        <td className="py-4 pr-6">
-                                            <div className="flex items-center gap-3">
-                                                <button className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
-                                                    <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
-                                                </button>
-                                                <button onClick={() => { setDeductionToDelete(deduction.id); setIsDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
-                                                    <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none" />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+
+                    <div className="p-3 2xl:p-6">
+                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                            <div className="overflow-x-auto">
+                                <table className="min-w-[1100px] w-full text-left border-collapse">
+                                    <thead className="bg-[#F8F9FC]">
+                                        <tr>
+                                            <th className="border-b border-[#E2E8F0] py-[10px] pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] rounded-l-lg">Deduction Name</th>
+                                            <th className="border-b border-[#E2E8F0] py-[10px] pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Type</th>
+                                            <th className="border-b border-[#E2E8F0] py-[10px] pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Rate</th>
+                                            <th className="border-b border-[#E2E8F0] py-[10px] pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Applicable Rules</th>
+                                            <th className="border-b border-[#E2E8F0] px-6 py-[10px] pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] rounded-r-lg">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white">
+                                        {filteredDeductions.map((deduction) => (
+                                            <tr key={deduction.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
+                                                <td className="py-6 pl-4 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.name}</td>
+                                                <td className="py-6 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.type}</td>
+                                                <td className="py-6 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.rate}</td>
+                                                <td className="py-6 pr-26 text-[13px] sm:text-[14px] text-[#111827]">
+                                                    <div className="flex items-start gap-2 max-w-[500px]">
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={deduction.applicable}
+                                                            onChange={() => toggleApplicable(deduction.id)}
+                                                            className="mt-1 h-4 w-4 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer flex-shrink-0"
+                                                        />
+                                                        <span className="leading-snug">{deduction.rules}</span>
+                                                    </div>
+                                                </td>
+                                                <td className="px-4 py-4 sm:px-6">
+                                                    <div className="flex items-center gap-3">
+                                                        <button className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
+                                                            <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
+                                                        </button>
+                                                        <button onClick={() => { setDeductionToDelete(deduction.id); setIsDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
+                                                            <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none" />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -165,7 +173,7 @@ export default function DeductionComponentsPage() {
             {isAddModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-neutral-200 px-8 py-6">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] px-8 py-6">
                             <h2 className="text-[24px] font-bold text-[#1D2939]">
                                 Add Deduction Component
                             </h2>
@@ -188,7 +196,7 @@ export default function DeductionComponentsPage() {
                                     <input
                                         type="text"
                                         placeholder="e.g. PAYE, Pension"
-                                        className="h-[52px] w-full rounded-2xl border border-[#D0D5DD] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                        className="h-[52px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
                                     />
                                 </div>
 
@@ -198,7 +206,7 @@ export default function DeductionComponentsPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC]">
+                                        <select className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC] overflow-hidden">
                                             <option>Select Type</option>
                                             <option>Statutory</option>
                                             <option>Custom</option>
@@ -216,7 +224,7 @@ export default function DeductionComponentsPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select className="h-[52px] w-full appearance-none rounded-2xl border border-[#D0D5DD] bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC]">
+                                        <select className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC] overflow-hidden">
                                             <option>Select Method Type</option>
                                             <option>Percentage</option>
                                             <option>Fixed Amount</option>
@@ -236,10 +244,10 @@ export default function DeductionComponentsPage() {
                                     <input
                                         type="text"
                                         placeholder="Select Type"
-                                        className="h-[52px] w-full rounded-2xl border border-[#D0D5DD] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                        className="h-[52px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
                                     />
                                 </div>
-                                
+
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Applicable Rules
@@ -247,7 +255,7 @@ export default function DeductionComponentsPage() {
 
                                     <textarea
                                         placeholder="Describe the rules and conditions for this deduction..."
-                                        className="h-[120px] w-full resize-none rounded-2xl border border-[#D0D5DD] p-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                        className="h-[120px] w-full resize-none rounded-2xl border border-[#E2E8F0] p-4 text-[14px] outline-none transition focus:border-[#257BFC]"
                                     />
                                 </div>
                             </div>
@@ -280,7 +288,7 @@ export default function DeductionComponentsPage() {
                             <p className="text-sm text-neutral-500">Are you sure you want to delete this deduction? This action cannot be undone.</p>
                         </div>
                         <div className="flex gap-3">
-                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-neutral-200 px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
+                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
                             <button onClick={handleDelete} className="flex-1 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-700 cursor-pointer">Delete</button>
                         </div>
                     </div>
