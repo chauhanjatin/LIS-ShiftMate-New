@@ -5,6 +5,7 @@ import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import { useRouter } from "next/navigation";
 import { useRoles } from "@/hooks/useRoles";
 import { RolePermissions } from "@/Data/roles";
+import Toast from '@/Component/UI/Toast';
 
 const PERMISSION_MODULES = [
   "Employee Management",
@@ -25,6 +26,7 @@ export default function AddRolePage() {
   const [roleName, setRoleName] = useState("");
   const [description, setDescription] = useState("");
   const [permissions, setPermissions] = useState<RolePermissions>({});
+  const [showToast, setShowToast] = useState(false);
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -66,13 +68,16 @@ export default function AddRolePage() {
       permissions,
     });
 
-    router.push("/roles");
+    setShowToast(true);
+    setTimeout(() => {
+      router.push("/roles");
+    }, 2000);
   };
 
   return (
     <DashboardLayout title="Roles" subtitle="Home/ Roles List/ Add Role">
       <div className="flex-1 p-4 2xl:p-6 h-full flex flex-col">
-        <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-2 shadow-sm flex-1 flex flex-col xl:flex-row gap-6">
+        <div className="rounded-2xl border border-[#E2E8F0] bg-white md:p-8 p-2 shadow-sm flex-1 flex flex-col xl:flex-row gap-6 overflow-hidden">
           
           <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-2xl lg:p-6 p-3">
             <h2 className="text-[20px] font-bold text-neutral-900 mb-2">Create New Role</h2>
@@ -90,7 +95,7 @@ export default function AddRolePage() {
                     type="text"
                     value={roleName}
                     onChange={(e) => { setRoleName(e.target.value); setErrors(prev => ({...prev, roleName: ""})); }}
-                    className={`w-full rounded-xl border ${errors.roleName ? 'border-red-500' : 'border-neutral-200'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white`}
+                    className={`w-full rounded-xl border ${errors.roleName ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white`}
                     placeholder="e.g. Senior Manager"
                   />
                   {errors.roleName && <p className="text-red-500 text-xs mt-1">{errors.roleName}</p>}
@@ -102,7 +107,7 @@ export default function AddRolePage() {
                     value={description}
                     onChange={(e) => { setDescription(e.target.value); setErrors(prev => ({...prev, description: ""})); }}
                     rows={4}
-                    className={`w-full rounded-xl border ${errors.description ? 'border-red-500' : 'border-neutral-200'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white resize-none`}
+                    className={`w-full rounded-xl border ${errors.description ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white resize-none`}
                     placeholder="Responsible for team management and project oversight"
                   />
                   {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description}</p>}
@@ -116,36 +121,36 @@ export default function AddRolePage() {
             
             <div className="flex-1 overflow-x-auto overflow-y-auto">
               <table className="min-w-[800px] w-full text-left border-collapse">
-                <thead className="bg-[#F8FAFC]">
+                <thead className="bg-white">
                   <tr>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-neutral-200 rounded-tl-xl w-[220px]">
+                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] rounded-tl-xl w-[220px]">
                       Role Name
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-neutral-200 text-center">
+                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center">
                       View
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-neutral-200 text-center">
+                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center">
                       Create
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-neutral-200 text-center">
+                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center">
                       Edit
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-neutral-200 text-center">
+                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center">
                       Delete
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-neutral-200 text-center">
+                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center">
                       Approve
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-neutral-200 text-center rounded-tr-xl">
+                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center rounded-tr-xl">
                       Export
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="bg-white">
                   {PERMISSION_MODULES.map((module, idx) => {
                     const modPerms = permissions[module] || {};
                     return (
-                      <tr key={module} className={`border-b border-neutral-100 last:border-0 ${idx % 2 === 0 ? 'bg-white' : 'bg-[#FAFAFA]'}`}>
+                      <tr key={module} className={`border-b border-[#E2E8F0] last:border-0 ${idx % 2 === 0 ? 'bg-white' : 'bg-[#FAFAFA]'}`}>
                         <td className="py-4 px-4 text-[13px] font-medium text-neutral-900">
                           {module}
                         </td>
@@ -209,10 +214,10 @@ export default function AddRolePage() {
               </table>
             </div>
             
-            <div className="flex items-center justify-end gap-4 pt-6 mt-4 border-t border-neutral-100">
+            <div className="flex items-center justify-end gap-4 pt-6 mt-4 border-t border-[#E2E8F0]">
               <button 
                 onClick={() => router.push('/roles')}
-                className="px-6 py-2.5 rounded-xl cursor-pointer border border-neutral-300 bg-white text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition"
+                className="px-6 py-2.5 rounded-xl cursor-pointer border border-neutral-300 bg-white text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition overflow-hidden"
               >
                 Cancel
               </button>
@@ -227,6 +232,11 @@ export default function AddRolePage() {
 
         </div>
       </div>
+      <Toast
+        show={showToast}
+        message="Role Created Successfully!"
+        onClose={() => setShowToast(false)}
+      />
     </DashboardLayout>
   );
 }

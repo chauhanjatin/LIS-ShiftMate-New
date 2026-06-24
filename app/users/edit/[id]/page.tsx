@@ -6,6 +6,7 @@ import Link from "next/link";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import { User, UserStatus } from "@/Data/users";
 import { useUsers } from "@/hooks/useUsers";
+import Toast from '@/Component/UI/Toast';
 
 export default function EditUserPage({ params }: { params: Promise<{ id: string }> }) {
     const router = useRouter();
@@ -21,6 +22,7 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
     const [company, setCompany] = useState("");
     const [department, setDepartment] = useState("");
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
+    const [showToast, setShowToast] = useState(false);
     const { getUser, updateUser, users } = useUsers();
 
     useEffect(() => {
@@ -62,7 +64,10 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
             status: selectedStatus || user.status,
         });
         
-        router.push('/users');
+        setShowToast(true);
+        setTimeout(() => {
+            router.push('/users');
+        }, 2000);
     };
 
     const breadcrumb = (
@@ -252,19 +257,27 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                                         <div
                                             key={status.value}
                                             onClick={() => setSelectedStatus(status.value)}
-                                            className={`cursor-pointer rounded-2xl border p-4 transition-all ${selectedStatus === status.value
-                                                ? "border-[#4DB949] bg-[#F5FCF5]"
-                                                : "border-neutral-200 bg-white hover:border-neutral-300"
-                                                }`}
+                                            className={`cursor-pointer rounded-2xl border p-4 transition-all ${
+                                                selectedStatus === status.value
+                                                    ? status.value === "Active" ? "border-[#4DB949] bg-[#F5FCF5]" :
+                                                      status.value === "Inactive" ? "border-[#07265C] bg-[#EAF2FF]" :
+                                                      status.value === "Pending" ? "border-[#FFA100] bg-[#FFF6E8]" :
+                                                      "border-[#EE5340] bg-[#FEE2E2]"
+                                                    : "border-neutral-200 bg-white hover:border-neutral-300"
+                                            }`}
                                         >
-                                            <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${selectedStatus === status.value
-                                                ? "bg-[#4DB949] text-white"
-                                                : "bg-[#F1F5F9] text-[#94A3B8]"
-                                                }`}>
+                                            <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${
+                                                selectedStatus === status.value
+                                                    ? status.value === "Active" ? "bg-[#4DB949] text-white" :
+                                                      status.value === "Inactive" ? "bg-[#07265C] text-white" :
+                                                      status.value === "Pending" ? "bg-[#FFA100] text-white" :
+                                                      "bg-[#EE5340] text-white"
+                                                    : "bg-[#F1F5F9] text-[#94A3B8]"
+                                            }`}>
                                                 {status.icon}
                                             </div>
-                                            <h4 className="text-[15px] font-semibold text-neutral-900">{status.label}</h4>
-                                            <p className="mt-1 text-[12px] text-neutral-500">{status.desc}</p>
+                                            <h4 className="text-[18px] font-medium text-[#111827]">{status.label}</h4>
+                                            <p className="mt-2 text-[14px] font-normal text-[#98A2B3]">{status.desc}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -288,6 +301,11 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                     </div>
                 </div>
             </div>
+            <Toast
+                show={showToast}
+                message="User Updated Successfully!"
+                onClose={() => setShowToast(false)}
+            />
         </DashboardLayout>
     );
 }

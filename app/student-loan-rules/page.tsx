@@ -4,8 +4,12 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
+import Toast from '@/Component/UI/Toast';
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 interface LoanPlan {
     id: number;
@@ -30,6 +34,7 @@ export default function StudentLoanRulesPage() {
     const [selectedPlan, setSelectedPlan] = useState<LoanPlan | null>(null);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [planToDelete, setPlanToDelete] = useState<number | null>(null);
+    const [showToast, setShowToast] = useState(false);
 
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_student_loan_rules");
@@ -79,6 +84,7 @@ export default function StudentLoanRulesPage() {
 
         if (isEditModalOpen && selectedPlan) {
             setPlans(plans.map(p => p.id === selectedPlan.id ? { ...p, ...planData } : p));
+            setShowToast(true);
         } else {
             const newId = plans.length > 0 ? Math.max(...plans.map(p => p.id)) + 1 : 1;
             setPlans([...plans, { id: newId, ...planData }]);
@@ -89,7 +95,7 @@ export default function StudentLoanRulesPage() {
     };
 
     const breadcrumb = (
-        <span className="text-[#98A2B3]">
+        <span className={`${lexendDeca.className} text-[#98A2B3]`}>
             <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <span className="text-neutral-900">Student Loan Rules</span>
@@ -98,10 +104,10 @@ export default function StudentLoanRulesPage() {
 
     return (
         <DashboardLayout title="Student Loan Rules" subtitle={breadcrumb}>
-            <div className="flex-1 p-4 2xl:p-6">
-                <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                    <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
-                        <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Student Loan Plans</h2>
+            <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                    <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+                        <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">Student Loan Plans</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <button onClick={openAddModal} className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
@@ -111,39 +117,43 @@ export default function StudentLoanRulesPage() {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto p-3 2xl:p-6">
-                        <table className="min-w-[900px] w-full text-left">
-                            <thead className="bg-[#F8FAFC]">
-                                <tr>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pl-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900 rounded-l-lg">Plan Type</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Description</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Repayment Threshold($)</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Deduction Percentage</th>
-                                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900 text-center rounded-r-lg">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {plans.map((plan) => (
-                                    <tr key={plan.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#F1F5F9] last:border-none">
-                                        <td className="py-4 pl-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{plan.planType}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{plan.description}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{plan.threshold}</td>
-                                        <td className="py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{plan.deduction}</td>
+                    <div className="p-3 2xl:p-6">
+                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                            <div className="overflow-x-auto">
+                                <table className="min-w-[900px] w-full text-left border-collapse">
+                                    <thead className="bg-[#F8F9FC]">
+                                        <tr>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] rounded-l-lg">Plan Type</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Description</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Repayment Threshold($)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Deduction Percentage</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] text-center rounded-r-lg">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white">
+                                        {plans.map((plan) => (
+                                            <tr key={plan.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
+                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{plan.planType}</td>
+                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{plan.description}</td>
+                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{plan.threshold}</td>
+                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{plan.deduction}</td>
 
-                                        <td className="py-4 pr-6">
-                                            <div className="flex items-center justify-center gap-3">
-                                                <button onClick={() => openEditModal(plan)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
-                                                    <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
-                                                </button>
-                                                <button onClick={() => { setPlanToDelete(plan.id); setIsDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
-                                                    <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none" />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                                <td className="px-4 py-6 sm:px-6">
+                                                    <div className="flex items-center justify-center gap-3">
+                                                        <button onClick={() => openEditModal(plan)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
+                                                            <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
+                                                        </button>
+                                                        <button onClick={() => { setPlanToDelete(plan.id); setIsDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
+                                                            <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none" />
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,7 +162,7 @@ export default function StudentLoanRulesPage() {
             {(isAddModalOpen || isEditModalOpen) && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-neutral-200 md:px-8 px-6 md:py-6 py-4">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] md:px-8 px-6 md:py-6 py-4">
                             <h2 className="md:text-[24px] text-[20px] font-bold text-[#1D2939]">
                                 {isAddModalOpen ? 'Create Student Loan Rule' : 'Edit Student Loan Rule'}
                             </h2>
@@ -177,7 +187,7 @@ export default function StudentLoanRulesPage() {
                                         type="text"
                                         placeholder="Enter Plan Type"
                                         defaultValue={selectedPlan?.planType || ""}
-                                        className="md:h-[52px] h-[40px] w-full rounded-2xl border border-[#D0D5DD] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                        className="md:h-[52px] h-[40px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
                                         required
                                     />
                                 </div>
@@ -191,7 +201,7 @@ export default function StudentLoanRulesPage() {
                                         type="text"
                                         placeholder="Enter Description"
                                         defaultValue={selectedPlan?.description || ""}
-                                        className="md:h-[52px] h-[40px] w-full rounded-2xl border border-[#D0D5DD] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                        className="md:h-[52px] h-[40px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
                                         required
                                     />
                                 </div>
@@ -205,7 +215,7 @@ export default function StudentLoanRulesPage() {
                                         type="text"
                                         placeholder="Enter Repayment Threshold($)"
                                         defaultValue={selectedPlan?.threshold || ""}
-                                        className="md:h-[52px] h-[40px] w-full rounded-2xl border border-[#D0D5DD] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                        className="md:h-[52px] h-[40px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
                                         required
                                     />
                                 </div>
@@ -219,7 +229,7 @@ export default function StudentLoanRulesPage() {
                                         type="text"
                                         placeholder="Enter Deduction Percentage"
                                         defaultValue={selectedPlan?.deduction || ""}
-                                        className="md:h-[52px] h-[40px] w-full rounded-2xl border border-[#D0D5DD] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                        className="md:h-[52px] h-[40px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
                                         required
                                     />
                                 </div>
@@ -228,13 +238,13 @@ export default function StudentLoanRulesPage() {
                             <div className="mt-10 flex items-center justify-end md:gap-4 gap-3">
                                 <button
                                     onClick={() => { setIsAddModalOpen(false); setIsEditModalOpen(false); }}
-                                    className="md:h-[48px] h-[40px] rounded-2xl border border-[#D0D5DD] md:px-8 px-5 md:text-[15px] text-[14px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
+                                    className="md:h-[48px] h-[40px] rounded-2xl border border-[#E2E8F0] md:px-8 px-5 md:text-[15px] text-[14px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
 
-                                <button 
-                                    type="submit" 
+                                <button
+                                    type="submit"
                                     className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-5 md:text-[15px] text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
                                 >
                                     {isAddModalOpen ? 'Add Plan' : 'Save Change'}
@@ -256,12 +266,17 @@ export default function StudentLoanRulesPage() {
                             <p className="text-sm text-neutral-500">Are you sure you want to delete this loan plan? This action cannot be undone.</p>
                         </div>
                         <div className="flex gap-3">
-                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-neutral-200 px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
+                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
                             <button onClick={handleDelete} className="flex-1 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-700 cursor-pointer">Delete</button>
                         </div>
                     </div>
                 </div>
             )}
+            <Toast
+                show={showToast}
+                message="Student Loan Rule Updated Successfully"
+                onClose={() => setShowToast(false)}
+            />
         </DashboardLayout>
     );
 }

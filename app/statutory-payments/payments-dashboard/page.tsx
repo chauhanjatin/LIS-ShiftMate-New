@@ -8,6 +8,10 @@ import sickpay from "@/assets/images/icons/sick-pay.svg";
 import maternitypay from "@/assets/images/icons/maternity-pay.svg";
 import paternitypay from "@/assets/images/icons/paternity-pay.svg";
 import adoptionpay from "@/assets/images/icons/adoption-pay.svg";
+import viewIcon from "@/assets/images/icons/eye-view.svg";
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 interface ActivePayment {
   id: string;
@@ -30,7 +34,7 @@ const mockPayments: ActivePayment[] = [
 
 function MetricCard({ title, value, iconClass, icon }: { title: string, value: string, iconClass: string, icon: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-xl border border-[#D0D5DD] bg-white p-5">
+    <div className="flex items-center justify-between gap-4 rounded-xl border border-[#E2E8F0] bg-white p-5 overflow-hidden">
       <div className="space-y-1">
         <p className="text-[32px] font-bold tracking-tight text-neutral-900 leading-tight">{value}</p>
         <p className="text-[13px] font-bold text-neutral-700">{title}</p>
@@ -46,7 +50,7 @@ export default function PaymentsDashboardPage() {
   const [payments] = useState<ActivePayment[]>(mockPayments);
 
   const breadcrumb = (
-    <span className="text-[#98A2B3]">
+    <span className={`${lexendDeca.className} text-[#98A2B3]`}>
       <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Statutory Payments</span>
@@ -67,86 +71,88 @@ export default function PaymentsDashboardPage() {
 
   return (
     <DashboardLayout title="Payments Dashboard" subtitle={breadcrumb}>
-      <div className="flex-1 p-4 2xl:p-6">
-        <div className="rounded-2xl bg-white shadow-sm p-6 2xl:p-8 min-h-[800px]">
-          <h2 className="text-[20px] font-bold text-neutral-900 mb-6">Payments Dashboard</h2>
-          
+      <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+        <div className="rounded-2xl bg-white shadow-sm px-6 pt-6 min-h-[800px]">
+          <h2 className="text-[20px] font-medium text-[#111827] mb-6">Payments Dashboard</h2>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-            <MetricCard 
-              title="Statutory Sick Pay" 
-              value="12" 
-              iconClass="bg-[#257BFC]" 
+            <MetricCard
+              title="Statutory Sick Pay"
+              value="12"
+              iconClass="bg-[#257BFC]"
               icon={<Image src={sickpay} alt="" />}
             />
-            <MetricCard 
-              title="Statutory Maternity Pay" 
-              value="05" 
-              iconClass="bg-[#4DB949]" 
+            <MetricCard
+              title="Statutory Maternity Pay"
+              value="05"
+              iconClass="bg-[#4DB949]"
               icon={<Image src={maternitypay} alt="" />}
             />
-            <MetricCard 
-              title="Statutory Paternity Pay" 
-              value="06" 
-              iconClass="bg-[#FFA100]" 
+            <MetricCard
+              title="Statutory Paternity Pay"
+              value="06"
+              iconClass="bg-[#FFA100]"
               icon={<Image src={paternitypay} alt="" />}
             />
-            <MetricCard 
-              title="Statutory Adoption Pay" 
+            <MetricCard
+              title="Statutory Adoption Pay"
               value="02"
-              iconClass="bg-[#8B5CF6]" 
+              iconClass="bg-[#8B5CF6]"
               icon={<Image src={adoptionpay} alt="" />}
             />
           </div>
 
           <h2 className="text-[18px] font-bold text-neutral-900 mb-6">Active Payments</h2>
 
-          <div className="overflow-x-auto">
-            <table className="min-w-[1000px] w-full text-left border-separate border-spacing-y-0">
-              <thead>
-                <tr>
-                  <th className="border-b border-[#E2E8F0] pb-4 pl-4 pr-4 text-[13px] font-semibold text-neutral-900">Employee</th>
-                  <th className="border-b border-[#E2E8F0] pb-4 pr-4 text-[13px] font-semibold text-neutral-900">Start Date</th>
-                  <th className="border-b border-[#E2E8F0] pb-4 pr-4 text-[13px] font-semibold text-neutral-900">End Date</th>
-                  <th className="border-b border-[#E2E8F0] pb-4 pr-4 text-[13px] font-semibold text-neutral-900">Weekly Amount</th>
-                  <th className="border-b border-[#E2E8F0] pb-4 pr-4 text-[13px] font-semibold text-neutral-900">Type</th>
-                  <th className="border-b border-[#E2E8F0] pb-4 pr-4 text-[13px] font-semibold text-neutral-900 text-center">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {payments.map((item) => (
-                  <tr key={item.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#F1F5F9] last:border-none">
-                    <td className="border-b border-[#F1F5F9] py-4 pl-4 pr-6">
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={item.avatar}
-                          alt={item.employeeName}
-                          className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover flex-shrink-0"
-                        />
-                        <span className="text-[14px] font-medium text-neutral-900 whitespace-nowrap">
-                          {item.employeeName}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="border-b border-[#F1F5F9] py-4 pr-6 text-[14px] font-semibold text-neutral-700">{item.startDate}</td>
-                    <td className="border-b border-[#F1F5F9] py-4 pr-6 text-[14px] font-semibold text-neutral-700">{item.endDate}</td>
-                    <td className="border-b border-[#F1F5F9] py-4 pr-6 text-[14px] font-semibold text-neutral-900">{item.weeklyAmount}</td>
-                    <td className="border-b border-[#F1F5F9] py-4 pr-6">
-                      <span className={`inline-flex rounded-full px-3 py-1 text-[12px] font-bold ${getTypeBadge(item.type)}`}>
-                        {item.type}
-                      </span>
-                    </td>
-                    <td className="border-b border-[#F1F5F9] py-4 pr-4 text-center">
-                      <Link href={`/statutory-payments/payments-dashboard/${item.id}`} className="inline-flex h-8 w-8 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 transition-colors">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                      </Link>
-                    </td>
+          <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="min-w-[1000px] w-full text-left border-collapse">
+                <thead className="bg-[#F2F4F7]">
+                  <tr>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827]">Employee</th>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827]">Start Date</th>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827]">End Date</th>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827]">Weekly Amount</th>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827]">Type</th>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827] text-center">Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="bg-white">
+                  {payments.map((item) => (
+                    <tr key={item.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
+                      <td className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6">
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={item.avatar}
+                            alt={item.employeeName}
+                            className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover flex-shrink-0"
+                          />
+                          <span className="text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                            {item.employeeName}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827]">{item.startDate}</td>
+                      <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827]">{item.endDate}</td>
+                      <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827]">{item.weeklyAmount}</td>
+                      <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6">
+                        <span className={`inline-flex rounded-full px-3 py-1 text-[12px] font-bold ${getTypeBadge(item.type)}`}>
+                          {item.type}
+                        </span>
+                      </td>
+                      <td className="border-b border-[#E2E8F0] py-4 pr-4 text-center">
+                        <Link href={`/statutory-payments/payments-dashboard/${item.id}`} className="inline-flex h-8 w-8 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 transition-colors">
+                          <Image src={viewIcon} alt="" />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </DashboardLayout>
+    </DashboardLayout >
   );
 }

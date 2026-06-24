@@ -6,6 +6,9 @@ import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import searchIcon from "@/assets/images/icons/search.svg";
 import filterIcon from "@/assets/images/icons/filter.svg";
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 interface LeaveBalance {
   id: string;
@@ -44,7 +47,7 @@ export default function LeaveBalancesPage() {
   const departments = ["All Departments", "Engineering", "Marketing", "Finance", "HR", "Product", "Sales", "Design"];
 
   const breadcrumb = (
-    <span className="text-[#98A2B3]">
+    <span className={`${lexendDeca.className} text-[#98A2B3]`}>
       <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Leave Management</span>
@@ -55,10 +58,10 @@ export default function LeaveBalancesPage() {
 
   return (
     <DashboardLayout title="Leave Balances" subtitle={breadcrumb}>
-      <div className="flex-1 p-4 2xl:p-6 relative">
-        <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
-            <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Leave Balances</h2>
+      <div className={`flex-1 p-4 2xl:p-6 relative ${lexendDeca.className}`}>
+        <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+            <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Leave Balances</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 relative">
               <div className="relative 2xl:w-75 md:w-60 w-32">
@@ -70,14 +73,14 @@ export default function LeaveBalancesPage() {
                   className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                 />
                 <input
-                  className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-1.5 md:py-2.5 pl-11 pr-4 text-sm"
+                  className="w-full rounded-xl border border-[#E2E8F0] bg-neutral-50 py-1.5 md:py-2.5 pl-11 pr-4 text-sm"
                   placeholder="Search..."
                 />
               </div>
 
-              <button 
+              <button
                 onClick={() => setFilterOpen(!filterOpen)}
-                className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50"
+                className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50"
               >
                 <Image
                   src={filterIcon}
@@ -87,59 +90,63 @@ export default function LeaveBalancesPage() {
                   className="pointer-events-none"
                 />
               </button>
-              
+
               {filterOpen && (
-                  <div className="absolute top-[50px] right-0 z-10 w-48 rounded-xl bg-white shadow-lg border border-neutral-100 p-2 animate-in slide-in-from-top-2">
-                      {departments.map(dept => (
-                        <button 
-                          key={dept}
-                          onClick={() => { setDeptFilter(dept); setFilterOpen(false); }}
-                          className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${deptFilter === dept ? 'bg-[#257BFC] hover:bg-[#257BFC]' : 'text-neutral-700'}`}
-                        >
-                          {dept}
-                        </button>
-                      ))}
-                  </div>
+                <div className="absolute top-[50px] right-0 z-10 w-48 rounded-xl bg-white shadow-lg border border-[#E2E8F0] p-2 animate-in slide-in-from-top-2 overflow-hidden">
+                  {departments.map(dept => (
+                    <button
+                      key={dept}
+                      onClick={() => { setDeptFilter(dept); setFilterOpen(false); }}
+                      className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${deptFilter === dept ? 'bg-[#257BFC] hover:bg-[#257BFC]' : 'text-neutral-700'}`}
+                    >
+                      {dept}
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
           </div>
 
-          <div className="overflow-x-auto p-3 2xl:p-6">
-            <table className="min-w-[1000px] w-full text-left border-separate border-spacing-y-0">
-              <thead>
-                <tr>
-                  <th className="border-b border-[#E2E8F0] py-3 sm:py-4 pl-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Employee</th>
-                  <th className="border-b border-[#E2E8F0] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Department</th>
-                  <th className="border-b border-[#E2E8F0] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Entitlement</th>
-                  <th className="border-b border-[#E2E8F0] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Used</th>
-                  <th className="border-b border-[#E2E8F0] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Carry-over</th>
-                  <th className="border-b border-[#E2E8F0] py-3 sm:py-4 pr-4 text-[12px] sm:text-[14px] font-semibold text-neutral-900">Remaining</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredBalances.map((bal) => (
-                  <tr key={bal.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#F1F5F9] last:border-none">
-                    <td className="border-b border-[#F1F5F9] py-4 pl-4 pr-6">
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={bal.avatar}
-                          alt={bal.employeeName}
-                          className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover flex-shrink-0"
-                        />
-                        <span className="text-[13px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
-                          {bal.employeeName}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="border-b border-[#F1F5F9] py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{bal.department}</td>
-                    <td className="border-b border-[#F1F5F9] py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{bal.entitlement}</td>
-                    <td className="border-b border-[#F1F5F9] py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{bal.used}</td>
-                    <td className="border-b border-[#F1F5F9] py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{bal.carryOver}</td>
-                    <td className="border-b border-[#F1F5F9] py-4 pr-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{bal.remaining}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="p-3 2xl:p-6">
+            <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="min-w-[1000px] w-full text-left border-collapse ">
+                  <thead className="bg-[#F8F9FC]">
+                    <tr>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Employee</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Department</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Entitlement</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Used</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Carry-over</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Remaining</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white">
+                    {filteredBalances.map((bal) => (
+                      <tr key={bal.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
+                        <td className="px-4 py-4 sm:px-6">
+                          <div className="flex items-center gap-3">
+                            <img
+                              src={bal.avatar}
+                              alt={bal.employeeName}
+                              className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover flex-shrink-0"
+                            />
+                            <span className="text-[13px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                              {bal.employeeName}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.department}</td>
+                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.entitlement}</td>
+                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.used}</td>
+                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.carryOver}</td>
+                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.remaining}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

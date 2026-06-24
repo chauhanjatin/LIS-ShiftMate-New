@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import Toast from '@/Component/UI/Toast';
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 export default function SSPManagementPage() {
   const [showToast, setShowToast] = useState(false);
@@ -67,7 +70,7 @@ export default function SSPManagementPage() {
   };
 
   const breadcrumb = (
-    <span className="text-[#98A2B3]">
+    <span className={`${lexendDeca.className} text-[#98A2B3]`}>
       <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Statutory Payments</span>
@@ -78,34 +81,35 @@ export default function SSPManagementPage() {
 
   const CustomCheckbox = ({ checked, onChange, label }: { checked: boolean, onChange: () => void, label: string }) => (
     <label className="flex items-center gap-3 cursor-pointer group">
-      <div className={`flex h-5 w-5 items-center justify-center rounded-[4px] border transition-colors ${checked ? 'border-brand-500 bg-brand-500' : 'border-neutral-300 bg-white group-hover:border-brand-500'}`}>
+      <input type="checkbox" className="hidden" checked={checked} onChange={onChange} />
+      <div className={`flex h-5 w-5 items-center justify-center rounded-[4px] border transition-colors ${checked ? 'border-[#257BFC] bg-[#257BFC]' : 'border-neutral-300 bg-white group-hover:border-[#257BFC]'}`}>
         {checked && (
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         )}
       </div>
-      <span className="text-[13px] font-medium text-neutral-700">{label}</span>
+      <span className="text-[14px] font-normal text-[#111827]">{label}</span>
     </label>
   );
 
   return (
     <DashboardLayout title="SSP Management" subtitle={breadcrumb}>
-      <div className="flex-1 p-4 2xl:p-6">
-        <div className="rounded-2xl border border-neutral-200 bg-white p-6 md:p-8 shadow-sm min-h-[800px]">
-          <h2 className="text-[18px] font-bold text-neutral-900 mb-8">SSP Management</h2>
+      <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] px-6 pt-6">
+          <h2 className="text-[20px] font-medium text-[#111827] mb-8">SSP Management</h2>
           
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="mx-[6%] space-y-8">
             
             <div className="space-y-6">
               <div className="space-y-2">
-                <label className="text-[13px] font-bold text-neutral-700">Employee</label>
-                <div className="relative">
+                <label className="text-[14px] font-normal text-[#111827]">Employee</label>
+                <div className="relative mt-2">
                   <select 
                     name="employee"
                     value={formData.employee}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-brand-500 transition-colors appearance-none"
+                    className="w-full rounded-xl border border-[#111827] bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-brand-500 transition-colors appearance-none"
                     required
                   >
                     <option value="" disabled hidden>Cameron Williamson</option>
@@ -122,20 +126,15 @@ export default function SSPManagementPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
                 <div className="space-y-2">
-                  <label className="text-[13px] font-bold text-neutral-700">Sickness Period</label>
-                  <div className="relative">
+                  <label className="text-[14px] font-medium text-[#111827]">Sickness Period</label>
+                  <div className="relative mt-2">
                     <input 
                       type="date"
                       name="startDate"
                       value={formData.startDate}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 transition-colors appearance-none custom-date-input"
+                      className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors custom-date-input"
                     />
-                    {!formData.startDate && (
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-4 bg-white text-[14px] text-neutral-400">
-                        MM/DD/YYYY
-                      </div>
-                    )}
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-neutral-500">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     </div>
@@ -143,20 +142,16 @@ export default function SSPManagementPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[13px] font-bold text-neutral-700">To</label>
-                  <div className="relative">
+                  <label className="text-[14px] font-medium text-[#111827]">To</label>
+                  <div className="relative mt-2">
                     <input 
                       type="date"
                       name="endDate"
                       value={formData.endDate}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 transition-colors appearance-none custom-date-input"
+                      className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors appearance-none custom-date-input"
                     />
-                    {!formData.endDate && (
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-4 bg-white text-[14px] text-neutral-400">
-                        MM/DD/YYYY
-                      </div>
-                    )}
+                    
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-neutral-500">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     </div>
@@ -164,24 +159,24 @@ export default function SSPManagementPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[13px] font-bold text-neutral-700">Waiting Days (first 3)</label>
+                  <label className="text-[14px] font-medium text-[#111827]">Waiting Days (first 3)</label>
                   <input 
                     type="text"
                     name="waitingDays"
                     value={formData.waitingDays}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-brand-500 transition-colors"
+                    className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors mt-2"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[13px] font-bold text-neutral-700">Weekly SSP Rate</label>
+                  <label className="text-[14px] font-medium text-[#111827]">Weekly SSP Rate</label>
                   <input 
                     type="text"
                     name="sspRate"
                     value={formData.sspRate}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-brand-500 transition-colors"
+                    className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors mt-2"
                   />
                 </div>
               </div>
@@ -189,8 +184,8 @@ export default function SSPManagementPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Eligibility Check */}
-              <div className="rounded-2xl bg-[#F8FAFC] p-6 border border-neutral-100">
-                <h3 className="text-[16px] font-bold text-neutral-900 mb-6 border-b border-neutral-200 pb-4">Eligibility Check</h3>
+              <div className="rounded-2xl bg-[#F9FAFB] p-6">
+                <h3 className="text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-4">Eligibility Check</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-4">
                   <CustomCheckbox 
                     checked={formData.eligibility.earnings} 
@@ -211,8 +206,8 @@ export default function SSPManagementPage() {
               </div>
 
               {/* Qualifying Days */}
-              <div className="rounded-2xl bg-[#F8FAFC] p-6 border border-neutral-100">
-                <h3 className="text-[16px] font-bold text-neutral-900 mb-6 border-b border-neutral-200 pb-4">Qualifying Days</h3>
+              <div className="rounded-2xl bg-[#F9FAFB] p-6">
+                <h3 className="text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-4">Qualifying Days</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-5 gap-x-4">
                   <CustomCheckbox 
                     checked={formData.qualifyingDays.mon} 
@@ -274,11 +269,11 @@ export default function SSPManagementPage() {
               </div>
             )}
 
-            <div className="flex justify-end items-center gap-4 pt-10">
+            <div className="flex justify-end items-center gap-4 pt-10 pb-5">
               <button 
                 type="button" 
                 onClick={handleSubmit}
-                className="rounded-xl border border-neutral-300 bg-white px-8 py-3 text-[14px] font-bold text-neutral-700 hover:bg-neutral-50 transition-colors shadow-sm"
+                className="rounded-xl border border-[#111827] bg-white px-8 py-3 text-[14px] font-bold text-neutral-700 hover:bg-neutral-50 transition-colors shadow-sm"
               >
                 Save Record
               </button>

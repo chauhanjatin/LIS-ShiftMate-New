@@ -10,6 +10,9 @@ import activeEmployeeIcon from "@/assets/images/icons/active-employee.svg";
 import departmentsIcon from "@/assets/images/icons/departments.svg";
 import pendingApprovalIcon from "@/assets/images/icons/pending-approval.svg";
 import { PieChart } from "@mui/x-charts/PieChart";
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 const statLineData = [5, 12, 7, 20, 10, 18, 13, 16];
 const statXLabels = ["A", "B", "C", "D", "E", "F", "G", "H"];
@@ -54,7 +57,7 @@ function StatCard({
   chartColor?: string;
 }>) {
   return (
-    <article className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
+    <article className="rounded-2xl border border-[#E2E8F0] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden">
       <div className="flex items-center justify-between gap-4">
         <div className="min-w-0">
           <p className="text-[26px] 2xl:text-[32px] font-bold tracking-tight text-neutral-900">
@@ -126,7 +129,7 @@ export default function DashboardPage() {
 
   return (
     <DashboardLayout title="Dashboard" subtitle="Overview of your workforce and HR activities">
-      <div className="grid flex-1 gap-4 p-4 xl:grid-cols-12 grid-cols-1 2xl:p-6">
+      <div className={`grid flex-1 gap-4 p-4 xl:grid-cols-12 grid-cols-1 2xl:p-6 ${lexendDeca.className}`}>
         <div className="space-y-4 col-span-8">
           <div className="grid gap-2 ms:gap-4 sm:grid-cols-2">
             <StatCard
@@ -156,12 +159,12 @@ export default function DashboardPage() {
             />
           </div>
 
-          <article className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
+          <article className="rounded-2xl border border-[#E2E8F0] bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden">
             <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
                 Workforce Growth
               </h2>
-              <div className="flex w-fit items-center rounded-xl border border-neutral-200 p-1 text-[10px] sm:text-xs">
+              <div className="flex w-fit items-center rounded-xl border border-[#E2E8F0] p-1 text-[10px] sm:text-xs">
                 {(["days", "weekly", "monthly"] as const).map((tab) => (
                   <button
                     key={tab}
@@ -272,7 +275,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="space-y-4 xl:col-span-4 col-span-8">
-          <article className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
+          <article className="rounded-2xl border border-[#E2E8F0] bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-[20px] font-medium tracking-tight">
                 Recent Activity
@@ -368,7 +371,7 @@ export default function DashboardPage() {
           </article>
         </div>
 
-        <article className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8">
+        <article className="rounded-2xl border border-[#E2E8F0] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8 overflow-hidden">
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-lg font-bold tracking-tight sm:text-xl">
               Pending Approvals Table
@@ -380,32 +383,32 @@ export default function DashboardPage() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="min-w-[700px] w-full text-left">
-              <thead className="text-[#111827]">
+            <table className="min-w-[700px] w-full text-left border-collapse">
+              <thead className="text-[#111827] bg-white">
                 <tr>
-                  <th className="border-b border-neutral-200 py-3 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-base">
+                  <th className="border-b border-[#E2E8F0] py-3 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-base">
                     Name
                   </th>
 
-                  <th className="border-b border-neutral-200 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-base">
+                  <th className="border-b border-[#E2E8F0] text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-base">
                     Request Type
                   </th>
 
-                  <th className="border-b border-neutral-200 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-base">
+                  <th className="border-b border-[#E2E8F0] text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-base">
                     Date
                   </th>
 
-                  <th className="border-b border-neutral-200 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-base">
+                  <th className="border-b border-[#E2E8F0] text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-base">
                     Status
                   </th>
 
-                  <th className="border-b border-neutral-200 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-base">
+                  <th className="border-b border-[#E2E8F0] text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-base">
                     Action
                   </th>
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody className="bg-white">
                 {[
                   [
                     "Cameron Williamson",
@@ -430,25 +433,25 @@ export default function DashboardPage() {
                     key={index}
                     className="font-normal text-[13px] 2xl:text-[14px]"
                   >
-                    <td className="border-b border-neutral-100 whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
                       {row[0]}
                     </td>
 
-                    <td className="border-b border-neutral-100 whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
                       {row[1]}
                     </td>
 
-                    <td className="border-b border-neutral-100 whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
                       {row[2]}
                     </td>
 
-                    <td className="border-b border-neutral-100 whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
                       <span className="inline-flex rounded-full bg-[#FFF6E8] px-3 py-1 text-[10px] font-semibold text-[#FFA100] sm:px-5 sm:text-xs 2xl:px-6 2xl:py-2">
                         {row[3]}
                       </span>
                     </td>
 
-                    <td className="border-b border-neutral-100 py-4 sm:py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] py-4 sm:py-5 2xl:py-6">
                       <button className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-neutral-100">
                         <svg
                           width="20"
@@ -486,7 +489,7 @@ export default function DashboardPage() {
           </div>
         </article>
 
-        <article className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8">
+        <article className="rounded-2xl border border-[#E2E8F0] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8 overflow-hidden">
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-lg font-bold tracking-tight sm:text-xl">
               Recently Added Employees
@@ -499,28 +502,28 @@ export default function DashboardPage() {
 
 
           <div className="overflow-x-auto">
-            <table className="min-w-[700px] w-full text-left">
-              <thead className="text-[#111827]">
+            <table className="min-w-[700px] w-full text-left border-collapse">
+              <thead className="text-[#111827] bg-white">
                 <tr>
-                  <th className="border-b border-neutral-200 py-3 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-[16px]">
+                  <th className="border-b border-[#E2E8F0] py-3 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-[16px]">
                     Name
                   </th>
 
-                  <th className="border-b border-neutral-200 py-3 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-[16px]">
+                  <th className="border-b border-[#E2E8F0] py-3 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-[16px]">
                     Department
                   </th>
 
-                  <th className="border-b border-neutral-200 py-3 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-[16px]">
+                  <th className="border-b border-[#E2E8F0] py-3 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-[16px]">
                     Job title
                   </th>
 
-                  <th className="border-b border-neutral-200 py-3 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-[16px]">
+                  <th className="border-b border-[#E2E8F0] py-3 text-xs font-semibold whitespace-nowrap sm:text-sm 2xl:text-[16px]">
                     Joining Date
                   </th>
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody className="bg-white">
                 {[
                   [
                     "Cameron Williamson",
@@ -545,19 +548,19 @@ export default function DashboardPage() {
                     key={row[0]}
                     className="font-normal text-[13px] 2xl:text-[14px]"
                   >
-                    <td className="border-b border-neutral-100 whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
                       {row[0]}
                     </td>
 
-                    <td className="border-b border-neutral-100 whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
                       {row[1]}
                     </td>
 
-                    <td className="border-b border-neutral-100 whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
                       {row[2]}
                     </td>
 
-                    <td className="border-b border-neutral-100 whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
                       {row[3]}
                     </td>
                   </tr>

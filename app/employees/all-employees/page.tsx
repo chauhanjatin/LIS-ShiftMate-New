@@ -13,6 +13,9 @@ import deleteRedIcon from "@/assets/images/icons/delete-popup.svg";
 import Link from "next/link";
 import { useEmployees } from "@/hooks/useEmployees";
 import { Employee, Status } from "@/Data/employees";
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 function StatusPill({ status }: { status: Status }) {
   const styles = {
@@ -39,17 +42,17 @@ export default function AllEmployeesPage() {
   const allSelected = employeesList.length > 0 && selectedEmployees.length === employeesList.length;
 
   const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.checked) {
-          setSelectedEmployees(employeesList.map((emp) => emp.id));
-      } else {
-          setSelectedEmployees([]);
-      }
+    if (e.target.checked) {
+      setSelectedEmployees(employeesList.map((emp) => emp.id));
+    } else {
+      setSelectedEmployees([]);
+    }
   };
 
   const handleSelectEmployee = (id: string) => {
-      setSelectedEmployees((prev) =>
-          prev.includes(id) ? prev.filter((eid) => eid !== id) : [...prev, id]
-      );
+    setSelectedEmployees((prev) =>
+      prev.includes(id) ? prev.filter((eid) => eid !== id) : [...prev, id]
+    );
   };
 
   const handleDelete = () => {
@@ -62,9 +65,9 @@ export default function AllEmployeesPage() {
 
   return (
     <DashboardLayout title="Employees" subtitle="Home/ All Employees">
-      <div className="flex-1 p-4 2xl:p-6">
-        <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
+      <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+        <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between px-6 pt-6">
             <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Employee List</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
@@ -77,12 +80,12 @@ export default function AllEmployeesPage() {
                   className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                 />
                 <input
-                  className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-1.5 md:py-2.5 pl-11 pr-4 text-sm"
+                  className="w-full rounded-xl border border-[#E2E8F0] bg-neutral-50 py-1.5 md:py-2.5 pl-11 pr-4 text-sm"
                   placeholder="Search"
                 />
               </div>
 
-              <button className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50">
+              <button className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50">
                 <Image
                   src={filterIcon}
                   alt="Filter"
@@ -95,14 +98,14 @@ export default function AllEmployeesPage() {
               {view === "list" ? (
                 <button
                   onClick={() => setView("grid")}
-                  className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50"
+                  className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50"
                 >
                   <Image src={appRectangleIcon} alt="Grid View" width={24} height={24} className="pointer-events-none" />
                 </button>
               ) : (
                 <button
                   onClick={() => setView("list")}
-                  className="flex h-[42px] w-[42px] p-2 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 transition hover:bg-neutral-50"
+                  className="flex h-[42px] w-[42px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50"
                 >
                   <Image src={listViewIcon} alt="List View" width={24} height={24} className="pointer-events-none" />
                 </button>
@@ -121,151 +124,155 @@ export default function AllEmployeesPage() {
           </div>
 
           {view === "list" ? (
-            <div className="overflow-x-auto p-3 2xl:p-6">
-              <table className="min-w-[1100px] w-full text-left">
-                <thead className="bg-white">
-                  <tr>
-                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                      <input
-                        type="checkbox"
-                        checked={allSelected}
-                        onChange={handleSelectAll}
-                        className="h-4 w-4 rounded border-[#D0D5DD] text-brand-500 focus:ring-brand-500"
-                      />
-                    </th>
+            <div className="p-3 2xl:p-6">
+              <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="min-w-[1100px] w-full text-left border-collapse">
+                    <thead className="bg-[#F8F9FC]">
+                      <tr>
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#475467] whitespace-nowrap cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={allSelected}
+                            onChange={handleSelectAll}
+                            className="h-4 w-4 rounded border-[#E2E8F0] text-brand-500 focus:ring-brand-500"
+                          />
+                        </th>
 
-                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                      Employee ID
-                    </th>
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                          Employee ID
+                        </th>
 
-                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                      Name
-                    </th>
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                          Name
+                        </th>
 
-                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                      Department
-                    </th>
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                          Department
+                        </th>
 
-                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                      Job Title
-                    </th>
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                          Job Title
+                        </th>
 
-                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                      Employment Type
-                    </th>
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                          Employment Type
+                        </th>
 
-                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                      Status
-                    </th>
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                          Status
+                        </th>
 
-                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                      Joining Date
-                    </th>
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-medium text-[#111827] whitespace-nowrap">
+                          Joining Date
+                        </th>
 
-                    <th className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-semibold text-neutral-900 whitespace-nowrap">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-medium text-[#111827] whitespace-nowrap">
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
 
-                <tbody>
-                  {employeesList.map((emp) => (
-                    <tr
-                      key={emp.id}
-                      className="group transition-colors hover:bg-neutral-50"
-                    >
-                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 2xl:pl-6 pl-3 pr-2">
-                        <input
-                          type="checkbox"
-                          checked={selectedEmployees.includes(emp.id)}
-                          onChange={() => handleSelectEmployee(emp.id)}
-                          className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500"
-                        />
-                      </td>
-
-                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] font-medium whitespace-nowrap">
-                        {emp.id}
-                      </td>
-
-                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6">
-                        <Link href={`/employees/${emp.id}`}>
-                          <div className="flex min-w-[180px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
-                            <img
-                              src={emp.avatar}
-                              alt={emp.name}
-                              className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover flex-shrink-0"
+                    <tbody className="bg-white">
+                      {employeesList.map((emp) => (
+                        <tr
+                          key={emp.id}
+                          className="group transition-colors hover:bg-neutral-50"
+                        >
+                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 2xl:pl-6 pl-3 pr-2">
+                            <input
+                              type="checkbox"
+                              checked={selectedEmployees.includes(emp.id)}
+                              onChange={() => handleSelectEmployee(emp.id)}
+                              className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
                             />
+                          </td>
 
-                            <span className="text-[12px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
-                              {emp.name}
-                            </span>
-                          </div>
-                        </Link>
-                      </td>
+                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-medium whitespace-nowrap">
+                            {emp.id}
+                          </td>
 
-                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
-                        {emp.dept}
-                      </td>
+                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6">
+                            <Link href={`/employees/${emp.id}`}>
+                              <div className="flex min-w-[180px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
+                                <img
+                                  src={emp.avatar}
+                                  alt={emp.name}
+                                  className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover flex-shrink-0"
+                                />
 
-                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
-                        {emp.role}
-                      </td>
+                                <span className="text-[12px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                                  {emp.name}
+                                </span>
+                              </div>
+                            </Link>
+                          </td>
 
-                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
-                        {emp.type}
-                      </td>
+                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                            {emp.dept}
+                          </td>
 
-                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 whitespace-nowrap">
-                        <StatusPill status={emp.status} />
-                      </td>
+                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                            {emp.role}
+                          </td>
 
-                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
-                        {emp.joinDate}
-                      </td>
+                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                            {emp.type}
+                          </td>
 
-                      <td className="border-b border-[#D0D5DD] py-3 sm:py-4 pr-6">
-                        <div className="flex items-center gap-2 sm:gap-4">
-                          <Link href={`/employees/${emp.id}`}>
-                            <button className="text-neutral-400 hover:text-brand-500 mt-2 cursor-pointer">
-                              <Image
-                                src={editIcon}
-                                alt="Filter"
-                                width={24}
-                                height={24}
-                                className="pointer-events-none h-5 w-5 sm:h-6 sm:w-6"
-                              />
-                            </button>
-                          </Link>
+                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 whitespace-nowrap">
+                            <StatusPill status={emp.status} />
+                          </td>
 
-                          <button
-                            onClick={() => {
-                              setEmployeeToDelete(emp.id);
-                              setDeleteModalOpen(true);
-                            }}
-                            className="text-neutral-400 hover:text-red-500 cursor-pointer"
-                          >
-                            <Image
-                              src={deleteIcon}
-                              alt="Delete"
-                              width={24}
-                              height={24}
-                              className="pointer-events-none h-5 w-5 sm:h-6 sm:w-6"
-                            />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                            {emp.joinDate}
+                          </td>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end border-t border-neutral-100 px-2 sm:px-6 py-4">
+                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6">
+                            <div className="flex items-center gap-2 sm:gap-4">
+                              <Link href={`/employees/${emp.id}`}>
+                                <button className="text-neutral-400 hover:text-brand-500 mt-2 cursor-pointer">
+                                  <Image
+                                    src={editIcon}
+                                    alt="Filter"
+                                    width={24}
+                                    height={24}
+                                    className="pointer-events-none h-5 w-5 sm:h-6 sm:w-6"
+                                  />
+                                </button>
+                              </Link>
+
+                              <button
+                                onClick={() => {
+                                  setEmployeeToDelete(emp.id);
+                                  setDeleteModalOpen(true);
+                                }}
+                                className="text-neutral-400 hover:text-red-500 cursor-pointer"
+                              >
+                                <Image
+                                  src={deleteIcon}
+                                  alt="Delete"
+                                  width={24}
+                                  height={24}
+                                  className="pointer-events-none h-5 w-5 sm:h-6 sm:w-6"
+                                />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4">
                 <div className="flex items-center gap-2">
                   <span className="text-[12px] sm:text-[14px] text-neutral-500">
                     Rows per page:
                   </span>
 
-                  <select className="rounded-lg border border-neutral-200 bg-white px-2 py-1 text-[12px] sm:text-[14px] text-neutral-900 outline-none">
+                  <select className="rounded-lg border border-[#E2E8F0] bg-white px-2 py-1 text-[12px] sm:text-[14px] text-neutral-900 outline-none">
                     <option>5</option>
                     <option>10</option>
                     <option>20</option>
@@ -314,7 +321,7 @@ export default function AllEmployeesPage() {
               {employeesList.map((emp) => (
                 <div
                   key={emp.id}
-                  className="relative rounded-2xl border border-neutral-200 bg-white p-3 2xl:p-5 shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)]"
+                  className="relative rounded-2xl border border-[#E2E8F0] bg-white p-3 2xl:p-5 shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)] overflow-hidden"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <StatusPill status={emp.status} />
@@ -409,7 +416,7 @@ export default function AllEmployeesPage() {
               <button
                 type="button"
                 onClick={() => { setDeleteModalOpen(false); setEmployeeToDelete(null); }}
-                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054]"
+                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054] overflow-hidden"
               >
                 Cancel
               </button>

@@ -38,6 +38,20 @@ export default function Sidebar({
   const [openMenu, setOpenMenu] = useState<string | null>("null");
   const [activeItem, setActiveItem] = useState("Dashboard");
   const [activeSubItem, setActiveSubItem] = useState("");
+  const [activeModule, setActiveModule] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const module = localStorage.getItem("shiftmate_active_module");
+      if (!module) {
+        if (pathname !== "/selection" && !pathname.includes("/login")) {
+          router.push("/selection");
+        }
+      } else {
+        setActiveModule(module);
+      }
+    }
+  }, [pathname, router]);
 
   useEffect(() => {
     if (setIsMobileMenuOpen) setIsMobileMenuOpen(false);
@@ -122,12 +136,19 @@ export default function Sidebar({
         setActiveSubItem("Maternity/Paternity");
     } else if (pathname.includes("/hmrc-rti")) {
       setActiveItem("HMRC RTI");
+      setOpenMenu("HMRC RTI");
+      if (pathname.includes("/rti-dashboard"))
+        setActiveSubItem("RTI Dashboard");
+      if (pathname.includes("/fps-submissions"))
+        setActiveSubItem("FPS Submissions");
+      if (pathname.includes("/eps-submissions"))
+        setActiveSubItem("EPS Submissions");
     } else {
       setActiveItem("Dashboard");
     }
   }, [pathname]);
 
-  const items: Array<{
+  const allItems: Array<{
     label: string;
     icon: "dashboard" | "users" | "role" | "organisation" | "employees" | "payrollsetting" | "paycalendar" | "dollar" | "deduction" | "salarystructure" | "employeepayroll" | "payrollruns" | "payrollapproval" | "taxrules" | "nationalrule" | "studentloan" | "paysliplist" | "leavemanagement" | "pension" | "statutory" | "hmrc";
     expandable?: boolean;
@@ -154,6 +175,18 @@ export default function Sidebar({
     { label: "Statutory Payments", icon: "statutory", expandable: true },
     { label: "HMRC RTI", icon: "hmrc", expandable: true },
   ] as const;
+
+  const moduleItemsMap: Record<string, string[]> = {
+    "System Flow": ["Dashboard", "Users", "Roles", "Organization", "Employees"],
+    "Payroll": ["Dashboard", "Payroll Settings", "Payroll Calendar", "Pay Components", "Deduction Components", "Salary Structure", "Employee Payroll Setup", "Payroll Runs", "Payroll Approval", "Tax Rules", "National Insurance Rule", "Student Loan Rules", "Payslip List"],
+    "HR Operations": ["Leave Management", "Pension", "Statutory Payments", "HMRC RTI"],
+    "Employee Self-Service Portal": ["Dashboard"],
+    "Multi-Company Management": ["Dashboard"],
+  };
+
+  const items = activeModule && moduleItemsMap[activeModule]
+    ? allItems.filter(item => moduleItemsMap[activeModule].includes(item.label))
+    : allItems;
 
   const routesMap: Record<string, string> = {
     Dashboard: "/dashboard",
@@ -245,6 +278,18 @@ export default function Sidebar({
     "Maternity/Paternity": "/statutory-payments/maternity-paternity",
   };
 
+  const hmrcRtiSubMenus = [
+    "RTI Dashboard",
+    "FPS Submissions",
+    "EPS Submissions",
+  ];
+
+  const hmrcRtiSubRoutes: Record<string, string> = {
+    "RTI Dashboard": "/hmrc-rti/rti-dashboard",
+    "FPS Submissions": "/hmrc-rti/fps-submissions",
+    "EPS Submissions": "/hmrc-rti/eps-submissions",
+  };
+
   const iconMap = {
     dashboard: dashboardIcon,
     users: usersIcon,
@@ -309,7 +354,7 @@ export default function Sidebar({
       </div>
 
       <nav
-        className={`2xl:mt-8 mt-3 space-y-1 transition-all duration-500 ease-in-out ${collapsed ? "px-2" : "px-3"
+        className={`mt-3 space-y-1 transition-all duration-500 ease-in-out ${collapsed ? "px-2" : "px-3"
           }`}
       >
         {items.map((item) => {
@@ -341,11 +386,11 @@ export default function Sidebar({
                   collapsed
                     ? `mx-auto flex 2xl:h-14 2xl:w-14 h-12 w-12 items-center justify-center rounded-2xl transition-all duration-300 ${isActive
                       ? "bg-brand-500 text-white"
-                      : "text-[#111827] hover:bg-neutral-100"
+                      : "text-[#111827] hover:bg-[#eaf2ff]"
                     }`
                     : `group flex w-full items-center justify-between rounded-2xl px-2 xl:px-4 2xl:py-3 py-2 text-left text-[16px] font-semibold cursor-pointer transition-all duration-300 ${isActive
                       ? "bg-brand-500 text-white"
-                      : "text-[#111827] hover:bg-neutral-100"
+                      : "text-[#111827] hover:bg-[#eaf2ff]"
                     }`
                 }
               >
@@ -515,6 +560,34 @@ export default function Sidebar({
                             setActiveSubItem(subLabel);
 
                             const route = statutoryPaymentsSubRoutes[subLabel];
+                            if (route) router.push(route);
+                          }}
+                          className={`flex w-full items-center rounded-xl xl:px-4 px-3 py-3 text-left xl:text-[16px] text-[15px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                            }`}
+                        >
+                          {subLabel}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {!collapsed && item.label === "HMRC RTI" && isOpen && (
+                <div
+                  className="relative mt-2 ml-[44px] animate-in slide-in-from-top-2 duration-300"
+                >
+                  <div className="space-y-1">
+                    {hmrcRtiSubMenus.map((subLabel) => {
+                      const isSubActive = activeSubItem === subLabel;
+
+                      return (
+                        <button
+                          key={subLabel}
+                          onClick={() => {
+                            setActiveSubItem(subLabel);
+
+                            const route = hmrcRtiSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
                           className={`flex w-full items-center rounded-xl xl:px-4 px-3 py-3 text-left xl:text-[16px] text-[15px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"

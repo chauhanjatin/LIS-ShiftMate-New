@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -43,7 +43,7 @@ export default function LoginForm() {
     setIsSubmitting(true);
     await new Promise((resolve) => window.setTimeout(resolve, 900));
     setIsSubmitting(false);
-    router.push("/dashboard");
+    router.push("/selection");
   }
 
   return (

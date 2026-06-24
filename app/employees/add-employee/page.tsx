@@ -9,6 +9,7 @@ import upload from "@/assets/images/icons/upload.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import fileTypeIcon from "@/assets/images/icons/file-typeicon.svg";
 import { useEmployees } from "@/hooks/useEmployees";
+import Toast from '@/Component/UI/Toast';
 
 const STEPS = [
   "Personal Details",
@@ -22,6 +23,7 @@ export default function AddEmployeePage() {
   const router = useRouter();
   const { addEmployee } = useEmployees();
   const [currentStep, setCurrentStep] = useState(1);
+  const [showToast, setShowToast] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [formData, setFormData] = useState({
     firstName: "",
@@ -118,8 +120,10 @@ export default function AddEmployeePage() {
         joinDate: new Date(formData.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
         avatar: "https://i.pravatar.cc/150?u=" + Math.floor(Math.random() * 100),
     });
-    alert("Employee Created Successfully!");
-    router.push("/employees/all-employees");
+    setShowToast(true);
+    setTimeout(() => {
+      router.push("/employees/all-employees");
+    }, 2000);
   };
 
   const breadcrumb = (
@@ -727,7 +731,7 @@ export default function AddEmployeePage() {
             )}
 
             {currentStep === 5 ? (
-              <button onClick={handleSubmit} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 py-2 2xl:text-[16px] text-[12px] font-semibold cursor-pointer text-white transition hover:bg-blue-600 2xl:w-28 w-30">
+              <button onClick={handleSubmit} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 py-2 2xl:text-[16px] text-[12px] font-semibold cursor-pointer text-white transition hover:bg-blue-600">
                 Submit & Create Employee
               </button>
             ) : (
@@ -738,6 +742,11 @@ export default function AddEmployeePage() {
           </div>
         </div>
       </div>
+      <Toast
+        show={showToast}
+        message="Employee Created Successfully!"
+        onClose={() => setShowToast(false)}
+      />
     </DashboardLayout>
   );
 }
