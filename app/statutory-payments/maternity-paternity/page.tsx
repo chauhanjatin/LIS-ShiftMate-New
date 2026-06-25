@@ -19,16 +19,31 @@ export default function MaternityPaternityPage() {
     notes: ""
   });
 
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {};
+    if (!formData.employee) newErrors.employee = "Please select an employee";
+    if (!formData.leaveType) newErrors.leaveType = "Please select a leave type";
+    if (!formData.expectedDate) newErrors.expectedDate = "Please select expected date";
+    if (!formData.leaveStartDate) newErrors.leaveStartDate = "Please select start date";
+    if (!formData.leaveEndDate) newErrors.leaveEndDate = "Please select end date";
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: "" }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setShowToast(true);
+    if (validateForm()) {
+      setShowToast(true);
+    }
   };
 
   const breadcrumb = (
@@ -57,7 +72,7 @@ export default function MaternityPaternityPage() {
                     name="employee"
                     value={formData.employee}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-[#111827] bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors appearance-none"
+                    className={`w-full rounded-xl border ${errors.employee ? 'border-red-500' : 'border-[#111827]'} bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors appearance-none`}
                     required
                   >
                     <option value="" disabled hidden>Cameron Williamson</option>
@@ -70,6 +85,7 @@ export default function MaternityPaternityPage() {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                   </div>
                 </div>
+                {errors.employee && <p className="text-red-500 text-xs mt-1">{errors.employee}</p>}
               </div>
 
               <div className="space-y-2">
@@ -79,7 +95,7 @@ export default function MaternityPaternityPage() {
                     name="leaveType"
                     value={formData.leaveType}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-[#111827] bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors appearance-none"
+                    className={`w-full rounded-xl border ${errors.leaveType ? 'border-red-500' : 'border-[#111827]'} bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors appearance-none`}
                     required
                   >
                     <option value="" disabled hidden>Statutory Maternity Pay (SMP)</option>
@@ -91,6 +107,7 @@ export default function MaternityPaternityPage() {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                   </div>
                 </div>
+                {errors.leaveType && <p className="text-red-500 text-xs mt-1">{errors.leaveType}</p>}
               </div>
 
               <div className="space-y-2">
@@ -101,13 +118,14 @@ export default function MaternityPaternityPage() {
                     name="expectedDate"
                     value={formData.expectedDate}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors appearance-none custom-date-input"
+                    className={`w-full rounded-xl border ${errors.expectedDate ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors appearance-none custom-date-input`}
                     required
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-neutral-500">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                   </div>
                 </div>
+                {errors.expectedDate && <p className="text-red-500 text-xs mt-1">{errors.expectedDate}</p>}
               </div>
 
               <div className="space-y-2">
@@ -118,13 +136,14 @@ export default function MaternityPaternityPage() {
                     name="leaveStartDate"
                     value={formData.leaveStartDate}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors appearance-none custom-date-input"
+                    className={`w-full rounded-xl border ${errors.leaveStartDate ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors appearance-none custom-date-input`}
                     required
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-neutral-500">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                   </div>
                 </div>
+                {errors.leaveStartDate && <p className="text-red-500 text-xs mt-1">{errors.leaveStartDate}</p>}
               </div>
 
               <div className="space-y-2">
@@ -135,13 +154,14 @@ export default function MaternityPaternityPage() {
                     name="leaveEndDate"
                     value={formData.leaveEndDate}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors appearance-none custom-date-input"
+                    className={`w-full rounded-xl border ${errors.leaveEndDate ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors appearance-none custom-date-input`}
                     required
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-neutral-500">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                   </div>
                 </div>
+                {errors.leaveEndDate && <p className="text-red-500 text-xs mt-1">{errors.leaveEndDate}</p>}
               </div>
 
               <div className="space-y-2">

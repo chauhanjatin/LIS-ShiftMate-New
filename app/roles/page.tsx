@@ -33,12 +33,12 @@ export default function RolesPage() {
     <DashboardLayout title="Roles" subtitle="Home/ Roles List">
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+          <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">
               Roles List
             </h2>
 
-            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+            <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
               <div className="relative 2xl:w-75 lg:w-60 md:w-50 w-32">
                 <Image
                   src={searchIcon}

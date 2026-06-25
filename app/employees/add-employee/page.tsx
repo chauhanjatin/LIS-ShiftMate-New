@@ -140,9 +140,9 @@ export default function AddEmployeePage() {
     <DashboardLayout title="Employees" subtitle={breadcrumb}>
       <div className="flex-1 p-4 2xl:p-6 flex overflow-auto">
         <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm flex-1 flex flex-col">
-          <h2 className="text-[24px] font-semibold text-neutral-900 mb-10">Add Employee</h2>
+          <h2 className="md:text-[24px] text-[20px] font-semibold text-neutral-900 md:mb-10 mb-7">Add Employee</h2>
 
-          <div className="flex max-[425px]:flex-col max-[425px]:items-start items-center justify-center 2xl:gap-[48px] xl:gap-[14px] gap-[8px] max-[425px]:gap-0 2xl:mb-20 mb-15 2xl:mt-4 mt-3 px-4">
+          <div className="flex max-[425px]:flex-col max-[425px]:items-start items-center justify-center 2xl:gap-[48px] xl:gap-[14px] gap-[8px] max-[425px]:gap-0 2xl:mb-20 md:mb-15 mb-12 2xl:mt-4 mt-3 px-4">
             {STEPS.map((step, index) => {
               const stepNumber = index + 1;
               const isActive = currentStep === stepNumber;
@@ -198,24 +198,24 @@ export default function AddEmployeePage() {
               <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">First name</label>
-                  <input name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" className={`w-full rounded-xl border ${errors.firstName ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" className={`w-full rounded-xl border ${errors.firstName ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Last Name</label>
-                  <input name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Enter your last name" className={`w-full rounded-xl border ${errors.lastName ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Enter your last name" className={`w-full rounded-xl border ${errors.lastName ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Date of Birth</label>
                   <div className="relative">
-                    <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.dob ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500`} />
+                    <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.dob ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500`} />
                   </div>
                   {errors.dob && <p className="text-red-500 text-xs mt-1">{errors.dob}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Gender</label>
-                  <select name="gender" value={formData.gender} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.gender ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
+                  <select name="gender" value={formData.gender} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.gender ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
                     <option value="">Select your gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -225,22 +225,22 @@ export default function AddEmployeePage() {
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Phone</label>
-                  <input name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter your phone number" className={`w-full rounded-xl border ${errors.phone ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter your phone number" className={`w-full rounded-xl border ${errors.phone ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Email</label>
-                  <input name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" type="email" className={`w-full rounded-xl border ${errors.email ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" type="email" className={`w-full rounded-xl border ${errors.email ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Address</label>
-                  <input name="address" value={formData.address} onChange={handleInputChange} placeholder="Enter your address" className={`w-full rounded-xl border ${errors.address ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="address" value={formData.address} onChange={handleInputChange} placeholder="Enter your address" className={`w-full rounded-xl border ${errors.address ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Emergency Contact</label>
-                  <input name="emergencyContact" value={formData.emergencyContact} onChange={handleInputChange} placeholder="Enter emergency contact number" className={`w-full rounded-xl border ${errors.emergencyContact ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="emergencyContact" value={formData.emergencyContact} onChange={handleInputChange} placeholder="Enter emergency contact number" className={`w-full rounded-xl border ${errors.emergencyContact ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.emergencyContact && <p className="text-red-500 text-xs mt-1">{errors.emergencyContact}</p>}
                 </div>
               </div>
@@ -250,17 +250,17 @@ export default function AddEmployeePage() {
               <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Employee ID</label>
-                  <input name="employeeId" value={formData.employeeId} onChange={handleInputChange} placeholder="Enter Employee ID" className={`w-full rounded-xl border ${errors.employeeId ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="employeeId" value={formData.employeeId} onChange={handleInputChange} placeholder="Enter Employee ID" className={`w-full rounded-xl border ${errors.employeeId ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.employeeId && <p className="text-red-500 text-xs mt-1">{errors.employeeId}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Start Date</label>
-                  <input type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.startDate ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500`} />
+                  <input type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.startDate ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500`} />
                   {errors.startDate && <p className="text-red-500 text-xs mt-1">{errors.startDate}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Employment Type</label>
-                  <select name="employmentType" value={formData.employmentType} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.employmentType ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
+                  <select name="employmentType" value={formData.employmentType} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.employmentType ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
                     <option value="">Select your employment type</option>
                     <option value="Full Time">Full Time</option>
                     <option value="Part Time">Part Time</option>
@@ -270,7 +270,7 @@ export default function AddEmployeePage() {
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Department</label>
-                  <select name="department" value={formData.department} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.department ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
+                  <select name="department" value={formData.department} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.department ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
                     <option value="">Select your department</option>
                     <option value="Engineering">Engineering</option>
                     <option value="Marketing">Marketing</option>
@@ -281,22 +281,22 @@ export default function AddEmployeePage() {
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Job Title</label>
-                  <input name="jobTitle" value={formData.jobTitle} onChange={handleInputChange} placeholder="Enter your job title" className={`w-full rounded-xl border ${errors.jobTitle ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="jobTitle" value={formData.jobTitle} onChange={handleInputChange} placeholder="Enter your job title" className={`w-full rounded-xl border ${errors.jobTitle ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.jobTitle && <p className="text-red-500 text-xs mt-1">{errors.jobTitle}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Location</label>
-                  <input name="location" value={formData.location} onChange={handleInputChange} placeholder="Enter your location" className={`w-full rounded-xl border ${errors.location ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="location" value={formData.location} onChange={handleInputChange} placeholder="Enter your location" className={`w-full rounded-xl border ${errors.location ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.location && <p className="text-red-500 text-xs mt-1">{errors.location}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Manager</label>
-                  <input name="manager" value={formData.manager} onChange={handleInputChange} placeholder="Enter your manager name" className={`w-full rounded-xl border ${errors.manager ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="manager" value={formData.manager} onChange={handleInputChange} placeholder="Enter your manager name" className={`w-full rounded-xl border ${errors.manager ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.manager && <p className="text-red-500 text-xs mt-1">{errors.manager}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Contract Type</label>
-                  <select name="contractType" value={formData.contractType} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.contractType ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
+                  <select name="contractType" value={formData.contractType} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.contractType ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
                     <option value="">Select your contract type</option>
                     <option value="Permanent">Permanent</option>
                     <option value="Fixed Term">Fixed Term</option>
@@ -310,27 +310,27 @@ export default function AddEmployeePage() {
               <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Bank Account Number</label>
-                  <input name="bankAccount" value={formData.bankAccount} onChange={handleInputChange} placeholder="Enter your bank account number" className={`w-full rounded-xl border ${errors.bankAccount ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="bankAccount" value={formData.bankAccount} onChange={handleInputChange} placeholder="Enter your bank account number" className={`w-full rounded-xl border ${errors.bankAccount ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.bankAccount && <p className="text-red-500 text-xs mt-1">{errors.bankAccount}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Sort Code</label>
-                  <input name="sortCode" value={formData.sortCode} onChange={handleInputChange} placeholder="Enter your sort code" className={`w-full rounded-xl border ${errors.sortCode ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="sortCode" value={formData.sortCode} onChange={handleInputChange} placeholder="Enter your sort code" className={`w-full rounded-xl border ${errors.sortCode ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.sortCode && <p className="text-red-500 text-xs mt-1">{errors.sortCode}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">NI Number</label>
-                  <input name="niNumber" value={formData.niNumber} onChange={handleInputChange} placeholder="Enter your NI number" className={`w-full rounded-xl border ${errors.niNumber ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="niNumber" value={formData.niNumber} onChange={handleInputChange} placeholder="Enter your NI number" className={`w-full rounded-xl border ${errors.niNumber ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.niNumber && <p className="text-red-500 text-xs mt-1">{errors.niNumber}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Tax Code</label>
-                  <input name="taxCode" value={formData.taxCode} onChange={handleInputChange} placeholder="Enter your tax code" className={`w-full rounded-xl border ${errors.taxCode ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="taxCode" value={formData.taxCode} onChange={handleInputChange} placeholder="Enter your tax code" className={`w-full rounded-xl border ${errors.taxCode ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.taxCode && <p className="text-red-500 text-xs mt-1">{errors.taxCode}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Payroll Frequency</label>
-                  <select name="payrollFrequency" value={formData.payrollFrequency} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.payrollFrequency ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
+                  <select name="payrollFrequency" value={formData.payrollFrequency} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.payrollFrequency ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
                     <option value="">Select your payroll</option>
                     <option value="Monthly">Monthly</option>
                     <option value="Bi-weekly">Bi-weekly</option>
@@ -340,7 +340,7 @@ export default function AddEmployeePage() {
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Salary / Hourly Rate</label>
-                  <input name="salary" value={formData.salary} onChange={handleInputChange} placeholder="Enter your salary" className={`w-full rounded-xl border ${errors.salary ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="salary" value={formData.salary} onChange={handleInputChange} placeholder="Enter your salary" className={`w-full rounded-xl border ${errors.salary ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
                   {errors.salary && <p className="text-red-500 text-xs mt-1">{errors.salary}</p>}
                 </div>
               </div>
@@ -717,25 +717,25 @@ export default function AddEmployeePage() {
             )}
           </div>
 
-          <div className="mt-[48px] flex justify-end gap-4 pt-8">
+          <div className="md:mt-[48px] mt-8 flex justify-end md:gap-4 gap-2 md:pt-8">
             {currentStep === 1 ? (
               <Link href="/employees/all-employees">
-                <button className="rounded-xl cursor-pointer border border-neutral-300 bg-white 2xl:px-6 px-4 2xl:py-3 py-2 text-[16px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
+                <button className="rounded-xl cursor-pointer border border-neutral-300 bg-white 2xl:px-6 px-4 2xl:py-3 py-2 2xl:text-[16px] text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
                   Cancel
                 </button>
               </Link>
             ) : (
-              <button onClick={handlePrevious} className="rounded-xl cursor-pointer border border-neutral-300 bg-white px-6 py-3 text-[16px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
+              <button onClick={handlePrevious} className="rounded-xl cursor-pointer border border-neutral-300 bg-white 2xl:px-6 px-3 2xl:py-3 md:py-2 py-1 md:text-[16px] text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
                 Previous
               </button>
             )}
 
             {currentStep === 5 ? (
-              <button onClick={handleSubmit} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 py-2 2xl:text-[16px] text-[12px] font-semibold cursor-pointer text-white transition hover:bg-blue-600">
+              <button onClick={handleSubmit} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 md:py-2 py-1 2xl:text-[16px] text-[14px] font-semibold cursor-pointer text-white transition hover:bg-blue-600">
                 Submit & Create Employee
               </button>
             ) : (
-              <button onClick={handleNext} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 py-2 text-[16px] font-semibold cursor-pointer text-white transition hover:bg-blue-600 2xl:w-28 w-28">
+              <button onClick={handleNext} className="rounded-xl bg-[#257BFC] 2xl:px-6 px-3 2xl:py-3 md:py-2 py-1 md:text-[16px] text-[14px] font-semibold cursor-pointer text-white transition hover:bg-blue-600 2xl:w-28 w-28">
                 Next
               </button>
             )}

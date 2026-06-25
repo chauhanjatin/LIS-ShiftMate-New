@@ -67,12 +67,12 @@ export default function DepartmentsPage() {
     <DashboardLayout title="Departments" subtitle="Home/ Departments">
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+          <div className="flex flex-wrap items-center justify-between md:px-6 px-4 pt-4 md:pt-6">
             <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">
               Departments List
             </h2>
 
-            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+            <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
               <div className="relative 2xl:w-75 lg:w-60 md:w-50 w-32">
                 <Image
                   src={searchIcon}
@@ -144,7 +144,7 @@ export default function DepartmentsPage() {
                           <td className="md:py-6 py-2 md:pr-4 pr-18 text-[14px] font-medium text-neutral-900">
                             {dept.code}
                           </td>
-                          <td className="py-6 md:pr-4 pr-18">
+                          <td className="md:py-6 py-4 md:pr-4 pr-18">
                             {manager ? (
                               <div className="flex items-center gap-3">
                                 <img src={manager.avatar} alt={manager.name} className="h-9 w-9 rounded-full object-cover" />
@@ -227,20 +227,20 @@ export default function DepartmentsPage() {
       {/* Create Department Modal */}
       {createModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 py-4">
-          <div className="w-full max-w-[640px] rounded-2xl bg-white p-6 shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
+          <div className="w-full max-w-[640px] rounded-2xl bg-white md:p-6 p-4 shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-[20px] font-bold text-neutral-900">Create New Department</h2>
+              <h2 className="md:text-[20px] text-[17px] font-bold text-neutral-900">Create New Department</h2>
               <button onClick={() => setCreateModalOpen(false)} className="text-neutral-400 hover:text-neutral-900">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
               </button>
             </div>
 
             <div className="mb-6">
-              <h3 className="text-[16px] font-bold text-neutral-900 mb-1">Basic Information</h3>
-              <p className="text-[12px] text-neutral-500">Provide essential details to define and identify the department.</p>
+              <h3 className="md:text-[16px] text-[15px] font-bold text-neutral-900 mb-1">Basic Information</h3>
+              <p className="md:text-[12px] text-[11px] text-neutral-500">Provide essential details to define and identify the department.</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <div className="grid md:grid-cols-2 gap-3 md:gap-4 md:mb-6 mb-4">
               <div>
                 <label className="block text-[13px] font-medium text-neutral-500 mb-1.5">Department Name</label>
                 <input
@@ -300,16 +300,16 @@ export default function DepartmentsPage() {
             </div>
 
 
-            <div className="flex justify-end gap-4 pt-6">
+            <div className="flex justify-end md:gap-4 gap-3 md:pt-6 pt-4">
               <button
                 onClick={() => setCreateModalOpen(false)}
-                className="px-6 py-2.5 rounded-xl border border-neutral-300 bg-white text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition cursor-pointer overflow-hidden"
+                className="md:px-6 md:py-2.5 px-4 py-2 rounded-xl border border-neutral-300 bg-white md:text-[14px] text-[12px] font-semibold text-neutral-700 hover:bg-neutral-50 transition cursor-pointer overflow-hidden"
               >
                 Cancel
               </button>
               <button
                 onClick={handleCreateDepartment}
-                className="px-6 py-2.5 rounded-xl bg-[#257BFC] text-[14px] font-semibold text-white hover:bg-blue-600 transition cursor-pointer"
+                className="md:px-6 md:py-2.5 px-4 py-2 rounded-xl bg-[#257BFC] md:text-[14px] text-[12px] font-semibold text-white hover:bg-blue-600 transition cursor-pointer"
               >
                 Create Department
               </button>

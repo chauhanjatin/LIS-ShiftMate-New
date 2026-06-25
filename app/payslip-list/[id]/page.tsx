@@ -52,14 +52,14 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
         <DashboardLayout title="Payslip Details" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 pb-20 ${lexendDeca.className}`}>
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-4 print:hidden">
-                    <h2 className="text-[20px] font-bold text-neutral-900">{decodedName} - March 2026</h2>
+                    <h2 className="md:text-[20px] text-[18px] font-bold text-neutral-900">{decodedName} - March 2026</h2>
 
                     <div className="flex items-center gap-3">
-                        <button className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-5 py-2.5 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer">
+                        <button className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white md:px-5 px-3 py-2.5 text-[12px] md:text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                             Email Payslip
                         </button>
-                        <button onClick={handleDownloadPDF} className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-5 py-2.5 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                        <button onClick={handleDownloadPDF} className="flex items-center gap-2 rounded-xl bg-[#257BFC] md:px-5 px-3 py-2.5 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                             Download PDF
                         </button>
@@ -72,14 +72,14 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
                         <Image src={shiftmateBg} alt="" className="absolute top-[45%]" />
                     </div>
 
-                    <div className="bg-[#257BFC] p-5 lg:px-6 text-white flex flex-col md:flex-row justify-between items-start md:items-center rounded-t-2xl relative">
+                    <div className="bg-[#257BFC] md:p-5 p-4 lg:px-6 text-white flex flex-col md:flex-row justify-between items-start md:items-center rounded-t-2xl relative">
                         <div>
-                            <h1 className="text-[22px] lg:text-[24px] font-medium">Shiftmate Corporation Ltd</h1>
-                            <p className="mt-2 text-[12px] text-white font-normal">123 Business Street, London, EC1A 1BB</p>
+                            <h1 className="text-[20px] md:text-[22px] lg:text-[24px] font-medium">Shiftmate Corporation Ltd</h1>
+                            <p className="mt-2 text-[10px] md:text-[12px] text-white font-normal">123 Business Street, London, EC1A 1BB</p>
                         </div>
                         <div className="mt-4 md:mt-0 md:text-right">
                             <h2 className="text-[20px] md:text-[24px] font-medium uppercase tracking-wide">PAYSLIP</h2>
-                            <p className="mt-1 text-[12px] font-normal text-white">March 2026</p>
+                            <p className="mt-1 text-[10px] md:text-[12px] font-normal text-white">March 2026</p>
                         </div>
                         <div className="absolute top-0 left-0">
                             <Image src={payslipBg1} alt="" />
@@ -90,59 +90,59 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
                     </div>
 
                     <div className="relative z-10">
-                        <div className="bg-[#F8F9FC] p-6 border-b border-[#D0D5DD]">
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-6">
+                        <div className="bg-[#F8F9FC] md:p-6 p-4 border-b border-[#D0D5DD]">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-y-6 gap-y-4 gap-x-6">
                                 <div>
-                                    <p className="text-[14px] font-normal text-[#98A2B3] mb-1">Full Name</p>
-                                    <p className="text-[16px] font-medium text-[#111827]">{decodedName}</p>
+                                    <p className="text-[12px] md:text-[14px] font-normal text-[#98A2B3] mb-1">Full Name</p>
+                                    <p className="text-[14px] md:text-[16px] font-medium text-[#111827]">{decodedName}</p>
                                 </div>
                                 <div>
-                                    <p className="text-[14px] font-normal text-[#98A2B3] mb-1">Employee ID</p>
-                                    <p className="text-[16px] font-medium text-[#111827]">EMP001</p>
+                                    <p className="text-[12px] md:text-[14px] font-normal text-[#98A2B3] mb-1">Employee ID</p>
+                                    <p className="text-[14px] md:text-[16px] font-medium text-[#111827]">EMP001</p>
                                 </div>
                                 <div>
-                                    <p className="text-[14px] font-normal text-[#98A2B3] mb-1">Department</p>
-                                    <p className="text-[16px] font-medium text-[#111827]">Sales</p>
+                                    <p className="text-[12px] md:text-[14px] font-normal text-[#98A2B3] mb-1">Department</p>
+                                    <p className="text-[14px] md:text-[16px] font-medium text-[#111827]">Sales</p>
                                 </div>
                                 <div>
-                                    <p className="text-[14px] font-normal text-[#98A2B3] mb-1">Pay Date</p>
-                                    <p className="text-[16px] font-medium text-[#111827]">31/03/2026</p>
+                                    <p className="text-[12px] md:text-[14px] font-normal text-[#98A2B3] mb-1">Pay Date</p>
+                                    <p className="text-[14px] md:text-[16px] font-medium text-[#111827]">31/03/2026</p>
                                 </div>
 
                                 <div>
-                                    <p className="text-[14px] font-normal text-[#98A2B3] mb-1">NI Number</p>
-                                    <p className="text-[16px] font-medium text-[#111827]">AB123456C</p>
+                                    <p className="text-[12px] md:text-[14px] font-normal text-[#98A2B3] mb-1">NI Number</p>
+                                    <p className="text-[14px] md:text-[16px] font-medium text-[#111827]">AB123456C</p>
                                 </div>
                                 <div>
-                                    <p className="text-[14px] font-normal text-[#98A2B3] mb-1">Tax Code</p>
-                                    <p className="text-[16px] font-medium text-[#111827]">1257L</p>
+                                    <p className="text-[12px] md:text-[14px] font-normal text-[#98A2B3] mb-1">Tax Code</p>
+                                    <p className="text-[14px] md:text-[16px] font-medium text-[#111827]">1257L</p>
                                 </div>
                                 <div>
-                                    <p className="text-[14px] font-normal text-[#98A2B3] mb-1">Pay Frequency</p>
-                                    <p className="text-[16px] font-medium text-[#111827]">Monthly</p>
+                                    <p className="text-[12px] md:text-[14px] font-normal text-[#98A2B3] mb-1">Pay Frequency</p>
+                                    <p className="text-[14px] md:text-[16px] font-medium text-[#111827]">Monthly</p>
                                 </div>
                                 <div>
-                                    <p className="text-[14px] font-normal text-[#98A2B3] mb-1">Tax Year</p>
-                                    <p className="text-[16px] font-medium text-[#111827]">2025/2026</p>
+                                    <p className="text-[12px] md:text-[14px] font-normal text-[#98A2B3] mb-1">Tax Year</p>
+                                    <p className="text-[14px] md:text-[16px] font-medium text-[#111827]">2025/2026</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="p-6 border-b border-[#D0D5DD]">
-                            <div className="flex items-center justify-between border-b border-[#D0D5DD] pb-6 mb-6">
-                                <h3 className="text-[20px] font-medium text-[#111827]">Earnings</h3>
-                                <span className="text-[20px] font-medium text-[#111827]">Amount</span>
+                        <div className="md:p-6 p-4 border-b border-[#D0D5DD]">
+                            <div className="flex items-center justify-between border-b border-[#D0D5DD] pb-3 md:pb-6 mb-3 md:mb-6">
+                                <h3 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Earnings</h3>
+                                <span className="md:text-[20px] text-[16px] font-medium text-[#111827]">Amount</span>
                             </div>
-                            <div className="space-y-4">
-                                <div className="flex items-center justify-between text-[14px]">
+                            <div className="md:space-y-4 space-y-2">
+                                <div className="flex items-center justify-between md:text-[14px] text-[12px]">
                                     <span className="text-[#111827]">Basic Salary</span>
                                     <span className="font-normal text-[#111827]">$5416.67</span>
                                 </div>
-                                <div className="flex items-center justify-between text-[14px]">
+                                <div className="flex items-center justify-between md:text-[14px] text-[12px]">
                                     <span className="text-[#111827]">Overtime</span>
                                     <span className="font-normal text-[#111827]">$0.00</span>
                                 </div>
-                                <div className="flex items-center justify-between text-[14px]">
+                                <div className="flex items-center justify-between md:text-[14px] text-[12px]">
                                     <span className="text-[#111827]">Bonus</span>
                                     <span className="font-normal text-[#111827]">$0.00</span>
                                 </div>
@@ -153,25 +153,25 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
                             </div>
                         </div>
 
-                        <div className="p-6">
-                            <div className="flex items-center justify-between border-b border-[#D0D5DD] pb-6 mb-6">
-                                <h3 className="text-[20px] font-medium text-[#111827]">Deductions</h3>
-                                <span className="text-[20px] font-medium text-[#111827]">Amount</span>
+                        <div className="md:p-6 p-4">
+                            <div className="flex items-center justify-between border-b border-[#D0D5DD] pb-3 md:pb-6 mb-3 md:mb-6">
+                                <h3 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Deductions</h3>
+                                <span className="md:text-[20px] text-[16px] font-medium text-[#111827]">Amount</span>
                             </div>
-                            <div className="space-y-4">
-                                <div className="flex items-center justify-between text-[14px]">
+                            <div className="md:space-y-4 space-y-2">
+                                <div className="flex items-center justify-between md:text-[14px] text-[12px]">
                                     <span className="text-[#111827]">PAYE (Income Tax)</span>
                                     <span className="font-normal text-[#111827]">$1083.33</span>
                                 </div>
-                                <div className="flex items-center justify-between text-[14px]">
+                                <div className="flex items-center justify-between md:text-[14px] text-[12px]">
                                     <span className="text-[#111827]">National Insurance</span>
                                     <span className="font-normal text-[#111827]">$450.00</span>
                                 </div>
-                                <div className="flex items-center justify-between text-[14px]">
+                                <div className="flex items-center justify-between md:text-[14px] text-[12px]">
                                     <span className="text-[#111827]">Pension (5%)</span>
                                     <span className="font-normal text-[#111827]">$270.83</span>
                                 </div>
-                                <div className="flex items-center justify-between text-[14px]">
+                                <div className="flex items-center justify-between md:text-[14px] text-[12px]">
                                     <span className="text-[#111827]">Student Loan</span>
                                     <span className="font-normal text-[#111827]">$0.00</span>
                                 </div>

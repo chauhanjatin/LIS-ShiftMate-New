@@ -257,7 +257,7 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                                         <div
                                             key={status.value}
                                             onClick={() => setSelectedStatus(status.value)}
-                                            className={`cursor-pointer rounded-2xl border p-4 transition-all ${
+                                            className={`cursor-pointer rounded-2xl border md:p-4 p-3 transition-all ${
                                                 selectedStatus === status.value
                                                     ? status.value === "Active" ? "border-[#4DB949] bg-[#F5FCF5]" :
                                                       status.value === "Inactive" ? "border-[#07265C] bg-[#EAF2FF]" :
@@ -266,7 +266,7 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                                                     : "border-neutral-200 bg-white hover:border-neutral-300"
                                             }`}
                                         >
-                                            <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${
+                                            <div className={`md:mb-3 mb-2 flex md:h-10 h-9 md:w-10 w-9 items-center justify-center rounded-xl ${
                                                 selectedStatus === status.value
                                                     ? status.value === "Active" ? "bg-[#4DB949] text-white" :
                                                       status.value === "Inactive" ? "bg-[#07265C] text-white" :
@@ -276,8 +276,8 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                                             }`}>
                                                 {status.icon}
                                             </div>
-                                            <h4 className="text-[18px] font-medium text-[#111827]">{status.label}</h4>
-                                            <p className="mt-2 text-[14px] font-normal text-[#98A2B3]">{status.desc}</p>
+                                            <h4 className="md:text-[18px] text-[17px] font-medium text-[#111827]">{status.label}</h4>
+                                            <p className="md:mt-2 mt-1 text-[14px] font-normal text-[#98A2B3]">{status.desc}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -286,13 +286,13 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                             <div className="mt-12 flex justify-end gap-3">
                                 <button
                                     onClick={() => router.push('/users')}
-                                    className="rounded-xl border border-neutral-200 bg-white px-8 py-3 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50"
+                                    className="rounded-xl border border-neutral-200 bg-white md:px-8 px-5 py-2 md:py-3 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={handleUpdate}
-                                    className="rounded-xl bg-[#257BFC] px-8 py-3 text-[14px] font-semibold text-white transition hover:bg-blue-600"
+                                    className="rounded-xl bg-[#257BFC] md:px-8 px-5 py-2 md:py-3 text-[14px] font-semibold text-white transition hover:bg-blue-600"
                                 >
                                     Update Info
                                 </button>

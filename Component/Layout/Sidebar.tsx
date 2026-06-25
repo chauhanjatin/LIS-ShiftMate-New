@@ -395,7 +395,7 @@ export default function Sidebar({
                     alt=""
                     width={20}
                     height={20}
-                    className={`transition-all duration-300 h-5 w-5 shrink-0 ${isActive ? "brightness-0 invert" : "brightness-0 opacity-80 group-hover:opacity-100"}`}
+                    className={`transition-all duration-300 h-6 w-6 shrink-0 ${isActive ? "brightness-0 invert" : "brightness-0 opacity-80 group-hover:opacity-100"}`}
                   />
 
                   <span

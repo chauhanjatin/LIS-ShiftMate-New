@@ -33,11 +33,24 @@ export default function SSPManagementPage() {
     }
   });
 
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {};
+    if (!formData.employee) newErrors.employee = "Please select an employee";
+    if (!formData.startDate) newErrors.startDate = "Please select a start date";
+    if (!formData.endDate) newErrors.endDate = "Please select an end date";
+    if (!formData.waitingDays) newErrors.waitingDays = "Please enter waiting days";
+    if (!formData.sspRate) newErrors.sspRate = "Please enter SSP rate";
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: "" }));
   };
 
   const handleEligibilityChange = (key: keyof typeof formData.eligibility) => {
@@ -62,7 +75,9 @@ export default function SSPManagementPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setShowToast(true);
+    if (validateForm()) {
+      setShowToast(true);
+    }
   };
 
   const handleCalculate = () => {
@@ -82,24 +97,24 @@ export default function SSPManagementPage() {
   const CustomCheckbox = ({ checked, onChange, label }: { checked: boolean, onChange: () => void, label: string }) => (
     <label className="flex items-center gap-3 cursor-pointer group">
       <input type="checkbox" className="hidden" checked={checked} onChange={onChange} />
-      <div className={`flex h-5 w-5 items-center justify-center rounded-[4px] border transition-colors ${checked ? 'border-[#257BFC] bg-[#257BFC]' : 'border-neutral-300 bg-white group-hover:border-[#257BFC]'}`}>
+      <div className={`flex md:h-5 md:w-5 h-4 w-4 items-center justify-center rounded-[4px] border transition-colors ${checked ? 'border-[#257BFC] bg-[#257BFC]' : 'border-neutral-300 bg-white group-hover:border-[#257BFC]'}`}>
         {checked && (
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         )}
       </div>
-      <span className="text-[14px] font-normal text-[#111827]">{label}</span>
+      <span className="md:text-[14px] text-[12px] font-normal text-[#111827]">{label}</span>
     </label>
   );
 
   return (
     <DashboardLayout title="SSP Management" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] px-6 pt-6">
-          <h2 className="text-[20px] font-medium text-[#111827] mb-8">SSP Management</h2>
+        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 md:pt-6 pt-4">
+          <h2 className="text-[20px] font-medium text-[#111827] md:mb-8 mb-6">SSP Management</h2>
           
-          <form onSubmit={handleSubmit} className="mx-[6%] space-y-8">
+          <form onSubmit={handleSubmit} className="md:mx-[6%] space-y-8">
             
             <div className="space-y-6">
               <div className="space-y-2">
@@ -109,7 +124,7 @@ export default function SSPManagementPage() {
                     name="employee"
                     value={formData.employee}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-[#111827] bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-brand-500 transition-colors appearance-none"
+                    className={`w-full rounded-xl border ${errors.employee ? 'border-red-500' : 'border-[#111827]'} bg-white px-4 md:py-3 py-2 text-[14px] font-medium text-neutral-900 outline-none focus:border-brand-500 transition-colors appearance-none`}
                     required
                   >
                     <option value="" disabled hidden>Cameron Williamson</option>
@@ -122,6 +137,7 @@ export default function SSPManagementPage() {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                   </div>
                 </div>
+                {errors.employee && <p className="text-red-500 text-xs mt-1">{errors.employee}</p>}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
@@ -133,12 +149,13 @@ export default function SSPManagementPage() {
                       name="startDate"
                       value={formData.startDate}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors custom-date-input"
+                      className={`w-full rounded-xl border ${errors.startDate ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 md:py-3 py-2 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors custom-date-input`}
                     />
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-neutral-500">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     </div>
                   </div>
+                  {errors.startDate && <p className="text-red-500 text-xs mt-1">{errors.startDate}</p>}
                 </div>
 
                 <div className="space-y-2">
@@ -149,13 +166,14 @@ export default function SSPManagementPage() {
                       name="endDate"
                       value={formData.endDate}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors appearance-none custom-date-input"
+                      className={`w-full rounded-xl border ${errors.endDate ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 md:py-3 py-2 text-[14px] text-neutral-500 outline-none focus:border-[#257BFC] transition-colors appearance-none custom-date-input`}
                     />
                     
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-neutral-500">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     </div>
                   </div>
+                  {errors.endDate && <p className="text-red-500 text-xs mt-1">{errors.endDate}</p>}
                 </div>
 
                 <div className="space-y-2">
@@ -165,8 +183,9 @@ export default function SSPManagementPage() {
                     name="waitingDays"
                     value={formData.waitingDays}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors mt-2"
+                    className={`w-full rounded-xl border ${errors.waitingDays ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 md:py-3 py-2 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors mt-2`}
                   />
+                  {errors.waitingDays && <p className="text-red-500 text-xs mt-1">{errors.waitingDays}</p>}
                 </div>
 
                 <div className="space-y-2">
@@ -176,17 +195,17 @@ export default function SSPManagementPage() {
                     name="sspRate"
                     value={formData.sspRate}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors mt-2"
+                    className={`w-full rounded-xl border ${errors.sspRate ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 md:py-3 py-2 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors mt-2`}
                   />
+                  {errors.sspRate && <p className="text-red-500 text-xs mt-1">{errors.sspRate}</p>}
                 </div>
               </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Eligibility Check */}
-              <div className="rounded-2xl bg-[#F9FAFB] p-6">
+              <div className="rounded-2xl bg-[#F9FAFB] md:p-6 p-4">
                 <h3 className="text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-4">Eligibility Check</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:gap-y-5 gap-y-3 md:gap-x-4 gap-x-2">
                   <CustomCheckbox 
                     checked={formData.eligibility.earnings} 
                     onChange={() => handleEligibilityChange('earnings')} 
@@ -205,10 +224,9 @@ export default function SSPManagementPage() {
                 </div>
               </div>
 
-              {/* Qualifying Days */}
-              <div className="rounded-2xl bg-[#F9FAFB] p-6">
+              <div className="rounded-2xl bg-[#F9FAFB] md:p-6 p-4">
                 <h3 className="text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-4">Qualifying Days</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-5 gap-x-4">
+                <div className="grid grid-cols-2 sm:grid-cols-4 md:gap-y-5 gap-y-3 md:gap-x-4 gap-x-2">
                   <CustomCheckbox 
                     checked={formData.qualifyingDays.mon} 
                     onChange={() => handleDayChange('mon')} 
@@ -273,14 +291,14 @@ export default function SSPManagementPage() {
               <button 
                 type="button" 
                 onClick={handleSubmit}
-                className="rounded-xl border border-[#111827] bg-white px-8 py-3 text-[14px] font-bold text-neutral-700 hover:bg-neutral-50 transition-colors shadow-sm"
+                className="rounded-xl border border-[#111827] bg-white md:px-8 px-4 md:py-3 py-2 md:text-[14px] text-[12px] font-bold text-neutral-700 hover:bg-neutral-50 transition-colors shadow-sm"
               >
                 Save Record
               </button>
               <button 
                 type="button" 
                 onClick={handleCalculate}
-                className={`rounded-xl px-8 py-3 text-[14px] font-bold transition-colors shadow-sm ${isCalculated ? 'bg-brand-500 text-white hover:bg-brand-600' : 'bg-[#E0EAFF] text-[#257BFC]'}`}
+                className={`rounded-xl md:px-8 px-4 md:py-3 py-2 md:text-[14px] text-[12px] font-bold transition-colors shadow-sm ${isCalculated ? 'bg-brand-500 text-white hover:bg-brand-600' : 'bg-[#E0EAFF] text-[#257BFC]'}`}
               >
                 Calculate SSP
               </button>

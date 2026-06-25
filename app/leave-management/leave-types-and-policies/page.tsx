@@ -55,11 +55,11 @@ export default function LeaveTypesAndPoliciesPage() {
     <DashboardLayout title="Leave Management" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+          <div className="flex flex-wrap items-center justify-between md:px-6 px-4 pt-4 md:pt-6">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Leave Types & Policies</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-              <button className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+              <button className="flex items-center md:gap-2 gap-1.5 rounded-xl bg-[#257BFC] md:px-4 px-2 py-2.5 text-[12px] md:text-[16px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 Add New Policy
               </button>
@@ -72,28 +72,28 @@ export default function LeaveTypesAndPoliciesPage() {
                 <table className="min-w-[900px] w-full text-left border-collapse ">
                   <thead className="bg-[#F8F9FC]">
                     <tr>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Leave Type</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Default Entitlement</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Accrual Rate</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Carry Forward</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Paid Type</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] text-center">Action</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Leave Type</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Default Entitlement</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Accrual Rate</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Carry Forward</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Paid Type</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827] text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white">
                     {policies.map((policy) => (
                       <tr key={policy.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{policy.leaveType}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{policy.entitlement}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{policy.accrualRate}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{policy.carryForward}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal">
-                          <span className={`inline-flex rounded-full px-5 py-2.5 text-[14px] font-normal ${policy.paidTypeColor === 'green' ? 'bg-[#EDFAF2] text-[#4DB949]' : 'bg-[#EAF2FF] text-[#2E334E]'
+                        <td className="px-4 py-3 md:py-6 sm:px-6 text-[12px] md:text-[14px] font-normal text-[#111827]">{policy.leaveType}</td>
+                        <td className="px-4 py-3 md:py-6 sm:px-6 text-[12px] md:text-[14px] font-normal text-[#111827]">{policy.entitlement}</td>
+                        <td className="px-4 py-3 md:py-6 sm:px-6 text-[12px] md:text-[14px] font-normal text-[#111827]">{policy.accrualRate}</td>
+                        <td className="px-4 py-3 md:py-6 sm:px-6 text-[12px] md:text-[14px] font-normal text-[#111827]">{policy.carryForward}</td>
+                        <td className="px-4 py-3 md:py-6 sm:px-6 text-[12px] md:text-[14px] font-normal">
+                          <span className={`inline-flex rounded-full px-5 py-2.5 md:text-[14px] text-[12px] font-normal ${policy.paidTypeColor === 'green' ? 'bg-[#EDFAF2] text-[#4DB949]' : 'bg-[#EAF2FF] text-[#2E334E]'
                             }`}>
                             {policy.paidType}
                           </span>
                         </td>
-                        <td className="px-4 py-4 sm:px-6">
+                        <td className="px-4 md:py-4 py-2 sm:px-6">
                           <div className="flex items-center justify-center gap-3">
                             <button className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
                               <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />

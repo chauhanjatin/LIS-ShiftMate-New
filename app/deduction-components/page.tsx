@@ -7,6 +7,7 @@ import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import searchIcon from "@/assets/images/icons/search.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
+import Toast from '@/Component/UI/Toast';
 import { Lexend_Deca } from "next/font/google";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
@@ -57,6 +58,56 @@ export default function DeductionComponentsPage() {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [deductionToDelete, setDeductionToDelete] = useState<number | null>(null);
+    const [showToast, setShowToast] = useState(false);
+
+    const [formData, setFormData] = useState({
+        name: "",
+        type: "",
+        method: "",
+        rate: "",
+        rules: "",
+        applicable: true,
+    });
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+    const validateForm = () => {
+        const newErrors: { [key: string]: string } = {};
+        if (!formData.name) newErrors.name = "Required";
+        if (!formData.type) newErrors.type = "Required";
+        if (!formData.method) newErrors.method = "Required";
+        if (!formData.rate) newErrors.rate = "Required";
+        if (!formData.rules) newErrors.rules = "Required";
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        setErrors(prev => ({ ...prev, [name]: "" }));
+    };
+
+    const handleAdd = () => {
+        if (!validateForm()) return;
+        const newDed: DeductionComponent = {
+            id: Date.now(),
+            name: formData.name,
+            type: formData.type,
+            rate: formData.method === 'Percentage' ? `${formData.rate}%` : `$${formData.rate}`,
+            rules: formData.rules,
+            applicable: formData.applicable
+        };
+        setDeductions([newDed, ...deductions]);
+        setIsAddModalOpen(false);
+        setShowToast(true);
+    };
+
+    const openAddModal = () => {
+        setFormData({ name: "", type: "", method: "", rate: "", rules: "", applicable: true });
+        setErrors({});
+        setIsAddModalOpen(true);
+    };
 
     const filteredDeductions = deductions.filter(d =>
         d.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -108,7 +159,7 @@ export default function DeductionComponentsPage() {
                                 />
                             </div>
 
-                            <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 md:px-5 md:py-2.5 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 md:px-5 md:py-2.5 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -173,8 +224,8 @@ export default function DeductionComponentsPage() {
             {isAddModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-[#E2E8F0] px-8 py-6">
-                            <h2 className="text-[24px] font-bold text-[#1D2939]">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] md:px-8 px-4 md:py-6 py-4">
+                            <h2 className="md:text-[24px] text-[16px] font-bold text-[#1D2939]">
                                 Add Deduction Component
                             </h2>
 
@@ -186,7 +237,7 @@ export default function DeductionComponentsPage() {
                             </button>
                         </div>
 
-                        <div className="px-8 py-6">
+                        <div className="md:px-8 px-4 md:py-6 py-4">
                             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
@@ -195,9 +246,13 @@ export default function DeductionComponentsPage() {
 
                                     <input
                                         type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleInputChange}
                                         placeholder="e.g. PAYE, Pension"
-                                        className="h-[52px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                        className={`md:h-[52px] h-[45px] w-full rounded-2xl border ${errors.name ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
                                     />
+                                    {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                                 </div>
 
                                 <div>
@@ -206,11 +261,12 @@ export default function DeductionComponentsPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC] overflow-hidden">
-                                            <option>Select Type</option>
-                                            <option>Statutory</option>
-                                            <option>Custom</option>
+                                        <select name="type" value={formData.type} onChange={handleInputChange} className={`md:h-[52px] h-[45px] w-full appearance-none rounded-2xl border ${errors.type ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC] overflow-hidden`}>
+                                            <option value="">Select Type</option>
+                                            <option value="Statutory">Statutory</option>
+                                            <option value="Custom">Custom</option>
                                         </select>
+                                        {errors.type && <p className="text-red-500 text-xs mt-1">{errors.type}</p>}
 
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]">
                                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -224,11 +280,12 @@ export default function DeductionComponentsPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC] overflow-hidden">
-                                            <option>Select Method Type</option>
-                                            <option>Percentage</option>
-                                            <option>Fixed Amount</option>
+                                        <select name="method" value={formData.method} onChange={handleInputChange} className={`md:h-[52px] h-[45px] w-full appearance-none rounded-2xl border ${errors.method ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC] overflow-hidden`}>
+                                            <option value="">Select Method Type</option>
+                                            <option value="Percentage">Percentage</option>
+                                            <option value="Fixed Amount">Fixed Amount</option>
                                         </select>
+                                        {errors.method && <p className="text-red-500 text-xs mt-1">{errors.method}</p>}
 
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]">
                                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -238,14 +295,18 @@ export default function DeductionComponentsPage() {
 
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
-                                        Rate(%)
+                                        Rate
                                     </label>
 
                                     <input
                                         type="text"
-                                        placeholder="Select Type"
-                                        className="h-[52px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                        name="rate"
+                                        value={formData.rate}
+                                        onChange={handleInputChange}
+                                        placeholder="Enter Rate"
+                                        className={`md:h-[52px] h-[45px] w-full rounded-2xl border ${errors.rate ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
                                     />
+                                    {errors.rate && <p className="text-red-500 text-xs mt-1">{errors.rate}</p>}
                                 </div>
 
                                 <div className="md:col-span-2">
@@ -254,21 +315,25 @@ export default function DeductionComponentsPage() {
                                     </label>
 
                                     <textarea
+                                        name="rules"
+                                        value={formData.rules}
+                                        onChange={handleInputChange}
                                         placeholder="Describe the rules and conditions for this deduction..."
-                                        className="h-[120px] w-full resize-none rounded-2xl border border-[#E2E8F0] p-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                        className={`md:h-[120px] h-[100px] w-full resize-none rounded-2xl border ${errors.rules ? 'border-red-500' : 'border-[#E2E8F0]'} md:p-4 p-3 text-[14px] outline-none transition focus:border-[#257BFC]`}
                                     />
+                                    {errors.rules && <p className="text-red-500 text-xs mt-1">{errors.rules}</p>}
                                 </div>
                             </div>
 
-                            <div className="mt-8 flex items-center justify-end gap-4">
+                            <div className="mt-8 flex items-center justify-end gap-3 md:gap-4">
                                 <button
                                     onClick={() => setIsAddModalOpen(false)}
-                                    className="h-[48px] rounded-2xl border border-[#101828] px-8 text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
+                                    className="md:h-[48px] h-[40px] rounded-2xl border border-[#101828] px-4 md:px-8 text-[12px] md:text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
 
-                                <button onClick={() => setIsAddModalOpen(false)} className="h-[48px] rounded-2xl bg-[#257BFC] px-8 text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                <button onClick={handleAdd} className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] px-4 md:px-8 text-[12px] md:text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                     Add Deduction Component
                                 </button>
                             </div>
@@ -294,6 +359,11 @@ export default function DeductionComponentsPage() {
                     </div>
                 </div>
             )}
+            <Toast
+                show={showToast}
+                message="Deduction Added Successfully"
+                onClose={() => setShowToast(false)}
+            />
         </DashboardLayout>
     );
 }

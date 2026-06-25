@@ -7,6 +7,7 @@ import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import searchIcon from "@/assets/images/icons/search.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
+import Toast from '@/Component/UI/Toast';
 import { Lexend_Deca } from "next/font/google";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
@@ -55,6 +56,49 @@ export default function PayComponentsPage() {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [componentToDelete, setComponentToDelete] = useState<number | null>(null);
+    const [showToast, setShowToast] = useState(false);
+
+    const [formData, setFormData] = useState({
+        name: "",
+        type: "Earning",
+        taxable: false,
+        pensionable: false,
+        niApplicable: false,
+    });
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+    const validateForm = () => {
+        const newErrors: { [key: string]: string } = {};
+        if (!formData.name) newErrors.name = "Required";
+        if (!formData.type) newErrors.type = "Required";
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value, type } = e.target;
+        const checked = (e.target as HTMLInputElement).checked;
+        setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
+        setErrors(prev => ({ ...prev, [name]: "" }));
+    };
+
+    const handleAdd = () => {
+        if (!validateForm()) return;
+        const newComp: PayComponent = {
+            id: Date.now(),
+            ...formData
+        };
+        setComponents([newComp, ...components]);
+        setIsAddModalOpen(false);
+        setShowToast(true);
+    };
+
+    const openAddModal = () => {
+        setFormData({ name: "", type: "Earning", taxable: false, pensionable: false, niApplicable: false });
+        setErrors({});
+        setIsAddModalOpen(true);
+    };
 
     const filteredComponents = components.filter(c =>
         c.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -80,8 +124,8 @@ export default function PayComponentsPage() {
         <DashboardLayout title="Pay Components" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
                 <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
-                    <div className="flex lg:flex-wrap items-center justify-between px-6 pt-6">
-                        <h2 className="lg:text-[20px] text-[17px] font-medium text-[#111827]">Pay Components (Earnings)</h2>
+                    <div className="flex flex-wrap items-center justify-between md:px-6 px-4 pt-4 md:pt-6">
+                        <h2 className="lg:text-[20px] md:text-[17px] text-[16px] font-medium text-[#111827]">Pay Components (Earnings)</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <div className="relative 2xl:w-75 lg:w-60 w-36">
@@ -100,7 +144,7 @@ export default function PayComponentsPage() {
                                 />
                             </div>
 
-                            <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 lg:px-5 md:py-2.5 text-[12px] lg:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 lg:px-5 md:py-2.5 text-[10px] md:text-[12px] lg:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -130,15 +174,15 @@ export default function PayComponentsPage() {
                                                 key={comp.id}
                                                 className="group border-b border-[#E2E8F0] transition-colors hover:bg-neutral-50 last:border-none"
                                             >
-                                                <td className="px-4 py-6 sm:px-6 text-[14px] font-normal text-neutral-900 sm:text-[14px]">
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] md:text-[14px] font-normal text-neutral-900 sm:text-[14px]">
                                                     {comp.name}
                                                 </td>
 
-                                                <td className="px-4 py-6 sm:px-6 text-[14px] font-normal text-neutral-900 sm:text-[14px]">
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] md:text-[14px] font-normal text-neutral-900 sm:text-[14px]">
                                                     {comp.type}
                                                 </td>
 
-                                                <td className="px-4 py-6 sm:px-6 text-center">
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-center">
                                                     <input
                                                         type="checkbox"
                                                         checked={comp.taxable}
@@ -238,8 +282,8 @@ export default function PayComponentsPage() {
                 isAddModalOpen && (
                     <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                         <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                            <div className="flex items-center justify-between border-b border-[#E2E8F0] lg:px-8 px-6 lg:py-6 py-4">
-                                <h2 className="text-[24px] font-bold text-[#1D2939]">
+                            <div className="flex items-center justify-between border-b border-[#E2E8F0] lg:px-8 md:px-6 px-4 lg:py-6 py-4">
+                                <h2 className="md:text-[24px] text-[18px] font-bold text-[#1D2939]">
                                     Add Pay Component
                                 </h2>
 
@@ -251,17 +295,17 @@ export default function PayComponentsPage() {
                                 </button>
                             </div>
 
-                            <div className="lg:px-8 px-6 lg:py-6 py-4">
+                            <div className="lg:px-8 md:px-6 px-4 lg:py-6 md:py-4 py-2">
                                 <h3 className="text-[20px] font-semibold text-[#1D2939]">
                                     Basic Information
                                 </h3>
 
-                                <p className="mt-2 text-[14px] text-[#98A2B3]">
+                                <p className="md:mt-2 mt-1 md:text-[14px] text-[12px] text-[#98A2B3]">
                                     Create a new earnings or deduction component to include
                                     in employee payroll calculations.
                                 </p>
 
-                                <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+                                <div className="md:mt-8 mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
                                     <div>
                                         <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                             Component Name
@@ -269,9 +313,13 @@ export default function PayComponentsPage() {
 
                                         <input
                                             type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleInputChange}
                                             placeholder="e.g., Basic Salary, Overtime, Bonus"
-                                            className="h-[52px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                            className={`md:h-[52px] h-[45px] w-full rounded-2xl border ${errors.name ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
                                         />
+                                        {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                                     </div>
 
                                     <div>
@@ -280,13 +328,14 @@ export default function PayComponentsPage() {
                                         </label>
 
                                         <div className="relative">
-                                            <select className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC] overflow-hidden">
-                                                <option>Select Component Type</option>
-                                                <option>Earning</option>
-                                                <option>Deduction</option>
-                                                <option>Allowance</option>
-                                                <option>Bonus</option>
+                                            <select name="type" value={formData.type} onChange={handleInputChange} className={`md:h-[52px] h-[45px] w-full appearance-none rounded-2xl border ${errors.type ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC] overflow-hidden`}>
+                                                <option value="">Select Component Type</option>
+                                                <option value="Earning">Earning</option>
+                                                <option value="Deduction">Deduction</option>
+                                                <option value="Allowance">Allowance</option>
+                                                <option value="Bonus">Bonus</option>
                                             </select>
+                                            {errors.type && <p className="text-red-500 text-xs mt-1">{errors.type}</p>}
 
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]">
                                                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -299,7 +348,10 @@ export default function PayComponentsPage() {
                                     <label className="flex items-center gap-3 cursor-pointer">
                                         <input
                                             type="checkbox"
-                                            className="h-5 w-5 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
+                                            name="taxable"
+                                            checked={formData.taxable}
+                                            onChange={handleInputChange}
+                                            className="md:h-5 md:w-5 h-4 w-4 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
                                         />
 
                                         <span className="text-[14px] text-[#344054]">
@@ -310,7 +362,10 @@ export default function PayComponentsPage() {
                                     <label className="flex items-center gap-3 cursor-pointer">
                                         <input
                                             type="checkbox"
-                                            className="h-5 w-5 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
+                                            name="pensionable"
+                                            checked={formData.pensionable}
+                                            onChange={handleInputChange}
+                                            className="md:h-5 md:w-5 h-4 w-4 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
                                         />
 
                                         <span className="text-[14px] text-[#344054]">
@@ -321,7 +376,10 @@ export default function PayComponentsPage() {
                                     <label className="flex items-center gap-3 cursor-pointer">
                                         <input
                                             type="checkbox"
-                                            className="h-5 w-5 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
+                                            name="niApplicable"
+                                            checked={formData.niApplicable}
+                                            onChange={handleInputChange}
+                                            className="md:h-5 md:w-5 h-4 w-4 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
                                         />
 
                                         <span className="text-[14px] text-[#344054]">
@@ -330,15 +388,15 @@ export default function PayComponentsPage() {
                                     </label>
                                 </div>
 
-                                <div className="lg:mt-12 mt-6 flex items-center justify-end gap-4">
+                                <div className="lg:mt-12 mt-10 flex items-center justify-end md:gap-4 gap-2">
                                     <button
                                         onClick={() => setIsAddModalOpen(false)}
-                                        className="h-[48px] rounded-2xl border border-[#101828] px-8 text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
+                                        className="md:h-[48px] h-[40px] rounded-2xl border border-[#101828] md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
                                     >
                                         Cancel
                                     </button>
 
-                                    <button onClick={() => setIsAddModalOpen(false)} className="h-[48px] rounded-2xl bg-[#257BFC] px-8 text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                    <button onClick={handleAdd} className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                         Add Pay Component
                                     </button>
                                 </div>
@@ -367,6 +425,11 @@ export default function PayComponentsPage() {
                     </div>
                 )
             }
+            <Toast
+                show={showToast}
+                message="Pay Component Added Successfully"
+                onClose={() => setShowToast(false)}
+            />
         </DashboardLayout >
     );
 }

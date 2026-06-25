@@ -34,12 +34,12 @@ const mockPayments: ActivePayment[] = [
 
 function MetricCard({ title, value, iconClass, icon }: { title: string, value: string, iconClass: string, icon: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-xl border border-[#E2E8F0] bg-white p-5 overflow-hidden">
+    <div className="flex items-center justify-between gap-4 rounded-xl border border-[#E2E8F0] bg-white md:p-5 p-4 overflow-hidden">
       <div className="space-y-1">
-        <p className="text-[32px] font-bold tracking-tight text-neutral-900 leading-tight">{value}</p>
-        <p className="text-[13px] font-bold text-neutral-700">{title}</p>
+        <p className="md:text-[32px] text-[28px] font-bold tracking-tight text-neutral-900 leading-tight">{value}</p>
+        <p className="md:text-[13px] text-[12px] font-bold text-neutral-700">{title}</p>
       </div>
-      <div className={`flex h-12 w-12 items-center justify-center rounded-xl text-white ${iconClass}`}>
+      <div className={`flex md:h-12 md:w-12 h-10 w-10 items-center justify-center rounded-xl text-white ${iconClass}`}>
         {icon}
       </div>
     </div>
@@ -72,8 +72,8 @@ export default function PaymentsDashboardPage() {
   return (
     <DashboardLayout title="Payments Dashboard" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm px-6 pt-6 min-h-[800px]">
-          <h2 className="text-[20px] font-medium text-[#111827] mb-6">Payments Dashboard</h2>
+        <div className="rounded-2xl bg-white shadow-sm md:px-6 px-4 md:pt-6 pt-4 min-h-[800px]">
+          <h2 className="md:text-[20px] text-[18px] font-medium text-[#111827] md:mb-6 mb-4">Payments Dashboard</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             <MetricCard
@@ -109,12 +109,12 @@ export default function PaymentsDashboardPage() {
               <table className="min-w-[1000px] w-full text-left border-collapse">
                 <thead className="bg-[#F2F4F7]">
                   <tr>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827]">Employee</th>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827]">Start Date</th>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827]">End Date</th>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827]">Weekly Amount</th>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827]">Type</th>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827] text-center">Action</th>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Employee</th>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Start Date</th>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">End Date</th>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Weekly Amount</th>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Type</th>
+                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827] text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white">
@@ -127,21 +127,21 @@ export default function PaymentsDashboardPage() {
                             alt={item.employeeName}
                             className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover flex-shrink-0"
                           />
-                          <span className="text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                          <span className="md:text-[14px] text-[12px] font-medium text-neutral-900 whitespace-nowrap">
                             {item.employeeName}
                           </span>
                         </div>
                       </td>
-                      <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827]">{item.startDate}</td>
-                      <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827]">{item.endDate}</td>
-                      <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827]">{item.weeklyAmount}</td>
-                      <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6">
-                        <span className={`inline-flex rounded-full px-3 py-1 text-[12px] font-bold ${getTypeBadge(item.type)}`}>
+                      <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[12px] font-normal text-[#111827]">{item.startDate}</td>
+                      <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[12px] font-normal text-[#111827]">{item.endDate}</td>
+                      <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[12px] font-normal text-[#111827]">{item.weeklyAmount}</td>
+                      <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-4 sm:px-6">
+                        <span className={`inline-flex rounded-full px-3 py-1 md:text-[12px] text-[10px] font-bold ${getTypeBadge(item.type)}`}>
                           {item.type}
                         </span>
                       </td>
                       <td className="border-b border-[#E2E8F0] py-4 pr-4 text-center">
-                        <Link href={`/statutory-payments/payments-dashboard/${item.id}`} className="inline-flex h-8 w-8 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 transition-colors">
+                        <Link href={`/statutory-payments/payments-dashboard/${item.id}`} className="inline-flex md:h-8 md:w-8 h-6 w-6 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 transition-colors">
                           <Image src={viewIcon} alt="" />
                         </Link>
                       </td>
