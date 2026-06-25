@@ -67,7 +67,19 @@ export default function PayrollCalendarPage() {
         payDate: "",
         status: "Active" as "Active" | "Completed",
     });
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
     const [showToast, setShowToast] = useState(false);
+
+    const validateForm = () => {
+        const newErrors: { [key: string]: string } = {};
+        if (!formData.payPeriod) newErrors.payPeriod = "Required";
+        if (!formData.startDate) newErrors.startDate = "Required";
+        if (!formData.endDate) newErrors.endDate = "Required";
+        if (!formData.payDate) newErrors.payDate = "Required";
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
     const filteredCalendars = calendars.filter(cal =>
         cal.payPeriod.toLowerCase().includes(searchQuery.toLowerCase())
@@ -75,6 +87,7 @@ export default function PayrollCalendarPage() {
 
     const openAddModal = () => {
         setFormData({ payPeriod: "", startDate: "", endDate: "", payDate: "", status: "Active" });
+        setErrors({});
         setIsAddModalOpen(true);
     };
 
@@ -87,10 +100,12 @@ export default function PayrollCalendarPage() {
             payDate: cal.payDate,
             status: cal.status
         });
+        setErrors({});
         setIsEditModalOpen(true);
     };
 
     const handleAdd = () => {
+        if (!validateForm()) return;
         const newCal: Calendar = {
             id: Date.now(),
             ...formData
@@ -101,6 +116,7 @@ export default function PayrollCalendarPage() {
     };
 
     const handleEdit = () => {
+        if (!validateForm()) return;
         if (currentCalendar) {
             setCalendars(calendars.map(c => c.id === currentCalendar.id ? { ...c, ...formData } : c));
         }
@@ -119,6 +135,7 @@ export default function PayrollCalendarPage() {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+        setErrors(prev => ({ ...prev, [name]: "" }));
     };
 
     const StatusPill = ({ status }: { status: "Active" | "Completed" }) => {
@@ -140,7 +157,7 @@ export default function PayrollCalendarPage() {
         <DashboardLayout title="Payroll Calendar" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
                 <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
-                    <div className="flex flex-wrap items-center justify-between px-6 pt-6 ">
+                    <div className="flex flex-wrap items-center justify-between px-4 md:px-6 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Pay Periods</h2>
 
                         <div className="flex items-center gap-4.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
@@ -160,7 +177,7 @@ export default function PayrollCalendarPage() {
                                 />
                             </div>
 
-                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 md:px-5 md:py-2.5 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-2 py-1 md:px-5 md:py-2.5 text-[10px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -187,12 +204,12 @@ export default function PayrollCalendarPage() {
                                     <tbody className="bg-white">
                                         {filteredCalendars.map((cal) => (
                                             <tr key={cal.id} className="group transition-colors hover:bg-neutral-50">
-                                                <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.payPeriod}</td>
-                                                <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.startDate}</td>
-                                                <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.endDate}</td>
-                                                <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.payDate}</td>
-                                                <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6"><StatusPill status={cal.status} /></td>
-                                                <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6">
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.payPeriod}</td>
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.startDate}</td>
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.endDate}</td>
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.payDate}</td>
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6"><StatusPill status={cal.status} /></td>
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6">
                                                     <div className="flex items-center gap-3">
                                                         <button onClick={() => openEditModal(cal)} className="text-neutral-400 hover:text-[#257BFC] cursor-pointer transition-colors">
                                                             <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
@@ -217,35 +234,39 @@ export default function PayrollCalendarPage() {
                 (isAddModalOpen || isEditModalOpen) && (
                     <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
                         <div className="w-full max-w-[700px] rounded-[24px] bg-white shadow-xl animate-in fade-in zoom-in-95 duration-200">
-                            <div className="flex items-center justify-between border-b border-[#E2E8F0] p-6 md:px-8 md:py-6">
-                                <h2 className="md:text-[22px] text-[20px] font-bold text-[#111827]">
+                            <div className="flex items-center justify-between border-b border-[#E2E8F0] p-4 md:px-8 md:py-6">
+                                <h2 className="md:text-[22px] text-[18px] font-bold text-[#111827]">
                                     {isEditModalOpen ? "Edit Calendar" : "Generate New Calendar"}
                                 </h2>
                                 <button onClick={() => isEditModalOpen ? setIsEditModalOpen(false) : setIsAddModalOpen(false)} className="text-neutral-400 hover:text-neutral-700 cursor-pointer">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                                 </button>
                             </div>
-                            <div className="p-6 md:p-8">
-                                <div className="mb-8">
-                                    <h3 className="text-[18px] font-semibold text-[#111827]">Basic Information</h3>
-                                    <p className="text-[14px] text-neutral-500 mt-1">Create a new earnings or deduction component to include in employee payroll calculations.</p>
+                            <div className="p-4 md:p-8">
+                                <div className="md:mb-8 mb-5">
+                                    <h3 className="md:text-[18px] text-[16px] font-semibold text-[#111827]">Basic Information</h3>
+                                    <p className="md:text-[14px] text-[12px] text-neutral-500 mt-1">Create a new earnings or deduction component to include in employee payroll calculations.</p>
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
                                     <div>
                                         <label className="mb-2 block text-sm font-medium text-[#111827]">Pay period</label>
-                                        <input name="payPeriod" value={formData.payPeriod} onChange={handleInputChange} placeholder="e.g., Basic Salary, Overtime, Bonus" className="w-full rounded-xl border border-[#E2E8F0] md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#4B5563]" />
+                                        <input name="payPeriod" value={formData.payPeriod} onChange={handleInputChange} placeholder="e.g., Basic Salary, Overtime, Bonus" className={`w-full rounded-xl border ${errors.payPeriod ? 'border-red-500' : 'border-[#E2E8F0]'} md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#4B5563]`} />
+                                        {errors.payPeriod && <p className="text-red-500 text-xs mt-1">{errors.payPeriod}</p>}
                                     </div>
                                     <div>
                                         <label className="mb-2 block text-sm font-medium text-[#111827]">Start Date</label>
-                                        <input type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} className="w-full rounded-xl border border-[#E2E8F0] md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#9CA3AF]" />
+                                        <input type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.startDate ? 'border-red-500' : 'border-[#E2E8F0]'} md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#9CA3AF]`} />
+                                        {errors.startDate && <p className="text-red-500 text-xs mt-1">{errors.startDate}</p>}
                                     </div>
                                     <div>
                                         <label className="mb-2 block text-sm font-medium text-[#111827]">End Date</label>
-                                        <input type="date" name="endDate" value={formData.endDate} onChange={handleInputChange} className="w-full rounded-xl border border-[#E2E8F0] md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#9CA3AF]" />
+                                        <input type="date" name="endDate" value={formData.endDate} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.endDate ? 'border-red-500' : 'border-[#E2E8F0]'} md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#9CA3AF]`} />
+                                        {errors.endDate && <p className="text-red-500 text-xs mt-1">{errors.endDate}</p>}
                                     </div>
                                     <div>
                                         <label className="mb-2 block text-sm font-medium text-[#111827]">Pay Date</label>
-                                        <input type="date" name="payDate" value={formData.payDate} onChange={handleInputChange} className="w-full rounded-xl border border-[#E2E8F0] md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#9CA3AF]" />
+                                        <input type="date" name="payDate" value={formData.payDate} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.payDate ? 'border-red-500' : 'border-[#E2E8F0]'} md:p-3 p-2 text-[13px] md:text-[14px] outline-none focus:border-[#257BFC] text-[#9CA3AF]`} />
+                                        {errors.payDate && <p className="text-red-500 text-xs mt-1">{errors.payDate}</p>}
                                     </div>
                                     <div>
                                         <label className="mb-2 block text-sm font-medium text-[#111827]">Status</label>

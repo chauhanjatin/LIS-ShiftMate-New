@@ -32,7 +32,7 @@ export default function CompanyProfilePage() {
       <div className="flex-1 p-4 2xl:p-6">
         <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm">
 
-          <div className="flex items-center gap-4 md:gap-5 rounded-2xl bg-[#F8FAFC] border border-neutral-100 md:p-6 p-4 md:mb-10 mb-8">
+          <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-5 rounded-2xl bg-[#F8FAFC] border border-neutral-100 md:p-6 p-4 md:mb-10 mb-8">
             <Image
               src={appLogo}
               alt="App Logo"
@@ -222,15 +222,15 @@ export default function CompanyProfilePage() {
                   </div>
                 </div>
 
-                <div className="mt-8 rounded-2xl bg-[#F0F6FF] border border-[#D1E4FF] p-6">
+                <div className="mt-8 rounded-2xl bg-[#F0F6FF] border border-[#D1E4FF] p-4 md:p-6">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#257BFC] text-white mb-4">
                     <span className="text-[18px] font-bold">$</span>
                   </div>
                   <h3 className="text-[16px] font-bold text-neutral-900 mb-2">PAYE & Accounts Office Reference</h3>
-                  <p className="text-[13px] text-neutral-600 leading-relaxed mb-4">
+                  <p className="text-[11px] md:text-[13px] text-neutral-600 leading-relaxed mb-4">
                     Your PAYE reference is used for monthly reporting to HMRC. The Accounts Office reference is required when making payments to HMRC via BACS or Direct Debit.
                   </p>
-                  <a href="#" className="text-[14px] font-semibold text-brand-500 hover:text-blue-700 flex items-center gap-1">
+                  <a href="#" className="text-[12px] md:text-[14px] font-semibold text-brand-500 hover:text-blue-700 flex items-center gap-1">
                     Learn more about HMRC references
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="7" y1="17" x2="17" y2="7"></line>

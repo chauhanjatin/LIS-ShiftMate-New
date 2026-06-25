@@ -73,6 +73,42 @@ export default function SalaryStructurePage() {
     const [structureToDelete, setStructureToDelete] = useState<number | null>(null);
     const [showToast, setShowToast] = useState(false);
 
+    const [formData, setFormData] = useState<{name: string, earnings: string[], deductions: string[]}>({
+        name: "",
+        earnings: [],
+        deductions: []
+    });
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+    const validateForm = () => {
+        const newErrors: { [key: string]: string } = {};
+        if (!formData.name) newErrors.name = "Required";
+        if (formData.earnings.length === 0) newErrors.earnings = "Select at least one earning component";
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSave = () => {
+        if (!validateForm()) return;
+        
+        if (modalMode === 'add') {
+            const newStructure: SalaryStructure = {
+                id: Date.now(),
+                name: formData.name,
+                earnings: formData.earnings,
+                deductions: formData.deductions,
+                contributions: []
+            };
+            setStructures([newStructure, ...structures]);
+        } else if (selectedStructure) {
+            setStructures(structures.map(s => s.id === selectedStructure.id ? { ...s, name: formData.name, earnings: formData.earnings, deductions: formData.deductions } : s));
+        }
+        
+        setIsModalOpen(false);
+        setShowToast(true);
+    };
+
     const filteredStructures = structures.filter(s =>
         s.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -80,12 +116,16 @@ export default function SalaryStructurePage() {
     const openAddModal = () => {
         setModalMode("add");
         setSelectedStructure(null);
+        setFormData({ name: "", earnings: [], deductions: [] });
+        setErrors({});
         setIsModalOpen(true);
     };
 
     const openEditModal = (structure: SalaryStructure) => {
         setModalMode("edit");
         setSelectedStructure(structure);
+        setFormData({ name: structure.name, earnings: structure.earnings, deductions: structure.deductions });
+        setErrors({});
         setIsModalOpen(true);
     };
 
@@ -109,7 +149,7 @@ export default function SalaryStructurePage() {
         <DashboardLayout title="Salary Structure" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
                 <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
-                    <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+                    <div className="flex flex-wrap items-center justify-between md:px-6 md:pt-6 px-4 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Salary Structure</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
@@ -129,7 +169,7 @@ export default function SalaryStructurePage() {
                                 />
                             </div>
 
-                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 md:px-5 md:py-2.5 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 md:px-5 md:py-2.5 text-[10px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -145,19 +185,19 @@ export default function SalaryStructurePage() {
                                 <table className="min-w-[1100px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
                                         <tr>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[14px] font-normal text-[#111827] rounded-l-lg">Structure Name</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[14px] font-normal text-[#111827]">Earning</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[14px] font-normal text-[#111827]">Deductions</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[14px] font-normal text-[#111827]">Employer Contributions</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[14px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[13px] md:text-[14px] font-normal text-[#111827] rounded-l-lg">Structure Name</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[14px] font-normal text-[#111827]">Earning</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[14px] font-normal text-[#111827]">Deductions</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[14px] font-normal text-[#111827]">Employer Contributions</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[14px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
                                         {filteredStructures.map((structure) => (
                                             <tr key={structure.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#2E334E]">{structure.name}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#2E334E]">{structure.name}</td>
 
-                                                <td className="px-4 py-6 sm:px-6">
+                                                <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex flex-wrap gap-2">
                                                         {structure.earnings.map(e => (
                                                             <span key={e} className="inline-flex rounded-full bg-[#EAF2FF] px-2.5 py-1 text-[12px] font-normal text-[#257BFC]">
@@ -167,7 +207,7 @@ export default function SalaryStructurePage() {
                                                     </div>
                                                 </td>
 
-                                                <td className="px-4 py-6 sm:px-6">
+                                                <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex flex-wrap gap-2">
                                                         {structure.deductions.map(d => (
                                                             <span key={d} className="inline-flex rounded-full bg-[#FDEAEA] px-2.5 py-1 text-[12px] font-normal text-[#F04438]">
@@ -177,7 +217,7 @@ export default function SalaryStructurePage() {
                                                     </div>
                                                 </td>
 
-                                                <td className="px-4 py-6 sm:px-6">
+                                                <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex flex-wrap gap-2">
                                                         {structure.contributions.map(c => (
                                                             <span key={c} className="inline-flex rounded-full bg-[#EAF9EA] px-2.5 py-1 text-[12px] font-normal text-[#4DB949]">
@@ -187,7 +227,7 @@ export default function SalaryStructurePage() {
                                                     </div>
                                                 </td>
 
-                                                <td className="px-4 py-6 sm:px-6">
+                                                <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex items-center justify-center gap-3">
                                                         <button onClick={() => openEditModal(structure)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
                                                             <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
@@ -211,8 +251,8 @@ export default function SalaryStructurePage() {
             {isModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                     <div className="w-full max-w-[700px] overflow-hidden rounded-3xl bg-white shadow-2xl max-h-[90vh] overflow-y-auto">
-                        <div className="flex items-center justify-between border-b border-[#E2E8F0] px-8 py-6 sticky top-0 bg-white z-10">
-                            <h2 className="text-[24px] font-bold text-[#1D2939]">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] md:px-8 px-4 md:py-6 py-4 sticky top-0 bg-white z-10">
+                            <h2 className="md:text-[24px] text-[20px] font-bold text-[#1D2939]">
                                 {modalMode === 'add' ? 'Create Salary Structure' : 'Edit Salary Structure'}
                             </h2>
 
@@ -224,7 +264,7 @@ export default function SalaryStructurePage() {
                             </button>
                         </div>
 
-                        <div className="px-8 py-6">
+                        <div className="md:px-8 px-4 md:py-6 py-4">
 
                             <div className="mb-6">
                                 <label className="mb-2 block text-[14px] font-medium text-[#344054]">
@@ -232,26 +272,39 @@ export default function SalaryStructurePage() {
                                 </label>
                                 <input
                                     type="text"
+                                    value={formData.name}
+                                    onChange={(e) => {
+                                        setFormData(prev => ({ ...prev, name: e.target.value }));
+                                        setErrors(prev => ({ ...prev, name: "" }));
+                                    }}
                                     placeholder="e.g., Executive Package, Standard Package"
-                                    defaultValue={selectedStructure?.name || ""}
-                                    className="h-[52px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                    className={`md:h-[52px] h-[45px] w-full rounded-2xl border ${errors.name ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
                                 />
+                                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                             </div>
 
-                            <div className="mb-8 bg-white rounded-2xl p-6 border border-[#E2E8F0] overflow-hidden">
+                            <div className="mb-8 bg-white rounded-2xl md:p-6 p-4 border border-[#E2E8F0] overflow-hidden">
                                 <h3 className="text-[16px] font-semibold text-[#1D2939] mb-4 border-b border-[#E2E8F0] pb-3">
                                     Earning Components
                                 </h3>
 
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid md:grid-cols-2 gap-4">
                                     {["Basic Salary", "Hourly Pay", "Car Allowance", "Overtime", "Commission", "Bonus"].map(item => {
-                                        const isChecked = selectedStructure?.earnings.includes(item) || false;
+                                        const isChecked = formData.earnings.includes(item);
                                         return (
                                             <label key={item} className="flex items-center gap-3 cursor-pointer">
                                                 <input
                                                     type="checkbox"
-                                                    defaultChecked={isChecked}
-                                                    className="h-5 w-5 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
+                                                    checked={isChecked}
+                                                    onChange={(e) => {
+                                                        const checked = e.target.checked;
+                                                        setFormData(prev => ({
+                                                            ...prev,
+                                                            earnings: checked ? [...prev.earnings, item] : prev.earnings.filter(i => i !== item)
+                                                        }));
+                                                        setErrors(prev => ({ ...prev, earnings: "" }));
+                                                    }}
+                                                    className="md:h-5 md:w-5 h-4 w-4 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
                                                 />
                                                 <span className="text-[14px] font-medium text-[#344054]">
                                                     {item}
@@ -260,22 +313,30 @@ export default function SalaryStructurePage() {
                                         );
                                     })}
                                 </div>
+                                {errors.earnings && <p className="text-red-500 text-xs mt-2">{errors.earnings}</p>}
                             </div>
 
-                            <div className="mb-6 bg-white rounded-2xl p-6 border border-[#E2E8F0] overflow-hidden">
+                            <div className="mb-6 bg-white rounded-2xl md:p-6 p-4 border border-[#E2E8F0] overflow-hidden">
                                 <h3 className="text-[16px] font-semibold text-[#1D2939] mb-4 border-b border-[#E2E8F0] pb-3">
                                     Deductions Components
                                 </h3>
 
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid md:grid-cols-2 gap-4">
                                     {["PAYE(Income Tax)", "Workplace Pension", "National Insurance", "Student Loan"].map(item => {
-                                        const isChecked = selectedStructure?.deductions.some(d => item.includes(d) || d.includes(item)) || false;
+                                        const isChecked = formData.deductions.some(d => item.includes(d) || d.includes(item));
                                         return (
                                             <label key={item} className="flex items-center gap-3 cursor-pointer">
                                                 <input
                                                     type="checkbox"
-                                                    defaultChecked={isChecked}
-                                                    className="h-5 w-5 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
+                                                    checked={isChecked}
+                                                    onChange={(e) => {
+                                                        const checked = e.target.checked;
+                                                        setFormData(prev => ({
+                                                            ...prev,
+                                                            deductions: checked ? [...prev.deductions, item] : prev.deductions.filter(i => i !== item)
+                                                        }));
+                                                    }}
+                                                    className="md:h-5 md:w-5 h-4 w-4 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
                                                 />
                                                 <span className="text-[14px] font-medium text-[#344054]">
                                                     {item}
@@ -286,15 +347,15 @@ export default function SalaryStructurePage() {
                                 </div>
                             </div>
 
-                            <div className="mt-8 flex items-center justify-end gap-4 border-t border-[#E2E8F0] pt-6">
+                            <div className="md:mt-8 mt-6 flex items-center justify-end md:gap-4 gap-2 border-t border-[#E2E8F0] pt-6">
                                 <button
                                     onClick={() => setIsModalOpen(false)}
-                                    className="h-[48px] rounded-2xl border border-[#E2E8F0] bg-white px-8 text-[15px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer overflow-hidden"
+                                    className="md:h-[48px] h-[40px] rounded-2xl border border-[#E2E8F0] bg-white md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer overflow-hidden"
                                 >
                                     Cancel
                                 </button>
 
-                                <button onClick={() => { setIsModalOpen(false); setShowToast(true); }} className="h-[48px] rounded-2xl bg-[#257BFC] px-8 text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                <button onClick={handleSave} className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                     {modalMode === 'add' ? 'Add Pay Component' : 'Save Changes'}
                                 </button>
                             </div>

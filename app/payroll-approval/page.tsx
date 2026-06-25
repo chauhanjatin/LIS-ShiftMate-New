@@ -64,7 +64,7 @@ export default function PayrollApprovalPage() {
             <div className={`flex-1 p-4 2xl:p-6 space-y-6 ${lexendDeca.className}`}>
 
                 <div className="bg-white rounded-xl overflow-hidden">
-                    <div className="p-6 shadow-sm overflow-hidden">
+                    <div className="md:p-6 p-4 shadow-sm overflow-hidden">
                         <h2 className="text-[18px] font-bold text-neutral-900 mb-6">Payroll Summary</h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">

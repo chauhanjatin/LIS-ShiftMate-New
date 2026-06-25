@@ -135,7 +135,7 @@ function NotificationDropdown() {
       {isOpen && (
         <>
           <div className="fixed inset-0 z-10" onClick={() => detailsRef.current?.removeAttribute('open')}></div>
-          <div className="absolute right-0 z-20 mt-3 w-[calc(100vw-2rem)] sm:w-[380px] rounded-2xl border border-neutral-200 bg-white shadow-[0_16px_35px_rgba(15,23,42,0.14)] overflow-hidden">
+          <div className="absolute right-[-40px] sm:right-0 z-20 mt-3 w-[calc(100vw-2rem)] sm:w-[380px] max-w-[380px] rounded-2xl border border-neutral-200 bg-white shadow-[0_16px_35px_rgba(15,23,42,0.14)] overflow-hidden">
             <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-100">
               <h3 className="text-[18px] font-bold text-neutral-900">Notifications</h3>
               <button onClick={() => detailsRef.current?.removeAttribute('open')} className="text-neutral-500 hover:text-neutral-800 transition-colors cursor-pointer">

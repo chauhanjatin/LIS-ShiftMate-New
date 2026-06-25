@@ -106,8 +106,8 @@ export default function StudentLoanRulesPage() {
         <DashboardLayout title="Student Loan Rules" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
                 <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
-                    <div className="flex flex-wrap items-center justify-between px-6 pt-6">
-                        <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">Student Loan Plans</h2>
+                    <div className="flex flex-wrap items-center justify-between md:px-6 px-4 pt-4 md:pt-6">
+                        <h2 className="lg:text-[20px] md:text-[18px] text-[16px] font-medium text-[#111827]">Student Loan Plans</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <button onClick={openAddModal} className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
@@ -123,22 +123,22 @@ export default function StudentLoanRulesPage() {
                                 <table className="min-w-[900px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
                                         <tr>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] rounded-l-lg">Plan Type</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Description</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Repayment Threshold($)</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Deduction Percentage</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] text-center rounded-r-lg">Action</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827] rounded-l-lg">Plan Type</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827]">Description</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827]">Repayment Threshold($)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827]">Deduction Percentage</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827] text-center rounded-r-lg">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
                                         {plans.map((plan) => (
                                             <tr key={plan.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{plan.planType}</td>
-                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{plan.description}</td>
-                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{plan.threshold}</td>
-                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{plan.deduction}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{plan.planType}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{plan.description}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{plan.threshold}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{plan.deduction}</td>
 
-                                                <td className="px-4 py-6 sm:px-6">
+                                                <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex items-center justify-center gap-3">
                                                         <button onClick={() => openEditModal(plan)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
                                                             <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
@@ -162,8 +162,8 @@ export default function StudentLoanRulesPage() {
             {(isAddModalOpen || isEditModalOpen) && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-[#E2E8F0] md:px-8 px-6 md:py-6 py-4">
-                            <h2 className="md:text-[24px] text-[20px] font-bold text-[#1D2939]">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] md:px-8 px-4 md:py-6 py-4">
+                            <h2 className="md:text-[24px] text-[18px] font-bold text-[#1D2939]">
                                 {isAddModalOpen ? 'Create Student Loan Rule' : 'Edit Student Loan Rule'}
                             </h2>
 

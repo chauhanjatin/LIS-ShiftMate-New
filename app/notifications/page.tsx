@@ -32,17 +32,17 @@ export default function NotificationsPage() {
       <div className={`flex-1 p-4 2xl:p-6 pb-20 ${lexendDeca.className}`}>
         <div className="bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden">
           
-          <div className="flex flex-wrap items-center justify-between p-5 border-b border-neutral-100">
+          <div className="flex flex-wrap items-center justify-between md:p-5 p-4 border-b border-neutral-100">
             <h2 className="text-[18px] font-bold text-neutral-900">Notifications</h2>
             
-            <div className="flex items-center gap-3">
-              <button className="flex h-10 w-10 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 hover:bg-neutral-50 transition-colors cursor-pointer">
+            <div className="flex flex-wrap items-center gap-3">
+              <button className="flex md:h-10 h-9 md:w-10 w-9 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 hover:bg-neutral-50 transition-colors cursor-pointer">
                 <Image src={filterIcon} alt="Filter" />
               </button>
               
               <button 
                 onClick={markAllAsRead}
-                className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-5 py-2.5 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
+                className="flex items-center gap-2 rounded-xl bg-[#257BFC] md:px-5 px-2 md:py-2.5 py-1 md:text-[14px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12"></polyline>
@@ -52,7 +52,7 @@ export default function NotificationsPage() {
 
               <button 
                 onClick={clearAll}
-                className="flex items-center gap-2 rounded-xl border border-[#EE5340] px-5 py-2.5 text-[14px] font-semibold text-[#EE5340] transition hover:bg-[#FEE2E2] cursor-pointer"
+                className="flex items-center gap-2 rounded-xl border border-[#EE5340] md:px-5 px-2 md:py-2.5 py-1 md:text-[14px] text-[12px] font-semibold text-[#EE5340] transition hover:bg-[#FEE2E2] cursor-pointer"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -71,7 +71,7 @@ export default function NotificationsPage() {
               notifications.map((notification) => {
                 const styles = getTypeStyles(notification.type);
                 return (
-                  <div key={notification.id} className="flex items-center gap-4 p-5 hover:bg-neutral-50 transition-colors">
+                  <div key={notification.id} className="grid grid-cols-1 sm:flex flex-wrap items-center gap-4 p-5 hover:bg-neutral-50 transition-colors">
                     <div className="w-2 flex justify-center shrink-0">
                       {!notification.read && <div className="h-2 w-2 rounded-full bg-[#257BFC]"></div>}
                     </div>

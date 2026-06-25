@@ -176,8 +176,8 @@ export default function EmployeePayrollSetupPage() {
             {isEditModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-[#E2E8F0] lg:px-8 px-6 lg:py-6 py-4">
-                            <h2 className="text-[24px] font-bold text-[#1D2939]">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] lg:px-8 md:px-6 px-4 lg:py-6 py-4">
+                            <h2 className="md:text-[24px] text-[18px] font-bold text-[#1D2939]">
                                 Edit Employee Payroll
                             </h2>
 
@@ -189,8 +189,8 @@ export default function EmployeePayrollSetupPage() {
                             </button>
                         </div>
 
-                        <div className="px-8 py-6">
-                            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                        <div className="md:px-8 px-4 md:py-6 py-4">
+                            <div className="grid grid-cols-1 gap-3 md:gap-5 md:grid-cols-2">
                                 <div className="md:col-span-2">
                                     <label className="mb-2 block text-[14px] font-medium text-[#344054]">
                                         Employee Name
@@ -200,7 +200,7 @@ export default function EmployeePayrollSetupPage() {
                                         type="text"
                                         defaultValue={selectedEmployee?.name || ""}
                                         readOnly
-                                        className="h-[52px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] bg-neutral-50 outline-none text-[#667085]"
+                                        className="md:h-[52px] h-[40px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] bg-neutral-50 outline-none text-[#667085]"
                                     />
                                 </div>
 
@@ -212,7 +212,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.salary || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
+                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="$58,000">$58,000</option>
                                             <option value="$60,000">$60,000</option>
@@ -230,7 +230,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.taxCode || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
+                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="1257L">1257L</option>
                                             <option value="BR">BR</option>
@@ -248,7 +248,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.niCategory || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
+                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="A">A</option>
                                             <option value="B">B</option>
@@ -266,7 +266,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.studentLoanPlan || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
+                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="Plan 1">Plan 1</option>
                                             <option value="Plan 2">Plan 2</option>
@@ -285,7 +285,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.pensionStatus || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
+                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="Auto-enrolled">Auto-enrolled</option>
                                             <option value="Opted Out">Opted Out</option>
@@ -302,7 +302,7 @@ export default function EmployeePayrollSetupPage() {
                                     <div className="relative">
                                         <select
                                             defaultValue={selectedEmployee?.payFrequency || ""}
-                                            className="h-[52px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
+                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
                                         >
                                             <option value="Weekly">Weekly</option>
                                             <option value="Monthly">Monthly</option>
@@ -314,15 +314,15 @@ export default function EmployeePayrollSetupPage() {
 
                             </div>
 
-                            <div className="mt-10 flex items-center justify-end gap-4">
+                            <div className="md:mt-10 mt-8 flex items-center justify-end gap-3 md:gap-4">
                                 <button
                                     onClick={() => setIsEditModalOpen(false)}
-                                    className="h-[48px] rounded-2xl border border-[#E2E8F0] px-8 text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
+                                    className="md:h-[48px] h-[40px] rounded-2xl border border-[#E2E8F0] md:px-8 px-4 text-[13px] md:text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
 
-                                <button onClick={() => { setIsEditModalOpen(false); setShowToast(true); }} className="h-[48px] rounded-2xl bg-[#257BFC] px-8 text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                <button onClick={() => { setIsEditModalOpen(false); setShowToast(true); }} className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 text-[13px] md:text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                     Save Change
                                 </button>
                             </div>

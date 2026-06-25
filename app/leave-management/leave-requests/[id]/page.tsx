@@ -34,13 +34,13 @@ export default function LeaveRequestDetailsPage({ params }: { params: { id: stri
   return (
     <DashboardLayout title="Leave Requests" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm h-full flex flex-col p-6 2xl:p-8">
-          <h2 className="text-[18px] md:text-[20px] font-medium text-[#111827] mb-6 md:mb-8">Leave Request Details</h2>
+        <div className="rounded-2xl bg-white shadow-sm h-full flex flex-col p-4 md:p-6 2xl:p-8">
+          <h2 className="text-[18px] md:text-[20px] font-medium text-[#111827] mb-4 md:mb-8">Leave Request Details</h2>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 2xl:gap-8 mb-8">
-            <div className="rounded-2xl bg-[#F9FAFB] p-6">
-              <h3 className="text-[14px] md:text-[20px] font-medium text-[#111827] mb-6">Employee Information</h3>
-              <div className="grid grid-cols-2 gap-y-6 border-t border-[#D0D5DD] py-6">
+            <div className="rounded-2xl bg-[#F9FAFB] p-4 md:p-6">
+              <h3 className="text-[15px] md:text-[20px] font-medium text-[#111827] md:mb-6 mb-4">Employee Information</h3>
+              <div className="grid md:grid-cols-2 gap-y-3 md:gap-y-6 border-t border-[#D0D5DD] py-4 md:py-6">
                 <div>
                   <p className="text-[12px] text-[#98A2B3] mb-2">Full Name</p>
                   <p className="text-[14px] font-medium text-[#111827]">Devon Lane</p>
@@ -60,10 +60,10 @@ export default function LeaveRequestDetailsPage({ params }: { params: { id: stri
               </div>
             </div>
 
-            <div className="rounded-2xl bg-[#F9FAFB] p-6">
-              <h3 className="text-[20px] font-medium text-[#111827] mb-6">Leave Details</h3>
+            <div className="rounded-2xl bg-[#F9FAFB] p-4 md:p-6">
+              <h3 className="text-[15px] md:text-[20px] font-medium text-[#111827] md:mb-6 mb-4">Leave Details</h3>
 
-              <div className="grid grid-cols-2 gap-y-6 border-t border-[#D0D5DD] py-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 md:gap-y-6 border-t border-[#D0D5DD] py-4 md:py-6">
                 <div>
                   <p className="text-[12px] text-[#98A2B3] mb-2">Leave Type</p>
                   <p className="text-[14px] font-medium text-[#111827]">Annual Leave</p>

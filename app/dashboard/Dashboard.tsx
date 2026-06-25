@@ -326,8 +326,8 @@ export default function DashboardPage() {
               Employees by Department
             </h2>
 
-            <div className="flex 2xl:flex-row xl:flex-col md:flex-row flex-col items-center justify-center gap-3.5 lg:justify-between 2xl:gap-10">
-              <div className="h-[240px] w-[240px] shrink-0">
+            <div className="flex 2xl:flex-row xl:flex-col md:flex-row flex-col items-center justify-center gap-3.5 lg:justify-between">
+              <div className="h-[234px] w-[234px] shrink-0">
                 <PieChart
                   series={[
                     {

@@ -70,7 +70,7 @@ export default function AllEmployeesPage() {
           <div className="flex flex-wrap items-center justify-between px-6 pt-6">
             <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Employee List</h2>
 
-            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+            <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
               <div className="relative 2xl:w-75 md:w-60 w-32">
                 <Image
                   src={searchIcon}
@@ -179,7 +179,7 @@ export default function AllEmployeesPage() {
                           key={emp.id}
                           className="group transition-colors hover:bg-neutral-50"
                         >
-                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 2xl:pl-6 pl-3 pr-2">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 2xl:pl-6 pl-3 pr-2">
                             <input
                               type="checkbox"
                               checked={selectedEmployees.includes(emp.id)}
@@ -188,11 +188,11 @@ export default function AllEmployeesPage() {
                             />
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-medium whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-medium whitespace-nowrap">
                             {emp.id}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6">
                             <Link href={`/employees/${emp.id}`}>
                               <div className="flex min-w-[180px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
                                 <img
@@ -208,27 +208,27 @@ export default function AllEmployeesPage() {
                             </Link>
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
                             {emp.dept}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
                             {emp.role}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
                             {emp.type}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 whitespace-nowrap">
                             <StatusPill status={emp.status} />
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
                             {emp.joinDate}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 py-6 sm:px-6 pr-6">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 md:pr-6 pr-3">
                             <div className="flex items-center gap-2 sm:gap-4">
                               <Link href={`/employees/${emp.id}`}>
                                 <button className="text-neutral-400 hover:text-brand-500 mt-2 cursor-pointer">
@@ -237,7 +237,7 @@ export default function AllEmployeesPage() {
                                     alt="Filter"
                                     width={24}
                                     height={24}
-                                    className="pointer-events-none h-5 w-5 sm:h-6 sm:w-6"
+                                    className="pointer-events-none h-6 w-8 md:h-6 md:w-6"
                                   />
                                 </button>
                               </Link>
@@ -254,7 +254,7 @@ export default function AllEmployeesPage() {
                                   alt="Delete"
                                   width={24}
                                   height={24}
-                                  className="pointer-events-none h-5 w-5 sm:h-6 sm:w-6"
+                                  className="pointer-events-none h-6 w-8 md:h-6 md:w-6"
                                 />
                               </button>
                             </div>

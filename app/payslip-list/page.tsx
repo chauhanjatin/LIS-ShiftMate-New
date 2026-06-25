@@ -78,8 +78,8 @@ export default function PayslipListPage() {
         <DashboardLayout title="Payslip List" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
                 <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
-                    <div className="flex flex-wrap items-center justify-between px-6 pt-6">
-                        <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Employee List</h2>
+                    <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
+                        <h2 className="md:text-[20px] text-[18px] font-medium text-[#111827]">Employee List</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <div className="relative 2xl:w-75 md:w-60 w-48">
@@ -117,45 +117,45 @@ export default function PayslipListPage() {
                                                     type="checkbox"
                                                     checked={selectedRows.length === filteredPayslips.length && filteredPayslips.length > 0}
                                                     onChange={handleSelectAll}
-                                                    className="h-4 w-4 rounded border-[#F8F9FC] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
+                                                    className="md:h-4 h-3 md:w-4 w-3 rounded border-[#F8F9FC] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
                                                 />
                                             </th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-medium text-[#111827]">Employee</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-medium text-[#111827]">Pay Period</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-medium text-[#111827]">Pay Date</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-medium text-[#111827]">Net Pay</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-medium text-[#111827] text-center">Status</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-medium text-[#111827] text-center rounded-r-lg">Action</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Employee</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Pay Period</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Pay Date</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Net Pay</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827] text-center">Status</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827] text-center rounded-r-lg">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
                                         {filteredPayslips.map((payslip) => (
                                             <tr key={payslip.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                                                <td className="py-4 pl-4 pr-4 text-center">
+                                                <td className="md:py-4 py-3 pl-4 pr-4 text-center">
                                                     <input
                                                         type="checkbox"
                                                         checked={selectedRows.includes(payslip.id)}
                                                         onChange={() => handleSelectRow(payslip.id)}
-                                                        className="h-4 w-4 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
+                                                        className="h-3 w-3 md:h-4 md:w-4 rounded border-[#E2E8F0] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
                                                     />
                                                 </td>
-                                                <td className="px-4 py-4 sm:px-6">
+                                                <td className="px-4 md:py-4 py-3 sm:px-6">
                                                     <div className="flex items-center gap-3">
                                                         <img src={payslip.avatar} alt={payslip.name} className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover" />
-                                                        <span className="text-[13px] sm:text-[14px] font-normal text-neutral-900">{payslip.name}</span>
+                                                        <span className="text-[12px] sm:text-[14px] font-normal text-neutral-900">{payslip.name}</span>
                                                     </div>
                                                 </td>
-                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{payslip.payPeriod}</td>
-                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{payslip.payDate}</td>
-                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{payslip.netPay}</td>
+                                                <td className="px-4 md:py-4 py-3 sm:px-6 text-[12px] md:text-[14px] font-normal text-neutral-900">{payslip.payPeriod}</td>
+                                                <td className="px-4 md:py-4 py-3 sm:px-6 text-[12px] md:text-[14px] font-normal text-neutral-900">{payslip.payDate}</td>
+                                                <td className="px-4 md:py-4 py-3 sm:px-6 text-[12px] md:text-[14px] font-normal text-neutral-900">{payslip.netPay}</td>
 
-                                                <td className="px-4 py-4 sm:px-6 text-center">
-                                                    <span className={`inline-flex rounded-full px-3 py-1 text-[14px] font-normal ${getStatusColor(payslip.status)}`}>
+                                                <td className="px-4 md:py-4 py-3 sm:px-6 text-center">
+                                                    <span className={`inline-flex rounded-full px-3 py-1 text-[12px] md:text-[14px] font-normal ${getStatusColor(payslip.status)}`}>
                                                         {payslip.status}
                                                     </span>
                                                 </td>
 
-                                                <td className="px-4 py-4 sm:px-6">
+                                                <td className="px-4 md:py-4 py-3 sm:px-6">
                                                     <div className="flex items-center justify-center gap-3">
                                                         <Link href={`/payslip-list/${encodeURIComponent(payslip.name)}`} className="text-neutral-400 hover:text-neutral-700 transition-colors cursor-pointer">
                                                             <Image src={eyeIcon} alt="View" className="pointer-events-none" />
