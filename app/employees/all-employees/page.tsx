@@ -36,7 +36,7 @@ export default function AllEmployeesPage() {
   const [view, setView] = useState<"list" | "grid">("list");
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [employeeToDelete, setEmployeeToDelete] = useState<string | null>(null);
-  const { employees: employeesList, setEmployees: setEmployeesList } = useEmployees();
+  const { employees: employeesList, setEmployees: setEmployeesList, removeEmployee } = useEmployees();
   const [selectedEmployees, setSelectedEmployees] = useState<string[]>([]);
 
   const allSelected = employeesList.length > 0 && selectedEmployees.length === employeesList.length;
@@ -57,7 +57,7 @@ export default function AllEmployeesPage() {
 
   const handleDelete = () => {
     if (employeeToDelete) {
-      setEmployeesList(employeesList.filter(emp => emp.id !== employeeToDelete));
+      removeEmployee(employeeToDelete);
       setDeleteModalOpen(false);
       setEmployeeToDelete(null);
     }

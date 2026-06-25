@@ -79,8 +79,8 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 py-4">
-            <div className="w-full max-w-[720px] rounded-2xl bg-white p-6 shadow-[0px_8px_30px_rgba(0,0,0,0.12)] max-h-[800px] overflow-y-auto relative">
-                <div className="flex items-center justify-between mb-6 sticky top-0 bg-white z-10 pb-2">
+            <div className="w-full max-w-[720px] rounded-2xl bg-white shadow-[0px_8px_30px_rgba(0,0,0,0.12)] max-h-[90vh] flex flex-col relative overflow-hidden">
+                <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100 bg-white z-10 shrink-0">
                     <h2 className="text-[20px] font-bold text-neutral-900">Create New User</h2>
                     <button onClick={onClose} className="text-neutral-400 hover:text-neutral-900 bg-white rounded-full p-1 cursor-pointer">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -90,7 +90,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                     </button>
                 </div>
 
-                <div className="space-y-6">
+                <div className="overflow-y-auto px-6 py-6 flex-1 space-y-6">
                     <div>
                         <h3 className="text-[16px] font-semibold text-neutral-900">Basic Information</h3>
                         <p className="mt-1 text-[12px] text-neutral-500">Enter the employee's basic personal information for identification and contact purposes.</p>
@@ -232,7 +232,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                     </div>
                 </div>
 
-                <div className="mt-8 flex justify-end gap-3 border-t border-[#E2E8F0] pt-6">
+                <div className="flex justify-end gap-3 px-6 py-4 shrink-0">
                     <button onClick={onClose} className="rounded-xl border border-[#E2E8F0] bg-white px-6 py-2.5 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer overflow-hidden">
                         Cancel
                     </button>

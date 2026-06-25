@@ -38,7 +38,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         }
         onClick={() => setIsSidebarCollapsed((prev) => !prev)}
         className={`absolute top-[66px] z-70 hidden h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white cursor-pointer shadow-sm transition-all duration-500 ease-in-out lg:inline-flex ${
-          isSidebarCollapsed ? "2xl:left-28 left-25" : "2xl:left-70 left-64"
+          isSidebarCollapsed ? "left-[88px]" : "2xl:left-[280px] left-64"
         }`}
       >
         <Image

@@ -316,7 +316,7 @@ export default function Sidebar({
 
   return (
     <aside
-      className={`slim-scrollbar fixed inset-y-0 left-0 z-50 flex flex-col overflow-y-auto border-r border-neutral-200 bg-white transition-all duration-500 ease-in-out lg:static lg:flex lg:shrink-0 ${collapsed ? "w-25 2xl:w-28" : "w-64 2xl:w-[280px]"
+      className={`slim-scrollbar fixed inset-y-0 left-0 z-50 flex flex-col overflow-y-auto border-r border-neutral-200 bg-white transition-all duration-500 ease-in-out lg:static lg:flex lg:shrink-0 ${collapsed ? "w-[88px]" : "w-64 2xl:w-[280px]"
         } ${isMobileMenuOpen ? "translate-x-0 w-68" : "-translate-x-full lg:translate-x-0"
         }`}
     >
@@ -346,7 +346,7 @@ export default function Sidebar({
           alt="ShiftMate Logo"
           width={56}
           height={56}
-          className={`absolute left-1/2 top-[70%] 2xl:h-12 2xl:w-12 h-11 w-11 -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${collapsed
+          className={`absolute left-1/2 top-[45%] 2xl:h-12 2xl:w-12 h-11 w-11 -translate-y-1/2 object-contain transition-all duration-500 ease-in-out ${collapsed
             ? "-translate-x-1/2 opacity-100"
             : "pointer-events-none -translate-x-[40%] opacity-0"
             }`}
@@ -354,8 +354,7 @@ export default function Sidebar({
       </div>
 
       <nav
-        className={`mt-3 space-y-1 transition-all duration-500 ease-in-out ${collapsed ? "px-2" : "px-3"
-          }`}
+        className={`space-y-1 transition-all duration-500 ease-in-out px-3`}
       >
         {items.map((item) => {
           const isActive = activeItem === item.label;
@@ -382,34 +381,27 @@ export default function Sidebar({
                     }
                   }
                 }}
-                className={
+                className={`group flex items-center rounded-2xl cursor-pointer transition-all duration-300 overflow-hidden ${
+                  isActive ? "bg-brand-500 text-white" : "text-[#111827] hover:bg-[#eaf2ff]"
+                } ${
                   collapsed
-                    ? `mx-auto flex 2xl:h-14 2xl:w-14 h-12 w-12 items-center justify-center rounded-2xl transition-all duration-300 ${isActive
-                      ? "bg-brand-500 text-white"
-                      : "text-[#111827] hover:bg-[#eaf2ff]"
-                    }`
-                    : `group flex w-full items-center justify-between rounded-2xl px-2 xl:px-4 2xl:py-3 py-2 text-left text-[16px] font-semibold cursor-pointer transition-all duration-300 ${isActive
-                      ? "bg-brand-500 text-white"
-                      : "text-[#111827] hover:bg-[#eaf2ff]"
-                    }`
-                }
+                    ? "mx-auto h-[44px] w-[44px] justify-center px-0 py-0"
+                    : "w-full justify-between px-3 2xl:py-3 py-2 text-[14px] 2xl:text-[16px] font-semibold"
+                }`}
               >
-                <span
-                  className={`inline-flex items-center ${collapsed ? "justify-center" : "gap-3"
-                    }`}
-                >
+                <span className="inline-flex items-center">
                   <Image
                     src={iconMap[item.icon]}
                     alt=""
                     width={20}
                     height={20}
-                    className={`transition-all duration-300 ${collapsed ? "2xl:h-6 2xl:w-6 h-5 w-5" : "h-5 w-5"
-                      } ${isActive ? "brightness-0 invert" : "brightness-0"}`}
+                    className={`transition-all duration-300 h-5 w-5 shrink-0 ${isActive ? "brightness-0 invert" : "brightness-0 opacity-80 group-hover:opacity-100"}`}
                   />
 
                   <span
-                    className={`overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out ${collapsed ? "max-w-0 opacity-0" : "max-w-[220px] opacity-100"
-                      }`}
+                    className={`overflow-hidden whitespace-nowrap text-left transition-all duration-500 ease-in-out ${
+                      collapsed ? "max-w-0 opacity-0 ml-0" : "max-w-[200px] opacity-100 ml-3"
+                    }`}
                   >
                     {item.label}
                   </span>
@@ -419,8 +411,7 @@ export default function Sidebar({
                   <svg
                     viewBox="0 0 20 20"
                     fill="none"
-                    className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""
-                      }`}
+                    className={`h-4 w-4 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                   >
                     <path
                       d="M5.5 7.5L10 12L14.5 7.5"
