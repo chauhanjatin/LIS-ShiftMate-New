@@ -35,7 +35,7 @@ export default function AddEmployeePage() {
     address: "",
     emergencyContact: "",
 
-    employeeId: "#1234",
+    employeeId: "",
     startDate: "",
     employmentType: "",
     department: "",
@@ -44,7 +44,7 @@ export default function AddEmployeePage() {
     manager: "",
     contractType: "",
 
-    bankAccount: "12345678912310",
+    bankAccount: "",
     sortCode: "",
     niNumber: "",
     taxCode: "",
@@ -250,7 +250,7 @@ export default function AddEmployeePage() {
               <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Employee ID</label>
-                  <input name="employeeId" value={formData.employeeId} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.employeeId ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="employeeId" value={formData.employeeId} onChange={handleInputChange} placeholder="Enter Employee ID" className={`w-full rounded-xl border ${errors.employeeId ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
                   {errors.employeeId && <p className="text-red-500 text-xs mt-1">{errors.employeeId}</p>}
                 </div>
                 <div>
@@ -310,7 +310,7 @@ export default function AddEmployeePage() {
               <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Bank Account Number</label>
-                  <input name="bankAccount" value={formData.bankAccount} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.bankAccount ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
+                  <input name="bankAccount" value={formData.bankAccount} onChange={handleInputChange} placeholder="Enter your bank account number" className={`w-full rounded-xl border ${errors.bankAccount ? 'border-red-500' : 'border-neutral-200'} p-3 outline-none focus:border-[#257BFC]`} />
                   {errors.bankAccount && <p className="text-red-500 text-xs mt-1">{errors.bankAccount}</p>}
                 </div>
                 <div>
