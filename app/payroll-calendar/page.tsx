@@ -156,7 +156,7 @@ export default function PayrollCalendarPage() {
     return (
         <DashboardLayout title="Payroll Calendar" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
+                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between px-4 md:px-6 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Pay Periods</h2>
 

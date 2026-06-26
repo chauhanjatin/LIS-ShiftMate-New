@@ -55,7 +55,7 @@ export default function LeaveRequestsPage() {
     <DashboardLayout title="Leave Requests" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 relative ${lexendDeca.className}`}>
         <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+          <div className="flex flex-wrap items-center justify-between md:px-6 px-4 pt-4 md:pt-6">
             <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">All Leave Requests</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 relative">
@@ -111,12 +111,12 @@ export default function LeaveRequestsPage() {
                 <table className="min-w-[1000px] w-full text-left border-collapse">
                   <thead className="bg-[#F8F9FC]">
                     <tr>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[16px] font-normal text-[#111827]">Employee</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-normal text-[#111827]">Leave Type</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-normal text-[#111827]">Start Date</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-normal text-[#111827]">End Date</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-normal text-[#111827]">Total Days</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-normal text-[#111827] text-center">Status</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Employee</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Leave Type</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Start Date</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">End Date</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Total Days</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827] text-center">Status</th>
                       <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-normal text-[#111827] text-center">Action</th>
                     </tr>
                   </thead>
@@ -135,12 +135,12 @@ export default function LeaveRequestsPage() {
                             </span>
                           </div>
                         </td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.leaveType}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.startDate}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.endDate}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.totalDays}</td>
-                        <td className="px-4 py-6 sm:px-6 text-center">
-                          <span className={`inline-flex rounded-full px-5 py-2.5 text-[14px] font-normal ${req.status === 'Approved' ? 'bg-[#EDFAF2] text-[#4DB949]' :
+                        <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.leaveType}</td>
+                        <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.startDate}</td>
+                        <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.endDate}</td>
+                        <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.totalDays}</td>
+                        <td className="px-4 md:py-6 py-3 sm:px-6 text-center">
+                          <span className={`inline-flex rounded-full md:px-5 px-3 md:py-2.5 py-1 md:text-[14px] text-[12px] font-normal ${req.status === 'Approved' ? 'bg-[#EDFAF2] text-[#4DB949]' :
                               req.status === 'Pending' ? 'bg-[#FFF6E8] text-[#FFA100]' :
                                 'bg-[#FEE2E2] text-[#EF4444]'
                             }`}>

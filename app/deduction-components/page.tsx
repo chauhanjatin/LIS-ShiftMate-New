@@ -139,7 +139,7 @@ export default function DeductionComponentsPage() {
         <DashboardLayout title="Deduction Components" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
                 <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
-                    <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+                    <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Deduction Components</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">

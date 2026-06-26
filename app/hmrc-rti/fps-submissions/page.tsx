@@ -50,14 +50,14 @@ export default function FPSSubmissionsPage() {
   return (
     <DashboardLayout title="FPS Submissions" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] px-6 pt-6 pb-10">
+        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 pt-4 md:pt-6 pb-10">
           
-          <div className="flex justify-between items-center mb-8">
+          <div className="flex flex-wrap md:flex-nowrap justify-between items-center mb-8">
             <h2 className="text-[20px] font-medium text-[#111827]">FPS Submissions</h2>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap md:flex-nowrap mt-3 md:mt-0 md:gap-4 gap-2">
               <div className="relative">
                 <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" placeholder="Search.." className="rounded-xl border border-neutral-200 bg-white py-2 pl-9 pr-4 text-[14px] text-neutral-900 outline-none focus:border-[#257BFC] transition-colors min-w-[240px]" />
+                <input type="text" placeholder="Search.." className="rounded-xl border border-neutral-200 bg-white py-2 pl-9 pr-4 text-[14px] text-neutral-900 outline-none focus:border-[#257BFC] transition-colors md:min-w-[240px]" />
               </div>
               <button onClick={handleExport} className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-700 hover:bg-neutral-50 transition-colors">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -67,33 +67,33 @@ export default function FPSSubmissionsPage() {
           </div>
 
           <div className="overflow-x-auto rounded-xl border border-[#E2E8F0]">
-            <table className="w-full text-left text-[14px]">
-              <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827]">
+            <table className="w-full text-left">
+              <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] text-[12px] md:text-[14px] lg::text-[16px]">
                 <tr>
-                  <th className="px-6 py-2.5 font-normal">Period</th>
-                  <th className="px-6 py-2.5 font-normal">Employees</th>
-                  <th className="px-6 py-2.5 font-normal">Payment Date</th>
-                  <th className="px-6 py-2.5 font-normal">Submitted Date</th>
-                  <th className="px-6 py-2.5 font-normal">Acknowledgement</th>
-                  <th className="px-6 py-2.5 font-normal">Status</th>
+                  <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Period</th>
+                  <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Employees</th>
+                  <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Payment Date</th>
+                  <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Submitted Date</th>
+                  <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Acknowledgement</th>
+                  <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Status</th>
                   <th className="px-6 py-2.5 font-normal">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E2E8F0]">
+              <tbody className="divide-y divide-[#E2E8F0] text-[11px] md:text-[12px] lg:text-[14px]">
                 {submissions.map((row, idx) => (
                   <tr key={idx} className="hover:bg-neutral-50">
-                    <td className="p-6 font-normal text-[#111827]">{row.period}</td>
-                    <td className="p-6 font-normal text-[#111827]">{row.employees}</td>
-                    <td className="p-6 font-normal text-[#111827]">{row.paymentDate}</td>
-                    <td className="p-6 font-normal text-[#111827]">{row.submittedDate}</td>
-                    <td className="p-6 font-normal text-[#111827]">{row.ack}</td>
-                    <td className="p-6">{renderBadge(row.status)}</td>
-                    <td className="p-6">
+                    <td className="md:p-6 p-3 font-normal text-[#111827]">{row.period}</td>
+                    <td className="md:p-6 p-3 font-normal text-[#111827]">{row.employees}</td>
+                    <td className="md:p-6 p-3 font-normal text-[#111827]">{row.paymentDate}</td>
+                    <td className="md:p-6 p-3 font-normal text-[#111827]">{row.submittedDate}</td>
+                    <td className="md:p-6 p-3 font-normal text-[#111827]">{row.ack}</td>
+                    <td className="md:p-6 p-3">{renderBadge(row.status)}</td>
+                    <td className="lg:p-6 p-3">
                       <div className="flex items-center gap-3">
                         <Link href={`/hmrc-rti/fps-submissions/${row.id}`} className="text-[#64748B] hover:text-[#257BFC]">
                           <Image src={viewIcon} alt="View" />
                         </Link>
-                        <button className="text-[#64748B] hover:text-[#257BFC]">
+                        <button className="text-[#111827] hover:text-[#257BFC]">
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         </button>
                       </div>

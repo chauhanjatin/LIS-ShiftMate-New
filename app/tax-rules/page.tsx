@@ -94,7 +94,7 @@ export default function TaxRulesPage() {
         <DashboardLayout title="Tax Rules" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
                 <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
-                    <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+                    <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">Tax Rules</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
@@ -116,22 +116,22 @@ export default function TaxRulesPage() {
                                 <table className="min-w-[900px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
                                         <tr>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[14px] font-normal text-[#111827] rounded-l-lg">Band Name</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[14px] font-normal text-[#111827]">Lower Threshold($)</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[14px] font-normal text-[#111827]">Upper Threshold($)</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[14px] font-normal text-[#111827]">Tax Rate (%)</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[14px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827] rounded-l-lg">Band Name</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Lower Threshold($)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Upper Threshold($)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Tax Rate (%)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
                                         {rules.map((rule) => (
                                             <tr key={rule.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.bandName}</td>
-                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.lower}</td>
-                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.upper}</td>
-                                                <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.rate}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.bandName}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.lower}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.upper}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.rate}</td>
 
-                                                <td className="px-4 py-6 sm:px-6">
+                                                <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex items-center justify-center gap-3">
                                                         <button onClick={() => openEditModal(rule)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
                                                             <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
@@ -156,7 +156,7 @@ export default function TaxRulesPage() {
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
                         <div className="flex items-center justify-between border-b border-[#E2E8F0] px-4 lg:px-8 py-4 lg:py-6">
-                            <h2 className="text-[24px] font-bold text-[#1D2939]">
+                            <h2 className="md:text-[24px] text-[20px] font-bold text-[#1D2939]">
                                 Edit Tax Rules
                             </h2>
 

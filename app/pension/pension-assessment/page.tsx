@@ -57,7 +57,7 @@ export default function PensionAssessmentPage() {
     <DashboardLayout title="Pension Assessment" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+          <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Pension Assessment</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
@@ -91,11 +91,11 @@ export default function PensionAssessmentPage() {
                 <table className="min-w-[1000px] w-full text-left border-collapse ">
                   <thead className="bg-[#F8F9FC]">
                     <tr>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Employee</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-6 text-[14px] sm:text-[16px] font-normal text-[#111827]">Age</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Annual earnings</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Category</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Status</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[15px] md:text-[16px] font-normal text-[#111827]">Employee</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-6 text-[15px] md:text-[16px] font-normal text-[#111827]">Age</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[15px] md:text-[16px] font-normal text-[#111827]">Annual earnings</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[15px] md:text-[16px] font-normal text-[#111827]">Category</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[15px] md:text-[16px] font-normal text-[#111827]">Status</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white">
@@ -108,16 +108,16 @@ export default function PensionAssessmentPage() {
                               alt={item.employeeName}
                               className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover flex-shrink-0"
                             />
-                            <span className="text-[13px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                            <span className="text-[13px] md:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
                               {item.employeeName}
                             </span>
                           </div>
                         </td>
-                        <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{item.age}</td>
-                        <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{item.annualEarnings}</td>
-                        <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{item.category}</td>
+                        <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{item.age}</td>
+                        <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{item.annualEarnings}</td>
+                        <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{item.category}</td>
                         <td className="px-4 md:py-6 py-4 sm:px-6">
-                          <span className={`inline-flex rounded-full px-5 py-2.5 text-[14px] font-normal ${getStatusBadge(item.status)}`}>
+                          <span className={`inline-flex rounded-full md:px-5 px-3 md:py-2.5 py-1.5 md:text-[14px] text-[13px] font-normal ${getStatusBadge(item.status)}`}>
                             {item.status}
                           </span>
                         </td>

@@ -103,24 +103,24 @@ export default function NationalInsuranceRulePage() {
                                 <table className="min-w-[900px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
                                         <tr>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827] rounded-l-lg">NI Category</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827]">Description</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827]">Lower Threshold($)</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827]">Upper Threshold($)</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827]">Employee rate (%)</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827]">Employer Rate(%)</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827] rounded-l-lg">NI Category</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827]">Description</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827]">Lower Threshold($)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827]">Upper Threshold($)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827]">Employee rate (%)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827]">Employer Rate(%)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
                                         {rules.map((rule) => (
                                             <tr key={rule.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{rule.niCategory}</td>
-                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{rule.description}</td>
-                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{rule.lowerThreshold}</td>
-                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{rule.upperThreshold}</td>
-                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{rule.employeeRate}</td>
-                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{rule.employerRate}</td>
+                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{rule.niCategory}</td>
+                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{rule.description}</td>
+                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{rule.lowerThreshold}</td>
+                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{rule.upperThreshold}</td>
+                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{rule.employeeRate}</td>
+                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{rule.employerRate}</td>
 
                                                 <td className="px-4 md:py-6 py-3 sm:px-6">
                                                     <div className="flex items-center justify-center gap-3">

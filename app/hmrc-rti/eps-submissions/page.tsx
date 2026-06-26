@@ -50,11 +50,11 @@ export default function EPSSubmissionsPage() {
   return (
     <DashboardLayout title="EPS Submissions" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] px-6 pt-6 pb-10">
+        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] px-4 md:px-6 pt-4 md:pt-6 pb-10">
           
-          <div className="flex justify-between items-center mb-8">
+          <div className="flex flex-wrap md:flex-nowrap justify-between items-center md:mb-8 mb-6">
             <h2 className="text-[20px] font-medium text-[#111827]">EPS Submissions</h2>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap md:flex-nowrap md:gap-4 gap-2 mt-3 md:mt-0">
               <div className="relative">
                 <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 <input type="text" placeholder="Search.." className="rounded-xl border border-neutral-200 bg-white py-2 pl-9 pr-4 text-[14px] text-neutral-900 outline-none focus:border-[#257BFC] transition-colors w-[200px]" />
@@ -70,38 +70,38 @@ export default function EPSSubmissionsPage() {
           </div>
 
           <div className="overflow-x-auto rounded-xl border border-[#E2E8F0]">
-            <table className="w-full text-left text-[14px]">
-              <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827]">
+            <table className="w-full text-left">
+              <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] lg:text-[16px] md:text-[14px] text-[13px]">
                 <tr>
-                  <th className="px-6 py-2.5 font-normal">Period</th>
-                  <th className="px-6 py-2.5 font-normal">Tax Period</th>
-                  <th className="px-6 py-2.5 font-normal">Amount</th>
-                  <th className="px-6 py-2.5 font-normal">Submitted Date</th>
-                  <th className="px-6 py-2.5 font-normal">Adjustments</th>
-                  <th className="px-6 py-2.5 font-normal">Status</th>
-                  <th className="px-6 py-2.5 font-normal">Action</th>
+                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Period</th>
+                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Tax Period</th>
+                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Amount</th>
+                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Submitted Date</th>
+                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Adjustments</th>
+                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Status</th>
+                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E2E8F0]">
+              <tbody className="divide-y divide-[#E2E8F0] text-[11px] md:text-[12px] lg:text-[14px]">
                 {submissions.map((row, idx) => (
                   <tr key={idx} className="hover:bg-neutral-50">
-                    <td className="p-6 font-normal text-[#111827]">{row.period}</td>
-                    <td className="p-6 font-normal text-[#111827]">{row.taxPeriod}</td>
-                    <td className="p-6 font-normal text-[#111827]">{row.amount}</td>
-                    <td className="p-6 font-normal text-[#111827]">{row.date}</td>
-                    <td className="p-6 font-normal text-[#111827]">{row.adjustments}</td>
-                    <td className="p-6">{renderBadge(row.status)}</td>
-                    <td className="p-6">
-                      <div className="flex items-center gap-3">
-                        <Link href={`/hmrc-rti/eps-submissions/${row.id}`} className="text-[#64748B] hover:text-[#257BFC]">
+                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.period}</td>
+                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.taxPeriod}</td>
+                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.amount}</td>
+                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.date}</td>
+                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.adjustments}</td>
+                    <td className="md:p-6 px-4 p-3">{renderBadge(row.status)}</td>
+                    <td className="md:p-6 px-4 p-3">
+                      <div className="flex items-center md:gap-3 gap-2">
+                        <Link href={`/hmrc-rti/eps-submissions/${row.id}`} className="text-[#111827] hover:text-[#257BFC]">
                           <Image src={viewIcon} alt="View" />
                         </Link>
                         {row.status === 'Rejected' && (
-                          <button onClick={handleAction} className="text-[#64748B] hover:text-[#257BFC]">
+                          <button onClick={handleAction} className="text-[#111827] hover:text-[#257BFC]">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                           </button>
                         )}
-                        <button onClick={handleAction} className="text-[#64748B] hover:text-[#257BFC]">
+                        <button onClick={handleAction} className="text-[#111827] hover:text-[#257BFC]">
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         </button>
                       </div>
