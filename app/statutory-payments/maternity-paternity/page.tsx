@@ -59,10 +59,10 @@ export default function MaternityPaternityPage() {
   return (
     <DashboardLayout title="Maternity / Paternity / Adoption Pay" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] px-6 pt-6">
+        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 pt-4 md:pt-6">
           <h2 className="text-[20px] font-medium text-[#111827] mb-8">Maternity, Paternity and Adoption Pay</h2>
           
-          <form onSubmit={handleSubmit} className="mx-[6%] space-y-6">
+          <form onSubmit={handleSubmit} className="md:mx-[6%] space-y-6">
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
               <div className="space-y-2">
@@ -72,7 +72,7 @@ export default function MaternityPaternityPage() {
                     name="employee"
                     value={formData.employee}
                     onChange={handleChange}
-                    className={`w-full rounded-xl border ${errors.employee ? 'border-red-500' : 'border-[#111827]'} bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors appearance-none`}
+                    className={`w-full rounded-xl border ${errors.employee ? 'border-red-500' : 'border-[#111827]'} bg-white px-4 py-3 md:text-[14px] text-[12px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors appearance-none`}
                     required
                   >
                     <option value="" disabled hidden>Cameron Williamson</option>
@@ -95,7 +95,7 @@ export default function MaternityPaternityPage() {
                     name="leaveType"
                     value={formData.leaveType}
                     onChange={handleChange}
-                    className={`w-full rounded-xl border ${errors.leaveType ? 'border-red-500' : 'border-[#111827]'} bg-white px-4 py-3 text-[14px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors appearance-none`}
+                    className={`w-full rounded-xl border ${errors.leaveType ? 'border-red-500' : 'border-[#111827]'} bg-white px-4 py-3 md:text-[14px] text-[12px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors appearance-none`}
                     required
                   >
                     <option value="" disabled hidden>Statutory Maternity Pay (SMP)</option>
@@ -191,7 +191,7 @@ export default function MaternityPaternityPage() {
               </div>
             </div>
 
-            <div className="flex justify-end pt-16">
+            <div className="flex justify-end pt-8 md:pt-16 pb-4 md:pb-0">
               <button 
                 type="submit" 
                 className="rounded-xl bg-[#E0EAFF] px-8 py-3 text-[14px] font-semibold text-[#257BFC] hover:bg-brand-500 hover:text-white transition-colors"

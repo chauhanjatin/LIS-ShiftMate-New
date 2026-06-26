@@ -67,7 +67,7 @@ export default function AllEmployeesPage() {
     <DashboardLayout title="Employees" subtitle="Home/ All Employees">
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+          <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Employee List</h2>
 
             <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
@@ -228,8 +228,8 @@ export default function AllEmployeesPage() {
                             {emp.joinDate}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 md:pr-6 pr-3">
-                            <div className="flex items-center gap-2 sm:gap-4">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 md:pr-4 pr-2">
+                            <div className="flex items-center gap-2 md:gap-3">
                               <Link href={`/employees/${emp.id}`}>
                                 <button className="text-neutral-400 hover:text-brand-500 mt-2 cursor-pointer">
                                   <Image

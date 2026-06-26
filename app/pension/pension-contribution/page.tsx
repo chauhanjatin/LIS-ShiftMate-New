@@ -82,7 +82,7 @@ export default function PensionContributionPage() {
     <DashboardLayout title="Pension Contribution" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between px-6 pt-6">
+          <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Pension Contribution</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
@@ -116,12 +116,12 @@ export default function PensionContributionPage() {
                 <table className="min-w-[1000px] w-full text-left border-collapse ">
                   <thead className="bg-[#F8F9FC]">
                     <tr>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Employee</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-6 text-[12px] sm:text-[16px] font-normal text-[#111827]">Employee Contribution</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Employer Contribution</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Opt-In/Out</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Status</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Re-enrolment Date</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Employee</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-6 text-[14px] md:text-[16px] font-normal text-[#111827]">Employee Contribution</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Employer Contribution</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Opt-In/Out</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Status</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Re-enrolment Date</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white">
@@ -134,16 +134,16 @@ export default function PensionContributionPage() {
                               alt={item.employeeName}
                               className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover flex-shrink-0"
                             />
-                            <span className="text-[13px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                            <span className="text-[13px] md:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
                               {item.employeeName}
                             </span>
                           </div>
                         </td>
-                        <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{item.pensionScheme}</td>
-                        <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{item.employeeContribution}</td>
-                        <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{item.employerContribution}</td>
-                        <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-medium text-neutral-900">{getStatusBadge(item.totalContribution)}</td>
-                        <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-medium text-neutral-500">{item.date}</td>
+                        <td className="px-4 py-4 sm:px-6 text-[13px] md:text-[14px] font-medium text-neutral-900">{item.pensionScheme}</td>
+                        <td className="px-4 py-4 sm:px-6 text-[13px] md:text-[14px] font-medium text-neutral-900">{item.employeeContribution}</td>
+                        <td className="px-4 py-4 sm:px-6 text-[13px] md:text-[14px] font-medium text-neutral-900">{item.employerContribution}</td>
+                        <td className="px-4 py-4 sm:px-6 text-[13px] md:text-[14px] font-medium text-neutral-900">{getStatusBadge(item.totalContribution)}</td>
+                        <td className="px-4 py-4 sm:px-6 text-[13px] md:text-[14px] font-medium text-neutral-500">{item.date}</td>
                       </tr>
                     ))}
                   </tbody>

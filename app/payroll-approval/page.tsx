@@ -70,7 +70,7 @@ export default function PayrollApprovalPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
                             <div className="rounded-2xl border border-[#E2E8F0] md:p-5 p-4 flex items-center justify-between">
                                 <div>
-                                    <h3 className="text-[24px] font-bold text-neutral-900">324</h3>
+                                    <h3 className="md:text-[24px] text-[20px] font-bold text-neutral-900">324</h3>
                                     <p className="text-[13px] text-neutral-500 font-medium mt-1">Employees Included</p>
                                 </div>
                                 <div className="h-12 w-12 rounded-xl bg-[#257BFC] flex items-center justify-center text-white">
@@ -80,7 +80,7 @@ export default function PayrollApprovalPage() {
 
                             <div className="rounded-2xl border border-[#E2E8F0] md:p-5 p-4 flex items-center justify-between">
                                 <div>
-                                    <h3 className="text-[24px] font-bold text-neutral-900">$487,500</h3>
+                                    <h3 className="md:text-[24px] text-[20px] font-bold text-neutral-900">$487,500</h3>
                                     <p className="text-[13px] text-neutral-500 font-medium mt-1">Total Gross Pay</p>
                                 </div>
                                 <div className="h-12 w-12 rounded-xl bg-[#8B5CF6] flex items-center justify-center text-white">
@@ -90,7 +90,7 @@ export default function PayrollApprovalPage() {
 
                             <div className="rounded-2xl border border-[#E2E8F0] md:p-5 p-4 flex items-center justify-between">
                                 <div>
-                                    <h3 className="text-[24px] font-bold text-neutral-900">$152,750</h3>
+                                    <h3 className="md:text-[24px] text-[20px] font-bold text-neutral-900">$152,750</h3>
                                     <p className="text-[13px] text-neutral-500 font-medium mt-1">Total Deductions</p>
                                 </div>
                                 <div className="h-12 w-12 rounded-xl bg-[#F04438] flex items-center justify-center text-white">
@@ -100,7 +100,7 @@ export default function PayrollApprovalPage() {
 
                             <div className="rounded-2xl border border-[#E2E8F0] md:p-5 p-4 flex items-center justify-between">
                                 <div>
-                                    <h3 className="text-[24px] font-bold text-neutral-900">$332,500</h3>
+                                    <h3 className="md:text-[24px] text-[20px] font-bold text-neutral-900">$332,500</h3>
                                     <p className="text-[13px] text-neutral-500 font-medium mt-1">Total Net Pay</p>
                                 </div>
                                 <div className="h-12 w-12 rounded-xl bg-[#22C55E] flex items-center justify-center text-white">
@@ -109,10 +109,10 @@ export default function PayrollApprovalPage() {
                             </div>
                         </div>
 
-                        <div className="flex flex-wrap gap-x-72 bg-[#F9FAFB] p-6 rounded-2xl">
+                        <div className="flex flex-col md:flex-nowrap gap-4 md:gap-x-26 xl:gap-x-50 2xl:gap-x-72 bg-[#F9FAFB] md:p-6 p-4 rounded-2xl">
                             <div>
                                 <p className="text-[14px] font-normal text-[#98A2B3]">Pay Period</p>
-                                <p className="text-[16px] font-medium text-neutral-900 mt-2">March 2026</p>
+                                <p className="text-[16px] font-medium text-neutral-900 md:mt-2 mt-1">March 2026</p>
                             </div>
                             <div>
                                 <p className="text-[14px] font-normal text-[#98A2B3]">Pay Date</p>
@@ -129,14 +129,14 @@ export default function PayrollApprovalPage() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 p-6">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 md:p-6 p-4">
                         <div className="rounded-2xl border border-[#EF4444]">
                             <div className="mb-4 rounded-t-2xl p-4 bg-[#FEF2F2]">
                                 <h3 className="text-[20px] font-medium text-[#111827]">Errors (2)</h3>
                                 <p className="text-[12px] text-[#111827] font-normal mt-2">Must be resolved before approval</p>
                             </div>
 
-                            <div className="space-y-4 p-6 pt-0">
+                            <div className="space-y-4 2xl:p-6 p-4 pt-0">
                                 {[1, 2, 3].map((item, index) => (
                                     <div key={index} className="md:flex items-center justify-between">
                                         <div className="flex items-center gap-3">
@@ -146,9 +146,9 @@ export default function PayrollApprovalPage() {
                                                 <p className="text-[12px] text-[#98A2B3] font-normal mt-0.5">{index % 2 === 0 ? 'No valid tax code assigned for this period.' : 'National Insurance category not set.'}</p>
                                             </div>
                                         </div>
-                                        <div className="flex items-center gap-6 mt-2 md:mt-0">
-                                            <span className="text-[14px] font-normal text-[#F04438] bg-[#FEF2F2] py-0.5 px-2 rounded-xl">{index % 2 === 0 ? 'Missing Tax Code' : 'NI Category Missing'}</span>
-                                            <button className="text-[14px] font-semibold text-[#1D2939] hover:underline cursor-pointer underline">Fix Now</button>
+                                        <div className="flex items-center 2xl:gap-6 gap-4 mt-2 md:mt-0">
+                                            <span className="2xl:text-[14px] text-[12px] font-normal text-[#F04438] bg-[#FEF2F2] py-0.5 px-2 rounded-xl">{index % 2 === 0 ? 'Missing Tax Code' : 'NI Category Missing'}</span>
+                                            <button className="2xl:text-[14px] text-[12px] font-semibold text-[#1D2939] hover:underline cursor-pointer underline">Fix Now</button>
                                         </div>
                                     </div>
                                 ))}
@@ -161,7 +161,7 @@ export default function PayrollApprovalPage() {
                                 <p className="text-[12px] text-[#111827] font-normal mt-2">Review recommended</p>
                             </div>
 
-                            <div className="space-y-4 p-6 pt-0">
+                            <div className="space-y-4 2xl:p-6 p-4 pt-0">
                                 {[1, 2, 3].map((item, index) => (
                                     <div key={index} className="md:flex items-center justify-between">
                                         <div className="flex items-center gap-3">
@@ -173,11 +173,11 @@ export default function PayrollApprovalPage() {
                                                 </p>
                                             </div>
                                         </div>
-                                        <div className="flex items-center gap-6 mt-2 md:mt-0">
-                                            <span className="text-[14px] font-normal text-[#FFA100] bg-[#FFF6E8] py-0.5 px-2 rounded-xl">
+                                        <div className="flex items-center 2xl:gap-6 gap-4 mt-2 md:mt-0">
+                                            <span className="2xl:text-[14px] text-[12px] font-normal text-[#FFA100] bg-[#FFF6E8] py-0.5 px-2 rounded-xl">
                                                 {index === 0 ? 'Overtime Cap' : index === 1 ? 'Pension Opt-Out' : 'Salary Change'}
                                             </span>
-                                            <button className="text-[14px] font-semibold text-[#1D2939] hover:underline cursor-pointer underline">Review</button>
+                                            <button className="2xl:text-[14px] text-[12px] font-semibold text-[#1D2939] hover:underline cursor-pointer underline">Review</button>
                                         </div>
                                     </div>
                                 ))}
@@ -186,7 +186,7 @@ export default function PayrollApprovalPage() {
                     </div>
 
                     <div className="rounded-2xl shadow-sm overflow-hidden">
-                        <div className="p-5">
+                        <div className="md:p-5 p-3">
                             <h2 className="text-[18px] font-bold text-neutral-900">Employees Included</h2>
                         </div>
 
@@ -196,12 +196,12 @@ export default function PayrollApprovalPage() {
                                     <table className="min-w-[1000px] w-full text-left border-collapse">
                                         <thead className="bg-[#F8F9FC]">
                                             <tr>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] rounded-l-lg">Employee</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Department</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Gross Pay</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Deductions</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Net Pay</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] text-center rounded-r-lg">Action</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827] rounded-l-lg">Employee</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Department</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Gross Pay</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Deductions</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Net Pay</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827] text-center rounded-r-lg">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody className="bg-white">
@@ -213,12 +213,12 @@ export default function PayrollApprovalPage() {
                                                             <span className="text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.name}</span>
                                                         </div>
                                                     </td>
-                                                    <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.department}</td>
-                                                    <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.grossPay}</td>
-                                                    <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.deductions}</td>
-                                                    <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.netPay}</td>
+                                                    <td className="px-4 md:py-4 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.department}</td>
+                                                    <td className="px-4 md:py-4 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.grossPay}</td>
+                                                    <td className="px-4 md:py-4 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.deductions}</td>
+                                                    <td className="px-4 md:py-4 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.netPay}</td>
 
-                                                    <td className="px-4 py-4 sm:px-6">
+                                                    <td className="px-4 md:py-4 py-3 sm:px-6">
                                                         <div className="flex items-center justify-center gap-3">
                                                             <button className="text-neutral-400 hover:text-neutral-700 transition-colors cursor-pointer">
                                                                 <Image src={eyeIcon} alt="View" className="pointer-events-none" />

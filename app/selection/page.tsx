@@ -17,55 +17,55 @@ export default function SelectionPage() {
     return (
         <div className={`relative min-h-screen bg-[#257BFC1A] flex flex-col items-center justify-center p-6 ${lexendDeca.className}`}>
             <div className="absolute top-8 md:top-12 left-0 w-full">
-                <img
-                    src="/login/shiftmate-logo.png"
-                    alt="ShiftMate Logo"
+                <img 
+                    src="/login/shiftmate-logo.png" 
+                    alt="ShiftMate Logo" 
                     className="mx-auto h-10 md:h-12"
                 />
             </div>
-
+            
             <div className="w-full max-w-[800px] text-center mt-10 md:mt-0">
 
-                <h1 className="text-[24px] md:text-[48px] font-semibold text-neutral-900 mb-4">
+                <h1 className="text-[24px] md:text-[40px] xl:text-[48px] font-bold text-neutral-900 lg:mb-4 mb-2">
                     Welcome to <span className="text-[#257BFC]">ShiftMate</span>
                 </h1>
-
-                <p className="text-neutral-500 md:text-[20px] text-[15px] md:max-w-[560px] font-normal mx-auto mb-12">
+                
+                <p className="text-neutral-500 text-[12px] md:text-[15px] max-w-[500px] mx-auto lg:mb-12 md:mb-10 mb-6">
                     Manage your workforce smarter — from payroll to HR operations, everything you need is just a click away.
                 </p>
 
                 <div className="flex flex-col items-center gap-4">
-                    <div className="md:flex flex-col justify-center gap-4 w-full space-y-4">
-                        <button
+                    <div className="md:flex justify-center gap-4 w-full space-y-4 md:space-y-0">
+                        <button 
                             onClick={() => handleSelectModule("System Flow")}
-                            className="bg-white rounded-xl shadow-sm border border-neutral-100 md:px-8 px-4 md:py-8 py-4 md:text-[24px] text-[16px] font-semibold text-[#111827] hover:shadow-md hover:border-[#257BFC] transition-all cursor-pointer md:min-w-[452px] min-w-[200px]"
-                        >
+                            className="bg-white rounded-xl shadow-md xl:px-8 xl:py-9 md:py-6 py-5 xl:text-[24px] lg:text-[20px] md:text-[18px] text-[16px] font-semibold text-neutral-900 hover:shadow-md hover:border-[#257BFC] transition-all cursor-pointer min-w-[250px] md:min-w-[200px] lg:min-w-[300px] xl:min-w-[452px]"
+                        >   
                             System Flow
                         </button>
-                        <button
+                        <button 
                             onClick={() => handleSelectModule("Payroll")}
-                            className="bg-white rounded-xl shadow-sm border border-neutral-100 md:px-8 px-4 md:py-8 py-4 md:text-[24px] text-[16px] font-semibold text-[#111827] hover:shadow-md hover:border-[#257BFC] transition-all cursor-pointer md:min-w-[452px] min-w-[200px]"
+                            className="bg-white rounded-xl shadow-md px-8 xl:py-9 md:py-7 py-5 xl:text-[24px] lg:text-[20px] md:text-[18px] text-[16px] font-semibold text-neutral-900 hover:shadow-md hover:border-[#257BFC] transition-all cursor-pointer min-w-[250px] md:min-w-[200px] lg:min-w-[300px] xl:min-w-[452px]"
                         >
                             Payroll
                         </button>
-                        <button
+                        <button 
                             onClick={() => handleSelectModule("HR Operations")}
-                            className="bg-white rounded-xl shadow-sm border border-neutral-100 md:px-8 px-4 md:py-8 py-4 md:text-[24px] text-[16px] font-semibold text-[#111827] hover:shadow-md hover:border-[#257BFC] transition-all cursor-pointer md:min-w-[452px] min-w-[200px]"
+                            className="bg-white rounded-xl shadow-md px-8 xl:py-9 md:py-7 py-5 xl:text-[24px] lg:text-[20px] md:text-[18px] text-[16px] font-semibold text-neutral-900 hover:shadow-md hover:border-[#257BFC] transition-all cursor-pointer min-w-[250px] md:min-w-[200px] lg:min-w-[300px] xl:min-w-[452px]"
                         >
                             HR Operations
                         </button>
                     </div>
-
-                    <div className="md:flex flex-col justify-center gap-4 w-full space-y-4">
-                        <button
+                    
+                    <div className="md:flex justify-center gap-4 w-full space-y-4 md:space-y-0">
+                        <button 
                             onClick={() => handleSelectModule("Employee Self-Service Portal")}
-                            className="bg-white rounded-xl shadow-sm border border-neutral-100 md:px-8 px-4 md:py-8 py-4 md:text-[24px] text-[16px] font-semibold text-[#111827] hover:shadow-md hover:border-[#257BFC] transition-all cursor-pointer md:min-w-[452px] min-w-[200px]"
+                            className="bg-white rounded-xl shadow-md px-8 xl:py-9 md:py-7 py-5 xl:text-[24px] lg:text-[20px] md:text-[18px] text-[16px] font-semibold text-neutral-900 hover:shadow-md hover:border-[#257BFC] transition-all cursor-pointer min-w-[250px] md:min-w-[200px] lg:min-w-[300px] xl:min-w-[452px]"
                         >
                             Employee Self-Service Portal
                         </button>
-                        <button
+                        <button 
                             onClick={() => handleSelectModule("Multi-Company Management")}
-                            className="bg-white rounded-xl shadow-sm border border-neutral-100 md:px-8 px-4 md:py-8 py-4 md:text-[24px] text-[16px] font-semibold text-[#111827] hover:shadow-md hover:border-[#257BFC] transition-all cursor-pointer md:min-w-[452px] min-w-[200px]"
+                            className="bg-white rounded-xl shadow-md px-8 xl:py-9 md:py-7 py-5 xl:text-[24px] lg:text-[20px] md:text-[18px] text-[16px] font-semibold text-neutral-900 hover:shadow-md hover:border-[#257BFC] transition-all cursor-pointer min-w-[250px] md:min-w-[200px] lg:min-w-[300px] xl:min-w-[452px]"
                         >
                             Multi-Company Management
                         </button>

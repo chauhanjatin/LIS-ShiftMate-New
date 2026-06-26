@@ -41,8 +41,8 @@ export default function FPSSubmissionDetailsPage() {
     <DashboardLayout title={`${month} Submission Details`} subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
 
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-[20px] font-medium text-[#111827]">{month} Submission Details</h2>
+        <div className="flex justify-between items-center md:mb-6 mb-4">
+          <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">{month} Submission Details</h2>
           <button onClick={handleExport} className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-700 hover:bg-neutral-50 transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             Export
@@ -54,10 +54,10 @@ export default function FPSSubmissionDetailsPage() {
           {/* Left Column */}
           <div className="lg:col-span-2 space-y-6">
             {/* Submission Information */}
-            <div className="rounded-2xl border border-[#E2E8F0] bg-white p-6 shadow-sm">
-              <h3 className="text-[16px] font-bold text-[#111827] mb-6 border-b border-[#E2E8F0] pb-4">Submission Information</h3>
+            <div className="rounded-2xl bg-white md:p-6 p-4 shadow-sm">
+              <h3 className="text-[16px] font-bold text-[#111827] md:mb-6 mb-4 border-b border-[#E2E8F0] md:pb-4 pb-2">Submission Information</h3>
 
-              <div className="grid grid-cols-2 gap-y-6">
+              <div className="grid md:grid-cols-2 grid-cols-1 md:gap-y-6 gap-y-4">
                 <div>
                   <p className="text-[12px] font-medium text-[#98A2B3] mb-1">Type</p>
                   <p className="text-[14px] font-semibold text-[#111827]">Full Payment Submission (FPS)</p>
@@ -90,10 +90,10 @@ export default function FPSSubmissionDetailsPage() {
             </div>
 
             {/* Payment Summary */}
-            <div className="rounded-2xl border border-[#E2E8F0] bg-white p-6 shadow-sm">
-              <h3 className="text-[16px] font-bold text-[#111827] mb-6 border-b border-[#E2E8F0] pb-4">Payment Summary</h3>
+            <div className="rounded-2xl border border-[#E2E8F0] bg-white md:p-6 p-4 shadow-sm">
+              <h3 className="text-[16px] font-bold text-[#111827] md:mb-6 mb-4 border-b border-[#E2E8F0] md:pb-4 pb-2">Payment Summary</h3>
 
-              <div className="grid grid-cols-2 gap-y-6">
+              <div className="grid md:grid-cols-2 grid-cols-1 md:gap-y-6 gap-y-4">
                 <div>
                   <p className="text-[12px] font-medium text-[#98A2B3] mb-1">Employees Included</p>
                   <p className="text-[14px] font-semibold text-[#111827]">345</p>
@@ -124,25 +124,25 @@ export default function FPSSubmissionDetailsPage() {
 
           {/* Right Column */}
           <div className="space-y-6">
-            <div className="rounded-2xl border border-[#E2E8F0] bg-white p-6 shadow-sm">
-              <h3 className="text-[16px] font-bold text-[#111827] mb-6 border-b border-[#E2E8F0] pb-4">HMRC Response</h3>
+            <div className="rounded-2xl border border-[#E2E8F0] bg-white md:p-6 p-4 shadow-sm">
+              <h3 className="text-[16px] font-bold text-[#111827] md:mb-6 mb-4 border-b border-[#E2E8F0] md:pb-4 pb-2">HMRC Response</h3>
 
-              <div className="space-y-4 mb-8">
-                <div className="flex justify-between text-[13px]">
+              <div className="space-y-4 md:mb-8 mb-4">
+                <div className="flex flex-col md:flex-row justify-between text-[13px]">
                   <span className="text-[#64748B] font-medium">Response Code</span>
                   <span className="text-[#111827] font-semibold">200</span>
                 </div>
-                <div className="flex justify-between text-[13px]">
+                <div className="flex flex-col md:flex-row justify-between text-[13px]">
                   <span className="text-[#64748B] font-medium">Response Time</span>
                   <span className="text-[#111827] font-semibold">2.3 seconds</span>
                 </div>
-                <div className="flex justify-between text-[13px]">
+                <div className="flex flex-col md:flex-row justify-between text-[13px]">
                   <span className="text-[#64748B] font-medium">Correlation ID</span>
                   <span className="text-[#111827] font-semibold text-right max-w-[150px] truncate">550e8400-e29b-41d4-a716-446655440000</span>
                 </div>
-                <div className="flex justify-between text-[13px]">
+                <div className="flex flex-col md:flex-row justify-between text-[13px]">
                   <span className="text-[#64748B] font-medium">Acknowledgement Reference</span>
-                  <span className="text-[#111827] font-semibold text-right">ACK-{year}-03-345</span>
+                  <span className="text-[#111827] font-semibold md:text-right">ACK-{year}-03-345</span>
                 </div>
               </div>
             </div>

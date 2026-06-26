@@ -120,12 +120,12 @@ export default function PayslipListPage() {
                                                     className="md:h-4 h-3 md:w-4 w-3 rounded border-[#F8F9FC] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
                                                 />
                                             </th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Employee</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Pay Period</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Pay Date</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Net Pay</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827] text-center">Status</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827] text-center rounded-r-lg">Action</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Employee</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Pay Period</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Pay Date</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Net Pay</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827] text-center">Status</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827] text-center rounded-r-lg">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
@@ -145,9 +145,9 @@ export default function PayslipListPage() {
                                                         <span className="text-[12px] sm:text-[14px] font-normal text-neutral-900">{payslip.name}</span>
                                                     </div>
                                                 </td>
-                                                <td className="px-4 md:py-4 py-3 sm:px-6 text-[12px] md:text-[14px] font-normal text-neutral-900">{payslip.payPeriod}</td>
-                                                <td className="px-4 md:py-4 py-3 sm:px-6 text-[12px] md:text-[14px] font-normal text-neutral-900">{payslip.payDate}</td>
-                                                <td className="px-4 md:py-4 py-3 sm:px-6 text-[12px] md:text-[14px] font-normal text-neutral-900">{payslip.netPay}</td>
+                                                <td className="px-4 md:py-4 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-neutral-900">{payslip.payPeriod}</td>
+                                                <td className="px-4 md:py-4 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-neutral-900">{payslip.payDate}</td>
+                                                <td className="px-4 md:py-4 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-neutral-900">{payslip.netPay}</td>
 
                                                 <td className="px-4 md:py-4 py-3 sm:px-6 text-center">
                                                     <span className={`inline-flex rounded-full px-3 py-1 text-[12px] md:text-[14px] font-normal ${getStatusColor(payslip.status)}`}>

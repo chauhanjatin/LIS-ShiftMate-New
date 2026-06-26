@@ -110,7 +110,7 @@ export default function StudentLoanRulesPage() {
                         <h2 className="lg:text-[20px] md:text-[18px] text-[16px] font-medium text-[#111827]">Student Loan Plans</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <button onClick={openAddModal} className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                            <button onClick={openAddModal} className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-4 py-2.5 md:text-[16px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                 Add Loan Plan
                             </button>
@@ -123,20 +123,20 @@ export default function StudentLoanRulesPage() {
                                 <table className="min-w-[900px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
                                         <tr>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827] rounded-l-lg">Plan Type</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827]">Description</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827]">Repayment Threshold($)</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827]">Deduction Percentage</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] sm:text-[16px] font-normal text-[#111827] text-center rounded-r-lg">Action</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827] rounded-l-lg">Plan Type</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827]">Description</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827]">Repayment Threshold($)</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827]">Deduction Percentage</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] lg:text-[14px] xl:text-[16px] font-normal text-[#111827] text-center rounded-r-lg">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
                                         {plans.map((plan) => (
                                             <tr key={plan.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{plan.planType}</td>
-                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{plan.description}</td>
-                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{plan.threshold}</td>
-                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#111827]">{plan.deduction}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{plan.planType}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{plan.description}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{plan.threshold}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{plan.deduction}</td>
 
                                                 <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex items-center justify-center gap-3">

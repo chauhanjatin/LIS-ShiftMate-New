@@ -70,7 +70,7 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                         </div>
                         <div className="rounded-2xl border border-[#D0D5DD] bg-white md:p-5 p-3 flex items-center justify-between overflow-hidden">
                             <div>
-                                <h3 className="md:text-[32px] text-[26px] font-semibold text-[#111827]">$122,500</h3>
+                                <h3 className="lg:text-[32px] text-[26px] font-semibold text-[#111827]">$122,500</h3>
                                 <p className="md:mt-2 mt-1 md:text-[14px] text-[12px] font-medium text-[#111827]">Total Gross Pay</p>
                             </div>
                             <div className="flex md:h-[48px] md:w-[48px] h-[40px] w-[40px] items-center justify-center rounded-[14px] bg-[#8B5CF6]">
@@ -79,7 +79,7 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                         </div>
                         <div className="rounded-2xl border border-[#D0D5DD] bg-white md:p-5 p-3 flex items-center justify-between overflow-hidden">
                             <div>
-                                <h3 className="md:text-[32px] text-[26px] font-semibold text-[#111827]">$11712.49</h3>
+                                <h3 className="lg:text-[32px] text-[26px] font-semibold text-[#111827]">$11712.49</h3>
                                 <p className="md:mt-2 mt-1 md:text-[14px] text-[12px] font-medium text-[#111827]">Total Deductions</p>
                             </div>
                             <div className="flex md:h-[48px] md:w-[48px] h-[40px] w-[40px] items-center justify-center rounded-[14px] bg-[#EF4444]">
@@ -88,7 +88,7 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                         </div>
                         <div className="rounded-2xl border border-[#D0D5DD] bg-white md:p-5 p-3 flex items-center justify-between overflow-hidden">
                             <div>
-                                <h3 className="md:text-[32px] text-[26px] font-semibold text-[#111827]">$23037.51</h3>
+                                <h3 className="lg:text-[32px] text-[26px] font-semibold text-[#111827]">$23037.51</h3>
                                 <p className="md:mt-2 mt-1 md:text-[14px] text-[12px] font-medium text-[#111827]">Total Net Pay</p>
                             </div>
                             <div className="flex md:h-[48px] md:w-[48px] h-[40px] w-[40px] items-center justify-center rounded-[14px] bg-[#22C55E]">
@@ -98,11 +98,11 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                     </div>
 
                     <div className="rounded-2xl bg-white overflow-hidden">
-                        <div className="flex flex-wrap items-center justify-between md:px-6 md:pt-6 pt-4">
-                            <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">Employees Included</h2>
+                        <div className="flex flex-wrap items-center justify-between lg:px-6 px-3 md:pt-6 pt-4">
+                            <h2 className="lg:text-[20px] md:text-[18px] text-[16px] font-medium text-neutral-900">Employees Included</h2>
 
                             <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-4 mt-3 md:mt-0">
-                                <div className="relative 2xl:w-60 md:w-52 w-32">
+                                <div className="relative 2xl:w-60 lg:w-52 w-32">
                                     <Image
                                         src={searchIcon}
                                         alt="Search"
@@ -111,19 +111,19 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                                         className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                                     />
                                     <input
-                                        className="w-full rounded-xl border border-[#E2E8F0] bg-white py-1.5 md:py-2 md:pl-11 pl-10 pr-4 text-[14px] outline-none focus:border-[#257BFC] overflow-hidden"
+                                        className="w-full rounded-xl border border-[#E2E8F0] bg-white py-1.5 md:py-2 md:pl-11 pl-10 pr-4 lg:text-[14px] text-[12px] outline-none focus:border-[#257BFC] overflow-hidden"
                                         placeholder="Search..."
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                     />
                                 </div>
 
-                                <button className="flex items-center justify-center gap-2 rounded-xl border border-[#E2E8F0] bg-white md:px-4 px-2 py-2 md:text-[14px] text-[12px] font-semibold text-[#344054] transition hover:bg-neutral-50 overflow-hidden">
+                                <button className="flex items-center justify-center gap-2 rounded-xl border border-[#E2E8F0] bg-white md:px-4 px-2 py-2 lg:text-[14px] text-[12px] font-semibold text-[#344054] transition hover:bg-neutral-50 overflow-hidden">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                                     Recalculate
                                 </button>
 
-                                <button className="flex items-center justify-center gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-4 py-2 md:text-[14px] text-[12px] font-semibold text-white transition hover:bg-blue-600">
+                                <button className="flex items-center justify-center gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-4 py-2 lg:text-[14px] text-[12px] font-semibold text-white transition hover:bg-blue-600">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                     Approve Payroll
                                 </button>

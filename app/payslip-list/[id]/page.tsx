@@ -52,14 +52,14 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
         <DashboardLayout title="Payslip Details" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 pb-20 ${lexendDeca.className}`}>
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-4 print:hidden">
-                    <h2 className="md:text-[20px] text-[18px] font-bold text-neutral-900">{decodedName} - March 2026</h2>
+                    <h2 className="lg:text-[20px] md:text-[18px] text-[16px] font-bold text-neutral-900">{decodedName} - March 2026</h2>
 
                     <div className="flex items-center gap-3">
-                        <button className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white md:px-5 px-3 py-2.5 text-[12px] md:text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer">
+                        <button className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white lg:px-5 px-3 py-2.5 text-[12px] lg:text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                             Email Payslip
                         </button>
-                        <button onClick={handleDownloadPDF} className="flex items-center gap-2 rounded-xl bg-[#257BFC] md:px-5 px-3 py-2.5 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                        <button onClick={handleDownloadPDF} className="flex items-center gap-2 rounded-xl bg-[#257BFC] lg:px-5 px-3 py-2.5 text-[12px] lg:text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                             Download PDF
                         </button>
@@ -69,7 +69,7 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
                 <div id="payslip-container" className="mx-auto w-full max-w-[850px] overflow-hidden rounded-2xl bg-white shadow-sm border border-neutral-200 relative">
 
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
-                        <Image src={shiftmateBg} alt="" className="absolute top-[45%]" />
+                        <Image src={shiftmateBg} alt="" className="absolute md:top-[45%] top-[62%]" />
                     </div>
 
                     <div className="bg-[#257BFC] md:p-5 p-4 lg:px-6 text-white flex flex-col md:flex-row justify-between items-start md:items-center rounded-t-2xl relative">

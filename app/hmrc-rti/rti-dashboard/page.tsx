@@ -54,12 +54,12 @@ const MetricCard = ({ title, value, type }: { title: string, value: string, type
   const { bg, icon } = styles[type];
 
   return (
-    <div className="rounded-2xl border border-[#D0D5DD] bg-white p-6 flex justify-between items-center">
+    <div className="rounded-2xl border border-[#D0D5DD] bg-white md:p-6 p-3 flex justify-between items-center">
       <div>
-        <h3 className="text-[28px] font-bold text-[#111827]">{value}</h3>
-        <p className="text-[13px] font-medium text-[#111827] mt-1">{title}</p>
+        <h3 className="md:text-[28px] text-[24px] font-bold text-[#111827]">{value}</h3>
+        <p className="md:text-[13px] text-[12px] font-medium text-[#111827] mt-1">{title}</p>
       </div>
-      <div className={`h-12 w-12 rounded-[12px] flex items-center justify-center ${bg}`}>
+      <div className={`md:h-12 md:w-12 h-10 w-10 rounded-[12px] flex items-center justify-center ${bg}`}>
         {icon}
       </div>
     </div>
@@ -102,7 +102,7 @@ export default function RTIDashboardPage() {
   return (
     <DashboardLayout title="RTI Dashboard" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] px-6 pt-6 pb-10">
+        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 pt-4 md:pt-6 pb-10">
           <h2 className="text-[20px] font-medium text-[#111827] mb-6">RTI Dashboard</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -115,24 +115,24 @@ export default function RTIDashboardPage() {
           <div className="mb-8">
             <h3 className="text-[16px] font-bold text-[#111827] mb-4">Upcoming Filings</h3>
             <div className="overflow-x-auto rounded-xl border border-[#E2E8F0]">
-              <table className="w-full text-left text-[14px]">
-                <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827]">
+              <table className="w-full text-left">
+                <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] md:text-[16px] text-[12px]">
                   <tr>
-                    <th className="px-6 py-2.5 font-normal">Filing Type</th>
-                    <th className="px-6 py-2.5 font-normal">Tax Period</th>
-                    <th className="px-6 py-2.5 font-normal">Due Date</th>
-                    <th className="px-6 py-2.5 font-normal">Status</th>
-                    <th className="px-6 py-2.5 font-normal">Action</th>
+                    <th className="px-6 md:py-2.5 py-1.5 font-normal">Filing Type</th>
+                    <th className="px-6 md:py-2.5 py-1.5 font-normal">Tax Period</th>
+                    <th className="px-6 md:py-2.5 py-1.5 font-normal">Due Date</th>
+                    <th className="px-6 md:py-2.5 py-1.5 font-normal">Status</th>
+                    <th className="px-6 md:py-2.5 py-1.5 font-normal">Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E2E8F0]">
+                <tbody className="divide-y divide-[#E2E8F0] md:text-[14px] text-[10px]">
                   {upcomingFilings.map((row, idx) => (
                     <tr key={idx} className="hover:bg-neutral-50">
-                      <td className="p-6 font-normal text-[#111827]">{row.type}</td>
-                      <td className="p-6 font-normal text-[#111827]">{row.period}</td>
-                      <td className="p-6 font-normal text-[#111827]">{row.date}</td>
-                      <td className="p-6">{renderBadge(row.status)}</td>
-                      <td className="p-6">
+                      <td className="md:p-6 p-3 font-normal text-[#111827]">{row.type}</td>
+                      <td className="md:p-6 p-3 font-normal text-[#111827]">{row.period}</td>
+                      <td className="md:p-6 p-3 font-normal text-[#111827]">{row.date}</td>
+                      <td className="md:p-6 p-3">{renderBadge(row.status)}</td>
+                      <td className="md:p-6 p-3">
                         <Link href={row.link} className="text-[#64748B] hover:text-[#257BFC]">
                           <Image src={viewIcon} alt="View" />
                         </Link>
