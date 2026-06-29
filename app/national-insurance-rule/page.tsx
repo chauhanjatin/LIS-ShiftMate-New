@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
+import CustomSelect from '@/Component/UI/CustomSelect';
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import { Lexend_Deca } from "next/font/google";
@@ -30,6 +31,12 @@ const initialRules: TaxRule[] = [
 export default function NationalInsuranceRulePage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [rules, setRules] = useState<TaxRule[]>(initialRules);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    
+    const totalPages = Math.ceil(rules.length / rowsPerPage) || 1;
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const paginatedRules = rules.slice(startIndex, startIndex + rowsPerPage);
 
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_national_insurance_rules");
@@ -52,6 +59,7 @@ export default function NationalInsuranceRulePage() {
     const [selectedRule, setSelectedRule] = useState<TaxRule | null>(null);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [ruleToDelete, setRuleToDelete] = useState<number | null>(null);
+    const [taxYear, setTaxYear] = useState("2025/2026");
 
     const openEditModal = (rule: TaxRule) => {
         setSelectedRule(rule);
@@ -82,17 +90,19 @@ export default function NationalInsuranceRulePage() {
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">National Insurance Categories</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative">
-                            <p className="text-[14px] text-[#111827]">Tax Year</p>
-                                <select
-                                    className="h-[40px] appearance-none rounded-xl border border-[#344054] bg-white px-4 pr-10 mt-2 text-[14px] text-[#344054] outline-none transition overflow-hidden"
-                                >
-                                    <option>2025/2026</option>
-                                    <option>2024/2025</option>
-                                    <option>2023/2024</option>
-                                    <option>2022/2023</option>
-                                </select>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-3 top-[72%] -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            <div className="w-[140px] mt-2">
+                                <p className="text-[14px] text-[#111827] mb-2">Tax Year</p>
+                                <CustomSelect 
+                                    value={taxYear}
+                                    onChange={setTaxYear}
+                                    options={[
+                                        { label: "2025/2026", value: "2025/2026" },
+                                        { label: "2024/2025", value: "2024/2025" },
+                                        { label: "2023/2024", value: "2023/2024" },
+                                        { label: "2022/2023", value: "2022/2023" }
+                                    ]}
+                                    className="!h-[40px] !py-2 !rounded-xl !border-[#344054]"
+                                />
                             </div>
                         </div>
                     </div>
@@ -113,7 +123,7 @@ export default function NationalInsuranceRulePage() {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
-                                        {rules.map((rule) => (
+                                        {paginatedRules.map((rule) => (
                                             <tr key={rule.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
                                                 <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{rule.niCategory}</td>
                                                 <td className="px-4 md:py-6 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{rule.description}</td>
@@ -138,6 +148,50 @@ export default function NationalInsuranceRulePage() {
                                 </table>
                             </div>
                         </div>
+
+                        {/* Pagination */}
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+                            <div className="flex items-center gap-2">
+                                <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                                    Rows per page:
+                                </span>
+                                <div className="w-[80px]">
+                                    <CustomSelect 
+                                        value={String(rowsPerPage)}
+                                        onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                                        options={[
+                                            { label: "5", value: "5" },
+                                            { label: "10", value: "10" },
+                                            { label: "20", value: "20" }
+                                        ]}
+                                        menuPlacement="top"
+                                        className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                                    />
+                                </div>
+                            </div>
+
+                            <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                                {rules.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, rules.length)} of ${rules.length}` : '0-0 of 0'}
+                            </span>
+
+                            <div className="flex items-center gap-1 ml-4">
+                                <button 
+                                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                    disabled={currentPage === 1}
+                                    className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <button 
+                                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                    disabled={currentPage === totalPages}
+                                    className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

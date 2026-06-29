@@ -18,14 +18,14 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
 
   return (
     <div className="relative flex h-screen overflow-hidden bg-[#f5f7fb] text-neutral-900">
-      <Sidebar 
-        collapsed={isSidebarCollapsed} 
+      <Sidebar
+        collapsed={isSidebarCollapsed}
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
       />
 
       {isMobileMenuOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
@@ -37,25 +37,24 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
           isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
         }
         onClick={() => setIsSidebarCollapsed((prev) => !prev)}
-        className={`absolute top-[66px] z-70 hidden h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white cursor-pointer shadow-sm transition-all duration-500 ease-in-out lg:inline-flex ${
-          isSidebarCollapsed ? "left-[88px]" : "2xl:left-[280px] left-64"
-        }`}
+        className={`absolute top-[22px] z-50 hidden xl:h-10 lg:h-8 xl:w-10 w-8 -translate-x-1/2 rotate-45 items-center justify-center rounded-[12px] border border-neutral-200 bg-white cursor-pointer transition-all duration-500 ease-in-out lg:inline-flex
+           ${isSidebarCollapsed ? "left-[106px]" : "2xl:left-[280px] left-63"
+          }`}
       >
         <Image
           src={dashboardOpenIcon}
           alt=""
-          width={18}
-          height={18}
-          className={`h-[18px] w-[18px] transition-transform ${
-            isSidebarCollapsed ? "rotate-180" : ""
-          }`}
+          width={30}
+          height={30}
+          className={`-rotate-45 duration-500 transition-transform ${isSidebarCollapsed ? "rotate-[135deg]" : ""
+            }`}
         />
       </button>
 
       <section className="flex min-w-0 flex-1 flex-col">
-        <Header 
-          title={title} 
-          subtitle={subtitle} 
+        <Header
+          title={title}
+          subtitle={subtitle}
           onMenuClick={() => setIsMobileMenuOpen(true)}
         />
         <main className="flex-1 overflow-y-auto">

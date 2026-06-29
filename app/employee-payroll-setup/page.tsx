@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import Toast from '@/Component/UI/Toast';
+import CustomSelect from '@/Component/UI/CustomSelect';
 import searchIcon from "@/assets/images/icons/search.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
@@ -209,16 +210,17 @@ export default function EmployeePayrollSetupPage() {
                                         Salary
                                     </label>
 
-                                    <div className="relative">
-                                        <select
-                                            defaultValue={selectedEmployee?.salary || ""}
-                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
-                                        >
-                                            <option value="$58,000">$58,000</option>
-                                            <option value="$60,000">$60,000</option>
-                                            <option value="$65,000">$65,000</option>
-                                        </select>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    <div className="relative mt-2">
+                                        <CustomSelect
+                                            value={selectedEmployee?.salary || "$58,000"}
+                                            onChange={(val) => selectedEmployee && setSelectedEmployee({ ...selectedEmployee, salary: val })}
+                                            options={[
+                                                { label: "$58,000", value: "$58,000" },
+                                                { label: "$60,000", value: "$60,000" },
+                                                { label: "$65,000", value: "$65,000" }
+                                            ]}
+                                            className="md:!h-[52px] !h-[40px] md:!py-3 !py-2"
+                                        />
                                     </div>
                                 </div>
 
@@ -227,16 +229,17 @@ export default function EmployeePayrollSetupPage() {
                                         Tax Code
                                     </label>
 
-                                    <div className="relative">
-                                        <select
-                                            defaultValue={selectedEmployee?.taxCode || ""}
-                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
-                                        >
-                                            <option value="1257L">1257L</option>
-                                            <option value="BR">BR</option>
-                                            <option value="0T">0T</option>
-                                        </select>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    <div className="relative mt-2">
+                                        <CustomSelect
+                                            value={selectedEmployee?.taxCode || "1257L"}
+                                            onChange={(val) => selectedEmployee && setSelectedEmployee({ ...selectedEmployee, taxCode: val })}
+                                            options={[
+                                                { label: "1257L", value: "1257L" },
+                                                { label: "BR", value: "BR" },
+                                                { label: "0T", value: "0T" }
+                                            ]}
+                                            className="md:!h-[52px] !h-[40px] md:!py-3 !py-2"
+                                        />
                                     </div>
                                 </div>
 
@@ -245,16 +248,17 @@ export default function EmployeePayrollSetupPage() {
                                         NI Category
                                     </label>
 
-                                    <div className="relative">
-                                        <select
-                                            defaultValue={selectedEmployee?.niCategory || ""}
-                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
-                                        >
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
-                                            <option value="C">C</option>
-                                        </select>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    <div className="relative mt-2">
+                                        <CustomSelect
+                                            value={selectedEmployee?.niCategory || "A"}
+                                            onChange={(val) => selectedEmployee && setSelectedEmployee({ ...selectedEmployee, niCategory: val })}
+                                            options={[
+                                                { label: "A", value: "A" },
+                                                { label: "B", value: "B" },
+                                                { label: "C", value: "C" }
+                                            ]}
+                                            className="md:!h-[52px] !h-[40px] md:!py-3 !py-2"
+                                        />
                                     </div>
                                 </div>
 
@@ -263,17 +267,19 @@ export default function EmployeePayrollSetupPage() {
                                         Student Loan Plan
                                     </label>
 
-                                    <div className="relative">
-                                        <select
-                                            defaultValue={selectedEmployee?.studentLoanPlan || ""}
-                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
-                                        >
-                                            <option value="Plan 1">Plan 1</option>
-                                            <option value="Plan 2">Plan 2</option>
-                                            <option value="Plan 4">Plan 4</option>
-                                            <option value="Postgraduate">Postgraduate</option>
-                                        </select>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    <div className="relative mt-2">
+                                        <CustomSelect
+                                            value={selectedEmployee?.studentLoanPlan || "Plan 1"}
+                                            onChange={(val) => selectedEmployee && setSelectedEmployee({ ...selectedEmployee, studentLoanPlan: val })}
+                                            options={[
+                                                { label: "Plan 1", value: "Plan 1" },
+                                                { label: "Plan 2", value: "Plan 2" },
+                                                { label: "Plan 4", value: "Plan 4" },
+                                                { label: "Postgraduate", value: "Postgraduate" }
+                                            ]}
+                                            menuPlacement="top"
+                                            className="md:!h-[52px] !h-[40px] md:!py-3 !py-2"
+                                        />
                                     </div>
                                 </div>
 
@@ -282,15 +288,17 @@ export default function EmployeePayrollSetupPage() {
                                         Pension Status
                                     </label>
 
-                                    <div className="relative">
-                                        <select
-                                            defaultValue={selectedEmployee?.pensionStatus || ""}
-                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
-                                        >
-                                            <option value="Auto-enrolled">Auto-enrolled</option>
-                                            <option value="Opted Out">Opted Out</option>
-                                        </select>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    <div className="relative mt-2">
+                                        <CustomSelect
+                                            value={selectedEmployee?.pensionStatus || "Auto-enrolled"}
+                                            onChange={(val) => selectedEmployee && setSelectedEmployee({ ...selectedEmployee, pensionStatus: val as any })}
+                                            options={[
+                                                { label: "Auto-enrolled", value: "Auto-enrolled" },
+                                                { label: "Opted Out", value: "Opted Out" }
+                                            ]}
+                                            menuPlacement="top"
+                                            className="md:!h-[52px] !h-[40px] md:!py-3 !py-2"
+                                        />
                                     </div>
                                 </div>
 
@@ -299,16 +307,18 @@ export default function EmployeePayrollSetupPage() {
                                         Pay Frequency
                                     </label>
 
-                                    <div className="relative">
-                                        <select
-                                            defaultValue={selectedEmployee?.payFrequency || ""}
-                                            className="md:h-[52px] h-[40px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
-                                        >
-                                            <option value="Weekly">Weekly</option>
-                                            <option value="Monthly">Monthly</option>
-                                            <option value="Bi-Weekly">Bi-Weekly</option>
-                                        </select>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    <div className="relative mt-2">
+                                        <CustomSelect
+                                            value={selectedEmployee?.payFrequency || "Weekly"}
+                                            onChange={(val) => selectedEmployee && setSelectedEmployee({ ...selectedEmployee, payFrequency: val })}
+                                            options={[
+                                                { label: "Weekly", value: "Weekly" },
+                                                { label: "Monthly", value: "Monthly" },
+                                                { label: "Bi-Weekly", value: "Bi-Weekly" }
+                                            ]}
+                                            menuPlacement="top"
+                                            className="md:!h-[52px] !h-[40px] md:!py-3 !py-2"
+                                        />
                                     </div>
                                 </div>
 
@@ -322,7 +332,13 @@ export default function EmployeePayrollSetupPage() {
                                     Cancel
                                 </button>
 
-                                <button onClick={() => { setIsEditModalOpen(false); setShowToast(true); }} className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 text-[13px] md:text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                <button onClick={() => {
+                                    if (selectedEmployee) {
+                                        setEmployees(prev => prev.map(e => e.id === selectedEmployee.id ? selectedEmployee : e));
+                                    }
+                                    setIsEditModalOpen(false); 
+                                    setShowToast(true); 
+                                }} className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 text-[13px] md:text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                     Save Change
                                 </button>
                             </div>

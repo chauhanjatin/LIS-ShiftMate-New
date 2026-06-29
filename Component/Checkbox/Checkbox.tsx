@@ -58,10 +58,10 @@ export default function Checkbox({
           className={cn(
             "mui-checkbox-box relative z-10 flex h-5 w-5 items-center justify-center rounded-[0.35rem] border-2 border-neutral-400 bg-white text-white transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out",
             "group-active:scale-95 group-hover:border-brand-500 peer-focus-visible:ring-4 peer-focus-visible:ring-brand-100",
-            "peer-checked:border-brand-500 peer-checked:bg-brand-500 peer-disabled:border-neutral-200 peer-disabled:bg-neutral-100",
+            "group-has-[:checked]:border-brand-500 group-has-[:checked]:bg-brand-500 group-has-[:disabled]:border-neutral-200 group-has-[:disabled]:bg-neutral-100",
           )}
         >
-          <CheckIcon className="h-3 w-3 origin-center scale-50 opacity-0 transition-[transform,opacity] duration-150 ease-out peer-checked:scale-100 peer-checked:opacity-100 peer-checked:animate-[mui-checkbox-pop_180ms_cubic-bezier(.2,.9,.2,1)] peer-disabled:text-neutral-300" />
+          <CheckIcon className="h-3 w-3 origin-center scale-50 opacity-0 transition-[transform,opacity] duration-150 ease-out group-has-[:checked]:scale-100 group-has-[:checked]:opacity-100 group-has-[:checked]:animate-[mui-checkbox-pop_180ms_cubic-bezier(.2,.9,.2,1)] group-has-[:disabled]:text-neutral-300" />
         </span>
       </span>
       {label ? <span>{label}</span> : null}

@@ -68,7 +68,7 @@ function ForgotPass() {
 
         <Button
           type="submit"
-          className="mt-4 min-h-[3.7rem] w-full rounded-[1rem]"
+          className="mt-4 min-h-[3.7rem] w-full rounded-[1rem] cursor-pointer"
           disabled={isPending || !email.trim()}
         >
           <span className="text-[1.15rem] font-semibold">

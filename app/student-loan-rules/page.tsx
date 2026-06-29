@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import Toast from '@/Component/UI/Toast';
+import CustomSelect from '@/Component/UI/CustomSelect';
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import { Lexend_Deca } from "next/font/google";
@@ -29,6 +30,12 @@ const initialPlans: LoanPlan[] = [
 export default function StudentLoanRulesPage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [plans, setPlans] = useState<LoanPlan[]>(initialPlans);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    
+    const totalPages = Math.ceil(plans.length / rowsPerPage) || 1;
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const paginatedPlans = plans.slice(startIndex, startIndex + rowsPerPage);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [selectedPlan, setSelectedPlan] = useState<LoanPlan | null>(null);
@@ -131,7 +138,7 @@ export default function StudentLoanRulesPage() {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
-                                        {plans.map((plan) => (
+                                        {paginatedPlans.map((plan) => (
                                             <tr key={plan.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
                                                 <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{plan.planType}</td>
                                                 <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] xl:text-[14px] font-normal text-[#111827]">{plan.description}</td>
@@ -154,6 +161,50 @@ export default function StudentLoanRulesPage() {
                                 </table>
                             </div>
                         </div>
+
+                        {/* Pagination */}
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+                            <div className="flex items-center gap-2">
+                                <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                                    Rows per page:
+                                </span>
+                                <div className="w-[80px]">
+                                    <CustomSelect 
+                                        value={String(rowsPerPage)}
+                                        onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                                        options={[
+                                            { label: "5", value: "5" },
+                                            { label: "10", value: "10" },
+                                            { label: "20", value: "20" }
+                                        ]}
+                                        menuPlacement="top"
+                                        className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                                    />
+                                </div>
+                            </div>
+
+                            <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                                {plans.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, plans.length)} of ${plans.length}` : '0-0 of 0'}
+                            </span>
+
+                            <div className="flex items-center gap-1 ml-4">
+                                <button 
+                                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                    disabled={currentPage === 1}
+                                    className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <button 
+                                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                    disabled={currentPage === totalPages}
+                                    className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

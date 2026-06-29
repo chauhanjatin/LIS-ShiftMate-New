@@ -8,6 +8,7 @@ import searchIcon from "@/assets/images/icons/search.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import Toast from '@/Component/UI/Toast';
+import CustomSelect from '@/Component/UI/CustomSelect';
 import { Lexend_Deca } from "next/font/google";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
@@ -75,14 +76,23 @@ export default function DeductionComponentsPage() {
         if (!formData.name) newErrors.name = "Required";
         if (!formData.type) newErrors.type = "Required";
         if (!formData.method) newErrors.method = "Required";
-        if (!formData.rate) newErrors.rate = "Required";
+        if (!formData.rate) {
+            newErrors.rate = "Required";
+        } else if (isNaN(Number(formData.rate))) {
+            newErrors.rate = "Must be a valid number";
+        }
         if (!formData.rules) newErrors.rules = "Required";
         
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const handleSelectChange = (name: string, value: string) => {
+        setFormData(prev => ({ ...prev, [name]: value }));
+        setErrors(prev => ({ ...prev, [name]: "" }));
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
         setErrors(prev => ({ ...prev, [name]: "" }));
@@ -112,6 +122,13 @@ export default function DeductionComponentsPage() {
     const filteredDeductions = deductions.filter(d =>
         d.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    
+    const totalPages = Math.ceil(filteredDeductions.length / rowsPerPage) || 1;
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const paginatedDeductions = filteredDeductions.slice(startIndex, startIndex + rowsPerPage);
 
     const handleDelete = () => {
         if (deductionToDelete) {
@@ -184,7 +201,7 @@ export default function DeductionComponentsPage() {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
-                                        {filteredDeductions.map((deduction) => (
+                                        {paginatedDeductions.map((deduction) => (
                                             <tr key={deduction.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
                                                 <td className="py-6 pl-4 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.name}</td>
                                                 <td className="py-6 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.type}</td>
@@ -216,6 +233,50 @@ export default function DeductionComponentsPage() {
                                 </table>
                             </div>
                         </div>
+
+                        {/* Pagination */}
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+                            <div className="flex items-center gap-2">
+                                <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                                    Rows per page:
+                                </span>
+                                <div className="w-[80px]">
+                                    <CustomSelect 
+                                        value={String(rowsPerPage)}
+                                        onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                                        options={[
+                                            { label: "5", value: "5" },
+                                            { label: "10", value: "10" },
+                                            { label: "20", value: "20" }
+                                        ]}
+                                        menuPlacement="top"
+                                        className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                                    />
+                                </div>
+                            </div>
+
+                            <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                                {filteredDeductions.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, filteredDeductions.length)} of ${filteredDeductions.length}` : '0-0 of 0'}
+                            </span>
+
+                            <div className="flex items-center gap-1 ml-4">
+                                <button 
+                                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                    disabled={currentPage === 1}
+                                    className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <button 
+                                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                    disabled={currentPage === totalPages}
+                                    className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -260,18 +321,17 @@ export default function DeductionComponentsPage() {
                                         Deduction Type
                                     </label>
 
-                                    <div className="relative">
-                                        <select name="type" value={formData.type} onChange={handleInputChange} className={`md:h-[52px] h-[45px] w-full appearance-none rounded-2xl border ${errors.type ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC] overflow-hidden`}>
-                                            <option value="">Select Type</option>
-                                            <option value="Statutory">Statutory</option>
-                                            <option value="Custom">Custom</option>
-                                        </select>
-                                        {errors.type && <p className="text-red-500 text-xs mt-1">{errors.type}</p>}
-
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]">
-                                            <polyline points="6 9 12 15 18 9"></polyline>
-                                        </svg>
-                                    </div>
+                                    <CustomSelect
+                                        value={formData.type}
+                                        onChange={(val) => handleSelectChange('type', val)}
+                                        options={[
+                                            { label: "Statutory", value: "Statutory" },
+                                            { label: "Custom", value: "Custom" }
+                                        ]}
+                                        placeholder="Select Type"
+                                        error={!!errors.type}
+                                    />
+                                    {errors.type && <p className="text-red-500 text-xs mt-1">{errors.type}</p>}
                                 </div>
 
                                 <div>
@@ -279,18 +339,17 @@ export default function DeductionComponentsPage() {
                                         Method
                                     </label>
 
-                                    <div className="relative">
-                                        <select name="method" value={formData.method} onChange={handleInputChange} className={`md:h-[52px] h-[45px] w-full appearance-none rounded-2xl border ${errors.method ? 'border-red-500' : 'border-[#E2E8F0]'} bg-white px-4 pr-12 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#257BFC] overflow-hidden`}>
-                                            <option value="">Select Method Type</option>
-                                            <option value="Percentage">Percentage</option>
-                                            <option value="Fixed Amount">Fixed Amount</option>
-                                        </select>
-                                        {errors.method && <p className="text-red-500 text-xs mt-1">{errors.method}</p>}
-
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]">
-                                            <polyline points="6 9 12 15 18 9"></polyline>
-                                        </svg>
-                                    </div>
+                                    <CustomSelect
+                                        value={formData.method}
+                                        onChange={(val) => handleSelectChange('method', val)}
+                                        options={[
+                                            { label: "Percentage", value: "Percentage" },
+                                            { label: "Fixed Amount", value: "Fixed Amount" }
+                                        ]}
+                                        placeholder="Select Method Type"
+                                        error={!!errors.method}
+                                    />
+                                    {errors.method && <p className="text-red-500 text-xs mt-1">{errors.method}</p>}
                                 </div>
 
                                 <div className="md:col-span-2">

@@ -10,6 +10,7 @@ import editIcon from "@/assets/images/icons/edit.svg";
 import fileTypeIcon from "@/assets/images/icons/file-typeicon.svg";
 import { useEmployees } from "@/hooks/useEmployees";
 import Toast from '@/Component/UI/Toast';
+import CustomSelect from '@/Component/UI/CustomSelect';
 
 const STEPS = [
   "Personal Details",
@@ -104,6 +105,11 @@ export default function AddEmployeePage() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  const handleSelectChange = (name: string, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
@@ -215,12 +221,18 @@ export default function AddEmployeePage() {
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Gender</label>
-                  <select name="gender" value={formData.gender} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.gender ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
-                    <option value="">Select your gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                  </select>
+                  <CustomSelect
+                    value={formData.gender}
+                    onChange={(val) => handleSelectChange('gender', val)}
+                    options={[
+                      { label: "Male", value: "Male" },
+                      { label: "Female", value: "Female" },
+                      { label: "Other", value: "Other" }
+                    ]}
+                    placeholder="Select your gender"
+                    error={!!errors.gender}
+                    className="md:!p-3 !p-2"
+                  />
                   {errors.gender && <p className="text-red-500 text-xs mt-1">{errors.gender}</p>}
                 </div>
                 <div>
@@ -260,23 +272,35 @@ export default function AddEmployeePage() {
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Employment Type</label>
-                  <select name="employmentType" value={formData.employmentType} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.employmentType ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
-                    <option value="">Select your employment type</option>
-                    <option value="Full Time">Full Time</option>
-                    <option value="Part Time">Part Time</option>
-                    <option value="Contract">Contract</option>
-                  </select>
+                  <CustomSelect
+                    value={formData.employmentType}
+                    onChange={(val) => handleSelectChange('employmentType', val)}
+                    options={[
+                      { label: "Full Time", value: "Full Time" },
+                      { label: "Part Time", value: "Part Time" },
+                      { label: "Contract", value: "Contract" }
+                    ]}
+                    placeholder="Select your employment type"
+                    error={!!errors.employmentType}
+                    className="md:!p-3 !p-2"
+                  />
                   {errors.employmentType && <p className="text-red-500 text-xs mt-1">{errors.employmentType}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Department</label>
-                  <select name="department" value={formData.department} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.department ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
-                    <option value="">Select your department</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Finance">Finance</option>
-                    <option value="HR">HR</option>
-                  </select>
+                  <CustomSelect
+                    value={formData.department}
+                    onChange={(val) => handleSelectChange('department', val)}
+                    options={[
+                      { label: "Engineering", value: "Engineering" },
+                      { label: "Marketing", value: "Marketing" },
+                      { label: "Finance", value: "Finance" },
+                      { label: "HR", value: "HR" }
+                    ]}
+                    placeholder="Select your department"
+                    error={!!errors.department}
+                    className="md:!p-3 !p-2"
+                  />
                   {errors.department && <p className="text-red-500 text-xs mt-1">{errors.department}</p>}
                 </div>
                 <div>
@@ -296,11 +320,18 @@ export default function AddEmployeePage() {
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Contract Type</label>
-                  <select name="contractType" value={formData.contractType} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.contractType ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
-                    <option value="">Select your contract type</option>
-                    <option value="Permanent">Permanent</option>
-                    <option value="Fixed Term">Fixed Term</option>
-                  </select>
+                  <CustomSelect
+                    value={formData.contractType}
+                    onChange={(val) => handleSelectChange('contractType', val)}
+                    options={[
+                      { label: "Permanent", value: "Permanent" },
+                      { label: "Fixed Term", value: "Fixed Term" }
+                    ]}
+                    placeholder="Select your contract type"
+                    error={!!errors.contractType}
+                    className="md:!p-3 !p-2"
+                    menuPlacement="top"
+                  />
                   {errors.contractType && <p className="text-red-500 text-xs mt-1">{errors.contractType}</p>}
                 </div>
               </div>
@@ -330,12 +361,19 @@ export default function AddEmployeePage() {
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Payroll Frequency</label>
-                  <select name="payrollFrequency" value={formData.payrollFrequency} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.payrollFrequency ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500 bg-white`}>
-                    <option value="">Select your payroll</option>
-                    <option value="Monthly">Monthly</option>
-                    <option value="Bi-weekly">Bi-weekly</option>
-                    <option value="Weekly">Weekly</option>
-                  </select>
+                  <CustomSelect
+                    value={formData.payrollFrequency}
+                    onChange={(val) => handleSelectChange('payrollFrequency', val)}
+                    options={[
+                      { label: "Monthly", value: "Monthly" },
+                      { label: "Bi-weekly", value: "Bi-weekly" },
+                      { label: "Weekly", value: "Weekly" }
+                    ]}
+                    placeholder="Select your payroll"
+                    error={!!errors.payrollFrequency}
+                    className="md:!p-3 !p-2"
+                    menuPlacement="top"
+                  />
                   {errors.payrollFrequency && <p className="text-red-500 text-xs mt-1">{errors.payrollFrequency}</p>}
                 </div>
                 <div>

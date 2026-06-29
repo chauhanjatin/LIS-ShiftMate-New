@@ -25,10 +25,9 @@ export default function AuthMarketingLayout({
             <div className="relative z-10 flex min-h-0 flex-1 flex-col 2xl:p-[60px] xl:p-[45px] p-[40px]">
               <div className="max-w-[45rem]">
                 <h2
-                  className="2xl:text-[48px] text-[40px] font-black 2xl:leading-[72px] leading-[56px] text-white"
+                  className="2xl:text-[48px] text-[40px] font-semibold 2xl:leading-[58px] leading-[48px] text-white"
                   style={{
-                    WebkitTextStroke: "1px rgba(0,0,0,1)",
-                    textShadow: "0px 8px 16px rgba(0,0,0,0.12)",
+                    textShadow: "-1px -1px 0 #000000, 1px -1px 0 #000000,-1px  1px 0 #000000, 1px  1px 0 #000000, 0 8px 16px rgba(0,0,0,.12)",
                   }}
                 >
                   Manage your workforce, payroll and organization in one place.

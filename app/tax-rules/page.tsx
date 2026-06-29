@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import Toast from '@/Component/UI/Toast';
+import CustomSelect from '@/Component/UI/CustomSelect';
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import { Lexend_Deca } from "next/font/google";
@@ -29,6 +30,12 @@ const initialRules: TaxRule[] = [
 export default function TaxRulesPage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [rules, setRules] = useState<TaxRule[]>(initialRules);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    
+    const totalPages = Math.ceil(rules.length / rowsPerPage) || 1;
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const paginatedRules = rules.slice(startIndex, startIndex + rowsPerPage);
 
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_tax_rules");
@@ -53,8 +60,12 @@ export default function TaxRulesPage() {
     const [ruleToDelete, setRuleToDelete] = useState<number | null>(null);
     const [showToast, setShowToast] = useState(false);
 
+    const [editFormData, setEditFormData] = useState({ bandName: "", lower: "", upper: "", rate: "" });
+    const [taxYear, setTaxYear] = useState("2025/2026");
+
     const openEditModal = (rule: TaxRule) => {
         setSelectedRule(rule);
+        setEditFormData({ bandName: rule.bandName, lower: rule.lower, upper: rule.upper, rate: rule.rate });
         setIsEditModalOpen(true);
     };
 
@@ -69,13 +80,9 @@ export default function TaxRulesPage() {
     const handleEditSave = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!selectedRule) return;
-        const formData = new FormData(e.currentTarget);
         const updatedRule = {
             ...selectedRule,
-            bandName: formData.get('bandName') as string,
-            lower: formData.get('lower') as string,
-            upper: formData.get('upper') as string,
-            rate: formData.get('rate') as string,
+            ...editFormData
         };
         setRules(rules.map(r => r.id === selectedRule.id ? updatedRule : r));
         setIsEditModalOpen(false);
@@ -98,13 +105,16 @@ export default function TaxRulesPage() {
                         <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">Tax Rules</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative">
-                                <select className="h-[40px] appearance-none rounded-xl border border-[#E2E8F0] bg-white px-4 pr-10 text-[14px] text-[#98A2B3] outline-none transition focus:border-[#000000] overflow-hidden"
-                                >
-                                    <option>2025/2026</option>
-                                    <option>2024/2025</option>
-                                </select>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#000000]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            <div className="w-[140px]">
+                                <CustomSelect 
+                                    value={taxYear}
+                                    onChange={setTaxYear}
+                                    options={[
+                                        { label: "2025/2026", value: "2025/2026" },
+                                        { label: "2024/2025", value: "2024/2025" }
+                                    ]}
+                                    className="!h-[40px] !py-2 !rounded-xl !text-[#98A2B3]"
+                                />
                             </div>
                         </div>
                     </div>
@@ -124,7 +134,7 @@ export default function TaxRulesPage() {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
-                                        {rules.map((rule) => (
+                                        {paginatedRules.map((rule) => (
                                             <tr key={rule.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
                                                 <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.bandName}</td>
                                                 <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.lower}</td>
@@ -147,6 +157,50 @@ export default function TaxRulesPage() {
                                 </table>
                             </div>
                         </div>
+
+                        {/* Pagination */}
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+                            <div className="flex items-center gap-2">
+                                <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                                    Rows per page:
+                                </span>
+                                <div className="w-[80px]">
+                                    <CustomSelect 
+                                        value={String(rowsPerPage)}
+                                        onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                                        options={[
+                                            { label: "5", value: "5" },
+                                            { label: "10", value: "10" },
+                                            { label: "20", value: "20" }
+                                        ]}
+                                        menuPlacement="top"
+                                        className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                                    />
+                                </div>
+                            </div>
+
+                            <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                                {rules.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, rules.length)} of ${rules.length}` : '0-0 of 0'}
+                            </span>
+
+                            <div className="flex items-center gap-1 ml-4">
+                                <button 
+                                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                    disabled={currentPage === 1}
+                                    className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <button 
+                                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                    disabled={currentPage === totalPages}
+                                    className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -179,7 +233,8 @@ export default function TaxRulesPage() {
                                     <input
                                         type="text"
                                         name="bandName"
-                                        defaultValue={selectedRule?.bandName || ""}
+                                        value={editFormData.bandName}
+                                        onChange={(e) => setEditFormData({...editFormData, bandName: e.target.value})}
                                         className="lg:h-[52px] h-[42px] w-full rounded-2xl border border-[#E2E8F0] px-4 md:text-[14px] text-[12px] outline-none transition focus:border-[#257BFC]"
                                     />
                                 </div>
@@ -190,17 +245,17 @@ export default function TaxRulesPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select
-                                            name="lower"
-                                            defaultValue={selectedRule?.lower || ""}
-                                            className="lg:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
-                                        >
-                                            <option value="$0">$0</option>
-                                            <option value="$12,571">$12,571</option>
-                                            <option value="$50,271">$50,271</option>
-                                            <option value="$125,141">$125,141</option>
-                                        </select>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                        <CustomSelect
+                                            value={editFormData.lower}
+                                            onChange={(val) => setEditFormData({...editFormData, lower: val})}
+                                            options={[
+                                                { label: "$0", value: "$0" },
+                                                { label: "$12,571", value: "$12,571" },
+                                                { label: "$50,271", value: "$50,271" },
+                                                { label: "$125,141", value: "$125,141" }
+                                            ]}
+                                            className="lg:h-[52px] h-[42px] !rounded-2xl"
+                                        />
                                     </div>
                                 </div>
 
@@ -210,17 +265,17 @@ export default function TaxRulesPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select
-                                            name="upper"
-                                            defaultValue={selectedRule?.upper || ""}
-                                            className="lg:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
-                                        >
-                                            <option value="$12,570">$12,570</option>
-                                            <option value="$50,270">$50,270</option>
-                                            <option value="$125,140">$125,140</option>
-                                            <option value="Unlimited">Unlimited</option>
-                                        </select>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                        <CustomSelect
+                                            value={editFormData.upper}
+                                            onChange={(val) => setEditFormData({...editFormData, upper: val})}
+                                            options={[
+                                                { label: "$12,570", value: "$12,570" },
+                                                { label: "$50,270", value: "$50,270" },
+                                                { label: "$125,140", value: "$125,140" },
+                                                { label: "Unlimited", value: "Unlimited" }
+                                            ]}
+                                            className="lg:h-[52px] h-[42px] !rounded-2xl"
+                                        />
                                     </div>
                                 </div>
 
@@ -230,17 +285,17 @@ export default function TaxRulesPage() {
                                     </label>
 
                                     <div className="relative">
-                                        <select
-                                            name="rate"
-                                            defaultValue={selectedRule?.rate || ""}
-                                            className="lg:h-[52px] h-[42px] w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-white px-4 pr-12 md:text-[14px] text-[12px] text-[#344054] outline-none transition focus:border-[#257BFC] overflow-hidden"
-                                        >
-                                            <option value="0%">0%</option>
-                                            <option value="20%">20%</option>
-                                            <option value="40%">40%</option>
-                                            <option value="45%">45%</option>
-                                        </select>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                        <CustomSelect
+                                            value={editFormData.rate}
+                                            onChange={(val) => setEditFormData({...editFormData, rate: val})}
+                                            options={[
+                                                { label: "0%", value: "0%" },
+                                                { label: "20%", value: "20%" },
+                                                { label: "40%", value: "40%" },
+                                                { label: "45%", value: "45%" }
+                                            ]}
+                                            className="lg:h-[52px] h-[42px] !rounded-2xl"
+                                        />
                                     </div>
                                 </div>
                             </div>

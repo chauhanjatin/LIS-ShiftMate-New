@@ -7,6 +7,7 @@ import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import { User, UserStatus } from "@/Data/users";
 import { useUsers } from "@/hooks/useUsers";
 import Toast from '@/Component/UI/Toast';
+import CustomSelect from "@/Component/UI/CustomSelect";
 
 export default function EditUserPage({ params }: { params: Promise<{ id: string }> }) {
     const router = useRouter();
@@ -198,52 +199,43 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
 
                                     <div>
                                         <label className="block text-[14px] font-medium text-neutral-900 mb-2">Role</label>
-                                        <div className="relative">
-                                            <select
-                                                value={role}
-                                                onChange={e => setRole(e.target.value)}
-                                                className="w-full appearance-none rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-900 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
-                                            >
-                                                <option>Admin</option>
-                                                <option>Manager</option>
-                                                <option>HR</option>
-                                                <option>Employee</option>
-                                            </select>
-                                            <svg className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-500" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                                        </div>
+                                        <CustomSelect
+                                            value={role}
+                                            onChange={setRole}
+                                            options={[
+                                                { label: "Admin", value: "Admin" },
+                                                { label: "Manager", value: "Manager" },
+                                                { label: "HR", value: "HR" },
+                                                { label: "Employee", value: "Employee" }
+                                            ]}
+                                        />
                                     </div>
 
                                     <div>
                                         <label className="block text-[14px] font-medium text-neutral-900 mb-2">Company</label>
-                                        <div className="relative">
-                                            <select
-                                                value={company}
-                                                onChange={e => setCompany(e.target.value)}
-                                                className="w-full appearance-none rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-900 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
-                                            >
-                                                <option>Shiftmate</option>
-                                            </select>
-                                            <svg className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-500" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                                        </div>
+                                        <CustomSelect
+                                            value={company}
+                                            onChange={setCompany}
+                                            options={[
+                                                { label: "Shiftmate", value: "Shiftmate" }
+                                            ]}
+                                        />
                                     </div>
 
                                     <div className="md:col-span-2">
                                         <label className="block text-[14px] font-medium text-neutral-900 mb-2">Department</label>
-                                        <div className="relative">
-                                            <select
-                                                value={department}
-                                                onChange={e => setDepartment(e.target.value)}
-                                                className="w-full appearance-none rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-900 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
-                                            >
-                                                <option>Engineering</option>
-                                                <option>Marketing</option>
-                                                <option>HR</option>
-                                                <option>Operations</option>
-                                                <option>IT</option>
-                                                <option>Sales</option>
-                                            </select>
-                                            <svg className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-500" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                                        </div>
+                                        <CustomSelect
+                                            value={department}
+                                            onChange={setDepartment}
+                                            options={[
+                                                { label: "Engineering", value: "Engineering" },
+                                                { label: "Marketing", value: "Marketing" },
+                                                { label: "HR", value: "HR" },
+                                                { label: "Operations", value: "Operations" },
+                                                { label: "IT", value: "IT" },
+                                                { label: "Sales", value: "Sales" }
+                                            ]}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -260,7 +252,7 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                                             className={`cursor-pointer rounded-2xl border md:p-4 p-3 transition-all ${
                                                 selectedStatus === status.value
                                                     ? status.value === "Active" ? "border-[#4DB949] bg-[#F5FCF5]" :
-                                                      status.value === "Inactive" ? "border-[#07265C] bg-[#EAF2FF]" :
+                                                      status.value === "Inactive" ? "border-[#98A2B3] bg-[#F2F4F7]" :
                                                       status.value === "Pending" ? "border-[#FFA100] bg-[#FFF6E8]" :
                                                       "border-[#EE5340] bg-[#FEE2E2]"
                                                     : "border-neutral-200 bg-white hover:border-neutral-300"
@@ -269,7 +261,7 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                                             <div className={`md:mb-3 mb-2 flex md:h-10 h-9 md:w-10 w-9 items-center justify-center rounded-xl ${
                                                 selectedStatus === status.value
                                                     ? status.value === "Active" ? "bg-[#4DB949] text-white" :
-                                                      status.value === "Inactive" ? "bg-[#07265C] text-white" :
+                                                      status.value === "Inactive" ? "bg-[#98A2B3] text-white" :
                                                       status.value === "Pending" ? "bg-[#FFA100] text-white" :
                                                       "bg-[#EE5340] text-white"
                                                     : "bg-[#F1F5F9] text-[#94A3B8]"
@@ -285,14 +277,25 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
 
                             <div className="mt-12 flex justify-end gap-3">
                                 <button
-                                    onClick={() => router.push('/users')}
-                                    className="rounded-xl border border-neutral-200 bg-white md:px-8 px-5 py-2 md:py-3 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50"
+                                    onClick={() => {
+                                        if (user) {
+                                            setSelectedStatus(user.status);
+                                            setFirstName(user.name.split(' ')[0] || "");
+                                            setLastName(user.name.split(' ').slice(1).join(' ') || "");
+                                            setEmail(user.email || "");
+                                            setRole(user.role || "");
+                                            setCompany(user.company || "");
+                                            setDepartment(user.department || "");
+                                            setErrors({});
+                                        }
+                                    }}
+                                    className="rounded-xl border border-neutral-200 bg-white md:px-8 px-5 py-2 md:py-3 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={handleUpdate}
-                                    className="rounded-xl bg-[#257BFC] md:px-8 px-5 py-2 md:py-3 text-[14px] font-semibold text-white transition hover:bg-blue-600"
+                                    className="rounded-xl bg-[#257BFC] md:px-8 px-5 py-2 md:py-3 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
                                 >
                                     Update Info
                                 </button>

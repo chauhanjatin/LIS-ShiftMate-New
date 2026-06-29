@@ -229,15 +229,15 @@ export default function Sidebar({
   const organizationSubMenus = [
     "Company Profile",
     "Departments",
-    "Locations",
-    "Job Titles",
+    // "Locations",
+    // "Job Titles",
   ];
 
   const organizationSubRoutes: Record<string, string> = {
     "Company Profile": "/organization/company-profile",
     "Departments": "/organization/departments",
-    "Locations": "",
-    "Job Titles": "",
+    // "Locations": "",
+    // "Job Titles": "",
   };
 
   const leaveManagementSubMenus = [
@@ -316,7 +316,7 @@ export default function Sidebar({
 
   return (
     <aside
-      className={`slim-scrollbar fixed inset-y-0 left-0 z-50 flex flex-col overflow-y-auto border-r border-neutral-200 bg-white transition-all duration-500 ease-in-out lg:static lg:flex lg:shrink-0 ${collapsed ? "w-[88px]" : "w-64 2xl:w-[280px]"
+      className={`slim-scrollbar fixed inset-y-0 left-0 z-50 flex flex-col overflow-y-auto border-r border-neutral-200 bg-white transition-all duration-500 ease-in-out lg:static lg:flex lg:shrink-0 ${collapsed ? "w-[107px]" : "w-64 2xl:w-[280px]"
         } ${isMobileMenuOpen ? "translate-x-0 w-68" : "-translate-x-full lg:translate-x-0"
         }`}
     >

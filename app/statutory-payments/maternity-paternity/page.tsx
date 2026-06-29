@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import Toast from '@/Component/UI/Toast';
+import CustomSelect from '@/Component/UI/CustomSelect';
 import { Lexend_Deca } from "next/font/google";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
@@ -68,22 +69,22 @@ export default function MaternityPaternityPage() {
               <div className="space-y-2">
                 <label className="text-[14px] font-normal text-[#111827]">Employee</label>
                 <div className="relative mt-2">
-                  <select 
-                    name="employee"
+                  <CustomSelect
                     value={formData.employee}
-                    onChange={handleChange}
-                    className={`w-full rounded-xl border ${errors.employee ? 'border-red-500' : 'border-[#111827]'} bg-white px-4 py-3 md:text-[14px] text-[12px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors appearance-none`}
-                    required
-                  >
-                    <option value="" disabled hidden>Cameron Williamson</option>
-                    <option value="Devon Lane">Devon Lane</option>
-                    <option value="Cameron Williamson">Cameron Williamson</option>
-                    <option value="Jane Cooper">Jane Cooper</option>
-                    <option value="Courtney Henry">Courtney Henry</option>
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-neutral-500">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                  </div>
+                    onChange={(val) => {
+                      setFormData(prev => ({ ...prev, employee: val }));
+                      setErrors(prev => ({ ...prev, employee: "" }));
+                    }}
+                    options={[
+                      { label: "Devon Lane", value: "Devon Lane" },
+                      { label: "Cameron Williamson", value: "Cameron Williamson" },
+                      { label: "Jane Cooper", value: "Jane Cooper" },
+                      { label: "Courtney Henry", value: "Courtney Henry" },
+                    ]}
+                    placeholder="Cameron Williamson"
+                    error={!!errors.employee}
+                    className="md:!py-3 !py-2"
+                  />
                 </div>
                 {errors.employee && <p className="text-red-500 text-xs mt-1">{errors.employee}</p>}
               </div>
@@ -91,21 +92,21 @@ export default function MaternityPaternityPage() {
               <div className="space-y-2">
                 <label className="text-[14px] font-normal text-[#111827]">Type of Statutory Pay</label>
                 <div className="relative mt-2">
-                  <select 
-                    name="leaveType"
+                  <CustomSelect
                     value={formData.leaveType}
-                    onChange={handleChange}
-                    className={`w-full rounded-xl border ${errors.leaveType ? 'border-red-500' : 'border-[#111827]'} bg-white px-4 py-3 md:text-[14px] text-[12px] font-medium text-neutral-900 outline-none focus:border-[#257BFC] transition-colors appearance-none`}
-                    required
-                  >
-                    <option value="" disabled hidden>Statutory Maternity Pay (SMP)</option>
-                    <option value="Statutory Maternity Pay (SMP)">Statutory Maternity Pay (SMP)</option>
-                    <option value="Statutory Paternity Pay (SPP)">Statutory Paternity Pay (SPP)</option>
-                    <option value="Statutory Adoption Pay (SAP)">Statutory Adoption Pay (SAP)</option>
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-neutral-500">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                  </div>
+                    onChange={(val) => {
+                      setFormData(prev => ({ ...prev, leaveType: val }));
+                      setErrors(prev => ({ ...prev, leaveType: "" }));
+                    }}
+                    options={[
+                      { label: "Statutory Maternity Pay (SMP)", value: "Statutory Maternity Pay (SMP)" },
+                      { label: "Statutory Paternity Pay (SPP)", value: "Statutory Paternity Pay (SPP)" },
+                      { label: "Statutory Adoption Pay (SAP)", value: "Statutory Adoption Pay (SAP)" },
+                    ]}
+                    placeholder="Statutory Maternity Pay (SMP)"
+                    error={!!errors.leaveType}
+                    className="md:!py-3 !py-2"
+                  />
                 </div>
                 {errors.leaveType && <p className="text-red-500 text-xs mt-1">{errors.leaveType}</p>}
               </div>

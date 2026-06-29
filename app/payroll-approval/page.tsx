@@ -64,7 +64,7 @@ export default function PayrollApprovalPage() {
             <div className={`flex-1 p-4 2xl:p-6 space-y-6 ${lexendDeca.className}`}>
 
                 <div className="bg-white rounded-xl overflow-hidden">
-                    <div className="md:p-6 p-4 shadow-sm overflow-hidden">
+                    <div className="md:p-6 p-4 overflow-hidden">
                         <h2 className="text-[18px] font-bold text-neutral-900 mb-6">Payroll Summary</h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
@@ -109,7 +109,7 @@ export default function PayrollApprovalPage() {
                             </div>
                         </div>
 
-                        <div className="flex flex-col md:flex-nowrap gap-4 md:gap-x-26 xl:gap-x-50 2xl:gap-x-72 bg-[#F9FAFB] md:p-6 p-4 rounded-2xl">
+                        <div className="flex flex-col md:flex-row gap-4 md:gap-x-26 xl:gap-x-50 2xl:gap-x-72 bg-[#F9FAFB] md:p-6 p-4 rounded-2xl">
                             <div>
                                 <p className="text-[14px] font-normal text-[#98A2B3]">Pay Period</p>
                                 <p className="text-[16px] font-medium text-neutral-900 md:mt-2 mt-1">March 2026</p>
@@ -185,7 +185,7 @@ export default function PayrollApprovalPage() {
                         </div>
                     </div>
 
-                    <div className="rounded-2xl shadow-sm overflow-hidden">
+                    <div className="rounded-2xl overflow-hidden">
                         <div className="md:p-5 p-3">
                             <h2 className="text-[18px] font-bold text-neutral-900">Employees Included</h2>
                         </div>
