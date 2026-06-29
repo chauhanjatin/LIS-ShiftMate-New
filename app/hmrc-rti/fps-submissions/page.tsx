@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import Toast from "@/Component/UI/Toast";
+import CustomSelect from '@/Component/UI/CustomSelect';
 import viewIcon from "@/assets/images/icons/eye-view.svg";
 import { Lexend_Deca } from "next/font/google";
 
@@ -12,6 +13,8 @@ const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 export default function FPSSubmissionsPage() {
   const [showToast, setShowToast] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
@@ -29,6 +32,10 @@ export default function FPSSubmissionsPage() {
     { id: "january-2026", period: "January 2026", employees: 345, paymentDate: "31 Jan 2026", submittedDate: "5 Feb 2026", ack: "ACK-2026-03-345", status: "Accepted" },
     { id: "december-2025", period: "December 2025", employees: 345, paymentDate: "31 Dec 2025", submittedDate: "5 Jan 2026", ack: "ACK-2026-03-345", status: "Accepted" },
   ];
+
+  const totalPages = Math.ceil(submissions.length / rowsPerPage) || 1;
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const paginatedSubmissions = submissions.slice(startIndex, startIndex + rowsPerPage);
 
   const handleExport = () => {
     setShowToast(true);
@@ -59,7 +66,7 @@ export default function FPSSubmissionsPage() {
                 <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 <input type="text" placeholder="Search.." className="rounded-xl border border-neutral-200 bg-white py-2 pl-9 pr-4 text-[14px] text-neutral-900 outline-none focus:border-[#257BFC] transition-colors md:min-w-[240px]" />
               </div>
-              <button onClick={handleExport} className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-700 hover:bg-neutral-50 transition-colors">
+              <button onClick={handleExport} className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 Export
               </button>
@@ -80,7 +87,7 @@ export default function FPSSubmissionsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E2E8F0] text-[11px] md:text-[12px] lg:text-[14px]">
-                {submissions.map((row, idx) => (
+                {paginatedSubmissions.map((row, idx) => (
                   <tr key={idx} className="hover:bg-neutral-50">
                     <td className="md:p-6 p-3 font-normal text-[#111827]">{row.period}</td>
                     <td className="md:p-6 p-3 font-normal text-[#111827]">{row.employees}</td>
@@ -102,6 +109,49 @@ export default function FPSSubmissionsPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Pagination */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+              <div className="flex items-center gap-2">
+                  <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                      Rows per page:
+                  </span>
+                  <div className="w-[80px]">
+                      <CustomSelect 
+                          value={String(rowsPerPage)}
+                          onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                          options={[
+                              { label: "5", value: "5" },
+                              { label: "10", value: "10" },
+                              { label: "20", value: "20" }
+                          ]}
+                          menuPlacement="top"
+                          className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                      />
+                  </div>
+              </div>
+
+              <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                  {submissions.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, submissions.length)} of ${submissions.length}` : '0-0 of 0'}
+              </span>
+
+              <div className="flex items-center gap-1 ml-4">
+                  <button 
+                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                      disabled={currentPage === 1}
+                      className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button 
+                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                      disabled={currentPage === totalPages}
+                      className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+              </div>
           </div>
 
         </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
+import CustomSelect from '@/Component/UI/CustomSelect';
 import { useDepartments } from "@/hooks/useDepartments";
 import { useEmployees } from "@/hooks/useEmployees";
 
@@ -21,6 +22,13 @@ export default function DepartmentsPage() {
 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deptToDelete, setDeptToDelete] = useState<string | null>(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const totalPages = Math.ceil(departments.length / rowsPerPage) || 1;
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const paginatedDepartments = departments.slice(startIndex, startIndex + rowsPerPage);
 
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [newDeptName, setNewDeptName] = useState("");
@@ -116,25 +124,25 @@ export default function DepartmentsPage() {
                 <table className="min-w-full w-full text-left border-collapse">
                   <thead className="bg-[#F2F4F7]">
                     <tr>
-                      <th className="py-[10px] 2xl:pl-6 pl-3 md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap rounded-tl-xl border-b border-[#E2E8F0] w-[25%]">
+                      <th className="py-[10px] 2xl:pl-6 pl-3 md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap rounded-tl-xl border-b border-[#E2E8F0] w-[20%]">
                         Department Name
                       </th>
-                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] w-[15%]">
+                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] w-[12%]">
                         Code
                       </th>
-                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] w-[35%]">
+                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] w-[20%]">
                         Manager
                       </th>
-                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] w-[15%]">
+                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] w-[10%]">
                         Employee count
                       </th>
-                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] rounded-tr-xl w-[10%]">
+                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] rounded-tr-xl w-[8%]">
                         Action
                       </th>
                     </tr>
                   </thead>
                   <tbody className="bg-white">
-                    {departments.map((dept) => {
+                    {paginatedDepartments.map((dept) => {
                       const manager = employees.find((e) => e.id === dept.managerId);
                       return (
                         <tr key={dept.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-0">
@@ -162,17 +170,17 @@ export default function DepartmentsPage() {
                           </td>
                           <td className="py-4 pr-4">
                             <div className="flex items-center gap-2 sm:gap-3">
-                              <button className="text-neutral-400 hover:text-brand-500 transition-colors cursor-pointer">
-                                <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none opacity-60 hover:opacity-100" />
+                              <button className="cursor-pointer">
+                                <Image src={editIcon} alt="Edit" width={20} height={20} />
                               </button>
                               <button
                                 onClick={() => {
                                   setDeptToDelete(dept.id);
                                   setDeleteModalOpen(true);
                                 }}
-                                className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer"
+                                className="cursor-pointer"
                               >
-                                <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none opacity-60 hover:opacity-100" />
+                                <Image src={deleteIcon} alt="Delete" width={20} height={20} />
                               </button>
                             </div>
                           </td>
@@ -189,6 +197,45 @@ export default function DepartmentsPage() {
                   </tbody>
                 </table>
               </div>
+            </div>
+
+            {/* Pagination */}
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+                <div className="flex items-center gap-2">
+                    <span className="text-[12px] sm:text-[14px] text-neutral-500">Rows per page:</span>
+                    <div className="w-[80px]">
+                        <CustomSelect 
+                            value={String(rowsPerPage)}
+                            onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                            options={[
+                                { label: "5", value: "5" },
+                                { label: "10", value: "10" },
+                                { label: "20", value: "20" }
+                            ]}
+                            menuPlacement="top"
+                            className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                        />
+                    </div>
+                </div>
+                <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                    {departments.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, departments.length)} of ${departments.length}` : '0-0 of 0'}
+                </span>
+                <div className="flex items-center gap-1 ml-4">
+                    <button 
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                        className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button 
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                        className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
             </div>
           </div>
         </div>
@@ -230,7 +277,7 @@ export default function DepartmentsPage() {
           <div className="w-full max-w-[640px] rounded-2xl bg-white md:p-6 p-4 shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
             <div className="flex items-center justify-between mb-8">
               <h2 className="md:text-[20px] text-[17px] font-bold text-neutral-900">Create New Department</h2>
-              <button onClick={() => setCreateModalOpen(false)} className="text-neutral-400 hover:text-neutral-900">
+              <button onClick={() => setCreateModalOpen(false)} className="text-neutral-400 hover:text-neutral-900 cursor-pointer">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
               </button>
             </div>
@@ -267,16 +314,14 @@ export default function DepartmentsPage() {
 
             <div className="mb-8">
               <label className="block text-[13px] font-medium text-neutral-500 mb-1.5">Department Manager</label>
-              <select
+              <CustomSelect
                 value={selectedManagerId}
-                onChange={(e) => { setSelectedManagerId(e.target.value); setErrors(prev => ({ ...prev, selectedManagerId: "" })) }}
-                className={`w-full rounded-xl border ${errors.selectedManagerId ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 text-neutral-500 bg-white`}
-              >
-                <option value="">Select a Manager...</option>
-                {employees.map(emp => (
-                  <option key={emp.id} value={emp.id}>{emp.name} - {emp.role}</option>
-                ))}
-              </select>
+                onChange={(val) => { setSelectedManagerId(val); setErrors(prev => ({ ...prev, selectedManagerId: "" })) }}
+                options={employees.map(emp => ({ label: `${emp.name} - ${emp.role}`, value: emp.id }))}
+                placeholder="Select a Manager..."
+                error={!!errors.selectedManagerId}
+                className="!text-neutral-500"
+              />
               {errors.selectedManagerId && <p className="text-red-500 text-xs mt-1">{errors.selectedManagerId}</p>}
 
               {selectedManager && (

@@ -66,7 +66,8 @@ export default function CompanyProfilePage() {
                     name="companyName"
                     value={formData.companyName}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                    disabled
+                    className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                   />
                 </div>
 
@@ -78,7 +79,8 @@ export default function CompanyProfilePage() {
                       name="registrationNumber"
                       value={formData.registrationNumber}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                      disabled
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                     />
                   </div>
                   <div>
@@ -88,7 +90,8 @@ export default function CompanyProfilePage() {
                       name="foundedDate"
                       value={formData.foundedDate}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                      disabled
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                     />
                   </div>
                 </div>
@@ -108,7 +111,8 @@ export default function CompanyProfilePage() {
                       name="phoneNumber"
                       value={formData.phoneNumber}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                      disabled
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                     />
                   </div>
                   <div>
@@ -118,7 +122,8 @@ export default function CompanyProfilePage() {
                       name="emailAddress"
                       value={formData.emailAddress}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                      disabled
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                     />
                   </div>
                 </div>
@@ -130,7 +135,8 @@ export default function CompanyProfilePage() {
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                    disabled
+                    className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                   />
                 </div>
 
@@ -142,7 +148,8 @@ export default function CompanyProfilePage() {
                       name="city"
                       value={formData.city}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                      disabled
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                     />
                   </div>
                   <div>
@@ -152,7 +159,8 @@ export default function CompanyProfilePage() {
                       name="postalCode"
                       value={formData.postalCode}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                      disabled
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                     />
                   </div>
                   <div>
@@ -162,7 +170,8 @@ export default function CompanyProfilePage() {
                       name="country"
                       value={formData.country}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                      disabled
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                     />
                   </div>
                 </div>
@@ -184,7 +193,8 @@ export default function CompanyProfilePage() {
                       name="taxId"
                       value={formData.taxId}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                      disabled
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                     />
                   </div>
                   <div>
@@ -194,7 +204,8 @@ export default function CompanyProfilePage() {
                       name="companyUtr"
                       value={formData.companyUtr}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                      disabled
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                     />
                   </div>
                 </div>
@@ -207,7 +218,8 @@ export default function CompanyProfilePage() {
                       name="payeReference"
                       value={formData.payeReference}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                      disabled
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                     />
                   </div>
                   <div>
@@ -217,7 +229,8 @@ export default function CompanyProfilePage() {
                       name="accountsOfficeRef"
                       value={formData.accountsOfficeRef}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white"
+                      disabled
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-[14px] text-neutral-500 outline-none bg-white"
                     />
                   </div>
                 </div>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Button from "@/Component/Button/Button";
 import Checkbox from "@/Component/Checkbox/Checkbox";
+import { useEffect } from "react";
 import {
   EyeIcon,
   EyeOffIcon,
@@ -33,6 +34,16 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("shiftmate_remember_email");
+    const savedPassword = localStorage.getItem("shiftmate_remember_password");
+    if (savedEmail && savedPassword) {
+      setEmail(savedEmail);
+      setPassword(savedPassword);
+      setRememberMe(true);
+    }
+  }, []);
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -41,6 +52,15 @@ export default function LoginForm() {
     }
 
     setIsSubmitting(true);
+    
+    if (rememberMe) {
+      localStorage.setItem("shiftmate_remember_email", email);
+      localStorage.setItem("shiftmate_remember_password", password);
+    } else {
+      localStorage.removeItem("shiftmate_remember_email");
+      localStorage.removeItem("shiftmate_remember_password");
+    }
+
     await new Promise((resolve) => window.setTimeout(resolve, 900));
     setIsSubmitting(false);
     router.push("/selection");
@@ -123,7 +143,7 @@ export default function LoginForm() {
 
         <Button
           type="submit"
-          className="mt-4 min-h-[3.7rem] w-full rounded-[1rem]"
+          className="mt-4 min-h-[3.7rem] w-full rounded-[1rem] cursor-pointer"
           disabled={isSubmitting || !email || !password}
         >
           <span className="text-[1.15rem] font-semibold">

@@ -126,7 +126,7 @@ function ResetPass() {
 
         <Button
           type="submit"
-          className="mt-4 min-h-[3.7rem] w-full rounded-[1rem]"
+          className="mt-4 min-h-[3.7rem] w-full rounded-[1rem] cursor-pointer"
           disabled={isSubmitting || !passwordsMatch}
         >
           <span className="text-[1.15rem] font-semibold">

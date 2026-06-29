@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import Toast from '@/Component/UI/Toast';
+import CustomSelect from '@/Component/UI/CustomSelect';
 import Link from "next/link";
 
 export default function PayrollSettingsPage() {
@@ -61,10 +62,15 @@ export default function PayrollSettingsPage() {
                         <div className="grid gap-6 sm:grid-cols-2">
                             <div>
                                 <label className="mb-2 block text-sm font-medium text-[#111827]">Payroll Frequency</label>
-                                <select name="payrollFrequency" value={formData.payrollFrequency} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 md:p-3 p-2 text-[12px] md:text-[16px] outline-none focus:border-[#257BFC] text-[#4B5563] bg-white">
-                                    <option value="Weekly (52 pay periods per year)">Weekly (52 pay periods per year)</option>
-                                    <option value="Monthly (12 pay periods per year)">Monthly (12 pay periods per year)</option>
-                                </select>
+                                <CustomSelect 
+                                    value={formData.payrollFrequency} 
+                                    onChange={(val) => setFormData(prev => ({ ...prev, payrollFrequency: val }))} 
+                                    options={[
+                                        { label: "Weekly (52 pay periods per year)", value: "Weekly (52 pay periods per year)" },
+                                        { label: "Monthly (12 pay periods per year)", value: "Monthly (12 pay periods per year)" }
+                                    ]}
+                                    className="md:!p-3 !p-2"
+                                />
                             </div>
                             <div>
                                 <label className="mb-2 block text-sm font-medium text-[#111827]">Payroll Start Date</label>
@@ -72,19 +78,29 @@ export default function PayrollSettingsPage() {
                             </div>
                             <div>
                                 <label className="mb-2 block text-sm font-medium text-[#111827]">Tax Year</label>
-                                <select name="taxYear" value={formData.taxYear} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 md:p-3 p-2 text-[12px] md:text-[16px] outline-none focus:border-[#257BFC] text-[#4B5563] bg-white">
-                                    <option value="2025/2026">2025/2026</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                </select>
+                                <CustomSelect 
+                                    value={formData.taxYear} 
+                                    onChange={(val) => setFormData(prev => ({ ...prev, taxYear: val }))} 
+                                    options={[
+                                        { label: "2025/2026", value: "2025/2026" },
+                                        { label: "2024/2025", value: "2024/2025" }
+                                    ]}
+                                    className="md:!p-3 !p-2"
+                                />
                             </div>
                             <div>
                                 <label className="mb-2 block text-sm font-medium text-[#111827]">Currency</label>
-                                <select name="currency" value={formData.currency} onChange={handleInputChange} className="w-full rounded-xl border border-neutral-200 md:p-3 p-2 text-[12px] md:text-[16px] outline-none focus:border-[#257BFC] text-[#9CA3AF] bg-white">
-                                    <option value="">Select Currency Type</option>
-                                    <option value="GBP">GBP (£)</option>
-                                    <option value="USD">USD ($)</option>
-                                    <option value="EUR">EUR (€)</option>
-                                </select>
+                                <CustomSelect 
+                                    value={formData.currency} 
+                                    onChange={(val) => setFormData(prev => ({ ...prev, currency: val }))} 
+                                    options={[
+                                        { label: "GBP (£)", value: "GBP" },
+                                        { label: "USD ($)", value: "USD" },
+                                        { label: "EUR (€)", value: "EUR" }
+                                    ]}
+                                    placeholder="Select Currency Type"
+                                    className="md:!p-3 !p-2"
+                                />
                             </div>
                             <div>
                                 <label className="mb-2 block text-sm font-medium text-[#111827]">Default Working Hours (per week)</label>

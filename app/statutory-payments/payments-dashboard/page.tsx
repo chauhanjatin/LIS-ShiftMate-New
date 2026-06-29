@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
+import CustomSelect from '@/Component/UI/CustomSelect';
 import sickpay from "@/assets/images/icons/sick-pay.svg";
 import maternitypay from "@/assets/images/icons/maternity-pay.svg";
 import paternitypay from "@/assets/images/icons/paternity-pay.svg";
@@ -48,6 +49,12 @@ function MetricCard({ title, value, iconClass, icon }: { title: string, value: s
 
 export default function PaymentsDashboardPage() {
   const [payments] = useState<ActivePayment[]>(mockPayments);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  
+  const totalPages = Math.ceil(payments.length / rowsPerPage) || 1;
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const paginatedPayments = payments.slice(startIndex, startIndex + rowsPerPage);
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
@@ -118,9 +125,9 @@ export default function PaymentsDashboardPage() {
                   </tr>
                 </thead>
                 <tbody className="bg-white">
-                  {payments.map((item) => (
+                  {paginatedPayments.map((item) => (
                     <tr key={item.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                      <td className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6">
+                      <td className="px-4 py-4 sm:px-6">
                         <div className="flex items-center gap-3">
                           <img
                             src={item.avatar}
@@ -132,15 +139,15 @@ export default function PaymentsDashboardPage() {
                           </span>
                         </div>
                       </td>
-                      <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[12px] font-normal text-[#111827]">{item.startDate}</td>
-                      <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[12px] font-normal text-[#111827]">{item.endDate}</td>
-                      <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[12px] font-normal text-[#111827]">{item.weeklyAmount}</td>
-                      <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-4 sm:px-6">
+                      <td className="px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[12px] font-normal text-[#111827]">{item.startDate}</td>
+                      <td className="px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[12px] font-normal text-[#111827]">{item.endDate}</td>
+                      <td className="px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[12px] font-normal text-[#111827]">{item.weeklyAmount}</td>
+                      <td className="px-4 md:py-6 py-4 sm:px-6">
                         <span className={`inline-flex rounded-full px-3 py-1 md:text-[12px] text-[10px] font-bold ${getTypeBadge(item.type)}`}>
                           {item.type}
                         </span>
                       </td>
-                      <td className="border-b border-[#E2E8F0] py-4 pr-4 text-center">
+                      <td className="py-4 pr-4 text-center">
                         <Link href={`/statutory-payments/payments-dashboard/${item.id}`} className="inline-flex md:h-8 md:w-8 h-6 w-6 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 transition-colors">
                           <Image src={viewIcon} alt="" />
                         </Link>
@@ -151,6 +158,50 @@ export default function PaymentsDashboardPage() {
               </table>
             </div>
           </div>
+
+          {/* Pagination */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+              <div className="flex items-center gap-2">
+                  <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                      Rows per page:
+                  </span>
+                  <div className="w-[80px]">
+                      <CustomSelect 
+                          value={String(rowsPerPage)}
+                          onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                          options={[
+                              { label: "5", value: "5" },
+                              { label: "10", value: "10" },
+                              { label: "20", value: "20" }
+                          ]}
+                          menuPlacement="top"
+                          className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                      />
+                  </div>
+              </div>
+
+              <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                  {payments.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, payments.length)} of ${payments.length}` : '0-0 of 0'}
+              </span>
+
+              <div className="flex items-center gap-1 ml-4">
+                  <button 
+                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                      disabled={currentPage === 1}
+                      className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button 
+                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                      disabled={currentPage === totalPages}
+                      className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+              </div>
+          </div>
+
         </div>
       </div>
     </DashboardLayout >

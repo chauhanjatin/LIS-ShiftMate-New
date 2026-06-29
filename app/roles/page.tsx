@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
+import CustomSelect from '@/Component/UI/CustomSelect';
 import { useRoles } from "@/hooks/useRoles";
 
 import searchIcon from "@/assets/images/icons/search.svg";
@@ -20,6 +21,12 @@ export default function RolesPage() {
   const { roles, removeRole } = useRoles();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [roleToDelete, setRoleToDelete] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  
+  const totalPages = Math.ceil(roles.length / rowsPerPage) || 1;
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const paginatedRoles = roles.slice(startIndex, startIndex + rowsPerPage);
 
   const handleDelete = () => {
     if (roleToDelete) {
@@ -106,7 +113,7 @@ export default function RolesPage() {
                     </tr>
                   </thead>
                   <tbody className="bg-white">
-                    {roles.map((role) => (
+                    {paginatedRoles.map((role) => (
                       <tr key={role.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-0">
                         <td className="px-4 py-6 sm:px-6 text-[14px] font-medium text-[#111827] whitespace-nowrap">
                           {role.name}
@@ -125,7 +132,7 @@ export default function RolesPage() {
                                 alt="Edit"
                                 width={20}
                                 height={20}
-                                className="opacity-60 hover:opacity-100 cursor-pointer"
+                                className="cursor-pointer"
                               />
                             </button>
                             <button
@@ -140,7 +147,7 @@ export default function RolesPage() {
                                 alt="Delete"
                                 width={20}
                                 height={20}
-                                className="opacity-60 hover:opacity-100 cursor-pointer"
+                                className="cursor-pointer"
                               />
                             </button>
                           </div>
@@ -159,6 +166,50 @@ export default function RolesPage() {
               </div>
             </div>
           </div>
+
+          {/* Pagination */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+              <div className="flex items-center gap-2">
+                  <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                      Rows per page:
+                  </span>
+                  <div className="w-[80px]">
+                      <CustomSelect 
+                          value={String(rowsPerPage)}
+                          onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                          options={[
+                              { label: "5", value: "5" },
+                              { label: "10", value: "10" },
+                              { label: "20", value: "20" }
+                          ]}
+                          menuPlacement="top"
+                          className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                      />
+                  </div>
+              </div>
+
+              <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                  {roles.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, roles.length)} of ${roles.length}` : '0-0 of 0'}
+              </span>
+
+              <div className="flex items-center gap-1 ml-4">
+                  <button 
+                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                      disabled={currentPage === 1}
+                      className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button 
+                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                      disabled={currentPage === totalPages}
+                      className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+              </div>
+          </div>
+
         </div>
       </div>
 

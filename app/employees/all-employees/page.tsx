@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
+import CustomSelect from '@/Component/UI/CustomSelect';
 import searchIcon from "@/assets/images/icons/search.svg";
 import filterIcon from "@/assets/images/icons/filter.svg";
 import appRectangleIcon from "@/assets/images/icons/apps-rectangle.svg";
@@ -38,12 +39,18 @@ export default function AllEmployeesPage() {
   const [employeeToDelete, setEmployeeToDelete] = useState<string | null>(null);
   const { employees: employeesList, setEmployees: setEmployeesList, removeEmployee } = useEmployees();
   const [selectedEmployees, setSelectedEmployees] = useState<string[]>([]);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const allSelected = employeesList.length > 0 && selectedEmployees.length === employeesList.length;
+  const totalPages = Math.ceil(employeesList.length / rowsPerPage) || 1;
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const paginatedEmployees = employeesList.slice(startIndex, startIndex + rowsPerPage);
+
+  const allSelected = paginatedEmployees.length > 0 && selectedEmployees.length === paginatedEmployees.length;
 
   const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
-      setSelectedEmployees(employeesList.map((emp) => emp.id));
+      setSelectedEmployees(paginatedEmployees.map((emp) => emp.id));
     } else {
       setSelectedEmployees([]);
     }
@@ -65,6 +72,7 @@ export default function AllEmployeesPage() {
 
   return (
     <DashboardLayout title="Employees" subtitle="Home/ All Employees">
+
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
@@ -91,7 +99,7 @@ export default function AllEmployeesPage() {
                   alt="Filter"
                   width={24}
                   height={24}
-                  className="pointer-events-none"
+                  className="cursor-pointer"
                 />
               </button>
 
@@ -100,19 +108,19 @@ export default function AllEmployeesPage() {
                   onClick={() => setView("grid")}
                   className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50"
                 >
-                  <Image src={appRectangleIcon} alt="Grid View" width={24} height={24} className="pointer-events-none" />
+                  <Image src={appRectangleIcon} alt="Grid View" width={24} height={24} className="cursor-pointer" />
                 </button>
               ) : (
                 <button
                   onClick={() => setView("list")}
                   className="flex h-[42px] w-[42px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50"
                 >
-                  <Image src={listViewIcon} alt="List View" width={24} height={24} className="pointer-events-none" />
+                  <Image src={listViewIcon} alt="List View" width={24} height={24} className="cursor-pointer" />
                 </button>
               )}
 
               <Link href="/employees/add-employee">
-                <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] px-2.5 py-2 md:px-5 md:py-3 text-[12px] md:text-[16px] text-white transition hover:bg-blue-600">
+                <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] px-2.5 py-2 md:px-5 md:py-3 text-[12px] md:text-[16px] text-white transition hover:bg-blue-600 cursor-pointer">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -174,12 +182,12 @@ export default function AllEmployeesPage() {
                     </thead>
 
                     <tbody className="bg-white">
-                      {employeesList.map((emp) => (
+                      {paginatedEmployees.map((emp) => (
                         <tr
                           key={emp.id}
                           className="group transition-colors hover:bg-neutral-50"
                         >
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 2xl:pl-6 pl-3 pr-2">
+                          <td className="px-4 md:py-6 py-2 sm:px-6 2xl:pl-6 pl-3 pr-2">
                             <input
                               type="checkbox"
                               checked={selectedEmployees.includes(emp.id)}
@@ -188,11 +196,11 @@ export default function AllEmployeesPage() {
                             />
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-medium whitespace-nowrap">
+                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-medium whitespace-nowrap">
                             {emp.id}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6">
+                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6">
                             <Link href={`/employees/${emp.id}`}>
                               <div className="flex min-w-[180px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
                                 <img
@@ -208,27 +216,27 @@ export default function AllEmployeesPage() {
                             </Link>
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
                             {emp.dept}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
                             {emp.role}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
                             {emp.type}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 whitespace-nowrap">
+                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 whitespace-nowrap">
                             <StatusPill status={emp.status} />
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
                             {emp.joinDate}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 md:pr-4 pr-2">
+                          <td className="px-4 md:py-6 py-2 sm:px-6 md:pr-4 pr-2">
                             <div className="flex items-center gap-2 md:gap-3">
                               <Link href={`/employees/${emp.id}`}>
                                 <button className="text-neutral-400 hover:text-brand-500 mt-2 cursor-pointer">
@@ -272,19 +280,31 @@ export default function AllEmployeesPage() {
                     Rows per page:
                   </span>
 
-                  <select className="rounded-lg border border-[#E2E8F0] bg-white px-2 py-1 text-[12px] sm:text-[14px] text-neutral-900 outline-none">
-                    <option>5</option>
-                    <option>10</option>
-                    <option>20</option>
-                  </select>
+                  <div className="w-[80px]">
+                    <CustomSelect 
+                        value={String(rowsPerPage)}
+                        onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                        options={[
+                            { label: "5", value: "5" },
+                            { label: "10", value: "10" },
+                            { label: "20", value: "20" }
+                        ]}
+                        menuPlacement="top"
+                        className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                    />
+                  </div>
                 </div>
 
                 <span className="text-[12px] sm:text-[14px] text-neutral-500">
-                  1-5 of 12
+                  {employeesList.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, employeesList.length)} of ${employeesList.length}` : '0-0 of 0'}
                 </span>
 
                 <div className="flex items-center gap-1">
-                  <button className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900">
+                  <button 
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                    className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
                     <svg
                       width="20"
                       height="20"
@@ -299,7 +319,11 @@ export default function AllEmployeesPage() {
                     </svg>
                   </button>
 
-                  <button className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900">
+                  <button 
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                    className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
                     <svg
                       width="20"
                       height="20"
@@ -318,7 +342,7 @@ export default function AllEmployeesPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 p-3 sm:grid-cols-2 gap-4 sm:p-4 xl:grid-cols-3 xl:grid-cols-4 2xl:gap-6 2xl:p-6">
-              {employeesList.map((emp) => (
+              {paginatedEmployees.map((emp) => (
                 <div
                   key={emp.id}
                   className="relative rounded-2xl border border-[#E2E8F0] bg-white p-3 2xl:p-5 shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)] overflow-hidden"

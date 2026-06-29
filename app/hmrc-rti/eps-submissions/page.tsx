@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import Toast from "@/Component/UI/Toast";
+import CustomSelect from '@/Component/UI/CustomSelect';
 import viewIcon from "@/assets/images/icons/eye-view.svg";
 import { Lexend_Deca } from "next/font/google";
 
@@ -12,6 +13,9 @@ const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 export default function EPSSubmissionsPage() {
   const [showToast, setShowToast] = useState(false);
+  const [taxYear, setTaxYear] = useState("2025/2026");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
@@ -29,6 +33,10 @@ export default function EPSSubmissionsPage() {
     { id: "january-2026", period: "January 2026", taxPeriod: "10", amount: "$2172.48", date: "5 Feb 2026", adjustments: "SMP, SSP, SAP", status: "Rejected" },
     { id: "december-2025", period: "December 2025", taxPeriod: "9", amount: "$2172.48", date: "5 Jan 2026", adjustments: "SMP, SSP, Recovery", status: "Accepted" },
   ];
+
+  const totalPages = Math.ceil(submissions.length / rowsPerPage) || 1;
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const paginatedSubmissions = submissions.slice(startIndex, startIndex + rowsPerPage);
 
   const handleAction = () => {
     setShowToast(true);
@@ -59,10 +67,17 @@ export default function EPSSubmissionsPage() {
                 <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 <input type="text" placeholder="Search.." className="rounded-xl border border-neutral-200 bg-white py-2 pl-9 pr-4 text-[14px] text-neutral-900 outline-none focus:border-[#257BFC] transition-colors w-[200px]" />
               </div>
-              <select className="rounded-xl border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-700 outline-none focus:border-[#257BFC] transition-colors appearance-none pr-8 relative">
-                <option>2025/2026</option>
-                <option>2024/2025</option>
-              </select>
+              <div className="w-[140px]">
+                <CustomSelect
+                  value={taxYear}
+                  onChange={(val) => setTaxYear(val)}
+                  options={[
+                    { label: "2025/2026", value: "2025/2026" },
+                    { label: "2024/2025", value: "2024/2025" }
+                  ]}
+                  className="min-h-[42px]"
+                />
+              </div>
               <button className="flex items-center justify-center rounded-xl border border-neutral-200 bg-white w-[42px] h-[42px] text-neutral-700 hover:bg-neutral-50 transition-colors">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
               </button>
@@ -83,7 +98,7 @@ export default function EPSSubmissionsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E2E8F0] text-[11px] md:text-[12px] lg:text-[14px]">
-                {submissions.map((row, idx) => (
+                {paginatedSubmissions.map((row, idx) => (
                   <tr key={idx} className="hover:bg-neutral-50">
                     <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.period}</td>
                     <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.taxPeriod}</td>
@@ -110,6 +125,49 @@ export default function EPSSubmissionsPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Pagination */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+              <div className="flex items-center gap-2">
+                  <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                      Rows per page:
+                  </span>
+                  <div className="w-[80px]">
+                      <CustomSelect 
+                          value={String(rowsPerPage)}
+                          onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                          options={[
+                              { label: "5", value: "5" },
+                              { label: "10", value: "10" },
+                              { label: "20", value: "20" }
+                          ]}
+                          menuPlacement="top"
+                          className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                      />
+                  </div>
+              </div>
+
+              <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                  {submissions.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, submissions.length)} of ${submissions.length}` : '0-0 of 0'}
+              </span>
+
+              <div className="flex items-center gap-1 ml-4">
+                  <button 
+                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                      disabled={currentPage === 1}
+                      className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button 
+                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                      disabled={currentPage === totalPages}
+                      className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+              </div>
           </div>
 
         </div>

@@ -103,7 +103,7 @@ export default function LeaveCalendarPage() {
   return (
     <DashboardLayout title="Leave Calendar" subtitle={breadcrumb}>
       <div className="flex-1 p-4 2xl:p-6">
-        <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm flex flex-col h-full min-h-[700px]">
+        <div className="rounded-2xl bg-white shadow-sm flex flex-col h-full min-h-[700px]">
           <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
             <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Leave Calendar</h2>
 
