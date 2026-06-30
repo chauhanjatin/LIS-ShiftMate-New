@@ -487,7 +487,7 @@ export default function UsersPage() {
                                 </div>
                             </div>
 
-                            <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                            <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">1
                                 {users.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, users.length)} of ${users.length}` : '0-0 of 0'}
                             </span>
 
@@ -522,21 +522,21 @@ export default function UsersPage() {
                         <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px] bg-[#FDEAEA]">
                             <Image src={deleteRedIcon} alt="Delete" className="pointer-events-none" />
                         </div>
-                        <h3 className="mx-auto mb-6 max-w-[275px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
+                        <h3 className="mx-auto mb-6 max-w-[290px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
                             Are you sure you want to delete this <br /> User?
                         </h3>
                         <div className="flex gap-4">
                             <button
                                 type="button"
                                 onClick={() => { setDeleteModalOpen(false); setUserToDelete(null); }}
-                                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054] overflow-hidden"
+                                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054] overflow-hidden cursor-pointer"
                             >
                                 Cancel
                             </button>
                             <button
                                 type="button"
                                 onClick={handleDelete}
-                                className="w-full rounded-xl px-6 py-3 text-[16px] font-semibold leading-none text-white bg-[#F04438]"
+                                className="w-full rounded-xl px-6 py-3 text-[16px] font-semibold leading-none text-white bg-[#F04438] cursor-pointer"
                             >
                                 Delete
                             </button>

@@ -9,6 +9,7 @@ import totalEmployeeIcon from "@/assets/images/icons/total-employee.svg";
 import activeEmployeeIcon from "@/assets/images/icons/active-employee.svg";
 import departmentsIcon from "@/assets/images/icons/departments.svg";
 import pendingApprovalIcon from "@/assets/images/icons/pending-approval.svg";
+import menuVertical from "@/assets/images/icons/menu-vertical.svg";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { Lexend_Deca } from "next/font/google";
 
@@ -452,34 +453,8 @@ export default function DashboardPage() {
                     </td>
 
                     <td className="border-b border-[#E2E8F0] py-4 sm:py-5 2xl:py-6">
-                      <button className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-neutral-100">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          className="h-4 w-4 text-neutral-900 sm:h-5 sm:w-5"
-                        >
-                          <path
-                            d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-                            strokeWidth="2.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-                            strokeWidth="2.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-                            strokeWidth="2.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                      <button className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-neutral-100 cursor-pointer">
+                       <Image src={menuVertical} alt="View" />
                       </button>
                     </td>
                   </tr>

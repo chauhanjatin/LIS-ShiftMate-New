@@ -432,7 +432,7 @@ export default function AllEmployeesPage() {
               />
             </div>
 
-            <h3 className="mx-auto mb-6 max-w-[275px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
+            <h3 className="mx-auto mb-6 max-w-[290px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
               Are you sure you want to delete this <br /> Employee Record?
             </h3>
 
@@ -440,7 +440,7 @@ export default function AllEmployeesPage() {
               <button
                 type="button"
                 onClick={() => { setDeleteModalOpen(false); setEmployeeToDelete(null); }}
-                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054] overflow-hidden"
+                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054] overflow-hidden cursor-pointer"
               >
                 Cancel
               </button>
@@ -448,7 +448,7 @@ export default function AllEmployeesPage() {
               <button
                 type="button"
                 onClick={handleDelete}
-                className="w-full rounded-xl px-6 py-3 text-[16px] font-semibold leading-none text-white bg-[#F04438]"
+                className="w-full rounded-xl px-6 py-3 text-[16px] font-semibold leading-none text-white bg-[#F04438] cursor-pointer"
               >
                 Delete
               </button>

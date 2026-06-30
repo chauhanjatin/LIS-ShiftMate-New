@@ -4,10 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import appLogo from "@/assets/images/icons/company-profileicon.svg";
+import verifyIcon from "@/assets/images/icons/verified-check.svg";
 
 export default function CompanyProfilePage() {
   const [formData, setFormData] = useState({
-    companyName: "HRMetheus Inc.",
+    companyName: "Shiftmate",
     registrationNumber: "123456789",
     foundedDate: "02/25/2026",
     phoneNumber: "(406) 555-0120",
@@ -32,7 +33,7 @@ export default function CompanyProfilePage() {
       <div className="flex-1 p-4 2xl:p-6">
         <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm">
 
-          <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-5 rounded-2xl bg-[#F8FAFC] border border-neutral-100 md:p-6 p-4 md:mb-10 mb-8">
+          <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-5 rounded-2xl bg-[#F9FAFB] border border-[#E4E7EC] md:p-6 p-4 md:mb-10 mb-8">
             <Image
               src={appLogo}
               alt="App Logo"
@@ -41,18 +42,22 @@ export default function CompanyProfilePage() {
               className="rounded-2xl"
             />
             <div>
-              <h1 className="md:text-[24px] text-[22px] font-bold text-neutral-900 mb-2">HRMetheus Inc.</h1>
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-[#EDFAF2] px-3 py-1">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4DB949" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                <span className="text-[12px] font-semibold text-[#4DB949]">Verified Company</span>
+              <h1 className="md:text-[32px] text-[22px] font-medium text-[#111827] mb-2">Shiftmate</h1>
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-[#EDFAF2] px-3.5 py-1.5">
+                <Image
+                  src={verifyIcon}
+                  alt="Verify"
+                  width={18}
+                  height={18}
+                  className="rounded-2xl"
+                />
+                <span className="text-[12px] font-normal text-[#4DB949]">Verified Company</span>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-12 gap-y-12">
-            <div>
+            <div className="border-r border-[#E4E7EC] pr-8">
               <div className="mb-8">
                 <h2 className="text-[18px] font-bold text-neutral-900 mb-1">Basic Information</h2>
                 <p className="text-[13px] text-neutral-500">Official company identity and registration details.</p>
