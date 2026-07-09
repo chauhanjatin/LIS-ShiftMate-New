@@ -41,7 +41,7 @@ export default function PaymentDetailsPage() {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:mb-8 mb-4 bg-[#F9FAFB] p-4 md:p-6 rounded-xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:mb-6 mb-4 bg-[#F9FAFB] p-4 md:p-6 rounded-xl">
             <div>
               <p className="md:text-[14px] text-[12px] font-normal text-[#98A2B3] mb-2">Employee Name</p>
               <p className="md:text-[16px] text-[14px] font-medium text-[#111827]">Devon Lane</p>
@@ -60,8 +60,8 @@ export default function PaymentDetailsPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:mb-12 mb-8">
-            <div className="lg:col-span-7 bg-[#F9FAFB] p-4 md:p-6 rounded-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+            <div className="lg:col-span-7 bg-[#F9FAFB] p-4 md:p-6 rounded-2xl">
               <h3 className="md:text-[20px] text-[18px] font-medium text-[#111827] md:mb-6 mb-4 border-b border-[#D0D5DD] md:pb-6 pb-4">Earnings</h3>
 
               <div className="grid grid-cols-2 gap-y-8 gap-x-4">
@@ -103,10 +103,10 @@ export default function PaymentDetailsPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 flex flex-col bg-[#F9FAFB] md:p-6 p-4 rounded-xl">
-              <h3 className="md:text-[20px] text-[18px] font-medium text-[#111827] md:mb-4 mb-3 border-b border-[#D0D5DD] md:pb-6 pb-4">Summary</h3>
+            <div className="lg:col-span-5 flex flex-col rounded-xl">
 
-              <div className="flex-1">
+              <div className="flex-1 bg-[#F9FAFB] md:p-6 p-4 rounded-2xl">
+                <h3 className="md:text-[20px] text-[18px] font-medium text-[#111827] md:mb-4 mb-3 border-b border-[#D0D5DD] md:pb-6 pb-4">Summary</h3>
                 <div className="flex justify-between items-center md:mb-6 mb-3">
                   <span className="md:text-[14px] text-[12px] font-semibold text-neutral-700">Total Paid</span>
                   <span className="md:text-[14px] text-[12px] font-bold text-neutral-900">$2208.36</span>
@@ -120,19 +120,21 @@ export default function PaymentDetailsPage() {
                   <span className="md:text-[14px] text-[12px] font-bold text-neutral-900">27</span>
                 </div>
 
-                <div className="rounded-xl border border-[#257BFC] border-opacity-30 bg-[#F0F6FF] md:p-5 p-3">
-                  <h4 className="md:text-[14px] text-[12px] font-bold text-[#1D2939] mb-1">SMP Payment Structure:</h4>
-                  <p className="text-[13px] font-medium text-[#475467]">First 6 weeks: 90% of average weekly earnings</p>
-                  <p className="text-[13px] font-medium text-[#475467]">Remaining 33 weeks: £184.03 or 90% of AWE (whichever is lower)</p>
-                </div>
               </div>
+
+              <div className="rounded-xl border border-[#257BFC] border-opacity-30 bg-[#F0F6FF] md:p-5 p-3 mt-6">
+                <h4 className="md:text-[14px] text-[12px] font-bold text-[#1D2939] mb-1">SMP Payment Structure:</h4>
+                <p className="text-[13px] font-medium text-[#475467]">First 6 weeks: 90% of average weekly earnings</p>
+                <p className="text-[13px] font-medium text-[#475467]">Remaining 33 weeks: £184.03 or 90% of AWE (whichever is lower)</p>
+              </div>
+
             </div>
           </div>
 
           <div>
             <h3 className="text-[18px] font-bold text-neutral-900">Payment History</h3>
 
-            <div className="p-3 2xl:p-6">
+            <div className="py-6">
               <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="min-w-[800px] w-full text-left border-collapse">

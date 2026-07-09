@@ -31,18 +31,28 @@ const initialPayrollSetup: EmployeePayroll[] = [
     { id: 3, name: "Jane Cooper", avatar: "https://i.pravatar.cc/150?u=3", salary: "$58,000", taxCode: "1257L", niCategory: "A", studentLoanPlan: "Plan 2", pensionStatus: "Opted Out", payFrequency: "Monthly" },
     { id: 4, name: "Courtney Henry", avatar: "https://i.pravatar.cc/150?u=4", salary: "$58,000", taxCode: "1257L", niCategory: "A", studentLoanPlan: "Plan 2", pensionStatus: "Auto-enrolled", payFrequency: "Weekly" },
     { id: 5, name: "Guy Hawkins", avatar: "https://i.pravatar.cc/150?u=5", salary: "$58,000", taxCode: "1257L", niCategory: "A", studentLoanPlan: "Plan 2", pensionStatus: "Auto-enrolled", payFrequency: "Monthly" },
+    { id: 6, name: "Guy Hawkins", avatar: "https://i.pravatar.cc/150?u=6", salary: "$58,000", taxCode: "1257L", niCategory: "A", studentLoanPlan: "Plan 2", pensionStatus: "Auto-enrolled", payFrequency: "Monthly" },
+    { id: 7, name: "Guy Hawkins", avatar: "https://i.pravatar.cc/150?u=7", salary: "$58,000", taxCode: "1257L", niCategory: "A", studentLoanPlan: "Plan 2", pensionStatus: "Auto-enrolled", payFrequency: "Monthly" },
+    { id: 8, name: "Guy Hawkins", avatar: "https://i.pravatar.cc/150?u=8", salary: "$58,000", taxCode: "1257L", niCategory: "A", studentLoanPlan: "Plan 2", pensionStatus: "Auto-enrolled", payFrequency: "Monthly" },
 ];
 
 export default function EmployeePayrollSetupPage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [employees, setEmployees] = useState<EmployeePayroll[]>(initialPayrollSetup);
     const [searchQuery, setSearchQuery] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
 
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_employee_payroll_setup");
         if (stored) {
             try {
-                setEmployees(JSON.parse(stored));
+                const parsed = JSON.parse(stored);
+                if (parsed.length >= initialPayrollSetup.length) {
+                    setEmployees(parsed);
+                } else {
+                    setEmployees(initialPayrollSetup);
+                }
             } catch (e) {
                 console.error("Failed to parse employee payroll setup from local storage");
             }
@@ -63,6 +73,12 @@ export default function EmployeePayrollSetupPage() {
 
     const filteredEmployees = employees.filter(e =>
         e.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const totalPages = Math.ceil(filteredEmployees.length / itemsPerPage);
+    const paginatedEmployees = filteredEmployees.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
     );
 
     const openEditModal = (employee: EmployeePayroll) => {
@@ -128,9 +144,9 @@ export default function EmployeePayrollSetupPage() {
                                             <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] text-center">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-white">
-                                        {filteredEmployees.map((emp) => (
-                                            <tr key={emp.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
+                                    <tbody className="divide-y divide-[#E2E8F0] bg-white">
+                                        {paginatedEmployees.map((emp) => (
+                                            <tr key={emp.id} className="hover:bg-neutral-50 transition-colors">
                                                 <td className="px-4 py-4 sm:px-6">
                                                     <div className="flex items-center gap-3">
                                                         <img src={emp.avatar} alt={emp.name} className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover" />
@@ -168,6 +184,45 @@ export default function EmployeePayrollSetupPage() {
                                     </tbody>
                                 </table>
                             </div>
+                            
+                            {/* Pagination */}
+                            <div className="flex items-center justify-between border-t border-[#E2E8F0] px-4 py-4 sm:px-6">
+                                <span className="text-[14px] text-[#667085]">
+                                    Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredEmployees.length)} of {filteredEmployees.length} entries
+                                </span>
+                                <div className="flex items-center gap-2">
+                                    <button 
+                                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                        disabled={currentPage === 1}
+                                        className="flex h-8 items-center justify-center rounded-lg border border-[#D0D5DD] px-3 text-[14px] font-medium text-[#344054] transition-colors hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        Previous
+                                    </button>
+                                    <div className="flex items-center gap-1">
+                                        {Array.from({ length: totalPages }).map((_, idx) => (
+                                            <button
+                                                key={idx}
+                                                onClick={() => setCurrentPage(idx + 1)}
+                                                className={`flex h-8 w-8 items-center justify-center rounded-lg text-[14px] font-medium transition-colors ${
+                                                    currentPage === idx + 1
+                                                        ? "bg-neutral-100 text-[#1D2939]"
+                                                        : "text-[#667085] hover:bg-neutral-50"
+                                                }`}
+                                            >
+                                                {idx + 1}
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <button 
+                                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                        disabled={currentPage === totalPages}
+                                        className="flex h-8 items-center justify-center rounded-lg border border-[#D0D5DD] px-3 text-[14px] font-medium text-[#344054] transition-colors hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

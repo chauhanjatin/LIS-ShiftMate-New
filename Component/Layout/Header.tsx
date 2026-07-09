@@ -6,10 +6,27 @@ import adminImage from "@/assets/images/admin-img.png";
 import Link from "next/link";
 import { useNotifications } from "@/hooks/useNotifications";
 import { useRef, useState } from "react";
+import CustomSelect from "@/Component/UI/CustomSelect";
 
 function AdminDropdown() {
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("Security");
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+
+  const openProfile = () => {
+    setIsProfileOpen(true);
+    detailsRef.current?.removeAttribute("open");
+  };
+
+  const openSettings = () => {
+    setIsSettingsOpen(true);
+    detailsRef.current?.removeAttribute("open");
+  };
+
   return (
-    <details className="relative">
+    <>
+    <details ref={detailsRef} className="relative">
       <summary className="list-none cursor-pointer rounded-xl px-1 py-1 hover:bg-neutral-100 outline-none">
         <span className="flex items-center gap-2 sm:gap-3">
           <Image
@@ -44,7 +61,8 @@ function AdminDropdown() {
       <div className="absolute right-0 z-20 mt-3 w-[calc(100vw-2rem)] xl:max-w-[280px] max-w-[215px] sm:w-72 rounded-xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
         <button
           type="button"
-          className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
+          onClick={openProfile}
+          className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100 cursor-pointer"
         >
           <svg
             viewBox="0 0 24 24"
@@ -63,7 +81,8 @@ function AdminDropdown() {
         </button>
         <button
           type="button"
-          className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
+          onClick={openSettings}
+          className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100 cursor-pointer"
         >
           <svg
             viewBox="0 0 24 24"
@@ -97,6 +116,175 @@ function AdminDropdown() {
 
       </div>
     </details>
+
+    {isProfileOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4">
+          <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] px-6 py-5">
+              <h2 className="text-[18px] md:text-[20px] font-bold text-[#1D2939]">
+                My Profile
+              </h2>
+              <button
+                onClick={() => setIsProfileOpen(false)}
+                className="text-neutral-400 transition hover:text-black cursor-pointer"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            
+            <div className="px-6 py-6">
+              <div className="flex flex-col items-center justify-center rounded-2xl bg-[#F8F9FC] py-6 mb-8 border border-[#F3F4F6]">
+                <div className="relative mb-3">
+                  <Image src={adminImage} alt="Mathieu Wade" width={80} height={80} className="rounded-full object-cover border-4 border-white shadow-sm" />
+                  <div className="absolute bottom-0 right-0 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-[#257BFC] text-white">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                  </div>
+                </div>
+                <h3 className="text-[18px] font-bold text-[#1D2939]">Mathieu Wade</h3>
+                <p className="text-[13px] font-medium text-[#98A2B3]">HR Admin</p>
+              </div>
+
+              <h4 className="text-[16px] font-bold text-[#1D2939] mb-4">Personal Details</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">First name</label>
+                  <input type="text" defaultValue="Mathie Wade" className="h-[45px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[13px] text-[#475467] outline-none transition focus:border-[#257BFC]" />
+                </div>
+                <div>
+                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">Job title</label>
+                  <input type="text" defaultValue="HR Admin" className="h-[45px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[13px] text-[#475467] outline-none transition focus:border-[#257BFC]" />
+                </div>
+                <div>
+                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">Email</label>
+                  <input type="email" defaultValue="mathie.wade@example.com" className="h-[45px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[13px] text-[#475467] outline-none transition focus:border-[#257BFC]" />
+                </div>
+                <div>
+                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">Phone</label>
+                  <input type="text" defaultValue="+1 (415) 555-0192" className="h-[45px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[13px] text-[#475467] outline-none transition focus:border-[#257BFC]" />
+                </div>
+                <div>
+                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">Department</label>
+                  <CustomSelect value="Marketing" onChange={() => {}} options={[{label: "Marketing", value: "Marketing"}]} placeholder="" />
+                </div>
+                <div>
+                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">Joined Date</label>
+                  <input type="text" defaultValue="devon.lane@example.com" className="h-[45px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[13px] text-[#475467] outline-none transition focus:border-[#257BFC]" />
+                </div>
+              </div>
+
+              <div className="mt-8 flex items-center justify-end gap-3">
+                <button onClick={() => setIsProfileOpen(false)} className="h-[40px] rounded-xl border border-[#D0D5DD] px-6 text-[14px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isSettingsOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4">
+          <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] px-6 py-5">
+              <h2 className="text-[18px] md:text-[20px] font-bold text-[#1D2939]">
+                Account Settings
+              </h2>
+              <button onClick={() => setIsSettingsOpen(false)} className="text-neutral-400 transition hover:text-black cursor-pointer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            
+            <div className="px-6 py-6 h-full max-h-[75vh] overflow-y-auto">
+              <div className="flex bg-[#F8F9FC] rounded-xl p-1 mb-8 overflow-x-auto no-scrollbar">
+                {['Personal Info', 'Security', 'Notifications', 'Preferences'].map((tab) => (
+                  <button 
+                    key={tab} 
+                    onClick={() => setActiveTab(tab)}
+                    className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-[13px] font-semibold transition-colors whitespace-nowrap min-w-[120px] ${activeTab === tab ? 'bg-[#0F172A] text-white' : 'text-[#667085] hover:text-[#0F172A]'}`}
+                  >
+                    {tab === 'Personal Info' && <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>}
+                    {tab === 'Security' && <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>}
+                    {tab === 'Notifications' && <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>}
+                    {tab === 'Preferences' && <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>}
+                    {tab}
+                  </button>
+                ))}
+              </div>
+
+              {activeTab === 'Security' && (
+                <div className="animate-in fade-in slide-in-from-right-4 duration-300">
+                  <h3 className="text-[16px] font-bold text-[#1D2939] mb-4">Password</h3>
+                  <div className="space-y-4 mb-6">
+                    <div>
+                      <label className="mb-2 block text-[13px] font-medium text-[#344054]">Current Password</label>
+                      <input type="password" defaultValue="********" className="h-[45px] w-full rounded-xl border border-[#1D2939] px-4 text-[20px] font-mono tracking-widest text-[#475467] outline-none transition focus:border-[#257BFC]" />
+                    </div>
+                    <div>
+                      <label className="mb-2 block text-[13px] font-medium text-[#344054]">Confirm Password</label>
+                      <input type="password" defaultValue="********" className="h-[45px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[20px] font-mono tracking-widest text-[#475467] outline-none transition focus:border-[#257BFC]" />
+                    </div>
+                    <div>
+                      <label className="mb-2 block text-[13px] font-medium text-[#344054]">New Password</label>
+                      <input type="password" defaultValue="********" className="h-[45px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[20px] font-mono tracking-widest text-[#475467] outline-none transition focus:border-[#257BFC]" />
+                    </div>
+                  </div>
+
+                  <div className="flex items-start justify-between bg-[#F8F9FC] rounded-xl p-5 border border-[#F3F4F6]">
+                    <div className="flex items-start gap-3">
+                      <div className="mt-0.5 text-[#1D2939]">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                      </div>
+                      <div>
+                        <h4 className="text-[15px] font-bold text-[#1D2939]">Enable Two-Factor Authentication</h4>
+                        <p className="text-[13px] text-[#667085] mt-1">Require a verification code from your authenticator app at sign-in.</p>
+                      </div>
+                    </div>
+                    <label className="relative inline-flex cursor-pointer items-center mt-1">
+                      <input type="checkbox" className="peer sr-only" defaultChecked />
+                      <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-[#257BFC] peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none"></div>
+                    </label>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'Notifications' && (
+                <div className="animate-in fade-in slide-in-from-right-4 duration-300">
+                  <h3 className="text-[16px] font-bold text-[#1D2939]">Push Notification Preferences</h3>
+                  <p className="text-[13px] text-[#667085] mb-5">Control which events trigger push notifications</p>
+                  
+                  <div className="space-y-3">
+                    {[1, 2, 3, 4].map((item) => (
+                      <div key={item} className="flex items-center justify-between bg-[#F8F9FC] rounded-xl p-4 border border-transparent hover:border-[#F3F4F6] transition-colors">
+                        <div>
+                          <h4 className="text-[14px] font-medium text-[#1D2939]">Email Notification</h4>
+                          <p className="text-[12px] text-[#98A2B3] mt-0.5">Receive general account and system updates via email.</p>
+                        </div>
+                        <label className="relative inline-flex cursor-pointer items-center">
+                          <input type="checkbox" className="peer sr-only" defaultChecked />
+                          <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-[#257BFC] peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none"></div>
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {['Personal Info', 'Preferences'].includes(activeTab) && (
+                <div className="animate-in fade-in slide-in-from-right-4 duration-300 flex flex-col items-center justify-center py-10 text-center">
+                  <p className="text-[14px] text-[#667085]">Content for {activeTab} will go here.</p>
+                </div>
+              )}
+
+              <div className="mt-8 flex items-center justify-end gap-3 pt-6 border-t border-[#F3F4F6]">
+                <button onClick={() => setIsSettingsOpen(false)} className="h-[40px] rounded-xl bg-[#257BFC] px-6 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

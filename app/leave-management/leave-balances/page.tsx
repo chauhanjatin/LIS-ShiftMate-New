@@ -95,17 +95,17 @@ export default function LeaveBalancesPage() {
                   alt="Filter"
                   width={24}
                   height={24}
-                  className="pointer-events-none"
+                  className="cursor-pointer"
                 />
               </button>
 
               {filterOpen && (
-                <div className="absolute top-[50px] right-0 z-10 w-48 rounded-xl bg-white shadow-lg border border-[#E2E8F0] p-2 animate-in slide-in-from-top-2 overflow-hidden">
+                <div className="absolute top-[50px] right-0 z-10 w-48 rounded-xl bg-white shadow-lg border border-[#E2E8F0] p-2.5 animate-in slide-in-from-top-2 overflow-hidden">
                   {departments.map(dept => (
                     <button
                       key={dept}
                       onClick={() => { setDeptFilter(dept); setFilterOpen(false); }}
-                      className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${deptFilter === dept ? 'bg-[#257BFC] hover:bg-[#257BFC]' : 'text-neutral-700'}`}
+                      className={`w-full text-left px-3 py-2 text-[16px] font-normal rounded-lg cursor-pointer ${deptFilter === dept ? 'bg-[#257BFC] text-white' : 'text-neutral-700'}`}
                     >
                       {dept}
                     </button>

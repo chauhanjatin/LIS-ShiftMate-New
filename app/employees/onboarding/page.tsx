@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
+import CustomSelect from "@/Component/UI/CustomSelect";
 import searchIcon from "@/assets/images/icons/search.svg";
 
 type Task = {
@@ -67,6 +68,14 @@ const initialData: OnboardingRecord[] = [
 export default function OnboardingPage() {
   const [data, setData] = useState(initialData);
   const [expandedIds, setExpandedIds] = useState<string[]>(["EMP001", "EMP002"]);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    employee: "Michael",
+    jobTitle: "",
+    department: "",
+    startDate: "",
+    template: "Standard onboarding"
+  });
 
   const toggleExpand = (id: string) => {
     setExpandedIds(prev => prev.includes(id) ? prev.filter(e => e !== id) : [...prev, id]);
@@ -121,7 +130,7 @@ export default function OnboardingPage() {
                 />
               </div>
 
-              <button className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-5 py-2.5 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer border-none shadow-sm whitespace-nowrap">
+              <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-5 py-2.5 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer border-none shadow-sm whitespace-nowrap">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 New Onboarding
               </button>
@@ -130,7 +139,7 @@ export default function OnboardingPage() {
 
           <div className="flex flex-col gap-6">
             {data.map(record => (
-              <div key={record.id} className="rounded-2xl border border-[#E2E8F0] bg-white p-5 shadow-sm">
+              <div key={record.id} className="rounded-2xl border border-[#E2E8F0] bg-white p-5">
                 <div 
                   className="flex items-center justify-between cursor-pointer group"
                   onClick={() => toggleExpand(record.id)}
@@ -197,6 +206,117 @@ export default function OnboardingPage() {
 
         </div>
       </div>
+
+      {isAddModalOpen && (
+        <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
+          <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] px-6 py-5">
+              <h2 className="text-[18px] md:text-[20px] font-bold text-[#1D2939]">
+                Create New Onboarding
+              </h2>
+              <button
+                onClick={() => setIsAddModalOpen(false)}
+                className="text-neutral-400 transition hover:text-black cursor-pointer"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            
+            <div className="px-6 py-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="md:col-span-2">
+                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">
+                    Employee
+                  </label>
+                  <CustomSelect
+                    value={formData.employee}
+                    onChange={(val) => setFormData({ ...formData, employee: val })}
+                    options={[{ label: "Michael", value: "Michael" }]}
+                    placeholder="Select employee"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">
+                    Job Title
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.jobTitle}
+                    onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })}
+                    className="h-[45px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[13px] outline-none transition focus:border-[#257BFC]"
+                    placeholder="Enter job title"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">
+                    Department
+                  </label>
+                  <CustomSelect
+                    value={formData.department}
+                    onChange={(val) => setFormData({ ...formData, department: val })}
+                    options={[{ label: "Engineering", value: "Engineering" }, { label: "Marketing", value: "Marketing" }]}
+                    placeholder="Select department"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">
+                    Start Date
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={formData.startDate}
+                      onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
+                      className="h-[45px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[13px] outline-none transition focus:border-[#257BFC]"
+                      placeholder="MM/DD/YYYY"
+                    />
+                    <svg className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">
+                    Onboarding Template
+                  </label>
+                  <CustomSelect
+                    value={formData.template}
+                    onChange={(val) => setFormData({ ...formData, template: val })}
+                    options={[
+                      { label: "Standard onboarding", value: "Standard onboarding" },
+                      { label: "Manager onboarding", value: "Manager onboarding" },
+                      { label: "Remote employee onboarding", value: "Remote employee onboarding" },
+                    ]}
+                    placeholder="Select template"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-6 flex items-center gap-3 rounded-xl bg-[#F9FAFB] p-4 text-[13px] text-[#475467]">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-500"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                8 default tasks will be added and assigned to HR, IT, Finance, and Manager.
+              </div>
+
+              <div className="mt-8 flex items-center justify-end gap-3">
+                <button
+                  onClick={() => setIsAddModalOpen(false)}
+                  className="h-[40px] rounded-xl border border-[#D0D5DD] px-6 text-[14px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => setIsAddModalOpen(false)}
+                  className="h-[40px] rounded-xl bg-[#257BFC] px-6 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
+                >
+                  Create Onboarding
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </DashboardLayout>
   );
 }

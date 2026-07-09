@@ -37,13 +37,16 @@ export default function LeaveRequestsPage() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [statusFilter, setStatusFilter] = useState<string>("All");
   const [leaveType, setLeaveType] = useState<string>("All Type");
+  const [searchQuery, setSearchQuery] = useState("");
   
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const filteredRequests = requests.filter(req => {
-    if (statusFilter === "All") return true;
-    return req.status === statusFilter;
+    const matchesStatus = statusFilter === "All" || req.status === statusFilter;
+    const matchesLeaveType = leaveType === "All Type" || req.leaveType === leaveType;
+    const matchesSearch = req.employeeName.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesStatus && matchesLeaveType && matchesSearch;
   });
 
   const totalPages = Math.ceil(filteredRequests.length / rowsPerPage) || 1;
@@ -77,8 +80,10 @@ export default function LeaveRequestsPage() {
                   className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                 />
                 <input
-                  className="w-full rounded-xl border border-[#E2E8F0] bg-neutral-50 py-1.5 md:py-2.5 pl-11 pr-4 text-sm"
+                  className="w-full rounded-xl border border-[#E2E8F0] bg-neutral-50 py-1.5 md:py-2.5 pl-11 pr-4 text-sm outline-none focus:border-[#257BFC]"
                   placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
 
@@ -105,17 +110,15 @@ export default function LeaveRequestsPage() {
                   alt="Filter"
                   width={24}
                   height={24}
-                  className="pointer-events-none"
+                  className="cursor-pointer"
                 />
               </button>
 
               {filterOpen && (
                 <div className="absolute top-[50px] right-0 z-10 w-40 rounded-xl bg-white shadow-lg border border-[#E2E8F0] p-2 animate-in slide-in-from-top-2 overflow-hidden">
-                  <p className="text-xs font-semibold text-neutral-500 mb-2 px-2">Filter Dropdown</p>
-                  <button onClick={() => { setStatusFilter("All"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${statusFilter === 'All' ? 'font-bold' : ''}`}>All</button>
-                  <button onClick={() => { setStatusFilter("Pending"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${statusFilter === 'Pending' ? 'font-bold' : ''}`}>Pending</button>
-                  <button onClick={() => { setStatusFilter("Approved"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${statusFilter === 'Approved' ? 'font-bold' : ''}`}>Approved</button>
-                  <button onClick={() => { setStatusFilter("Rejected"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${statusFilter === 'Rejected' ? 'font-bold' : ''}`}>Rejected</button>
+                  <button onClick={() => { setStatusFilter("Pending"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-[16px] rounded-lg hover:bg-[#257BFC] hover:text-white cursor-pointer ${statusFilter === 'Pending' ? 'font-normal' : ''}`}>Pending</button>
+                  <button onClick={() => { setStatusFilter("Approved"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-[16px] rounded-lg hover:bg-[#257BFC] hover:text-white cursor-pointer ${statusFilter === 'Approved' ? 'font-normal' : ''}`}>Approved</button>
+                  <button onClick={() => { setStatusFilter("Rejected"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-[16px] rounded-lg hover:bg-[#257BFC] hover:text-white cursor-pointer ${statusFilter === 'Rejected' ? 'font-normal' : ''}`}>Rejected</button>
                 </div>
               )}
             </div>

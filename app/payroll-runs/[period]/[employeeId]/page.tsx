@@ -3,8 +3,10 @@
 import React, { use, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import Toast from '@/Component/UI/Toast';
+import backArrow from "@/assets/images/icons/back-arrow.svg";
 import { Lexend_Deca } from "next/font/google";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
@@ -29,7 +31,15 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
 
     return (
         <DashboardLayout title="Employee Payroll Breakdown" subtitle={breadcrumb}>
-            <div className={`flex-1 p-4 2xl:p-6 lg:pb-24 pb-8 ${lexendDeca.className}`}>
+            <div className={`flex-1 p-4 lg:pb-24 pb-8 ${lexendDeca.className}`}>
+
+                <Link href={`/payroll-runs/${encodeURIComponent(period)}`}>
+                    <div className="flex items-center gap-2 cursor-pointer mb-4">
+                        <Image src={backArrow} alt="back" />
+                        <p className="text-[#111827] font-normal text-[16px]">Back</p>
+                    </div>
+                </Link>
+
                 <div className="bg-white md:p-6 p-4 rounded-xl">
                     <div className="mb-6 rounded-xl overflow-hidden">
                         <h3 className="md:mb-6 mb-3 text-[18px] font-medium text-[#101828]">
@@ -149,6 +159,17 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                        
+                        <div className="mt-6 flex items-center justify-between rounded-xl bg-[#F0FDF4] md:p-6 p-4 border border-[#DCFCE7]">
+                            <div>
+                                <p className="text-[12px] font-semibold text-[#111827] mb-1">After All Deductions</p>
+                                <p className="md:text-[20px] text-[16px] font-bold text-[#111827]">Gross: £4,500 - Deductions: £1,245</p>
+                            </div>
+                            <div className="text-right">
+                                <p className="text-[12px] font-semibold text-[#111827] mb-1">Net Pay</p>
+                                <p className="md:text-[24px] text-[20px] font-bold text-[#4DB949]">$3,255</p>
                             </div>
                         </div>
                     </div>

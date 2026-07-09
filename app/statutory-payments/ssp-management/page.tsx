@@ -289,20 +289,28 @@ export default function SSPManagementPage() {
             )}
 
             <div className="flex justify-end items-center gap-4 pt-10 pb-5">
-              <button 
-                type="button" 
-                onClick={handleSubmit}
-                className="rounded-xl border border-[#111827] bg-white md:px-8 px-4 md:py-3 py-2 md:text-[14px] text-[12px] font-bold text-neutral-700 hover:bg-neutral-50 transition-colors shadow-sm"
-              >
-                Save Record
-              </button>
-              <button 
-                type="button" 
-                onClick={handleCalculate}
-                className={`rounded-xl md:px-8 px-4 md:py-3 py-2 md:text-[14px] text-[12px] font-bold transition-colors shadow-sm ${isCalculated ? 'bg-brand-500 text-white hover:bg-brand-600' : 'bg-[#E0EAFF] text-[#257BFC]'}`}
-              >
-                Calculate SSP
-              </button>
+              {isCalculated ? (
+                <button 
+                  type="button" 
+                  onClick={handleSubmit}
+                  className="rounded-xl border border-[#111827] bg-white md:px-8 px-4 md:py-3 py-2 md:text-[14px] text-[12px] font-bold text-neutral-700 hover:bg-neutral-50 transition-colors shadow-sm cursor-pointer"
+                >
+                  Save Record
+                </button>
+              ) : (
+                <button 
+                  type="button" 
+                  onClick={handleCalculate}
+                  disabled={!formData.startDate || !formData.endDate}
+                  className={`rounded-xl md:px-8 px-4 md:py-3 py-2 md:text-[14px] text-[12px] font-bold transition-colors shadow-sm ${
+                    !formData.startDate || !formData.endDate 
+                      ? 'bg-[#EBF2FE] text-[#B0C4DF] cursor-not-allowed' 
+                      : 'bg-[#257BFC] text-white cursor-pointer hover:bg-blue-600'
+                  }`}
+                >
+                  Calculate SSP
+                </button>
+              )}
             </div>
 
           </form>
@@ -315,7 +323,6 @@ export default function SSPManagementPage() {
         onClose={() => setShowToast(false)}
       />
 
-      {/* Hide default calendar picker icon across all browsers */}
       <style dangerouslySetInnerHTML={{__html: `
         .custom-date-input::-webkit-calendar-picker-indicator {
           opacity: 0;

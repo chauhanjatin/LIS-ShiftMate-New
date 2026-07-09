@@ -12,6 +12,7 @@ import payrollApproval1 from "@/assets/images/icons/payroll-approval1.svg";
 import payrollApproval2 from "@/assets/images/icons/payroll-approval2.svg";
 import payrollApproval3 from "@/assets/images/icons/payroll-approval3.svg";
 import payrollApproval4 from "@/assets/images/icons/payroll-approval4.svg";
+import Toast from '@/Component/UI/Toast';
 
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
@@ -37,6 +38,7 @@ const initialApprovals: PayrollApprovalRow[] = [
 export default function PayrollApprovalPage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [employees, setEmployees] = useState<PayrollApprovalRow[]>(initialApprovals);
+    const [showToast, setShowToast] = useState(false);
 
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_payroll_approvals");
@@ -249,7 +251,7 @@ export default function PayrollApprovalPage() {
                                     <button className="xl:h-[48px] h-[42px] rounded-xl border border-[#1D2939] xl:px-8 px-3 text-[14px] font-semibold text-[#1D2939] transition hover:bg-neutral-100 cursor-pointer">
                                         Lock payroll
                                     </button>
-                                    <button className="xl:h-[48px] h-[42px] rounded-xl bg-[#257BFC] xl:px-8 px-3 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                    <button onClick={() => setShowToast(true)} className="xl:h-[48px] h-[42px] rounded-xl bg-[#257BFC] xl:px-8 px-3 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                         Approve Payroll
                                     </button>
                                 </div>
@@ -261,6 +263,13 @@ export default function PayrollApprovalPage() {
                 </div>
 
             </div>
+            
+            <Toast
+                show={showToast}
+                message="Cannot approve with pending errors"
+                onClose={() => setShowToast(false)}
+                type="error"
+            />
         </DashboardLayout>
     );
 }

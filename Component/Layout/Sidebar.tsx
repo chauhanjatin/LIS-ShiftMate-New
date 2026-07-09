@@ -16,7 +16,7 @@ import deductionIcon from "@/assets/images/icons/deduction.svg";
 import salaryStructureIcon from "@/assets/images/icons/salary-structure.svg";
 import employeePayrollIcon from "@/assets/images/icons/employee-payroll.svg";
 import payrollRunsIcon from "@/assets/images/icons/payroll-runs.svg";
-import pendingApprovalIcon from "@/assets/images/icons/pending-approval.svg";
+import payrollApprovalIcon from "@/assets/images/icons/payroll-approval.svg";
 import taxRuleIcon from "@/assets/images/icons/tax-rule.svg";
 import nationalRuleIcon from "@/assets/images/icons/national-rule.svg";
 import studentLoanIcon from "@/assets/images/icons/student-loan.svg";
@@ -303,7 +303,7 @@ export default function Sidebar({
     salarystructure: salaryStructureIcon,
     employeepayroll: employeePayrollIcon,
     payrollruns: payrollRunsIcon,
-    payrollapproval: pendingApprovalIcon,
+    payrollapproval: payrollApprovalIcon,
     taxrules: taxRuleIcon,
     nationalrule: nationalRuleIcon,
     studentloan: studentLoanIcon,

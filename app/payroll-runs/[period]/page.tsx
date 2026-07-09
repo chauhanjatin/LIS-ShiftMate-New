@@ -10,6 +10,7 @@ import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import { Lexend_Deca } from "next/font/google";
 import eyeIcon from "@/assets/images/icons/eye-view.svg";
+import backArrow from "@/assets/images/icons/back-arrow.svg";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -55,7 +56,15 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
 
     return (
         <DashboardLayout title="Payroll Runs" subtitle={breadcrumb}>
-            <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+            <div className={`flex-1 2xl:px-6 p-4 ${lexendDeca.className}`}>
+
+                <Link href="/payroll-runs">
+                    <div className="flex items-center gap-2 cursor-pointer mb-4">
+                        <Image src={backArrow} alt="back" />
+                        <p className="text-[#111827] font-normal text-[16px]">Back</p>
+                    </div>
+                </Link>
+
                 <div className="rounded-xl bg-white md:p-6 p-4">
                     <h3 className="md:text-[20px] text-[18px] font-medium text-[#101828] mb-4">Payroll Run Details - {period}</h3>
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 md:mb-6 mb-4">

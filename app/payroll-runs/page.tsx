@@ -38,6 +38,7 @@ export default function PayrollRunsPage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [runs, setRuns] = useState<PayrollRun[]>(initialRuns);
     const [searchQuery, setSearchQuery] = useState("");
+    const [taxYear, setTaxYear] = useState("2025/2026");
 
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_payroll_runs");
@@ -57,6 +58,8 @@ export default function PayrollRunsPage() {
         }
     }, [runs, isLoaded]);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [selectedRun, setSelectedRun] = useState<PayrollRun | null>(null);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [runToDelete, setRunToDelete] = useState<number | null>(null);
     const [showToast, setShowToast] = useState(false);
@@ -164,6 +167,20 @@ export default function PayrollRunsPage() {
                                 </svg>
                                 Create Payroll Run
                             </button>
+
+                            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+                                <div className="w-[140px]">
+                                    <CustomSelect
+                                        value={taxYear}
+                                        onChange={setTaxYear}
+                                        options={[
+                                            { label: "2025/2026", value: "2025/2026" },
+                                            { label: "2024/2025", value: "2024/2025" }
+                                        ]}
+                                        className="!h-[40px] !py-2 !rounded-xl !text-[#98A2B3]"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -200,7 +217,7 @@ export default function PayrollRunsPage() {
                                                         <button onClick={() => router.push(`/payroll-runs/${encodeURIComponent(run.period)}`)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
                                                             <Image src={eyeIcon} alt="Edit" className="pointer-events-none" />
                                                         </button>
-                                                        <button className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
+                                                        <button onClick={() => { setSelectedRun(run); setIsEditModalOpen(true); }} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
                                                             <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
                                                         </button>
                                                         <button onClick={() => { setRunToDelete(run.id); setIsDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
@@ -261,10 +278,10 @@ export default function PayrollRunsPage() {
                     </div>
                 </div>
             </div>
-            
+
             {isAddModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
-                    <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl max-h-[90vh] flex flex-col">
+                    <div className="w-full max-w-[820px] overflow-hidden rounded-3xl bg-white shadow-2xl max-h-[75vh] flex flex-col">
                         <div className="flex items-center justify-between border-b border-[#E2E8F0] 2xl:px-8 xl:px-6 px-4 2xl:py-6 py-4 shrink-0">
                             <h2 className="md:text-[24px] text-[18px] font-bold text-[#1D2939]">
                                 Create New Payroll Run
@@ -357,43 +374,166 @@ export default function PayrollRunsPage() {
                                 </div>
                             </div>
 
-                            <div className="mb-4 rounded-xl bg-white md:p-6 p-2">
-                                <h3 className="mb-4 text-[16px] font-semibold text-neutral-900">
+                            <div className="mb-4 rounded-2xl bg-[#F9FAFB] p-6">
+                                <h3 className="mb-6 text-[20px] font-medium text-[#111827] border-b border-[#D0D5DD] pb-6">
                                     Include Employees
                                 </h3>
 
                                 <div className="space-y-4">
-                                    <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-4">
-                                        <span className="text-[14px] font-medium text-[#344054]">Active Employees</span>
-                                        <span className="text-[14px] font-semibold text-neutral-900">324</span>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-[14px] font-normal text-[#111827]">Active Employees</span>
+                                        <span className="text-[14px] font-normal text-[#111827]">324</span>
                                     </div>
-                                    <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-4">
-                                        <span className="text-[14px] font-medium text-[#344054]">On Leave</span>
-                                        <span className="text-[14px] font-semibold text-neutral-900">12</span>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-[14px] font-normal text-[#111827]">On Leave</span>
+                                        <span className="text-[14px] font-normal text-[#111827]">12</span>
                                     </div>
-                                    <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-4">
-                                        <span className="text-[14px] font-medium text-[#344054]">New Joiners</span>
-                                        <span className="text-[14px] font-semibold text-neutral-900">8</span>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-[14px] font-normal text-[#111827]">New Joiners</span>
+                                        <span className="text-[14px] font-normal text-[#111827]">8</span>
                                     </div>
-                                    <div className="flex items-center justify-between pt-1">
-                                        <span className="text-[14px] font-medium text-[#344054]">Total to Process</span>
-                                        <span className="text-[14px] font-semibold text-neutral-900">324</span>
+                                    <div className="flex items-center justify-between border-t border-[#D0D5DD] pt-4">
+                                        <span className="text-[14px] font-normal text-[#111827]">Total to Process</span>
+                                        <span className="text-[14px] font-normal text-[#111827]">324</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-end gap-2 md:gap-4 md:px-8 px-4 md:py-6 py-4 shrink-0">
-                            <button
-                                onClick={() => setIsAddModalOpen(false)}
-                                className="md:h-[48px] h-[42px] rounded-xl border border-[#E2E8F0] bg-white md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer overflow-hidden"
-                            >
-                                Cancel
-                            </button>
+                        <div className="mt-4 flex items-center justify-end gap-3 pt-6 shrink-0">
+                                <button
+                                    onClick={() => setIsAddModalOpen(false)}
+                                    className="md:h-[48px] h-[40px] rounded-xl border border-[#D0D5DD] md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={handleAdd}
+                                    className="md:h-[48px] h-[40px] rounded-xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
+                                >
+                                    Generate Payroll
+                                </button>
+                            </div>
+                    </div>
+                </div>
+            )}
 
-                            <button onClick={handleAdd} className="md:h-[48px] h-[42px] rounded-xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
-                                Generate Payroll
+            {isEditModalOpen && (
+                <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
+                    <div className="w-full max-w-[820px] overflow-hidden rounded-3xl bg-white shadow-2xl max-h-[75vh] flex flex-col">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] 2xl:px-8 xl:px-6 px-4 2xl:py-6 py-4 shrink-0">
+                            <h2 className="md:text-[24px] text-[18px] font-bold text-[#1D2939]">
+                                Edit Payroll Run
+                            </h2>
+
+                            <button
+                                onClick={() => setIsEditModalOpen(false)}
+                                className="text-neutral-500 transition hover:text-black cursor-pointer"
+                            >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                             </button>
+                        </div>
+
+                        <div className="md:px-8 px-4 md:py-6 py-4 overflow-y-auto">
+
+                            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:mb-6 mb-4">
+                                <div>
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Payroll Period
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            defaultValue={selectedRun?.period}
+                                            placeholder="e.g., April 2024"
+                                            className="md:h-[52px] h-[45px] w-full rounded-xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                        />
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Pay Date
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            defaultValue={selectedRun?.date}
+                                            className="md:h-[52px] h-[45px] w-full rounded-xl border border-[#E2E8F0] bg-white px-4 pr-12 text-[14px] text-[#344054] outline-none transition focus:border-[#257BFC]"
+                                        />
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#667085]"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                    </div>
+                                </div>
+
+                                <div className="md:col-span-2">
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Pay Group
+                                    </label>
+                                    <div className="relative">
+                                        <CustomSelect
+                                            value={selectedRun?.group || "All Employees"}
+                                            onChange={() => {}}
+                                            options={[
+                                                { label: "All Employees", value: "All Employees" },
+                                                { label: "Engineering Team", value: "Engineering Team" },
+                                                { label: "Sales Team", value: "Sales Team" }
+                                            ]}
+                                            className="md:h-[52px] h-[45px]"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="md:col-span-2">
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Notes
+                                    </label>
+                                    <textarea
+                                        placeholder="Describe the rules and conditions for this deduction..."
+                                        className="md:h-[100px] h-[80px] w-full resize-none rounded-xl border border-[#E2E8F0] md:p-4 p-2 text-[14px] outline-none transition focus:border-[#257BFC]"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="mb-4 rounded-2xl bg-[#F9FAFB] p-6">
+                                <h3 className="mb-6 text-[20px] font-medium text-[#111827] border-b border-[#D0D5DD] pb-6">
+                                    Include Employees
+                                </h3>
+
+                                <div className="space-y-4">
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-[14px] font-normal text-[#111827]">Active Employees</span>
+                                        <span className="text-[14px] font-normal text-[#111827]">324</span>
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-[14px] font-normal text-[#111827]">On Leave</span>
+                                        <span className="text-[14px] font-normal text-[#111827]">12</span>
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-[14px] font-normal text-[#111827]">New Joiners</span>
+                                        <span className="text-[14px] font-normal text-[#111827]">8</span>
+                                    </div>
+                                    <div className="flex items-center justify-between border-t border-[#D0D5DD] pt-4">
+                                        <span className="text-[14px] font-normal text-[#111827]">Total to Process</span>
+                                        <span className="text-[14px] font-normal text-[#111827]">324</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="mt-4 flex items-center justify-end gap-3 pt-6 shrink-0">
+                                <button
+                                    onClick={() => setIsEditModalOpen(false)}
+                                    className="md:h-[48px] h-[40px] rounded-xl border border-[#D0D5DD] md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={() => setIsEditModalOpen(false)}
+                                    className="md:h-[48px] h-[40px] rounded-xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
+                                >
+                                    Generate Payroll
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
