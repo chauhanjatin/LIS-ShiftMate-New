@@ -145,10 +145,10 @@ export default function AddEmployeePage() {
   return (
     <DashboardLayout title="Employees" subtitle={breadcrumb}>
       <div className="flex-1 p-4 2xl:p-6 flex overflow-auto">
-        <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm flex-1 flex flex-col">
-          <h2 className="md:text-[24px] text-[20px] font-semibold text-neutral-900 md:mb-10 mb-7">Add Employee</h2>
+        <div className="rounded-xl bg-white md:p-8 p-5 shadow-sm flex-1 flex flex-col">
+          <h2 className="md:text-[24px] text-[20px] font-medium text-[#111827] md:mb-10 mb-7">Add Employee</h2>
 
-          <div className="flex max-[425px]:flex-col max-[425px]:items-start items-center justify-center 2xl:gap-[48px] xl:gap-[14px] gap-[8px] max-[425px]:gap-0 2xl:mb-20 md:mb-15 mb-12 2xl:mt-4 mt-3 px-4">
+          <div className="flex max-[425px]:flex-col max-[425px]:items-start items-center justify-center 2xl:gap-[48px] xl:gap-[24px] gap-[8px] max-[425px]:gap-0 2xl:mb-20 md:mb-15 mb-12 2xl:mt-4 mt-3 px-4">
             {STEPS.map((step, index) => {
               const stepNumber = index + 1;
               const isActive = currentStep === stepNumber;
@@ -758,7 +758,7 @@ export default function AddEmployeePage() {
           <div className="md:mt-[48px] mt-8 flex justify-end md:gap-4 gap-2 md:pt-8">
             {currentStep === 1 ? (
               <Link href="/employees/all-employees">
-                <button className="rounded-xl cursor-pointer border border-neutral-300 bg-white 2xl:px-6 px-4 2xl:py-3 py-2 2xl:text-[16px] text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
+                <button className="rounded-xl cursor-pointer border border-neutral-300 bg-white 2xl:px-6 xl:px-7 px-4 2xl:py-3 py-2 2xl:text-[16px] text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50">
                   Cancel
                 </button>
               </Link>

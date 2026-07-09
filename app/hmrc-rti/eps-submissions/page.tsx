@@ -58,7 +58,7 @@ export default function EPSSubmissionsPage() {
   return (
     <DashboardLayout title="EPS Submissions" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] px-4 md:px-6 pt-4 md:pt-6 pb-10">
+        <div className="rounded-xl bg-white shadow-sm min-h-[800px] px-4 md:px-6 pt-4 md:pt-6 pb-10">
           
           <div className="flex flex-wrap md:flex-nowrap justify-between items-center md:mb-8 mb-6">
             <h2 className="text-[20px] font-medium text-[#111827]">EPS Submissions</h2>
@@ -88,25 +88,25 @@ export default function EPSSubmissionsPage() {
             <table className="w-full text-left">
               <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] lg:text-[16px] md:text-[14px] text-[13px]">
                 <tr>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Period</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Tax Period</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Amount</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Submitted Date</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Adjustments</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Status</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Action</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Period</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Tax Period</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Amount</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Submitted Date</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Adjustments</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Status</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E2E8F0] text-[11px] md:text-[12px] lg:text-[14px]">
                 {paginatedSubmissions.map((row, idx) => (
                   <tr key={idx} className="hover:bg-neutral-50">
-                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.period}</td>
-                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.taxPeriod}</td>
-                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.amount}</td>
-                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.date}</td>
-                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.adjustments}</td>
-                    <td className="md:p-6 px-4 p-3">{renderBadge(row.status)}</td>
-                    <td className="md:p-6 px-4 p-3">
+                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.period}</td>
+                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.taxPeriod}</td>
+                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.amount}</td>
+                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.date}</td>
+                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.adjustments}</td>
+                    <td className="2xl:p-6 p-4">{renderBadge(row.status)}</td>
+                    <td className="2xl:p-6 p-4">
                       <div className="flex items-center md:gap-3 gap-2">
                         <Link href={`/hmrc-rti/eps-submissions/${row.id}`} className="text-[#111827] hover:text-[#257BFC]">
                           <Image src={viewIcon} alt="View" />

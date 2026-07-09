@@ -39,7 +39,7 @@ export default function FPSSubmissionDetailsPage() {
   return (
     <DashboardLayout title={`${month} Submission Details`} subtitle={breadcrumb}>
       <div className="p-6">
-        <div className={`flex-1 bg-white p-6 rounded-2xl ${lexendDeca.className}`}>
+        <div className={`flex-1 bg-white 2xl:p-6 p-4 rounded-xl ${lexendDeca.className}`}>
 
           <div className="flex justify-between items-center md:mb-6 mb-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">{month} Submission Details</h2>
@@ -52,7 +52,7 @@ export default function FPSSubmissionDetailsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 relative">
 
             <div className="lg:col-span-2 space-y-6">
-              <div className="rounded-2xl bg-[#F9FAFB] md:p-6 p-4">
+              <div className="rounded-xl bg-[#F9FAFB] 2xl:p-6 p-4">
                 <h3 className="text-[16px] font-bold text-[#111827] md:mb-6 mb-4 border-b border-[#E2E8F0] md:pb-4 pb-2">Submission Information</h3>
 
                 <div className="grid md:grid-cols-2 grid-cols-1 md:gap-y-6 gap-y-4">
@@ -87,7 +87,7 @@ export default function FPSSubmissionDetailsPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-[#F9FAFB] md:p-6 p-4">
+              <div className="rounded-xl bg-[#F9FAFB] 2xl:p-6 p-4">
                 <h3 className="text-[16px] font-bold text-[#111827] md:mb-6 mb-4 border-b border-[#E2E8F0] md:pb-4 pb-2">Payment Summary</h3>
 
                 <div className="grid md:grid-cols-2 grid-cols-1 md:gap-y-6 gap-y-4">
@@ -120,23 +120,23 @@ export default function FPSSubmissionDetailsPage() {
             </div>
 
             <div className="space-y-6">
-              <div className="rounded-2xl bg-[#F9FAFB] md:p-6 p-4">
+              <div className="rounded-xl bg-[#F9FAFB] 2xl:p-6 p-4">
                 <h3 className="text-[16px] font-bold text-[#111827] md:mb-6 mb-4 border-b border-[#E2E8F0] md:pb-4 pb-2">HMRC Response</h3>
 
-                <div className="space-y-4 md:mb-8 mb-4">
-                  <div className="flex flex-col md:flex-row justify-between text-[13px]">
+                <div className="space-y-4 2xl:mb-8 mb-4">
+                  <div className="flex flex-col md:flex-row justify-between 2xl:text-[13px] text-[12px]">
                     <span className="text-[#64748B] font-medium">Response Code</span>
                     <span className="text-[#111827] font-semibold">200</span>
                   </div>
-                  <div className="flex flex-col md:flex-row justify-between text-[13px]">
+                  <div className="flex flex-col md:flex-row justify-between 2xl:text-[13px] text-[12px]">
                     <span className="text-[#64748B] font-medium">Response Time</span>
                     <span className="text-[#111827] font-semibold">2.3 seconds</span>
                   </div>
-                  <div className="flex flex-col md:flex-row justify-between text-[13px]">
+                  <div className="flex flex-col md:flex-row justify-between 2xl:text-[13px] text-[12px]">
                     <span className="text-[#64748B] font-medium">Correlation ID</span>
                     <span className="text-[#111827] font-semibold text-right max-w-[150px] truncate">550e8400-e29b-41d4-a716-446655440000</span>
                   </div>
-                  <div className="flex flex-col md:flex-row justify-between text-[13px]">
+                  <div className="flex flex-col md:flex-row justify-between 2xl:text-[13px] text-[12px]">
                     <span className="text-[#64748B] font-medium">Acknowledgement Reference</span>
                     <span className="text-[#111827] font-semibold md:text-right">ACK-{year}-03-345</span>
                   </div>

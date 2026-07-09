@@ -7,6 +7,7 @@ import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import CustomSelect from '@/Component/UI/CustomSelect';
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
+import deleteRedIcon from "@/assets/images/icons/delete-red.svg";
 import { Lexend_Deca } from "next/font/google";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
@@ -85,7 +86,7 @@ export default function NationalInsuranceRulePage() {
     return (
         <DashboardLayout title="National Insurance" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                <div className="rounded-xl bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">National Insurance Categories</h2>
 
@@ -108,7 +109,7 @@ export default function NationalInsuranceRulePage() {
                     </div>
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="min-w-[900px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
@@ -198,13 +199,12 @@ export default function NationalInsuranceRulePage() {
 
             {isDeleteModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
-                    <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+                    <div className="w-full max-w-[350px] rounded-xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
                         <div className="mb-6 flex flex-col items-center text-center">
-                            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-100">
-                                <Image src={deleteIcon} alt="Delete" width={28} height={28} className="h-7 w-7 text-red-600" />
+                            <div className="mb-4 rounded-xl p-[9px] bg-red-100">
+                                <Image src={deleteRedIcon} alt="Delete" className="text-red-600" />
                             </div>
-                            <h2 className="mb-2 text-xl font-bold text-neutral-900">Delete National Insurance Rule</h2>
-                            <p className="text-sm text-neutral-500">Are you sure you want to delete this national insurance rule? This action cannot be undone.</p>
+                            <p className="text-[16px] font-medium text-[#111827]">Are you sure you want to delete this national insurance rule?</p>
                         </div>
                         <div className="flex gap-3">
                             <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>

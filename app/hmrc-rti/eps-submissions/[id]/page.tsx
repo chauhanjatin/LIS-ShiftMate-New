@@ -69,7 +69,7 @@ export default function EPSSubmissionDetailsPage() {
           
           <div className="lg:col-span-3 space-y-6">
             
-            <div className="rounded-2xl bg-white p-6 shadow-sm border border-[#E2E8F0]">
+            <div className="rounded-xl bg-white p-6 shadow-sm border border-[#E2E8F0]">
               <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
                 <div>
                   <p className="text-[12px] font-medium text-[#98A2B3] md:mb-2 mb-1">Period</p>
@@ -120,7 +120,7 @@ export default function EPSSubmissionDetailsPage() {
           </div>
 
           <div className="space-y-6">
-            <div className="rounded-2xl border border-[#E2E8F0] bg-white md:p-6 p-4 shadow-sm">
+            <div className="rounded-xl border border-[#E2E8F0] bg-white md:p-6 p-4 shadow-sm">
               <h3 className="text-[16px] font-bold text-[#111827] md:mb-6 mb-4">HMRC Response</h3>
 
               <div className="relative border-l-2 border-[#E2E8F0] ml-4 md:space-y-8 space-y-4 mt-4">

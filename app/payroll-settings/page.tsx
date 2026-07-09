@@ -4,6 +4,9 @@ import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import Toast from '@/Component/UI/Toast';
 import CustomSelect from '@/Component/UI/CustomSelect';
 import Link from "next/link";
+import { Lexend_Deca } from "next/font/google";
+
+const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 export default function PayrollSettingsPage() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -52,10 +55,10 @@ export default function PayrollSettingsPage() {
 
     return (
         <DashboardLayout title="Payroll Settings" subtitle={breadcrumb}>
-            <div className="flex-1 p-4 2xl:p-6">
-                <div className="rounded-2xl bg-white shadow-sm pb-10">
+            <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+                <div className="rounded-xl bg-white shadow-sm pb-10">
                     <div className="flex flex-wrap items-center justify-between md:p-6 p-4">
-                        <h2 className="md:text-[20px] text-[16px] font-bold text-[#111827]">General Setting</h2>
+                        <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">General Setting</h2>
                     </div>
 
                     <div className="mx-[6%]">

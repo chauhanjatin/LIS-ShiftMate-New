@@ -76,10 +76,10 @@ export default function AddRolePage() {
 
   return (
     <DashboardLayout title="Roles" subtitle="Home/ Roles List/ Add Role">
-      <div className="flex-1 p-4 2xl:p-6 h-full flex flex-col">
-        <div className="rounded-2xl border border-[#E2E8F0] bg-white md:p-8 p-2 shadow-sm flex-1 flex flex-col xl:flex-row gap-6 overflow-hidden">
+      <div className="flex-1 p-4 2xl:p-6 flex flex-col">
+        <div className="rounded-xl bg-white 2xl:p-8 xl:p-5 p-2 shadow-sm flex-1 flex flex-col xl:flex-row 2xl:gap-6 gap-4 overflow-hidden">
           
-          <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-2xl lg:p-6 p-3">
+          <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-xl 2xl:p-6 p-3">
             <h2 className="text-[20px] font-bold text-neutral-900 mb-2">Create New Role</h2>
             
             <div className="mt-6 lg:mb-8">
@@ -116,7 +116,7 @@ export default function AddRolePage() {
             </div>
           </div>
 
-          <div className="flex-1 bg-white lg:p-6 p-3 lg:border-l border-[#E4E7EC] overflow-hidden flex flex-col">
+          <div className="flex-1 bg-white 2xl:p-6 p-3 lg:border-l border-[#E4E7EC] overflow-hidden flex flex-col">
             <h3 className="text-[18px] font-bold text-neutral-900 mb-6">Permissions Matrix</h3>
             
             <div className="flex-1 overflow-x-auto overflow-y-auto">
@@ -214,7 +214,7 @@ export default function AddRolePage() {
               </table>
             </div>
             
-            <div className="flex items-center justify-end gap-4 pt-6 mt-4 border-t border-[#E2E8F0]">
+            <div className="flex items-center justify-end gap-4 pt-6 2xl:mt-4 border-t border-[#E2E8F0]">
               <button 
                 onClick={() => router.push('/roles')}
                 className="px-6 py-2.5 rounded-xl cursor-pointer border border-neutral-300 bg-white text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition overflow-hidden"

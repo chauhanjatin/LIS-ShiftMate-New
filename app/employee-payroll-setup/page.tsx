@@ -89,9 +89,9 @@ export default function EmployeePayrollSetupPage() {
     return (
         <DashboardLayout title="Employee Payroll Setup" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                <div className="rounded-xl bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
-                        <h2 className="md:text-[20px] text-[16px] font-medium text-[#2E334E]">Employee Records</h2>
+                        <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Employee Records</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <div className="relative 2xl:w-75 md:w-60 w-48">
@@ -113,19 +113,19 @@ export default function EmployeePayrollSetupPage() {
                     </div>
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="min-w-[1100px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
                                         <tr>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E]">Name</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E]">Salary</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E]">Tax Code</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E]">NI Category</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E]">Student Loan Plan</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E] text-center">Pension Status</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#2E334E] text-center">Pay Frequency</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-neutral-500 text-center">Action</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Name</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Salary</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Tax Code</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">NI Category</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Student Loan Plan</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] text-center">Pension Status</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] text-center">Pay Frequency</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
@@ -134,13 +134,13 @@ export default function EmployeePayrollSetupPage() {
                                                 <td className="px-4 py-4 sm:px-6">
                                                     <div className="flex items-center gap-3">
                                                         <img src={emp.avatar} alt={emp.name} className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover" />
-                                                        <span className="text-[13px] sm:text-[14px] font-normal text-[#2E334E]">{emp.name}</span>
+                                                        <span className="text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.name}</span>
                                                     </div>
                                                 </td>
-                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#2E334E]">{emp.salary}</td>
-                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#2E334E]">{emp.taxCode}</td>
-                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#2E334E]">{emp.niCategory}</td>
-                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#2E334E]">{emp.studentLoanPlan}</td>
+                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.salary}</td>
+                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.taxCode}</td>
+                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.niCategory}</td>
+                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.studentLoanPlan}</td>
 
                                                 <td className="px-4 py-4 sm:px-6 text-center">
                                                     <span className={`inline-flex rounded-full px-3 py-1 text-[12px] font-normal ${emp.pensionStatus === "Auto-enrolled" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FDEAEA] text-[#F04438]"
@@ -201,7 +201,7 @@ export default function EmployeePayrollSetupPage() {
                                         type="text"
                                         defaultValue={selectedEmployee?.name || ""}
                                         readOnly
-                                        className="md:h-[52px] h-[40px] w-full rounded-2xl border border-[#E2E8F0] px-4 text-[14px] bg-neutral-50 outline-none text-[#667085]"
+                                        className="md:h-[52px] h-[40px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[14px] bg-neutral-50 outline-none text-[#667085]"
                                     />
                                 </div>
 
@@ -327,7 +327,7 @@ export default function EmployeePayrollSetupPage() {
                             <div className="md:mt-10 mt-8 flex items-center justify-end gap-3 md:gap-4">
                                 <button
                                     onClick={() => setIsEditModalOpen(false)}
-                                    className="md:h-[48px] h-[40px] rounded-2xl border border-[#E2E8F0] md:px-8 px-4 text-[13px] md:text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
+                                    className="md:h-[48px] h-[40px] rounded-xl border border-[#E2E8F0] md:px-8 px-4 text-[13px] md:text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
@@ -336,9 +336,9 @@ export default function EmployeePayrollSetupPage() {
                                     if (selectedEmployee) {
                                         setEmployees(prev => prev.map(e => e.id === selectedEmployee.id ? selectedEmployee : e));
                                     }
-                                    setIsEditModalOpen(false); 
-                                    setShowToast(true); 
-                                }} className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 text-[13px] md:text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                    setIsEditModalOpen(false);
+                                    setShowToast(true);
+                                }} className="md:h-[48px] h-[40px] rounded-xl bg-[#257BFC] md:px-8 px-4 text-[13px] md:text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                     Save Change
                                 </button>
                             </div>
@@ -349,17 +349,16 @@ export default function EmployeePayrollSetupPage() {
 
             {isDeleteModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
-                    <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+                    <div className="w-full max-w-[370px] rounded-xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
                         <div className="mb-6 flex flex-col items-center text-center">
-                            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-100">
-                                <Image src={deleteIcon} alt="Delete" width={28} height={28} className="h-7 w-7 text-red-600" />
+                            <div className="mb-4 p-[9px] rounded-xl bg-red-100">
+                                <Image src={deleteIcon} alt="Delete" className="text-red-600" />
                             </div>
-                            <h2 className="mb-2 text-xl font-bold text-neutral-900">Remove Employee</h2>
-                            <p className="text-sm text-neutral-500">Are you sure you want to remove this employee from payroll? This action cannot be undone.</p>
+                            <p className="text-[16px] text-[#111827] font-medium">Are you sure you want to permanently remove this employee from payroll?</p>
                         </div>
                         <div className="flex gap-3">
                             <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
-                            <button onClick={handleDelete} className="flex-1 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-700 cursor-pointer">Remove</button>
+                            <button onClick={handleDelete} className="flex-1 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-700 cursor-pointer">Delete</button>
                         </div>
                     </div>
                 </div>

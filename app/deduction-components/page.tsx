@@ -10,6 +10,7 @@ import deleteIcon from "@/assets/images/icons/delete.svg";
 import Toast from '@/Component/UI/Toast';
 import CustomSelect from '@/Component/UI/CustomSelect';
 import { Lexend_Deca } from "next/font/google";
+import deleteRedIcon from "@/assets/images/icons/delete-red.svg";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -57,8 +58,10 @@ export default function DeductionComponentsPage() {
     }, [deductions, isLoaded]);
 
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [deductionToDelete, setDeductionToDelete] = useState<number | null>(null);
+    const [deductionToEdit, setDeductionToEdit] = useState<number | null>(null);
     const [showToast, setShowToast] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -82,7 +85,7 @@ export default function DeductionComponentsPage() {
             newErrors.rate = "Must be a valid number";
         }
         if (!formData.rules) newErrors.rules = "Required";
-        
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -113,10 +116,44 @@ export default function DeductionComponentsPage() {
         setShowToast(true);
     };
 
+    const handleEditSave = () => {
+        if (!validateForm() || deductionToEdit === null) return;
+        const rateVal = formData.rate.includes('%') || formData.rate.includes('$')
+            ? formData.rate
+            : formData.method === 'Percentage' ? `${formData.rate}%` : `$${formData.rate}`;
+
+        setDeductions(deductions.map(d => d.id === deductionToEdit ? {
+            ...d,
+            name: formData.name,
+            type: formData.type,
+            rate: rateVal,
+            rules: formData.rules,
+            applicable: formData.applicable
+        } : d));
+        setIsEditModalOpen(false);
+        setDeductionToEdit(null);
+    };
+
     const openAddModal = () => {
         setFormData({ name: "", type: "", method: "", rate: "", rules: "", applicable: true });
         setErrors({});
         setIsAddModalOpen(true);
+    };
+
+    const openEditModal = (ded: DeductionComponent) => {
+        const method = ded.rate.includes('%') ? 'Percentage' : 'Fixed Amount';
+        const rateVal = ded.rate.replace(/[%$]/g, '');
+        setFormData({
+            name: ded.name,
+            type: ded.type,
+            method: method,
+            rate: rateVal,
+            rules: ded.rules,
+            applicable: ded.applicable
+        });
+        setErrors({});
+        setDeductionToEdit(ded.id);
+        setIsEditModalOpen(true);
     };
 
     const filteredDeductions = deductions.filter(d =>
@@ -125,7 +162,7 @@ export default function DeductionComponentsPage() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    
+
     const totalPages = Math.ceil(filteredDeductions.length / rowsPerPage) || 1;
     const startIndex = (currentPage - 1) * rowsPerPage;
     const paginatedDeductions = filteredDeductions.slice(startIndex, startIndex + rowsPerPage);
@@ -155,7 +192,7 @@ export default function DeductionComponentsPage() {
     return (
         <DashboardLayout title="Deduction Components" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                <div className="rounded-xl bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Deduction Components</h2>
 
@@ -188,7 +225,7 @@ export default function DeductionComponentsPage() {
 
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="min-w-[1100px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
@@ -206,7 +243,7 @@ export default function DeductionComponentsPage() {
                                                 <td className="py-6 pl-4 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.name}</td>
                                                 <td className="py-6 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.type}</td>
                                                 <td className="py-6 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.rate}</td>
-                                                <td className="py-6 pr-26 text-[13px] sm:text-[14px] text-[#111827]">
+                                                <td className="py-6 pr-6 text-[13px] sm:text-[14px] text-[#111827]">
                                                     <div className="flex items-start gap-2 max-w-[500px]">
                                                         <input
                                                             type="checkbox"
@@ -219,7 +256,10 @@ export default function DeductionComponentsPage() {
                                                 </td>
                                                 <td className="px-4 py-4 sm:px-6">
                                                     <div className="flex items-center gap-3">
-                                                        <button className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
+                                                        <button
+                                                            onClick={() => openEditModal(deduction)}
+                                                            className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer"
+                                                        >
                                                             <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
                                                         </button>
                                                         <button onClick={() => { setDeductionToDelete(deduction.id); setIsDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
@@ -241,7 +281,7 @@ export default function DeductionComponentsPage() {
                                     Rows per page:
                                 </span>
                                 <div className="w-[80px]">
-                                    <CustomSelect 
+                                    <CustomSelect
                                         value={String(rowsPerPage)}
                                         onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
                                         options={[
@@ -260,14 +300,14 @@ export default function DeductionComponentsPage() {
                             </span>
 
                             <div className="flex items-center gap-1 ml-4">
-                                <button 
+                                <button
                                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                                     disabled={currentPage === 1}
                                     className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                                     disabled={currentPage === totalPages}
                                     className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
@@ -285,7 +325,7 @@ export default function DeductionComponentsPage() {
             {isAddModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                     <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-[#E2E8F0] md:px-8 px-4 md:py-6 py-4">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] 2xl:px-8 xl:px-6 px-4 2xl:py-6 py-4">
                             <h2 className="md:text-[24px] text-[16px] font-bold text-[#1D2939]">
                                 Add Deduction Component
                             </h2>
@@ -311,7 +351,7 @@ export default function DeductionComponentsPage() {
                                         value={formData.name}
                                         onChange={handleInputChange}
                                         placeholder="e.g. PAYE, Pension"
-                                        className={`md:h-[52px] h-[45px] w-full rounded-2xl border ${errors.name ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
+                                        className={`md:h-[52px] h-[45px] w-full rounded-xl border ${errors.name ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
                                     />
                                     {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                                 </div>
@@ -363,7 +403,7 @@ export default function DeductionComponentsPage() {
                                         value={formData.rate}
                                         onChange={handleInputChange}
                                         placeholder="Enter Rate"
-                                        className={`md:h-[52px] h-[45px] w-full rounded-2xl border ${errors.rate ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
+                                        className={`md:h-[52px] h-[45px] w-full rounded-xl border ${errors.rate ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
                                     />
                                     {errors.rate && <p className="text-red-500 text-xs mt-1">{errors.rate}</p>}
                                 </div>
@@ -378,7 +418,7 @@ export default function DeductionComponentsPage() {
                                         value={formData.rules}
                                         onChange={handleInputChange}
                                         placeholder="Describe the rules and conditions for this deduction..."
-                                        className={`md:h-[120px] h-[100px] w-full resize-none rounded-2xl border ${errors.rules ? 'border-red-500' : 'border-[#E2E8F0]'} md:p-4 p-3 text-[14px] outline-none transition focus:border-[#257BFC]`}
+                                        className={`md:h-[120px] h-[100px] w-full resize-none rounded-xl border ${errors.rules ? 'border-red-500' : 'border-[#E2E8F0]'} md:p-4 p-3 text-[14px] outline-none transition focus:border-[#257BFC]`}
                                     />
                                     {errors.rules && <p className="text-red-500 text-xs mt-1">{errors.rules}</p>}
                                 </div>
@@ -387,12 +427,12 @@ export default function DeductionComponentsPage() {
                             <div className="mt-8 flex items-center justify-end gap-3 md:gap-4">
                                 <button
                                     onClick={() => setIsAddModalOpen(false)}
-                                    className="md:h-[48px] h-[40px] rounded-2xl border border-[#101828] px-4 md:px-8 text-[12px] md:text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
+                                    className="md:h-[48px] h-[40px] rounded-xl border border-[#101828] px-4 md:px-8 text-[12px] md:text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
 
-                                <button onClick={handleAdd} className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] px-4 md:px-8 text-[12px] md:text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                <button onClick={handleAdd} className="md:h-[48px] h-[40px] rounded-xl bg-[#257BFC] px-4 md:px-8 text-[12px] md:text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                     Add Deduction Component
                                 </button>
                             </div>
@@ -401,15 +441,141 @@ export default function DeductionComponentsPage() {
                 </div>
             )}
 
+            {/* Edit Deduction Component Modal */}
+            {isEditModalOpen && (
+                <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
+                    <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] 2xl:px-8 xl:px-6 px-4 2xl:py-6 py-4">
+                            <h2 className="md:text-[24px] text-[16px] font-bold text-[#1D2939]">
+                                Edit Deduction Component
+                            </h2>
+
+                            <button
+                                onClick={() => {
+                                    setIsEditModalOpen(false);
+                                    setDeductionToEdit(null);
+                                }}
+                                className="text-neutral-500 transition hover:text-black cursor-pointer"
+                            >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+
+                        <div className="md:px-8 px-4 md:py-6 py-4">
+                            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                                <div className="md:col-span-2">
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Deduction Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleInputChange}
+                                        placeholder="e.g. PAYE, Pension"
+                                        className={`md:h-[52px] h-[45px] w-full rounded-xl border ${errors.name ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
+                                    />
+                                    {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                                </div>
+
+                                <div>
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Deduction Type
+                                    </label>
+
+                                    <CustomSelect
+                                        value={formData.type}
+                                        onChange={(val) => handleSelectChange('type', val)}
+                                        options={[
+                                            { label: "Statutory", value: "Statutory" },
+                                            { label: "Custom", value: "Custom" }
+                                        ]}
+                                        placeholder="Select Type"
+                                        error={!!errors.type}
+                                    />
+                                    {errors.type && <p className="text-red-500 text-xs mt-1">{errors.type}</p>}
+                                </div>
+
+                                <div>
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Method
+                                    </label>
+
+                                    <CustomSelect
+                                        value={formData.method}
+                                        onChange={(val) => handleSelectChange('method', val)}
+                                        options={[
+                                            { label: "Percentage", value: "Percentage" },
+                                            { label: "Fixed Amount", value: "Fixed Amount" }
+                                        ]}
+                                        placeholder="Select Method Type"
+                                        error={!!errors.method}
+                                    />
+                                    {errors.method && <p className="text-red-500 text-xs mt-1">{errors.method}</p>}
+                                </div>
+
+                                <div className="md:col-span-2">
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Rate(%)
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="rate"
+                                        value={formData.rate}
+                                        onChange={handleInputChange}
+                                        placeholder="Enter Rate"
+                                        className={`md:h-[52px] h-[45px] w-full rounded-xl border ${errors.rate ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
+                                    />
+                                    {errors.rate && <p className="text-red-500 text-xs mt-1">{errors.rate}</p>}
+                                </div>
+
+                                <div className="md:col-span-2">
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Applicable Rules
+                                    </label>
+
+                                    <textarea
+                                        name="rules"
+                                        value={formData.rules}
+                                        onChange={handleInputChange}
+                                        placeholder="Describe the rules and conditions for this deduction..."
+                                        className={`md:h-[120px] h-[100px] w-full resize-none rounded-xl border ${errors.rules ? 'border-red-500' : 'border-[#E2E8F0]'} md:p-4 p-3 text-[14px] outline-none transition focus:border-[#257BFC]`}
+                                    />
+                                    {errors.rules && <p className="text-red-500 text-xs mt-1">{errors.rules}</p>}
+                                </div>
+                            </div>
+
+                            <div className="mt-8 flex items-center justify-end gap-3 md:gap-4">
+                                <button
+                                    onClick={() => {
+                                        setIsEditModalOpen(false);
+                                        setDeductionToEdit(null);
+                                    }}
+                                    className="md:h-[48px] h-[40px] rounded-xl border border-[#101828] px-4 md:px-8 text-[12px] md:text-[15px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
+                                >
+                                    Cancel
+                                </button>
+
+                                <button onClick={handleEditSave} className="md:h-[48px] h-[40px] rounded-xl bg-[#257BFC] px-4 md:px-8 text-[12px] md:text-[15px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                    Add Pay Component
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
             {isDeleteModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
-                    <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+                    <div className="w-full max-w-[370px] rounded-xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
                         <div className="mb-6 flex flex-col items-center text-center">
-                            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-100">
-                                <Image src={deleteIcon} alt="Delete" width={28} height={28} className="h-7 w-7 text-red-600" />
+                            <div className="mb-4 p-[9px] rounded-xl bg-red-100">
+                                <Image src={deleteRedIcon} alt="Delete" className="text-red-600" />
                             </div>
-                            <h2 className="mb-2 text-xl font-bold text-neutral-900">Delete Deduction</h2>
-                            <p className="text-sm text-neutral-500">Are you sure you want to delete this deduction? This action cannot be undone.</p>
+                            <p className="text-[16px] text-[#111827] font-medium">Are you sure you want to permanently delete "PAYE (Income Tax)"?</p>
                         </div>
                         <div className="flex gap-3">
                             <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>

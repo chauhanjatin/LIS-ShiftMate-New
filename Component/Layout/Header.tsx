@@ -17,7 +17,7 @@ function AdminDropdown() {
             alt="Mathieu Wade"
             width={40}
             height={40}
-            className="md:h-10 h-8 md:w-10 w-8 rounded-xl sm:rounded-2xl object-cover"
+            className="md:h-10 h-8 md:w-10 w-8 rounded-xl sm:rounded-xl object-cover"
           />
           <span className="hidden sm:block text-left leading-tight">
             <span className="block xl:text-base text-[14px] font-bold text-neutral-900">
@@ -41,7 +41,7 @@ function AdminDropdown() {
         </span>
       </summary>
 
-      <div className="absolute right-0 z-20 mt-3 w-[calc(100vw-2rem)] xl:max-w-[280px] max-w-[215px] sm:w-72 rounded-2xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
+      <div className="absolute right-0 z-20 mt-3 w-[calc(100vw-2rem)] xl:max-w-[280px] max-w-[215px] sm:w-72 rounded-xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
         <button
           type="button"
           className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100"
@@ -135,7 +135,7 @@ function NotificationDropdown() {
       {isOpen && (
         <>
           <div className="fixed inset-0 z-10" onClick={() => detailsRef.current?.removeAttribute('open')}></div>
-          <div className="absolute right-[-40px] sm:right-0 z-20 mt-3 w-[calc(100vw-2rem)] sm:w-[380px] max-w-[380px] rounded-2xl border border-neutral-200 bg-white shadow-[0_16px_35px_rgba(15,23,42,0.14)] overflow-hidden">
+          <div className="absolute right-[-40px] sm:right-0 z-20 mt-3 w-[calc(100vw-2rem)] sm:w-[380px] max-w-[380px] rounded-xl border border-neutral-200 bg-white shadow-[0_16px_35px_rgba(15,23,42,0.14)] overflow-hidden">
             <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-100">
               <h3 className="text-[18px] font-bold text-neutral-900">Notifications</h3>
               <button onClick={() => detailsRef.current?.removeAttribute('open')} className="text-neutral-500 hover:text-neutral-800 transition-colors cursor-pointer">
@@ -147,7 +147,7 @@ function NotificationDropdown() {
                 const styles = getTypeStyles(notification.type);
                 return (
                   <div key={notification.id} className="flex gap-4 p-3 hover:bg-neutral-50 rounded-xl transition-colors cursor-pointer">
-                    <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${styles.bg} ${styles.text}`}>
+                    <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${styles.bg} ${styles.text}`}>
                       {styles.icon}
                     </div>
                     <div className="flex-1 min-w-0 pt-0.5">

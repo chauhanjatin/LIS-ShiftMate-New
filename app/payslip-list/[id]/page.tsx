@@ -66,7 +66,7 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
                     </div>
                 </div>
 
-                <div id="payslip-container" className="mx-auto w-full max-w-[850px] overflow-hidden rounded-2xl bg-white shadow-sm border border-neutral-200 relative">
+                <div id="payslip-container" className="mx-auto w-full max-w-[850px] overflow-hidden rounded-xl bg-white shadow-sm border border-neutral-200 relative">
 
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
                         <Image src={shiftmateBg} alt="" className="absolute md:top-[45%] top-[62%]" />
@@ -180,6 +180,44 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
                                 <span className="text-[14px] font-semibold text-[#111827]">Total Deductions</span>
                                 <span className="text-[14px] font-semibold text-[#F04438]">$1804.16</span>
                             </div>
+                            
+                            <div className="mt-8 pt-2">
+                                <h3 className="md:text-[20px] text-[16px] font-bold text-[#111827] mb-6">Year-to-Date Totals (April 2025 - March 2026)</h3>
+                                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+                                    <div className="rounded-xl border border-[#E2E8F0] p-4 text-center bg-white shadow-sm">
+                                        <p className="text-[12px] text-[#9CA3AF] mb-1 font-medium">Gross Pay</p>
+                                        <p className="text-[16px] font-bold text-[#111827]">£65,000</p>
+                                    </div>
+                                    <div className="rounded-xl border border-[#E2E8F0] p-4 text-center bg-white shadow-sm">
+                                        <p className="text-[12px] text-[#9CA3AF] mb-1 font-medium">Income Tax</p>
+                                        <p className="text-[16px] font-bold text-[#111827]">£13,000</p>
+                                    </div>
+                                    <div className="rounded-xl border border-[#E2E8F0] p-4 text-center bg-white shadow-sm">
+                                        <p className="text-[12px] text-[#9CA3AF] mb-1 font-medium">National Insurance</p>
+                                        <p className="text-[16px] font-bold text-[#111827]">£5,400</p>
+                                    </div>
+                                    <div className="rounded-xl border border-[#E2E8F0] p-4 text-center bg-white shadow-sm">
+                                        <p className="text-[12px] text-[#9CA3AF] mb-1 font-medium">Pension</p>
+                                        <p className="text-[16px] font-bold text-[#111827]">£3,250</p>
+                                    </div>
+                                    <div className="rounded-xl border border-[#A6F4C5] bg-[#F6FDF6] p-4 text-center shadow-sm">
+                                        <p className="text-[12px] text-[#111827] mb-1 font-bold">Net Pay</p>
+                                        <p className="text-[16px] font-bold text-[#4DB949]">£43,350</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center justify-between rounded-b-xl bg-[#EAF9EA] md:p-6 p-4 border-t border-[#A6F4C5] -mx-4 md:-mx-6 -mb-4 md:-mb-6">
+                                <div>
+                                    <p className="text-[12px] text-[#111827] mb-1 font-medium">Payment Method</p>
+                                    <p className="md:text-[20px] text-[16px] font-bold text-[#111827]">Bank Transfer</p>
+                                </div>
+                                <div className="text-right">
+                                    <p className="text-[12px] text-[#111827] mb-1 font-medium">Net Pay</p>
+                                    <p className="md:text-[24px] text-[20px] font-bold text-[#4DB949]">$3612.51</p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -121,10 +121,10 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
     return (
         <DashboardLayout title="Users" subtitle={breadcrumb}>
             <div className="flex-1 p-4 2xl:p-6 overflow-y-auto">
-                <div className="flex flex-col lg:flex-row gap-6 bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
+                <div className="flex flex-col lg:flex-row gap-6 xl:gap-5 2xl:gap-6 bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
 
                     <div className="w-full lg:w-[353px] shrink-0">
-                        <div className="rounded-2xl border border-neutral-200 p-6 bg-[#F9FAFB]">
+                        <div className="rounded-xl border border-neutral-200 p-6 bg-[#F9FAFB]">
                             <div className="flex flex-col items-center text-center">
                                 <img
                                     src={user.avatar}
@@ -244,12 +244,12 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                                 <h2 className="text-[18px] font-bold text-neutral-900">Account Status</h2>
                                 <p className="mt-1 text-[13px] text-neutral-500 mb-6">Enter the employee's basic personal information for identification and contact purposes.</p>
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-5">
                                     {statuses.map((status) => (
                                         <div
                                             key={status.value}
                                             onClick={() => setSelectedStatus(status.value)}
-                                            className={`cursor-pointer rounded-2xl border md:p-4 p-3 transition-all ${
+                                            className={`cursor-pointer rounded-xl border 2xl:p-4 xl:p-3 md:p-4 p-3 transition-all ${
                                                 selectedStatus === status.value
                                                     ? status.value === "Active" ? "border-[#4DB949] bg-[#F5FCF5]" :
                                                       status.value === "Inactive" ? "border-[#98A2B3] bg-[#F2F4F7]" :
@@ -258,7 +258,7 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                                                     : "border-neutral-200 bg-white hover:border-neutral-300"
                                             }`}
                                         >
-                                            <div className={`md:mb-3 mb-2 flex md:h-10 h-9 md:w-10 w-9 items-center justify-center rounded-xl ${
+                                            <div className={`2xl:mb-3 xl:mb-2 md:mb-3 mb-2 flex md:h-10 h-9 md:w-10 w-9 items-center justify-center rounded-xl ${
                                                 selectedStatus === status.value
                                                     ? status.value === "Active" ? "bg-[#4DB949] text-white" :
                                                       status.value === "Inactive" ? "bg-[#98A2B3] text-white" :

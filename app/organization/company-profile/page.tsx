@@ -31,15 +31,15 @@ export default function CompanyProfilePage() {
   return (
     <DashboardLayout title="Company Profile" subtitle="Home/ Organization/ Company Profile">
       <div className="flex-1 p-4 2xl:p-6">
-        <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm">
+        <div className="rounded-xl border border-neutral-200 bg-white 2xl:p-8 xl:p-6 p-5 shadow-sm">
 
-          <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-5 rounded-2xl bg-[#F9FAFB] border border-[#E4E7EC] md:p-6 p-4 md:mb-10 mb-8">
+          <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-5 rounded-xl bg-[#F9FAFB] border border-[#E4E7EC] 2xl:p-6 p-4 2xl:mb-10 mb-8">
             <Image
               src={appLogo}
               alt="App Logo"
               width={80}
               height={80}
-              className="rounded-2xl"
+              className="rounded-xl"
             />
             <div>
               <h1 className="md:text-[32px] text-[22px] font-medium text-[#111827] mb-2">Shiftmate</h1>
@@ -49,16 +49,16 @@ export default function CompanyProfilePage() {
                   alt="Verify"
                   width={18}
                   height={18}
-                  className="rounded-2xl"
+                  className="rounded-xl"
                 />
                 <span className="text-[12px] font-normal text-[#4DB949]">Verified Company</span>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-12 gap-y-12">
+          <div className="grid grid-cols-1 xl:grid-cols-2 2xl:gap-x-12 xl:gap-x-8 gap-y-12">
             <div className="border-r border-[#E4E7EC] pr-8">
-              <div className="mb-8">
+              <div className="2xl:mb-8 mb-6">
                 <h2 className="text-[18px] font-bold text-neutral-900 mb-1">Basic Information</h2>
                 <p className="text-[13px] text-neutral-500">Official company identity and registration details.</p>
               </div>
@@ -102,7 +102,7 @@ export default function CompanyProfilePage() {
                 </div>
               </div>
 
-              <div className="mt-12 mb-8">
+              <div className="mt-12 2xl:mb-8 mb-6">
                 <h2 className="text-[18px] font-bold text-neutral-900 mb-1">Contact Information</h2>
                 <p className="text-[13px] text-neutral-500">Business contact and location details.</p>
               </div>
@@ -184,7 +184,7 @@ export default function CompanyProfilePage() {
             </div>
 
             <div>
-              <div className="mb-8">
+              <div className="2xl:mb-8 mb-6">
                 <h2 className="text-[18px] font-bold text-neutral-900 mb-1">Tax & Payroll Details</h2>
                 <p className="text-[13px] text-neutral-500">Official tax and payroll references for financial compliance.</p>
               </div>
@@ -240,7 +240,7 @@ export default function CompanyProfilePage() {
                   </div>
                 </div>
 
-                <div className="mt-8 rounded-2xl bg-[#F0F6FF] border border-[#D1E4FF] p-4 md:p-6">
+                <div className="mt-8 rounded-xl bg-[#F0F6FF] border border-[#D1E4FF] p-4 2xl:p-6">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#257BFC] text-white mb-4">
                     <span className="text-[18px] font-bold">$</span>
                   </div>

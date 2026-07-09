@@ -74,9 +74,9 @@ export default function DepartmentsPage() {
   return (
     <DashboardLayout title="Departments" subtitle="Home/ Departments">
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
+        <div className="rounded-xl bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 pt-4 md:pt-6">
-            <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">
+            <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">
               Departments List
             </h2>
 
@@ -119,7 +119,7 @@ export default function DepartmentsPage() {
           </div>
 
           <div className="p-3 2xl:p-6">
-            <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+            <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-full w-full text-left border-collapse">
                   <thead className="bg-[#F2F4F7]">
@@ -201,41 +201,41 @@ export default function DepartmentsPage() {
 
             {/* Pagination */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
-                <div className="flex items-center gap-2">
-                    <span className="text-[12px] sm:text-[14px] text-neutral-500">Rows per page:</span>
-                    <div className="w-[80px]">
-                        <CustomSelect 
-                            value={String(rowsPerPage)}
-                            onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
-                            options={[
-                                { label: "5", value: "5" },
-                                { label: "10", value: "10" },
-                                { label: "20", value: "20" }
-                            ]}
-                            menuPlacement="top"
-                            className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
-                        />
-                    </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[12px] sm:text-[14px] text-neutral-500">Rows per page:</span>
+                <div className="w-[80px]">
+                  <CustomSelect
+                    value={String(rowsPerPage)}
+                    onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                    options={[
+                      { label: "5", value: "5" },
+                      { label: "10", value: "10" },
+                      { label: "20", value: "20" }
+                    ]}
+                    menuPlacement="top"
+                    className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                  />
                 </div>
-                <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
-                    {departments.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, departments.length)} of ${departments.length}` : '0-0 of 0'}
-                </span>
-                <div className="flex items-center gap-1 ml-4">
-                    <button 
-                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
-                        className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                    </button>
-                    <button 
-                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                        disabled={currentPage === totalPages}
-                        className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </button>
-                </div>
+              </div>
+              <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                {departments.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, departments.length)} of ${departments.length}` : '0-0 of 0'}
+              </span>
+              <div className="flex items-center gap-1 ml-4">
+                <button
+                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button
+                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function DepartmentsPage() {
       {deleteModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
           <div className="max-w-[420px] rounded-xl bg-white p-6 text-center shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
-            <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px] bg-[#FDEAEA]">
+            <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px]">
               <Image src={deleteRedIcon} alt="Delete" className="pointer-events-none" />
             </div>
             <h3 className="mx-auto mb-6 max-w-[290px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
@@ -274,8 +274,8 @@ export default function DepartmentsPage() {
       {/* Create Department Modal */}
       {createModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 py-4">
-          <div className="w-full max-w-[640px] rounded-2xl bg-white md:p-6 p-4 shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
-            <div className="flex items-center justify-between mb-8">
+          <div className="w-full max-w-[640px] rounded-xl bg-white md:p-6 p-4 shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
+            <div className="flex items-center justify-between 2xl:mb-8 mb-6">
               <h2 className="md:text-[20px] text-[17px] font-bold text-neutral-900">Create New Department</h2>
               <button onClick={() => setCreateModalOpen(false)} className="text-neutral-400 hover:text-neutral-900 cursor-pointer">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -312,7 +312,7 @@ export default function DepartmentsPage() {
               </div>
             </div>
 
-            <div className="mb-8">
+            <div className="2xl:mb-8 mb-5">
               <label className="block text-[13px] font-medium text-neutral-500 mb-1.5">Department Manager</label>
               <CustomSelect
                 value={selectedManagerId}

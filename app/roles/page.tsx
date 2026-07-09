@@ -23,7 +23,7 @@ export default function RolesPage() {
   const [roleToDelete, setRoleToDelete] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  
+
   const totalPages = Math.ceil(roles.length / rowsPerPage) || 1;
   const startIndex = (currentPage - 1) * rowsPerPage;
   const paginatedRoles = roles.slice(startIndex, startIndex + rowsPerPage);
@@ -39,7 +39,7 @@ export default function RolesPage() {
   return (
     <DashboardLayout title="Roles" subtitle="Home/ Roles List">
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
+        <div className="rounded-xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">
               Roles List
@@ -93,7 +93,7 @@ export default function RolesPage() {
           </div>
 
           <div className="p-3 2xl:p-6">
-            <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+            <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-[800px] w-full text-left border-collapse">
                   <thead className="bg-[#F2F4F7]">
@@ -169,45 +169,45 @@ export default function RolesPage() {
 
           {/* Pagination */}
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
-              <div className="flex items-center gap-2">
-                  <span className="text-[12px] sm:text-[14px] text-neutral-500">
-                      Rows per page:
-                  </span>
-                  <div className="w-[80px]">
-                      <CustomSelect 
-                          value={String(rowsPerPage)}
-                          onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
-                          options={[
-                              { label: "5", value: "5" },
-                              { label: "10", value: "10" },
-                              { label: "20", value: "20" }
-                          ]}
-                          menuPlacement="top"
-                          className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
-                      />
-                  </div>
-              </div>
-
-              <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
-                  {roles.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, roles.length)} of ${roles.length}` : '0-0 of 0'}
+            <div className="flex items-center gap-2">
+              <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                Rows per page:
               </span>
-
-              <div className="flex items-center gap-1 ml-4">
-                  <button 
-                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                      disabled={currentPage === 1}
-                      className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                  </button>
-                  <button 
-                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                      disabled={currentPage === totalPages}
-                      className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                  </button>
+              <div className="w-[80px]">
+                <CustomSelect
+                  value={String(rowsPerPage)}
+                  onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
+                  options={[
+                    { label: "5", value: "5" },
+                    { label: "10", value: "10" },
+                    { label: "20", value: "20" }
+                  ]}
+                  menuPlacement="top"
+                  className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                />
               </div>
+            </div>
+
+            <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+              {roles.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, roles.length)} of ${roles.length}` : '0-0 of 0'}
+            </span>
+
+            <div className="flex items-center gap-1 ml-4">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
           </div>
 
         </div>
@@ -217,7 +217,7 @@ export default function RolesPage() {
       {deleteModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
           <div className="max-w-[420px] rounded-xl bg-white p-6 text-center shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
-            <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px] bg-[#FDEAEA]">
+            <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px]">
               <Image src={deleteRedIcon} alt="Delete" className="pointer-events-none" />
             </div>
             <h3 className="mx-auto mb-6 max-w-[290px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">

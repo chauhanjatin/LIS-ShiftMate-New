@@ -64,7 +64,7 @@ export default function PensionAssessmentPage() {
   return (
     <DashboardLayout title="Pension Assessment" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+        <div className="rounded-xl bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Pension Assessment</h2>
 
@@ -94,7 +94,7 @@ export default function PensionAssessmentPage() {
           </div>
 
           <div className="p-3 2xl:p-6">
-            <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+            <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-[1000px] w-full text-left border-collapse ">
                   <thead className="bg-[#F8F9FC]">

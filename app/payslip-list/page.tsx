@@ -85,7 +85,7 @@ export default function PayslipListPage() {
     return (
         <DashboardLayout title="Payslip List" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                <div className="rounded-xl bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[18px] font-medium text-[#111827]">Employee List</h2>
 
@@ -115,7 +115,7 @@ export default function PayslipListPage() {
                     </div>
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="min-w-[1000px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
@@ -128,12 +128,12 @@ export default function PayslipListPage() {
                                                     className="md:h-4 h-3 md:w-4 w-3 rounded border-[#F8F9FC] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
                                                 />
                                             </th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Employee</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Pay Period</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Pay Date</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Net Pay</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827] text-center">Status</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827] text-center rounded-r-lg">Action</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827]">Employee</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827]">Pay Period</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827]">Pay Date</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827]">Net Pay</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827] text-center">Status</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827] text-center rounded-r-lg">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">

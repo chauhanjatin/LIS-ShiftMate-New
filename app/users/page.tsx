@@ -9,6 +9,8 @@ import filterIcon from "@/assets/images/icons/filter.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import deleteRedIcon from "@/assets/images/icons/delete-popup.svg";
+import appRectangleIcon from "@/assets/images/icons/apps-rectangle.svg";
+import listViewIcon from "@/assets/images/icons/list-view-circle.svg";
 import Link from "next/link";
 import { User, UserStatus } from "@/Data/users";
 import Toast from '@/Component/UI/Toast';
@@ -80,7 +82,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 py-4">
-            <div className="w-full max-w-[720px] rounded-2xl bg-white shadow-[0px_8px_30px_rgba(0,0,0,0.12)] max-h-[90vh] flex flex-col relative overflow-hidden">
+            <div className="w-full max-w-[720px] rounded-xl bg-white shadow-[0px_8px_30px_rgba(0,0,0,0.12)] max-h-[90vh] flex flex-col relative overflow-hidden">
                 <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100 bg-white z-10 shrink-0">
                     <h2 className="text-[20px] font-bold text-neutral-900">Create New User</h2>
                     <button onClick={onClose} className="text-neutral-400 hover:text-neutral-900 bg-white rounded-full p-1 cursor-pointer">
@@ -145,7 +147,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div
                                 onClick={() => setAccessMethod("temp_password")}
-                                className={`cursor-pointer rounded-2xl border-2 p-4 transition-all ${accessMethod === "temp_password" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-[#E2E8F0] bg-white"}`}
+                                className={`cursor-pointer rounded-xl border-2 p-4 transition-all ${accessMethod === "temp_password" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-[#E2E8F0] bg-white"}`}
                             >
                                 <div className="flex items-start justify-between">
                                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#257BFC] text-white">
@@ -176,7 +178,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
 
                             <div
                                 onClick={() => setAccessMethod("invite_email")}
-                                className={`cursor-pointer rounded-2xl border-2 p-4 transition-all ${accessMethod === "invite_email" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-[#E2E8F0] bg-white"}`}
+                                className={`cursor-pointer rounded-xl border-2 p-4 transition-all ${accessMethod === "invite_email" ? "border-[#257BFC] bg-[#F5F8FF]" : "border-[#E2E8F0] bg-white"}`}
                             >
                                 <div className="flex items-start justify-between">
                                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-neutral-100 text-neutral-600">
@@ -255,14 +257,22 @@ export default function UsersPage() {
     const { users, addUser, removeUser } = useUsers();
     const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
     const [showToast, setShowToast] = useState(false);
+    const [filterOpen, setFilterOpen] = useState(false);
+    const [selectedRole, setSelectedRole] = useState("All Roles");
+    const [view, setView] = useState<"list" | "grid">("list");
+    const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
     // Pagination state
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
-    const totalPages = Math.ceil(users.length / rowsPerPage) || 1;
+    const filteredUsers = users.filter((u) => 
+        selectedRole === "All Roles" ? true : u.role === selectedRole
+    );
+
+    const totalPages = Math.ceil(filteredUsers.length / rowsPerPage) || 1;
     const startIndex = (currentPage - 1) * rowsPerPage;
-    const paginatedUsers = users.slice(startIndex, startIndex + rowsPerPage);
+    const paginatedUsers = filteredUsers.slice(startIndex, startIndex + rowsPerPage);
 
     const allSelected = paginatedUsers.length > 0 && selectedUsers.length === paginatedUsers.length;
 
@@ -297,12 +307,12 @@ export default function UsersPage() {
     return (
         <DashboardLayout title="Users" subtitle="Home/ Users List">
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
+                <div className="rounded-xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between md:px-6 md:pt-6 px-4 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">Users List</h2>
 
                         <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative xl:w-75 md:w-50 w-32">
+                            <div className="relative 2xl:w-75 xl:w-60 md:w-50 w-32">
                                 <Image
                                     src={searchIcon}
                                     alt="Search"
@@ -316,23 +326,52 @@ export default function UsersPage() {
                                 />
                             </div>
 
-                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-[#E2E8F0] cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
-                                <Image
-                                    src={filterIcon}
-                                    alt="Filter"
-                                    width={24}
-                                    height={24}
-                                    className="cursor-pointer"
-                                />
-                            </button>
+                            <div className="relative">
+                                <button onClick={() => setFilterOpen(!filterOpen)} className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-[#E2E8F0] cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
+                                    <Image
+                                        src={filterIcon}
+                                        alt="Filter"
+                                        width={24}
+                                        height={24}
+                                        className="cursor-pointer"
+                                    />
+                                </button>
+                                {filterOpen && (
+                                  <div className="absolute right-0 top-full mt-2 w-40 rounded-xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-[#E2E8F0] p-1.5 z-50">
+                                    {["All Roles", "Admin", "Manager", "HR", "Employee"].map((role) => (
+                                      <div
+                                        key={role}
+                                        onClick={() => {
+                                          setSelectedRole(role);
+                                          setFilterOpen(false);
+                                          setCurrentPage(1);
+                                        }}
+                                        className={`px-3 py-2 rounded-lg cursor-pointer text-[14px] font-normal mb-1 ${
+                                          selectedRole === role
+                                            ? "bg-[#257BFC] text-white"
+                                            : "hover:bg-neutral-50 text-neutral-700"
+                                        }`}
+                                      >
+                                        {role}
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                            </div>
 
-                            <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-[#E2E8F0] cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                            </button>
+                            {view === "list" ? (
+                                <button onClick={() => setView("grid")} className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-[#E2E8F0] cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
+                                    <Image src={appRectangleIcon} alt="Grid View" width={24} height={24} className="cursor-pointer" />
+                                </button>
+                            ) : (
+                                <button onClick={() => setView("list")} className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-[#E2E8F0] cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
+                                    <Image src={listViewIcon} alt="List View" width={24} height={24} className="cursor-pointer" />
+                                </button>
+                            )}
 
                             <button
                                 onClick={() => setCreateModalOpen(true)}
-                                className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-1.5 md:px-2.5 md:py-2 xl:px-5 xl:py-3 text-[12px] md:text-[15px] xl:text-[16px] text-white transition hover:bg-blue-600"
+                                className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-1.5 md:px-2.5 md:py-2 2xl:px-5 2xl:py-3 text-[12px] md:text-[15px] 2xl:text-[16px] text-white transition hover:bg-blue-600"
                             >
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -344,127 +383,175 @@ export default function UsersPage() {
                     </div>
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
-                            <div className="overflow-x-auto">
-                                <table className="min-w-[1100px] w-full text-left border-collapse">
-                                    <thead className="bg-[#F2F4F7]">
-                                        <tr>
-                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] text-[#2E334E] whitespace-nowrap">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={allSelected}
-                                                    onChange={handleSelectAll}
-                                                    className="h-4 w-4 rounded border-[#D0D5DD] text-brand-500 focus:ring-brand-500 cursor-pointer"
-                                                />
-                                            </th>
-
-                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
-                                                Name
-                                            </th>
-
-                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
-                                                Email
-                                            </th>
-
-                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
-                                                Role
-                                            </th>
-
-                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
-                                                Company
-                                            </th>
-
-                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
-                                                Status
-                                            </th>
-
-                                            <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
-                                                Action
-                                            </th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody className="bg-white">
-                                        {paginatedUsers.map((user) => (
-                                            <tr
-                                                key={user.id}
-                                                className="group transition-colors hover:bg-neutral-50"
-                                            >
-                                                <td className="px-4 py-4 sm:px-6 2xl:pl-6 pl-3 pr-2">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
+                            {view === "list" ? (
+                                <div className="overflow-x-auto">
+                                    <table className="min-w-[1100px] w-full text-left border-collapse">
+                                        <thead className="bg-[#F2F4F7]">
+                                            <tr>
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] text-[#2E334E] whitespace-nowrap">
                                                     <input
                                                         type="checkbox"
-                                                        checked={selectedUsers.includes(user.id)}
-                                                        onChange={() => handleSelectUser(user.id)}
-                                                        className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
+                                                        checked={allSelected}
+                                                        onChange={handleSelectAll}
+                                                        className="h-4 w-4 rounded border-[#D0D5DD] text-brand-500 focus:ring-brand-500 cursor-pointer"
                                                     />
-                                                </td>
+                                                </th>
 
-                                                <td className="px-4 py-4 sm:px-6 pr-6">
-                                                    <Link href={`/users/edit/${user.id}`}>
-                                                        <div className="flex md:min-w-[180px] min-w-[150px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
-                                                            <img
-                                                                src={user.avatar}
-                                                                alt={user.name}
-                                                                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover flex-shrink-0"
-                                                            />
-                                                            <span className="text-[12px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
-                                                                {user.name}
-                                                            </span>
-                                                        </div>
-                                                    </Link>
-                                                </td>
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                    Name
+                                                </th>
 
-                                                <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700">
-                                                    {user.email}
-                                                </td>
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                    Email
+                                                </th>
 
-                                                <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700">
-                                                    {user.role}
-                                                </td>
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                    Role
+                                                </th>
 
-                                                <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700">
-                                                    {user.company}
-                                                </td>
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                    Company
+                                                </th>
 
-                                                <td className="px-4 py-4 sm:px-6 pr-6 whitespace-nowrap">
-                                                    <StatusPill status={user.status} />
-                                                </td>
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                    Status
+                                                </th>
 
-                                                <td className="px-4 py-4 sm:px-6 pr-6">
-                                                    <div className="flex items-center gap-2 sm:gap-4">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                    Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody className="bg-white">
+                                            {paginatedUsers.map((user) => (
+                                                <tr
+                                                    key={user.id}
+                                                    className="group transition-colors hover:bg-neutral-50"
+                                                >
+                                                    <td className="px-4 py-4 lg:px-6 2xl:pl-6 pl-3 pr-2 border-b border-[#E2E8F0]">
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={selectedUsers.includes(user.id)}
+                                                            onChange={() => handleSelectUser(user.id)}
+                                                            className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
+                                                        />
+                                                    </td>
+
+                                                    <td className="px-4 py-4 sm:px-6 pr-6 border-b border-[#E2E8F0]">
                                                         <Link href={`/users/edit/${user.id}`}>
-                                                            <button className="text-neutral-400 hover:text-brand-500 mt-2 transition-colors">
+                                                            <div className="flex md:min-w-[180px] min-w-[150px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
+                                                                <img
+                                                                    src={user.avatar}
+                                                                    alt={user.name}
+                                                                    className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover flex-shrink-0"
+                                                                />
+                                                                <span className="text-[12px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                                                                    {user.name}
+                                                                </span>
+                                                            </div>
+                                                        </Link>
+                                                    </td>
+
+                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700 border-b border-[#E2E8F0]">
+                                                        {user.email}
+                                                    </td>
+
+                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700 border-b border-[#E2E8F0]">
+                                                        {user.role}
+                                                    </td>
+
+                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700 border-b border-[#E2E8F0]">
+                                                        {user.company}
+                                                    </td>
+
+                                                    <td className="px-4 py-4 sm:px-6 pr-6 whitespace-nowrap border-b border-[#E2E8F0]">
+                                                        <StatusPill status={user.status} />
+                                                    </td>
+
+                                                    <td className="px-4 py-4 sm:px-6 pr-6 border-b border-[#E2E8F0]">
+                                                        <div className="flex items-center gap-2 sm:gap-4">
+                                                            <Link href={`/users/edit/${user.id}`}>
+                                                                <button className="text-neutral-400 hover:text-brand-500 mt-2 transition-colors">
+                                                                    <Image
+                                                                        src={editIcon}
+                                                                        alt="Edit"
+                                                                        width={24}
+                                                                        height={24}
+                                                                        className="cursor-pointer h-5 w-5 sm:h-6 sm:w-6"
+                                                                    />
+                                                                </button>
+                                                            </Link>
+                                                            <button
+                                                                onClick={() => {
+                                                                    setUserToDelete(user.id);
+                                                                    setDeleteModalOpen(true);
+                                                                }}
+                                                                className="text-neutral-400 hover:text-red-500 transition-colors"
+                                                            >
                                                                 <Image
-                                                                    src={editIcon}
-                                                                    alt="Edit"
+                                                                    src={deleteIcon}
+                                                                    alt="Delete"
                                                                     width={24}
                                                                     height={24}
                                                                     className="cursor-pointer h-5 w-5 sm:h-6 sm:w-6"
                                                                 />
                                                             </button>
-                                                        </Link>
-                                                        <button
-                                                            onClick={() => {
-                                                                setUserToDelete(user.id);
-                                                                setDeleteModalOpen(true);
-                                                            }}
-                                                            className="text-neutral-400 hover:text-red-500 transition-colors"
-                                                        >
-                                                            <Image
-                                                                src={deleteIcon}
-                                                                alt="Delete"
-                                                                width={24}
-                                                                height={24}
-                                                                className="cursor-pointer h-5 w-5 sm:h-6 sm:w-6"
-                                                            />
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 p-3 sm:grid-cols-2 gap-4 sm:p-4 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-6 2xl:p-6">
+                                    {paginatedUsers.map((user) => (
+                                        <div key={user.id} className="relative rounded-xl border border-[#E2E8F0] bg-white p-3 2xl:p-5 shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)] overflow-hidden">
+                                            <div className="flex items-start justify-between gap-2">
+                                                <StatusPill status={user.status} />
+                                                <div className="relative">
+                                                    <button onClick={() => setOpenDropdownId(openDropdownId === user.id ? null : user.id)} className="cursor-pointer text-black transition shrink-0 hover:bg-neutral-100 rounded-full p-1 border-none bg-transparent">
+                                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 sm:h-5 sm:w-5"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                                    </button>
+                                                    {openDropdownId === user.id && (
+                                                        <div className="absolute right-0 top-full mt-1 w-32 rounded-xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-[#E2E8F0] p-1.5 z-50">
+                                                            <Link href={`/users/edit/${user.id}`}>
+                                                                <div className="px-3 py-2 hover:bg-neutral-50 rounded-lg cursor-pointer text-[14px] text-neutral-700 flex items-center gap-2 mb-1 font-medium">
+                                                                    <Image src={editIcon} alt="Edit" width={16} height={16} className="pointer-events-none" /> Edit
+                                                                </div>
+                                                            </Link>
+                                                            <div onClick={() => { setUserToDelete(user.id); setDeleteModalOpen(true); setOpenDropdownId(null); }} className="px-3 py-2 hover:bg-red-50 rounded-lg cursor-pointer text-[14px] text-[#EF4444] flex items-center gap-2 font-medium">
+                                                                <Image src={deleteIcon} alt="Delete" width={16} height={16} className="pointer-events-none" /> Delete
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="mt-4 flex flex-col items-center text-center">
+                                                <div className="mb-4 h-[72px] w-[72px] overflow-hidden rounded-full border-4 border-white shadow-[0_4px_12px_rgba(0,0,0,0.08)] sm:h-[88px] sm:w-[88px]">
+                                                    <img src={user.avatar} alt={user.name} className="h-full w-full object-cover" />
+                                                </div>
+                                                <Link href={`/users/edit/${user.id}`} className="hover:underline">
+                                                    <h3 className="text-[14px] sm:text-[16px] font-bold text-neutral-900 break-words">{user.name}</h3>
+                                                </Link>
+                                                <p className="mt-1 text-[11px] sm:text-[12px] text-[#98A2B3] truncate max-w-full px-2" title={user.email}>{user.email}</p>
+                                            </div>
+                                            <div className="mt-4 flex items-center justify-between border-t border-neutral-300">
+                                                <div className="flex-1 border-r border-neutral-300 pt-4 text-center min-w-0">
+                                                    <p className="2xl:text-[14px] xl:text-[13px] font-medium">Role</p>
+                                                    <p className="mt-1 truncate text-[11px] 2xl:text-[12px] font-normal text-[#98A2B3]">{user.role}</p>
+                                                </div>
+                                                <div className="flex-1 pt-4 text-center min-w-0">
+                                                    <p className="2xl:text-[14px] xl:text-[13px] font-medium">Company</p>
+                                                    <p className="mt-1 truncate text-[11px] 2xl:text-[12px] font-normal text-[#98A2B3]">{user.company}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
 
                         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
@@ -519,7 +606,7 @@ export default function UsersPage() {
             {deleteModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
                     <div className="max-w-[420px] rounded-xl bg-white p-6 text-center shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
-                        <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px] bg-[#FDEAEA]">
+                        <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px]">
                             <Image src={deleteRedIcon} alt="Delete" className="pointer-events-none" />
                         </div>
                         <h3 className="mx-auto mb-6 max-w-[290px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">

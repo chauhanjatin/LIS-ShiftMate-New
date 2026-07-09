@@ -28,7 +28,7 @@ export default function PaymentDetailsPage() {
   return (
     <DashboardLayout title="Payments Dashboard" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm md:px-6 px-4 pt-4 md:pt-6 min-h-[800px]">
+        <div className="rounded-xl bg-white shadow-sm md:px-6 px-4 pt-4 md:pt-6 min-h-[800px]">
 
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 md:mb-8 mb-4">
             <h2 className="text-[16px] md:text-[20px] font-medium text-[#111827]">Devon Lane&apos;s Statutory Payment Details</h2>
@@ -133,7 +133,7 @@ export default function PaymentDetailsPage() {
             <h3 className="text-[18px] font-bold text-neutral-900">Payment History</h3>
 
             <div className="p-3 2xl:p-6">
-              <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+              <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="min-w-[800px] w-full text-left border-collapse">
                     <thead className="bg-[#F2F4F7]">

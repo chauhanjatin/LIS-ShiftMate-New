@@ -9,6 +9,7 @@ import CustomSelect from '@/Component/UI/CustomSelect';
 import searchIcon from "@/assets/images/icons/search.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
+import deleteRedIcon from "@/assets/images/icons/delete-red.svg";
 import { Lexend_Deca } from "next/font/google";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
@@ -74,10 +75,12 @@ export default function SalaryStructurePage() {
     const [structureToDelete, setStructureToDelete] = useState<number | null>(null);
     const [showToast, setShowToast] = useState(false);
 
-    const [formData, setFormData] = useState<{name: string, earnings: string[], deductions: string[]}>({
+    const [formData, setFormData] = useState<{ name: string, earnings: string[], deductions: string[], employerNI: string, employerPension: string }>({
         name: "",
         earnings: [],
-        deductions: []
+        deductions: [],
+        employerNI: "",
+        employerPension: ""
     });
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -85,27 +88,31 @@ export default function SalaryStructurePage() {
         const newErrors: { [key: string]: string } = {};
         if (!formData.name) newErrors.name = "Required";
         if (formData.earnings.length === 0) newErrors.earnings = "Select at least one earning component";
-        
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
 
     const handleSave = () => {
         if (!validateForm()) return;
-        
+
+        const contributions: string[] = [];
+        if(formData.employerNI) contributions.push(`NI (${formData.employerNI})`);
+        if(formData.employerPension) contributions.push(`Pension (${formData.employerPension})`);
+
         if (modalMode === 'add') {
             const newStructure: SalaryStructure = {
                 id: Date.now(),
                 name: formData.name,
                 earnings: formData.earnings,
                 deductions: formData.deductions,
-                contributions: []
+                contributions: contributions
             };
             setStructures([newStructure, ...structures]);
         } else if (selectedStructure) {
-            setStructures(structures.map(s => s.id === selectedStructure.id ? { ...s, name: formData.name, earnings: formData.earnings, deductions: formData.deductions } : s));
+            setStructures(structures.map(s => s.id === selectedStructure.id ? { ...s, name: formData.name, earnings: formData.earnings, deductions: formData.deductions, contributions } : s));
         }
-        
+
         setIsModalOpen(false);
         setShowToast(true);
     };
@@ -116,7 +123,7 @@ export default function SalaryStructurePage() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    
+
     const totalPages = Math.ceil(filteredStructures.length / rowsPerPage) || 1;
     const startIndex = (currentPage - 1) * rowsPerPage;
     const paginatedStructures = filteredStructures.slice(startIndex, startIndex + rowsPerPage);
@@ -124,7 +131,7 @@ export default function SalaryStructurePage() {
     const openAddModal = () => {
         setModalMode("add");
         setSelectedStructure(null);
-        setFormData({ name: "", earnings: [], deductions: [] });
+        setFormData({ name: "", earnings: [], deductions: [], employerNI: "", employerPension: "" });
         setErrors({});
         setIsModalOpen(true);
     };
@@ -132,7 +139,13 @@ export default function SalaryStructurePage() {
     const openEditModal = (structure: SalaryStructure) => {
         setModalMode("edit");
         setSelectedStructure(structure);
-        setFormData({ name: structure.name, earnings: structure.earnings, deductions: structure.deductions });
+        let employerNI = "";
+        let employerPension = "";
+        structure.contributions.forEach(c => {
+            if (c.startsWith("NI")) employerNI = c.match(/\((.*?)\)/)?.[1] || "";
+            if (c.startsWith("Pension")) employerPension = c.match(/\((.*?)\)/)?.[1] || "";
+        });
+        setFormData({ name: structure.name, earnings: structure.earnings, deductions: structure.deductions, employerNI, employerPension });
         setErrors({});
         setIsModalOpen(true);
     };
@@ -156,7 +169,7 @@ export default function SalaryStructurePage() {
     return (
         <DashboardLayout title="Salary Structure" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                <div className="rounded-xl bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between md:px-6 md:pt-6 px-4 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Salary Structure</h2>
 
@@ -188,16 +201,16 @@ export default function SalaryStructurePage() {
                     </div>
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="min-w-[1100px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
                                         <tr>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[13px] md:text-[14px] font-normal text-[#111827] rounded-l-lg">Structure Name</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[14px] font-normal text-[#111827]">Earning</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[14px] font-normal text-[#111827]">Deductions</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[14px] font-normal text-[#111827]">Employer Contributions</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[14px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[13px] md:text-[16px] font-normal text-[#111827] rounded-l-lg">Structure Name</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[16px] font-normal text-[#111827]">Earning</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[16px] font-normal text-[#111827]">Deductions</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[16px] font-normal text-[#111827]">Employer Contributions</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[13px] md:text-[16px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
@@ -259,7 +272,7 @@ export default function SalaryStructurePage() {
                                     Rows per page:
                                 </span>
                                 <div className="w-[80px]">
-                                    <CustomSelect 
+                                    <CustomSelect
                                         value={String(rowsPerPage)}
                                         onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
                                         options={[
@@ -278,14 +291,14 @@ export default function SalaryStructurePage() {
                             </span>
 
                             <div className="flex items-center gap-1 ml-4">
-                                <button 
+                                <button
                                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                                     disabled={currentPage === 1}
                                     className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                                     disabled={currentPage === totalPages}
                                     className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
@@ -303,7 +316,7 @@ export default function SalaryStructurePage() {
             {isModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
                     <div className="w-full max-w-[700px] overflow-hidden rounded-3xl bg-white shadow-2xl max-h-[90vh] overflow-y-auto">
-                        <div className="flex items-center justify-between border-b border-[#E2E8F0] md:px-8 px-4 md:py-6 py-4 sticky top-0 bg-white z-10">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] 2xl:px-8 xl:px-6 px-4 md:py-6 py-4 sticky top-0 bg-white z-10">
                             <h2 className="md:text-[24px] text-[20px] font-bold text-[#1D2939]">
                                 {modalMode === 'add' ? 'Create Salary Structure' : 'Edit Salary Structure'}
                             </h2>
@@ -330,12 +343,12 @@ export default function SalaryStructurePage() {
                                         setErrors(prev => ({ ...prev, name: "" }));
                                     }}
                                     placeholder="e.g., Executive Package, Standard Package"
-                                    className={`md:h-[52px] h-[45px] w-full rounded-2xl border ${errors.name ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
+                                    className={`md:h-[52px] h-[45px] w-full rounded-xl border ${errors.name ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 text-[14px] outline-none transition focus:border-[#257BFC]`}
                                 />
                                 {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                             </div>
 
-                            <div className="mb-8 bg-white rounded-2xl md:p-6 p-4 border border-[#E2E8F0] overflow-hidden">
+                            <div className="mb-8 bg-white rounded-xl md:p-6 p-4 border border-[#E2E8F0] overflow-hidden">
                                 <h3 className="text-[16px] font-semibold text-[#1D2939] mb-4 border-b border-[#E2E8F0] pb-3">
                                     Earning Components
                                 </h3>
@@ -368,7 +381,7 @@ export default function SalaryStructurePage() {
                                 {errors.earnings && <p className="text-red-500 text-xs mt-2">{errors.earnings}</p>}
                             </div>
 
-                            <div className="mb-6 bg-white rounded-2xl md:p-6 p-4 border border-[#E2E8F0] overflow-hidden">
+                            <div className="mb-6 bg-white rounded-xl md:p-6 p-4 border border-[#E2E8F0] overflow-hidden">
                                 <h3 className="text-[16px] font-semibold text-[#1D2939] mb-4 border-b border-[#E2E8F0] pb-3">
                                     Deductions Components
                                 </h3>
@@ -399,15 +412,54 @@ export default function SalaryStructurePage() {
                                 </div>
                             </div>
 
-                            <div className="md:mt-8 mt-6 flex items-center justify-end md:gap-4 gap-2 border-t border-[#E2E8F0] pt-6">
+                            <div className="mb-6 bg-white rounded-xl md:p-6 p-4 border border-[#E2E8F0] overflow-hidden">
+                                <h3 className="text-[16px] font-semibold text-[#1D2939] mb-4 border-b border-[#E2E8F0] pb-3">
+                                    Employer Contributions
+                                </h3>
+
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                            Employer NI
+                                        </label>
+                                        <CustomSelect
+                                            value={formData.employerNI}
+                                            onChange={(val) => setFormData(prev => ({ ...prev, employerNI: val }))}
+                                            options={[
+                                                { label: "13.8%", value: "13.8%" },
+                                                { label: "15%", value: "15%" },
+                                                { label: "Other", value: "Other" }
+                                            ]}
+                                            placeholder="Select Rate"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                            Employer Pension
+                                        </label>
+                                        <CustomSelect
+                                            value={formData.employerPension}
+                                            onChange={(val) => setFormData(prev => ({ ...prev, employerPension: val }))}
+                                            options={[
+                                                { label: "3.3%", value: "3.3%" },
+                                                { label: "5%", value: "5%" },
+                                                { label: "Other", value: "Other" }
+                                            ]}
+                                            placeholder="Select Rate"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="md:mt-8 mt-6 flex items-center justify-end md:gap-4 gap-2">
                                 <button
                                     onClick={() => setIsModalOpen(false)}
-                                    className="md:h-[48px] h-[40px] rounded-2xl border border-[#E2E8F0] bg-white md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer overflow-hidden"
+                                    className="md:h-[48px] h-[40px] rounded-xl border border-[#E2E8F0] bg-white md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer overflow-hidden"
                                 >
                                     Cancel
                                 </button>
 
-                                <button onClick={handleSave} className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                <button onClick={handleSave} className="md:h-[48px] h-[40px] rounded-xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                     {modalMode === 'add' ? 'Add Pay Component' : 'Save Changes'}
                                 </button>
                             </div>
@@ -418,13 +470,12 @@ export default function SalaryStructurePage() {
 
             {isDeleteModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
-                    <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+                    <div className="w-full max-w-[390px] rounded-xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
                         <div className="mb-6 flex flex-col items-center text-center">
-                            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-100">
-                                <Image src={deleteIcon} alt="Delete" width={28} height={28} className="h-7 w-7 text-red-600" />
+                            <div className="mb-4 p-[9px] rounded-xl bg-red-100">
+                                <Image src={deleteRedIcon} alt="Delete" className="text-red-600" />
                             </div>
-                            <h2 className="mb-2 text-xl font-bold text-neutral-900">Delete Structure</h2>
-                            <p className="text-sm text-neutral-500">Are you sure you want to delete this salary structure? This action cannot be undone.</p>
+                            <p className="text-[16px] text-[#111827] font-medium">Are you sure you want to delete "Executive Package"? This will affect 4 employees.</p>
                         </div>
                         <div className="flex gap-3">
                             <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>

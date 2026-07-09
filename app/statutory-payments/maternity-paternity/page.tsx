@@ -60,7 +60,7 @@ export default function MaternityPaternityPage() {
   return (
     <DashboardLayout title="Maternity / Paternity / Adoption Pay" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 pt-4 md:pt-6">
+        <div className="rounded-xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 pt-4 md:pt-6">
           <h2 className="text-[20px] font-medium text-[#111827] mb-8">Maternity, Paternity and Adoption Pay</h2>
           
           <form onSubmit={handleSubmit} className="md:mx-[6%] space-y-6">

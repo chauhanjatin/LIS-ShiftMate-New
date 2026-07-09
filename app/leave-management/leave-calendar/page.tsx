@@ -103,9 +103,9 @@ export default function LeaveCalendarPage() {
   return (
     <DashboardLayout title="Leave Calendar" subtitle={breadcrumb}>
       <div className="flex-1 p-4 2xl:p-6">
-        <div className="rounded-2xl bg-white shadow-sm flex flex-col h-full min-h-[700px]">
-          <div className="flex flex-wrap items-center justify-between border-b border-neutral-100 md:p-5 p-3">
-            <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Leave Calendar</h2>
+        <div className="rounded-xl bg-white shadow-sm flex flex-col min-h-[700px]">
+          <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
+            <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Leave Calendar</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
               <div className="relative 2xl:w-75 md:w-60 w-32">
@@ -164,7 +164,7 @@ export default function LeaveCalendarPage() {
                   <div
                     key={index}
                     className={`min-h-[120px] p-2 border-r border-b border-neutral-200 relative transition-colors ${!dayObj.isCurrentMonth ? 'bg-neutral-50' :
-                        isSelected ? 'bg-[#EFF8FF]' : 'bg-white hover:bg-neutral-50'
+                      isSelected ? 'bg-[#EFF8FF]' : 'bg-white hover:bg-neutral-50'
                       }`}
                   >
                     <span className={`text-[14px] font-semibold mb-2 block ${!dayObj.isCurrentMonth ? 'text-neutral-400' : isSelected ? 'text-[#257BFC]' : 'text-neutral-900'}`}>
