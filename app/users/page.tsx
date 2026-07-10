@@ -11,6 +11,7 @@ import deleteIcon from "@/assets/images/icons/delete.svg";
 import deleteRedIcon from "@/assets/images/icons/delete-popup.svg";
 import appRectangleIcon from "@/assets/images/icons/apps-rectangle.svg";
 import listViewIcon from "@/assets/images/icons/list-view-circle.svg";
+import deleteredIcon from "@/assets/images/icons/delete-red.svg"
 import Link from "next/link";
 import { User, UserStatus } from "@/Data/users";
 import Toast from '@/Component/UI/Toast';
@@ -21,15 +22,15 @@ const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 function StatusPill({ status }: { status: UserStatus }) {
     const styles = {
-        Active: "bg-[#EAF9EA] text-[#4DB949]",
+        Active: "bg-[#EDFAF2] text-[#4DB949]",
         "On Leave": "bg-[#FFF6E8] text-[#FFA100]",
-        Inactive: "bg-[#F2F4F7] text-[#98A2B3]",
+        Inactive: "bg-[#EAF2FF] text-[#07265C]",
         Suspended: "bg-[#FEE2E2] text-[#EF4444]",
         Pending: "bg-white text-[#64748B]",
     };
     return (
         <span
-            className={`inline-flex rounded-full px-4 py-1.5 text-[12px] font-semibold ${styles[status]}`}
+            className={`inline-flex rounded-full px-6 py-2.5 text-[14px] font-normal ${styles[status]}`}
         >
             {status}
         </span>
@@ -383,13 +384,13 @@ export default function UsersPage() {
                     </div>
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
+                        <div className="rounded-xl bg-white overflow-hidden border border-[#E2E8F0]">
                             {view === "list" ? (
                                 <div className="overflow-x-auto">
                                     <table className="min-w-[1100px] w-full text-left border-collapse">
                                         <thead className="bg-[#F2F4F7]">
                                             <tr>
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] text-[#2E334E] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] text-[#111827] whitespace-nowrap">
                                                     <input
                                                         type="checkbox"
                                                         checked={allSelected}
@@ -398,27 +399,27 @@ export default function UsersPage() {
                                                     />
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Name
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Email
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Role
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Company
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Status
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Action
                                                 </th>
                                             </tr>
@@ -447,22 +448,22 @@ export default function UsersPage() {
                                                                     alt={user.name}
                                                                     className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover flex-shrink-0"
                                                                 />
-                                                                <span className="text-[12px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                                                                <span className="text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap">
                                                                     {user.name}
                                                                 </span>
                                                             </div>
                                                         </Link>
                                                     </td>
 
-                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700 border-b border-[#E2E8F0]">
+                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
                                                         {user.email}
                                                     </td>
 
-                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700 border-b border-[#E2E8F0]">
+                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
                                                         {user.role}
                                                     </td>
 
-                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap text-neutral-700 border-b border-[#E2E8F0]">
+                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
                                                         {user.company}
                                                     </td>
 
@@ -473,7 +474,7 @@ export default function UsersPage() {
                                                     <td className="px-4 py-4 sm:px-6 pr-6 border-b border-[#E2E8F0]">
                                                         <div className="flex items-center gap-2 sm:gap-4">
                                                             <Link href={`/users/edit/${user.id}`}>
-                                                                <button className="text-neutral-400 hover:text-brand-500 mt-2 transition-colors">
+                                                                <button className="text-[#111827] hover:text-brand-500 mt-2 transition-colors">
                                                                     <Image
                                                                         src={editIcon}
                                                                         alt="Edit"
@@ -506,7 +507,7 @@ export default function UsersPage() {
                                     </table>
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-1 p-3 sm:grid-cols-2 gap-4 sm:p-4 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-6 2xl:p-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-6">
                                     {paginatedUsers.map((user) => (
                                         <div key={user.id} className="relative rounded-xl border border-[#E2E8F0] bg-white p-3 2xl:p-5 shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)] overflow-hidden">
                                             <div className="flex items-start justify-between gap-2">
@@ -516,14 +517,14 @@ export default function UsersPage() {
                                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 sm:h-5 sm:w-5"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                                                     </button>
                                                     {openDropdownId === user.id && (
-                                                        <div className="absolute right-0 top-full mt-1 w-32 rounded-xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-[#E2E8F0] p-1.5 z-50">
+                                                        <div className="absolute right-0 top-full mt-1 w-32 rounded-xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-[#E2E8F0] p-2 z-50">
                                                             <Link href={`/users/edit/${user.id}`}>
-                                                                <div className="px-3 py-2 hover:bg-neutral-50 rounded-lg cursor-pointer text-[14px] text-neutral-700 flex items-center gap-2 mb-1 font-medium">
-                                                                    <Image src={editIcon} alt="Edit" width={16} height={16} className="pointer-events-none" /> Edit
+                                                                <div className="p-2 hover:bg-neutral-50 rounded-lg cursor-pointer text-[14px] text-neutral-700 flex items-center gap-2 mb-1 font-medium">
+                                                                    <Image src={editIcon} alt="Edit" height={24} width={20} className="pointer-events-none" /> Edit
                                                                 </div>
                                                             </Link>
-                                                            <div onClick={() => { setUserToDelete(user.id); setDeleteModalOpen(true); setOpenDropdownId(null); }} className="px-3 py-2 hover:bg-red-50 rounded-lg cursor-pointer text-[14px] text-[#EF4444] flex items-center gap-2 font-medium">
-                                                                <Image src={deleteIcon} alt="Delete" width={16} height={16} className="pointer-events-none" /> Delete
+                                                            <div onClick={() => { setUserToDelete(user.id); setDeleteModalOpen(true); setOpenDropdownId(null); }} className="p-2 hover:bg-red-50 rounded-lg cursor-pointer text-[14px] text-[#EF4444] flex items-center gap-2 font-medium">
+                                                                <Image src={deleteredIcon} alt="Delete" height={24} width={24} className="pointer-events-none" /> Delete
                                                             </div>
                                                         </div>
                                                     )}
@@ -534,9 +535,9 @@ export default function UsersPage() {
                                                     <img src={user.avatar} alt={user.name} className="h-full w-full object-cover" />
                                                 </div>
                                                 <Link href={`/users/edit/${user.id}`} className="hover:underline">
-                                                    <h3 className="text-[14px] sm:text-[16px] font-bold text-neutral-900 break-words">{user.name}</h3>
+                                                    <h3 className="text-[14px] md:text-[16px] font-medium text-[#111827] break-words">{user.name}</h3>
                                                 </Link>
-                                                <p className="mt-1 text-[11px] sm:text-[12px] text-[#98A2B3] truncate max-w-full px-2" title={user.email}>{user.email}</p>
+                                                <p className="mt-1 text-[11px] md:text-[12px] text-[#98A2B3] font-normal truncate max-w-full px-2" title={user.email}>{user.email}</p>
                                             </div>
                                             <div className="mt-4 flex items-center justify-between border-t border-neutral-300">
                                                 <div className="flex-1 border-r border-neutral-300 pt-4 text-center min-w-0">

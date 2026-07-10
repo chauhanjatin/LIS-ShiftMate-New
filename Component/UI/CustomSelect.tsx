@@ -41,9 +41,9 @@ export default function CustomSelect({
     <div className="relative w-full" ref={dropdownRef}>
       <div
         className={`w-full rounded-xl border ${
-          error ? "border-red-500" : "border-neutral-200"
+          error ? "border-red-500" : "border-[#D0D5DD]"
         } bg-white px-4 py-2.5 text-[14px] outline-none cursor-pointer flex justify-between items-center transition-colors ${
-          isOpen ? "border-brand-500 ring-1 ring-brand-500" : ""
+          isOpen ? "border-black ring-1 ring-black" : ""
         } ${className}`}
         onClick={() => setIsOpen(!isOpen)}
       >

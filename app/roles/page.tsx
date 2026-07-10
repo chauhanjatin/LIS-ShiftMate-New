@@ -46,6 +46,7 @@ export default function RolesPage() {
             </h2>
 
             <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+              
               <div className="relative 2xl:w-75 lg:w-60 md:w-50 w-32">
                 <Image
                   src={searchIcon}
@@ -59,26 +60,6 @@ export default function RolesPage() {
                   placeholder="Search Role"
                 />
               </div>
-
-              <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50">
-                <Image
-                  src={filterIcon}
-                  alt="Filter"
-                  width={24}
-                  height={24}
-                  className="pointer-events-none"
-                />
-              </button>
-
-              <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50">
-                <Image
-                  src={appRectangleIcon}
-                  alt="Grid View"
-                  width={24}
-                  height={24}
-                  className="pointer-events-none"
-                />
-              </button>
 
               <Link href="/roles/add">
                 <button className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-1.5 md:px-2.5 md:py-2.5 lg:px-5 lg:py-3 text-[11px] md:text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
@@ -96,18 +77,18 @@ export default function RolesPage() {
             <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-[800px] w-full text-left border-collapse">
-                  <thead className="bg-[#F2F4F7]">
+                  <thead className="bg-[#F9FAFB]">
                     <tr>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827] whitespace-nowrap">
                         Role Name
                       </th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827] whitespace-nowrap">
                         Description
                       </th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#2E334E] whitespace-nowrap">
+                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827] whitespace-nowrap">
                         Number of Users
                       </th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#2E334E] whitespace-nowrap w-[120px]">
+                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827] whitespace-nowrap w-[120px]">
                         Action
                       </th>
                     </tr>
@@ -115,7 +96,7 @@ export default function RolesPage() {
                   <tbody className="bg-white">
                     {paginatedRoles.map((role) => (
                       <tr key={role.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-0">
-                        <td className="px-4 py-6 sm:px-6 text-[14px] font-medium text-[#111827] whitespace-nowrap">
+                        <td className="px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827] whitespace-nowrap">
                           {role.name}
                         </td>
                         <td className="px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827]">
