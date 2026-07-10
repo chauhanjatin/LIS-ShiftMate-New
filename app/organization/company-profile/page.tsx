@@ -240,7 +240,7 @@ export default function CompanyProfilePage() {
                   </div>
                 </div>
 
-                <div className="mt-8 rounded-xl bg-[#F0F6FF] border border-[#D1E4FF] p-4 2xl:p-6">
+                <div className="mt-8 rounded-xl bg-[#F0F6FF] border border-[#257BFC] p-4 2xl:p-6">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#257BFC] text-white mb-4">
                     <span className="text-[18px] font-normal">$</span>
                   </div>
