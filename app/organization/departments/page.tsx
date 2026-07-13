@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import CustomSelect from '@/Component/UI/CustomSelect';
 import { useDepartments } from "@/hooks/useDepartments";
@@ -95,16 +96,6 @@ export default function DepartmentsPage() {
                 />
               </div>
 
-              <button className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50">
-                <Image
-                  src={filterIcon}
-                  alt="Filter"
-                  width={24}
-                  height={24}
-                  className="pointer-events-none"
-                />
-              </button>
-
               <button
                 onClick={() => setCreateModalOpen(true)}
                 className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-2 md:px-2.5 md:py-3 lg:px-5 text-[12px] md:text-[13px] lg:text-[14px] font-semibold text-white transition hover:bg-blue-600"
@@ -147,7 +138,9 @@ export default function DepartmentsPage() {
                       return (
                         <tr key={dept.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-0">
                           <td className="md:py-6 py-2 2xl:pl-6 pl-3 md:pr-4 pr-18 text-[14px] font-medium text-neutral-900 whitespace-nowrap">
-                            {dept.name}
+                            <Link href={`/organization/departments/${dept.id}`} className="hover:text-[#257BFC] transition-colors cursor-pointer">
+                              {dept.name}
+                            </Link>
                           </td>
                           <td className="md:py-6 py-2 md:pr-4 pr-18 text-[14px] font-medium text-neutral-900">
                             {dept.code}

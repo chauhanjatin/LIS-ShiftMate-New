@@ -11,6 +11,7 @@ import listViewIcon from "@/assets/images/icons/list-view-circle.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import deleteRedIcon from "@/assets/images/icons/delete-popup.svg";
+import deleteredIcon from "@/assets/images/icons/delete-red.svg"
 import Link from "next/link";
 import { useEmployees } from "@/hooks/useEmployees";
 import { Employee, Status } from "@/Data/employees";
@@ -171,12 +172,12 @@ export default function AllEmployeesPage() {
                   <table className="min-w-[1100px] w-full text-left border-collapse">
                     <thead className="bg-[#F8F9FC]">
                       <tr>
-                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#475467] whitespace-nowrap cursor-pointer">
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#475467] whitespace-nowrap">
                           <input
                             type="checkbox"
                             checked={allSelected}
                             onChange={handleSelectAll}
-                            className="h-4 w-4 rounded border-[#E2E8F0] text-brand-500 focus:ring-brand-500"
+                            className="h-4 w-4 rounded border-[#E2E8F0] text-brand-500 focus:ring-brand-500 cursor-pointer"
                           />
                         </th>
 
@@ -242,22 +243,22 @@ export default function AllEmployeesPage() {
                                   className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover flex-shrink-0"
                                 />
 
-                                <span className="text-[12px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                                <span className="text-[12px] md:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
                                   {emp.name}
                                 </span>
                               </div>
                             </Link>
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] md:text-[14px] whitespace-nowrap">
                             {emp.dept}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] md:text-[14px] whitespace-nowrap">
                             {emp.role}
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] md:text-[14px] whitespace-nowrap">
                             {emp.type}
                           </td>
 
@@ -265,7 +266,7 @@ export default function AllEmployeesPage() {
                             <StatusPill status={emp.status} />
                           </td>
 
-                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] md:text-[14px] whitespace-nowrap">
                             {emp.joinDate}
                           </td>
 
@@ -404,12 +405,12 @@ export default function AllEmployeesPage() {
                       {openDropdownId === emp.id && (
                         <div className="absolute right-0 top-full mt-1 w-32 rounded-xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-[#E2E8F0] p-1.5 z-50">
                            <Link href={`/employees/${emp.id}`}>
-                             <div className="px-3 py-2 hover:bg-neutral-50 rounded-lg cursor-pointer text-[14px] text-neutral-700 flex items-center gap-2 mb-1 font-medium">
-                               <Image src={editIcon} alt="Edit" width={16} height={16} className="pointer-events-none" /> Edit
+                             <div className="p-2 hover:bg-neutral-50 rounded-lg cursor-pointer text-[16px] text-[#111827] flex items-center gap-2 font-normal">
+                               <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" /> Edit
                              </div>
                            </Link>
-                           <div onClick={() => { setEmployeeToDelete(emp.id); setDeleteModalOpen(true); setOpenDropdownId(null); }} className="px-3 py-2 hover:bg-red-50 rounded-lg cursor-pointer text-[14px] text-[#EF4444] flex items-center gap-2 font-medium">
-                               <Image src={deleteIcon} alt="Delete" width={16} height={16} className="pointer-events-none" /> Delete
+                           <div onClick={() => { setEmployeeToDelete(emp.id); setDeleteModalOpen(true); setOpenDropdownId(null); }} className="p-2 hover:bg-red-50 rounded-lg cursor-pointer text-[14px] text-[#EF4444] flex items-center gap-2 font-medium">
+                               <Image src={deleteredIcon} alt="Delete" width={24} height={24} className="pointer-events-none" /> Delete
                            </div>
                         </div>
                       )}
@@ -426,19 +427,19 @@ export default function AllEmployeesPage() {
                     </div>
 
                     <Link href={`/employees/${emp.id}`} className="hover:underline">
-                      <h3 className="text-[14px] sm:text-[16px] font-bold text-neutral-900 break-words">
+                      <h3 className="text-[14px] md:text-[16px] font-medium text-neutral-900 break-words">
                         {emp.name}
                       </h3>
                     </Link>
 
-                    <p className="mt-1 text-[11px] sm:text-[12px] text-[#98A2B3]">
+                    <p className="mt-1 text-[11px] md:text-[12px] text-[#98A2B3]">
                       EMP ID : {emp.id.replace("EMP", "")}
                     </p>
                   </div>
 
                   <div className="mt-4 flex items-center justify-between border-t border-neutral-300">
                     <div className="flex-1 border-r border-neutral-300 pt-4 text-center min-w-0">
-                      <p className="2xl:text-[14px] xl:text-[13px] font-medium">
+                      <p className="2xl:text-[14px] xl:text-[13px] font-normal text-[#111827]">
                         Department
                       </p>
 
@@ -450,7 +451,7 @@ export default function AllEmployeesPage() {
                     <div className="h-8 w-px bg-neutral-100"></div>
 
                     <div className="flex-1 pt-4 text-center min-w-0">
-                      <p className="2xl:text-[14px] xl:text-[13px] font-medium">
+                      <p className="2xl:text-[14px] xl:text-[13px] font-normal text-[#111827]">
                         Job Title
                       </p>
 

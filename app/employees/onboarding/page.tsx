@@ -119,7 +119,7 @@ export default function OnboardingPage() {
         <div className="rounded-xl bg-white shadow-sm overflow-hidden p-6 min-h-[800px]">
           
           <div className="flex flex-wrap items-center justify-between mb-8">
-            <h2 className="text-[20px] font-bold text-[#111827] m-0">Onboarding</h2>
+            <h2 className="text-[20px] font-medium text-[#111827] m-0">Onboarding</h2>
 
             <div className="flex flex-wrap items-center gap-4 mt-3 sm:mt-0">
               <div className="relative w-full sm:w-[280px]">
@@ -130,7 +130,7 @@ export default function OnboardingPage() {
                 />
               </div>
 
-              <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-5 py-2.5 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer border-none shadow-sm whitespace-nowrap">
+              <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-5 py-2.5 2xl:text-[16px] text-[14px] font-normal text-white transition hover:bg-blue-600 cursor-pointer border-none shadow-sm whitespace-nowrap">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 New Onboarding
               </button>
@@ -139,20 +139,30 @@ export default function OnboardingPage() {
 
           <div className="flex flex-col gap-6">
             {data.map(record => (
-              <div key={record.id} className="rounded-2xl border border-[#E2E8F0] bg-white p-5">
+              <div key={record.id} className="rounded-2xl border border-[#D0D5DD] bg-white p-5">
                 <div 
                   className="flex items-center justify-between cursor-pointer group"
                   onClick={() => toggleExpand(record.id)}
                 >
-                  <div className="flex items-center gap-4">
-                    <img src={record.avatar} alt={record.name} className="w-12 h-12 rounded-full object-cover" />
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-[16px] font-bold text-[#111827]">{record.name}</span>
-                        <span className="text-[13px] font-medium text-[#9CA3AF]">{record.role}</span>
+                  <div className="flex items-start gap-4 w-full">
+                    <img src={record.avatar} alt={record.name} className="w-12 h-12 rounded-full object-cover shrink-0" />
+                    <div className="flex-1 w-full min-w-0">
+                      <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
+                        <div className="flex items-center gap-3">
+                          <span className="text-[16px] font-medium text-[#111827]">{record.name}</span>
+                          <span className="text-[14px] font-normal text-[#9CA3AF]">{record.role}</span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <div className="flex items-center gap-3">
+                            <span className="text-[13px] font-medium text-[#9CA3AF]">{record.tasksCompleted}/{record.totalTasks} Task</span>
+                            <span className="text-[15px] font-bold text-[#257BFC]">{record.progress}%</span>
+                          </div>
+                          <div className={`text-[#6B7280] transition-transform duration-200 ${expandedIds.includes(record.id) ? 'rotate-180' : ''}`}>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                          </div>
+                        </div>
                       </div>
-                      
-                      <div className="mt-2 w-[350px] max-w-full bg-[#E5E7EB] rounded-full h-1.5 relative overflow-hidden">
+                      <div className="w-full bg-[#E5E7EB] rounded-full h-1.5 relative overflow-hidden">
                         <div 
                           className="absolute top-0 left-0 h-full bg-[#257BFC] rounded-full transition-all duration-300" 
                           style={{ width: `${record.progress}%` }}
@@ -160,29 +170,19 @@ export default function OnboardingPage() {
                       </div>
                     </div>
                   </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-[13px] font-medium text-[#9CA3AF]">{record.tasksCompleted}/{record.totalTasks} Task</span>
-                      <span className="text-[15px] font-bold text-[#257BFC]">{record.progress}%</span>
-                    </div>
-                    <div className={`text-[#6B7280] transition-transform duration-200 ${expandedIds.includes(record.id) ? 'rotate-180' : ''}`}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                  </div>
                 </div>
 
                 {expandedIds.includes(record.id) && (
-                  <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4 border-t border-[#F3F4F6] pt-6">
+                  <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4 border-t border-[#D0D5DD] pt-6">
                     {record.tasks.map(task => (
                       <div 
                         key={task.id} 
-                        className="flex items-center justify-between rounded-xl border border-[#E5E7EB] p-4 transition-colors hover:bg-neutral-50 cursor-pointer"
+                        className="flex items-center justify-between rounded-xl border border-[#E4E7EC] p-4 transition-colors hover:bg-neutral-50 cursor-pointer"
                         onClick={() => toggleTask(record.id, task.id)}
                       >
                         <div className="flex items-center gap-3">
                           <div 
-                            className={`flex w-5 h-5 items-center justify-center rounded-[6px] border ${task.completed ? 'bg-[#257BFC] border-[#257BFC]' : 'border-[#D1D5DB] bg-white'}`}
+                            className={`flex w-5 h-5 items-center justify-center rounded-[6px] border ${task.completed ? 'bg-[#257BFC] border-[#257BFC]' : 'border-[#D0D5DD] bg-white'}`}
                           >
                             {task.completed && (
                               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -192,7 +192,7 @@ export default function OnboardingPage() {
                             {task.name}
                           </span>
                         </div>
-                        <span className={`rounded-full px-3 py-1 text-[12px] font-semibold ${getDeptColor(task.dept)}`}>
+                        <span className={`rounded-full px-3 py-1 text-[12px] font-normal ${getDeptColor(task.dept)}`}>
                           {task.dept}
                         </span>
                       </div>
@@ -209,14 +209,14 @@ export default function OnboardingPage() {
 
       {isAddModalOpen && (
         <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
-          <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+          <div className="w-full max-w-[850px] overflow-hidden rounded-3xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] px-6 py-5">
-              <h2 className="text-[18px] md:text-[20px] font-bold text-[#1D2939]">
+              <h2 className="text-[18px] md:text-[20px] font-semibold text-[#111827]">
                 Create New Onboarding
               </h2>
               <button
                 onClick={() => setIsAddModalOpen(false)}
-                className="text-neutral-400 transition hover:text-black cursor-pointer"
+                className="text-[#111827] transitio cursor-pointer"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
               </button>
@@ -225,7 +225,7 @@ export default function OnboardingPage() {
             <div className="px-6 py-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="md:col-span-2">
-                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">
+                  <label className="mb-2 block text-[14px] font-normal text-[#111827]">
                     Employee
                   </label>
                   <CustomSelect
@@ -237,7 +237,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">
+                  <label className="mb-2 block text-[14px] font-normal text-[#111827]">
                     Job Title
                   </label>
                   <input
@@ -250,7 +250,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">
+                  <label className="mb-2 block text-[14px] font-normal text-[#111827]">
                     Department
                   </label>
                   <CustomSelect
@@ -262,7 +262,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">
+                  <label className="mb-2 block text-[14px] font-normal text-[#111827]">
                     Start Date
                   </label>
                   <div className="relative">
@@ -278,7 +278,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-[13px] font-medium text-[#344054]">
+                  <label className="mb-2 block text-[14px] font-normal text-[#111827]">
                     Onboarding Template
                   </label>
                   <CustomSelect
@@ -294,8 +294,8 @@ export default function OnboardingPage() {
                 </div>
               </div>
 
-              <div className="mt-6 flex items-center gap-3 rounded-xl bg-[#F9FAFB] p-4 text-[13px] text-[#475467]">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-500"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <div className="mt-6 flex items-center gap-3 rounded-xl bg-[#F9FAFB] p-4 text-[14px] text-[#98A2B3] font-normal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-[#111827]"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                 8 default tasks will be added and assigned to HR, IT, Finance, and Manager.
               </div>
 

@@ -131,9 +131,9 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                     </div>
                 </Link>
 
-                <div className="flex flex-col lg:flex-row gap-6 xl:gap-5 2xl:gap-6 bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
+                <div className="flex flex-col xl:flex-row gap-6 xl:gap-5 2xl:gap-6 bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
 
-                    <div className="w-full lg:w-[353px] shrink-0">
+                    <div className="w-full xl:w-[353px] shrink-0">
                         <div className="rounded-xl border border-[#E4E7EC] p-6 bg-[#F9FAFB]">
                             <div className="flex flex-col items-center text-center">
                                 <img

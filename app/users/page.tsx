@@ -455,23 +455,23 @@ export default function UsersPage() {
                                                         </Link>
                                                     </td>
 
-                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
+                                                    <td className="px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
                                                         {user.email}
                                                     </td>
 
-                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
+                                                    <td className="px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
                                                         {user.role}
                                                     </td>
 
-                                                    <td className="px-4 py-4 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
+                                                    <td className="px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
                                                         {user.company}
                                                     </td>
 
-                                                    <td className="px-4 py-4 sm:px-6 pr-6 whitespace-nowrap border-b border-[#E2E8F0]">
+                                                    <td className="px-4 py-6 sm:px-6 pr-6 whitespace-nowrap border-b border-[#E2E8F0]">
                                                         <StatusPill status={user.status} />
                                                     </td>
 
-                                                    <td className="px-4 py-4 sm:px-6 pr-6 border-b border-[#E2E8F0]">
+                                                    <td className="px-4 py-6 sm:px-6 pr-6 border-b border-[#E2E8F0]">
                                                         <div className="flex items-center gap-2 sm:gap-4">
                                                             <Link href={`/users/edit/${user.id}`}>
                                                                 <button className="text-[#111827] hover:text-brand-500 mt-2 transition-colors">

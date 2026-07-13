@@ -56,8 +56,8 @@ export default function CompanyProfilePage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 2xl:gap-x-12 xl:gap-x-8 gap-y-12">
-            <div className="border-r border-[#E4E7EC] pr-8">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 2xl:gap-x-8 gap-y-12">
+            <div className="border-r border-[#E4E7EC] pr-6 2xl:pr-8">
               <div className="2xl:mb-6 mb-4">
                 <h2 className="text-[20px] font-medium text-[#111827] mb-2">Basic Information</h2>
                 <p className="text-[14px] font-normal text-[#98A2B3]">Official company identity and registration details.</p>
@@ -102,9 +102,9 @@ export default function CompanyProfilePage() {
                 </div>
               </div>
 
-              <div className="mt-12 2xl:mb-8 mb-6">
-                <h2 className="text-[18px] font-bold text-neutral-900 mb-1">Contact Information</h2>
-                <p className="text-[13px] text-neutral-500">Business contact and location details.</p>
+              <div className="mt-10 2xl:mb-8 mb-6">
+                <h2 className="text-[20px] font-medium text-[#111827] mb-2">Contact Information</h2>
+                <p className="text-[14px] font-normal text-[#98A2B3]">Business contact and location details.</p>
               </div>
 
               <div className="space-y-6">
@@ -184,9 +184,9 @@ export default function CompanyProfilePage() {
             </div>
 
             <div>
-              <div className="2xl:mb-8 mb-6">
-                <h2 className="text-[18px] font-bold text-neutral-900 mb-1">Tax & Payroll Details</h2>
-                <p className="text-[13px] text-neutral-500">Official tax and payroll references for financial compliance.</p>
+              <div className="2xl:mb-6 mb-4">
+                <h2 className="text-[20px] font-medium text-[#111827] mb-2">Tax & Payroll Details</h2>
+                <p className="text-[14px] font-normal text-[#98A2B3]">Official tax and payroll references for financial compliance.</p>
               </div>
 
               <div className="space-y-6">
@@ -241,14 +241,14 @@ export default function CompanyProfilePage() {
                 </div>
 
                 <div className="mt-8 rounded-xl bg-[#F0F6FF] border border-[#257BFC] p-4 2xl:p-6">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#257BFC] text-white mb-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#257BFC] text-white mb-2 2xl:mb-4">
                     <span className="text-[18px] font-normal">$</span>
                   </div>
-                  <h3 className="text-[16px] font-bold text-[#111827] mb-2">PAYE & Accounts Office Reference</h3>
-                  <p className="text-[11px] md:text-[14px] font-normal text-[#98A2B3] leading-relaxed mb-4">
+                  <h3 className="2xl:text-[20px] text-[16px] font-medium text-[#111827] mb-2">PAYE & Accounts Office Reference</h3>
+                  <p className="text-[11px] md:text-[12px] 2xl:text-[14px] font-normal text-[#98A2B3] leading-relaxed mb-2 2xl:mb-4">
                     Your PAYE reference is used for monthly reporting to HMRC. The Accounts Office reference is required when making payments to HMRC via BACS or Direct Debit.
                   </p>
-                  <a href="#" className="text-[12px] md:text-[14px] font-semibold text-brand-500 hover:text-blue-700 flex items-center gap-1">
+                  <a href="#" className="text-[14px] 2xl:text-[16px] font-medium text-[#257BFC] flex items-center gap-1">
                     Learn more about HMRC references
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="7" y1="17" x2="17" y2="7"></line>

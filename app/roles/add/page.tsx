@@ -135,10 +135,10 @@ export default function AddRolePage() {
             </div>
           </div>
 
-          <div className="flex-1 bg-white 2xl:px-6 lg:border-l border-[#E4E7EC] overflow-hidden flex flex-col">
+          <div className="flex-1 bg-white px-4 2xl:px-6 lg:border-l border-[#E4E7EC] overflow-hidden flex flex-col">
             <h3 className="text-[20px] font-medium text-[#111827] mb-6">Permissions Matrix</h3>
             
-            <div className="flex-1 rounded-xl border border-[#E2E8F0] overflow-hidden">
+            <div className="flex-1 rounded-xl border border-[#E2E8F0] overflow-auto">
               <table className="min-w-[800px] w-full text-left">
                 <thead className="bg-white">
                   <tr className="bg-[#F9FAFB]">

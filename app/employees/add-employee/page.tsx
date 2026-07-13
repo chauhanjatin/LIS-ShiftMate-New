@@ -181,7 +181,7 @@ export default function AddEmployeePage() {
                       )}
                     </div>
                     <span
-                      className={`absolute top-[52px] max-[425px]:static max-[425px]:ml-4 w-[110px] max-[425px]:w-auto text-center max-[425px]:text-left text-[13px] font-medium leading-[18px] ${isActive || isCompleted ? "text-[#0F172A]" : "text-[#94A3B8]"}`}
+                      className={`absolute top-[52px] max-[425px]:static max-[425px]:ml-4 w-[110px] max-[425px]:w-auto text-center max-[425px]:text-left 2xl:text-[16px] text-[14px] font-normal leading-[18px] ${isActive || isCompleted ? "text-[#0F172A]" : "text-[#94A3B8]"}`}
                     >
                       {firstLine}
                       {secondLine && <div className="whitespace-nowrap max-[425px]:inline max-[425px]:ml-1">{secondLine}</div>}
