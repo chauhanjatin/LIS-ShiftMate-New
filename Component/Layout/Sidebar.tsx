@@ -426,7 +426,7 @@ export default function Sidebar({
 
               {!collapsed && item.label === "Employees" && isOpen && (
                 <div
-                  className="relative mt-2 ml-[48px] animate-in slide-in-from-top-2 duration-300"
+                  className="relative mt-2 ml-[33px] animate-in slide-in-from-top-2 duration-300"
                 >
                   <div className="space-y-1">
                     {employeeSubMenus.map((subLabel) => {
@@ -454,7 +454,7 @@ export default function Sidebar({
 
               {!collapsed && item.label === "Organization" && isOpen && (
                 <div
-                  className="relative mt-2 ml-[48px] animate-in slide-in-from-top-2 duration-300"
+                  className="relative mt-2 ml-[33px] animate-in slide-in-from-top-2 duration-300"
                 >
                   <div className="space-y-1">
                     {organizationSubMenus.map((subLabel) => {

@@ -8,6 +8,8 @@ import CustomSelect from '@/Component/UI/CustomSelect';
 import searchIcon from "@/assets/images/icons/search.svg";
 import filterIcon from "@/assets/images/icons/filter.svg";
 import { Lexend_Deca } from "next/font/google";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { useRef } from "react";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -40,6 +42,11 @@ export default function LeaveBalancesPage() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [deptFilter, setDeptFilter] = useState<string>("All Departments");
 
+  const filterRef = useRef<HTMLDivElement>(null);
+  useClickOutside(filterRef, () => {
+    if (filterOpen) setFilterOpen(false);
+  });
+
   const filteredBalances = balances.filter(bal => {
     if (deptFilter === "All Departments") return true;
     return bal.department === deptFilter;
@@ -71,7 +78,7 @@ export default function LeaveBalancesPage() {
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Leave Balances</h2>
 
-            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 relative">
+            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 relative" ref={filterRef}>
               <div className="relative 2xl:w-75 md:w-60 w-32">
                 <Image
                   src={searchIcon}

@@ -41,7 +41,7 @@ export default function EmployeePayrollSetupPage() {
     const [employees, setEmployees] = useState<EmployeePayroll[]>(initialPayrollSetup);
     const [searchQuery, setSearchQuery] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
+    const [itemsPerPage, setItemsPerPage] = useState(10);
 
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_employee_payroll_setup");
@@ -186,39 +186,44 @@ export default function EmployeePayrollSetupPage() {
                             </div>
                             
                             {/* Pagination */}
-                            <div className="flex items-center justify-between border-t border-[#E2E8F0] px-4 py-4 sm:px-6">
-                                <span className="text-[14px] text-[#667085]">
-                                    Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredEmployees.length)} of {filteredEmployees.length} entries
-                                </span>
+                            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
                                 <div className="flex items-center gap-2">
+                                    <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                                        Rows per page:
+                                    </span>
+                                    <div className="w-[80px]">
+                                        <CustomSelect 
+                                            value={String(itemsPerPage)}
+                                            onChange={(val) => { setItemsPerPage(Number(val)); setCurrentPage(1); }}
+                                            options={[
+                                                { label: "5", value: "5" },
+                                                { label: "10", value: "10" },
+                                                { label: "20", value: "20" }
+                                            ]}
+                                            menuPlacement="top"
+                                            className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                                        />
+                                    </div>
+                                </div>
+
+                                <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                                    {filteredEmployees.length > 0 ? `${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, filteredEmployees.length)} of ${filteredEmployees.length}` : '0-0 of 0'}
+                                </span>
+
+                                <div className="flex items-center gap-1 ml-4">
                                     <button 
                                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                                         disabled={currentPage === 1}
-                                        className="flex h-8 items-center justify-center rounded-lg border border-[#D0D5DD] px-3 text-[14px] font-medium text-[#344054] transition-colors hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        Previous
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                     </button>
-                                    <div className="flex items-center gap-1">
-                                        {Array.from({ length: totalPages }).map((_, idx) => (
-                                            <button
-                                                key={idx}
-                                                onClick={() => setCurrentPage(idx + 1)}
-                                                className={`flex h-8 w-8 items-center justify-center rounded-lg text-[14px] font-medium transition-colors ${
-                                                    currentPage === idx + 1
-                                                        ? "bg-neutral-100 text-[#1D2939]"
-                                                        : "text-[#667085] hover:bg-neutral-50"
-                                                }`}
-                                            >
-                                                {idx + 1}
-                                            </button>
-                                        ))}
-                                    </div>
                                     <button 
                                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                                         disabled={currentPage === totalPages}
-                                        className="flex h-8 items-center justify-center rounded-lg border border-[#D0D5DD] px-3 text-[14px] font-medium text-[#344054] transition-colors hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        Next
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                     </button>
                                 </div>
                             </div>

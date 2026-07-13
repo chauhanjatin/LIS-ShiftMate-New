@@ -5,14 +5,19 @@ import logoutIcon from "@/assets/images/icons/logout.svg";
 import adminImage from "@/assets/images/admin-img.png";
 import Link from "next/link";
 import { useNotifications } from "@/hooks/useNotifications";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import CustomSelect from "@/Component/UI/CustomSelect";
+import { useClickOutside } from "@/hooks/useClickOutside";
 
 function AdminDropdown() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("Security");
   const detailsRef = useRef<HTMLDetailsElement>(null);
+  
+  useClickOutside(detailsRef, () => {
+    detailsRef.current?.removeAttribute("open");
+  });
 
   const openProfile = () => {
     setIsProfileOpen(true);
@@ -184,7 +189,7 @@ function AdminDropdown() {
 
       {isSettingsOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4">
-          <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+          <div className="w-full max-w-[864px] overflow-hidden rounded-3xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] px-6 py-5">
               <h2 className="text-[18px] md:text-[20px] font-bold text-[#1D2939]">
                 Account Settings
@@ -292,6 +297,10 @@ function NotificationDropdown() {
   const { notifications, unreadCount } = useNotifications();
   const [isOpen, setIsOpen] = useState(false);
   const detailsRef = useRef<HTMLDetailsElement>(null);
+
+  useClickOutside(detailsRef, () => {
+    detailsRef.current?.removeAttribute("open");
+  });
 
   const getTypeStyles = (type: string) => {
     switch (type) {

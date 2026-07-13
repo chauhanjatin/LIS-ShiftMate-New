@@ -8,6 +8,8 @@ import Toast from "@/Component/UI/Toast";
 import CustomSelect from '@/Component/UI/CustomSelect';
 import viewIcon from "@/assets/images/icons/eye-view.svg";
 import { Lexend_Deca } from "next/font/google";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { useRef } from "react";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -19,6 +21,11 @@ export default function EPSSubmissionsPage() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [statusFilter, setStatusFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+
+  const filterRef = useRef<HTMLDivElement>(null);
+  useClickOutside(filterRef, () => {
+    if (isFilterOpen) setIsFilterOpen(false);
+  });
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
@@ -93,7 +100,7 @@ export default function EPSSubmissionsPage() {
                   className="min-h-[42px]"
                 />
               </div>
-              <div className="relative">
+              <div className="relative" ref={filterRef}>
                 <button onClick={() => setIsFilterOpen(!isFilterOpen)} className="flex items-center justify-center rounded-xl border border-neutral-200 bg-white w-[42px] h-[42px] text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
                 </button>
