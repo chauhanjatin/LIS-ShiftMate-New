@@ -57,7 +57,7 @@ export default function FPSSubmissionsPage() {
   return (
     <DashboardLayout title="FPS Submissions" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 pt-4 md:pt-6 pb-10">
+        <div className="rounded-xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 pt-4 md:pt-6 pb-10">
           
           <div className="flex flex-wrap md:flex-nowrap justify-between items-center mb-8">
             <h2 className="text-[20px] font-medium text-[#111827]">FPS Submissions</h2>
@@ -95,7 +95,7 @@ export default function FPSSubmissionsPage() {
                     <td className="md:p-6 p-3 font-normal text-[#111827]">{row.submittedDate}</td>
                     <td className="md:p-6 p-3 font-normal text-[#111827]">{row.ack}</td>
                     <td className="md:p-6 p-3">{renderBadge(row.status)}</td>
-                    <td className="lg:p-6 p-3">
+                    <td className="xl:p-6 p-3">
                       <div className="flex items-center gap-3">
                         <Link href={`/hmrc-rti/fps-submissions/${row.id}`} className="text-[#64748B] hover:text-[#257BFC]">
                           <Image src={viewIcon} alt="View" />

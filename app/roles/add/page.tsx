@@ -7,6 +7,8 @@ import { useRoles } from "@/hooks/useRoles";
 import { RolePermissions } from "@/Data/roles";
 import Toast from '@/Component/UI/Toast';
 
+const CHECKBOX_CLASS = "appearance-none w-5 h-5 border border-[#D0D5DD] rounded-[6px] checked:bg-[#257BFC] checked:border-[#257BFC] cursor-pointer relative after:content-[''] after:absolute after:hidden checked:after:block after:left-[6px] after:top-[2px] after:w-[6px] after:h-[11px] after:border-white after:border-b-[2.5px] after:border-r-[2.5px] after:rotate-45";
+
 const PERMISSION_MODULES = [
   "Employee Management",
   "Leave & Attendance",
@@ -50,6 +52,23 @@ export default function AddRolePage() {
     });
   };
 
+  const handleSelectAllColumn = (field: keyof RolePermissions[string], checked: boolean) => {
+    setPermissions((prev) => {
+      const next = { ...prev };
+      PERMISSION_MODULES.forEach((module) => {
+        if (!next[module]) {
+          next[module] = { view: false, create: false, edit: false, delete: false, approve: false, export: false };
+        }
+        next[module] = { ...next[module], [field]: checked };
+      });
+      return next;
+    });
+  };
+
+  const isAllSelected = (field: keyof RolePermissions[string]) => {
+    return PERMISSION_MODULES.every((module) => permissions[module]?.[field]);
+  };
+
   const handleCreateRole = () => {
     const newErrors: { [key: string]: string } = {};
     if (!roleName) newErrors.roleName = "Please enter a role name";
@@ -76,38 +95,38 @@ export default function AddRolePage() {
 
   return (
     <DashboardLayout title="Roles" subtitle="Home/ Roles List/ Add Role">
-      <div className="flex-1 p-4 2xl:p-6 h-full flex flex-col">
-        <div className="rounded-2xl border border-[#E2E8F0] bg-white md:p-8 p-2 shadow-sm flex-1 flex flex-col xl:flex-row gap-6 overflow-hidden">
+      <div className="flex-1 p-4 2xl:p-6 flex flex-col">
+        <div className="rounded-xl bg-white 2xl:p-6 xl:p-5 p-2 shadow-sm flex-1 flex flex-col xl:flex-row 2xl:gap-6 gap-4 overflow-hidden">
           
-          <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-2xl lg:p-6 p-3">
-            <h2 className="text-[20px] font-bold text-neutral-900 mb-2">Create New Role</h2>
+          <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-xl">
+            <h2 className="text-[24px] font-semibold text-[#111827]">Create New Role</h2>
             
             <div className="mt-6 lg:mb-8">
-              <h3 className="text-[16px] font-semibold text-neutral-900 mb-1">Role Details</h3>
-              <p className="text-[12px] text-neutral-500 mb-6 leading-relaxed">
+              <h3 className="text-[20px] font-medium text-[#111827] mb-1">Role Details</h3>
+              <p className="text-[14px] font-normal text-[#98A2B3] mb-6 leading-relaxed">
                 Enter the employee's basic personal information for identification and contact purposes.
               </p>
 
               <div className="space-y-5">
                 <div>
-                  <label className="block text-[13px] font-medium text-neutral-900 mb-1.5">Role Name</label>
+                  <label className="block text-[14px] font-normal text-[#111827] mb-1.5">Role Name</label>
                   <input
                     type="text"
                     value={roleName}
                     onChange={(e) => { setRoleName(e.target.value); setErrors(prev => ({...prev, roleName: ""})); }}
-                    className={`w-full rounded-xl border ${errors.roleName ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white`}
+                    className={`w-full rounded-xl border ${errors.roleName ? 'border-red-500' : 'border-[#111827]'} px-4 py-2.5 text-[14px] outline-none bg-white`}
                     placeholder="e.g. Senior Manager"
                   />
                   {errors.roleName && <p className="text-red-500 text-xs mt-1">{errors.roleName}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-[13px] font-medium text-neutral-900 mb-1.5">Description</label>
+                  <label className="block text-[14px] font-normal text-[#111827] mb-1.5">Description</label>
                   <textarea
                     value={description}
                     onChange={(e) => { setDescription(e.target.value); setErrors(prev => ({...prev, description: ""})); }}
                     rows={4}
-                    className={`w-full rounded-xl border ${errors.description ? 'border-red-500' : 'border-[#E2E8F0]'} px-4 py-2.5 text-[14px] outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 bg-white resize-none`}
+                    className={`w-full rounded-xl border ${errors.description ? 'border-red-500' : 'border-[#111827]'} px-4 py-2.5 text-[14px] outline-none bg-white resize-none`}
                     placeholder="Responsible for team management and project oversight"
                   />
                   {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description}</p>}
@@ -116,32 +135,72 @@ export default function AddRolePage() {
             </div>
           </div>
 
-          <div className="flex-1 bg-white lg:p-6 p-3 lg:border-l border-[#E4E7EC] overflow-hidden flex flex-col">
-            <h3 className="text-[18px] font-bold text-neutral-900 mb-6">Permissions Matrix</h3>
+          <div className="flex-1 bg-white px-4 2xl:px-6 lg:border-l border-[#E4E7EC] overflow-hidden flex flex-col">
+            <h3 className="text-[20px] font-medium text-[#111827] mb-6">Permissions Matrix</h3>
             
-            <div className="flex-1 overflow-x-auto overflow-y-auto">
-              <table className="min-w-[800px] w-full text-left border-collapse">
+            <div className="flex-1 rounded-xl border border-[#E2E8F0] overflow-auto">
+              <table className="min-w-[800px] w-full text-left">
                 <thead className="bg-white">
-                  <tr>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] rounded-tl-xl w-[220px]">
+                  <tr className="bg-[#F9FAFB]">
+                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] w-[220px]">
                       Role Name
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center">
-                      View
+                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
+                      <div className="flex items-center justify-center gap-2">
+                        <input 
+                          type="checkbox" 
+                          checked={isAllSelected('view')}
+                          onChange={(e) => handleSelectAllColumn('view', e.target.checked)}
+                          className={CHECKBOX_CLASS}
+                        />
+                        View
+                      </div>
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center">
-                      Create
+                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
+                      <div className="flex items-center justify-center gap-2">
+                        <input 
+                          type="checkbox" 
+                          checked={isAllSelected('create')}
+                          onChange={(e) => handleSelectAllColumn('create', e.target.checked)}
+                          className={CHECKBOX_CLASS}
+                        />
+                        Create
+                      </div>
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center">
-                      Edit
+                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
+                      <div className="flex items-center justify-center gap-2">
+                        <input 
+                          type="checkbox" 
+                          checked={isAllSelected('edit')}
+                          onChange={(e) => handleSelectAllColumn('edit', e.target.checked)}
+                          className={CHECKBOX_CLASS}
+                        />
+                        Edit
+                      </div>
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center">
-                      Delete
+                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
+                      <div className="flex items-center justify-center gap-2">
+                        <input 
+                          type="checkbox" 
+                          checked={isAllSelected('delete')}
+                          onChange={(e) => handleSelectAllColumn('delete', e.target.checked)}
+                          className={CHECKBOX_CLASS}
+                        />
+                        Delete
+                      </div>
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center">
-                      Approve
+                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
+                      <div className="flex items-center justify-center gap-2">
+                        <input 
+                          type="checkbox" 
+                          checked={isAllSelected('approve')}
+                          onChange={(e) => handleSelectAllColumn('approve', e.target.checked)}
+                          className={CHECKBOX_CLASS}
+                        />
+                        Approve
+                      </div>
                     </th>
-                    <th className="py-3 px-4 text-[13px] font-semibold text-neutral-700 border-b border-[#E2E8F0] text-center rounded-tr-xl">
+                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
                       Export
                     </th>
                   </tr>
@@ -150,7 +209,7 @@ export default function AddRolePage() {
                   {PERMISSION_MODULES.map((module, idx) => {
                     const modPerms = permissions[module] || {};
                     return (
-                      <tr key={module} className={`border-b border-[#E2E8F0] last:border-0 ${idx % 2 === 0 ? 'bg-white' : 'bg-[#FAFAFA]'}`}>
+                      <tr key={module} className={`border-b border-[#E2E8F0] last:border-0`}>
                         <td className="py-4 px-4 text-[13px] font-medium text-neutral-900">
                           {module}
                         </td>
@@ -159,7 +218,7 @@ export default function AddRolePage() {
                             type="checkbox" 
                             checked={!!modPerms.view} 
                             onChange={() => handleCheckboxChange(module, "view")}
-                            className="w-[18px] h-[18px] rounded border-neutral-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
+                            className={CHECKBOX_CLASS}
                           />
                         </td>
                         <td className="py-4 px-4 text-center">
@@ -167,7 +226,7 @@ export default function AddRolePage() {
                             type="checkbox" 
                             checked={!!modPerms.create} 
                             onChange={() => handleCheckboxChange(module, "create")}
-                            className="w-[18px] h-[18px] rounded border-neutral-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
+                            className={CHECKBOX_CLASS}
                           />
                         </td>
                         <td className="py-4 px-4 text-center">
@@ -175,7 +234,7 @@ export default function AddRolePage() {
                             type="checkbox" 
                             checked={!!modPerms.edit} 
                             onChange={() => handleCheckboxChange(module, "edit")}
-                            className="w-[18px] h-[18px] rounded border-neutral-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
+                            className={CHECKBOX_CLASS}
                           />
                         </td>
                         <td className="py-4 px-4 text-center">
@@ -183,7 +242,7 @@ export default function AddRolePage() {
                             type="checkbox" 
                             checked={!!modPerms.delete} 
                             onChange={() => handleCheckboxChange(module, "delete")}
-                            className="w-[18px] h-[18px] rounded border-neutral-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
+                            className={CHECKBOX_CLASS}
                           />
                         </td>
                         <td className="py-4 px-4 text-center">
@@ -191,7 +250,7 @@ export default function AddRolePage() {
                             type="checkbox" 
                             checked={!!modPerms.approve} 
                             onChange={() => handleCheckboxChange(module, "approve")}
-                            className="w-[18px] h-[18px] rounded border-neutral-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
+                            className={CHECKBOX_CLASS}
                           />
                         </td>
                         <td className="py-4 px-4 text-center">
@@ -214,7 +273,7 @@ export default function AddRolePage() {
               </table>
             </div>
             
-            <div className="flex items-center justify-end gap-4 pt-6 mt-4 border-t border-[#E2E8F0]">
+            <div className="flex items-center justify-end gap-4 pt-6 2xl:mt-4">
               <button 
                 onClick={() => router.push('/roles')}
                 className="px-6 py-2.5 rounded-xl cursor-pointer border border-neutral-300 bg-white text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition overflow-hidden"

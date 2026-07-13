@@ -8,6 +8,7 @@ import Toast from '@/Component/UI/Toast';
 import CustomSelect from '@/Component/UI/CustomSelect';
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
+import deleteRedIcon from "@/assets/images/icons/delete-red.svg";
 import { Lexend_Deca } from "next/font/google";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
@@ -32,7 +33,7 @@ export default function TaxRulesPage() {
     const [rules, setRules] = useState<TaxRule[]>(initialRules);
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    
+
     const totalPages = Math.ceil(rules.length / rowsPerPage) || 1;
     const startIndex = (currentPage - 1) * rowsPerPage;
     const paginatedRules = rules.slice(startIndex, startIndex + rowsPerPage);
@@ -100,13 +101,13 @@ export default function TaxRulesPage() {
     return (
         <DashboardLayout title="Tax Rules" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                <div className="rounded-xl bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
-                        <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">Tax Rules</h2>
+                        <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Tax Rules</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <div className="w-[140px]">
-                                <CustomSelect 
+                                <CustomSelect
                                     value={taxYear}
                                     onChange={setTaxYear}
                                     options={[
@@ -121,7 +122,7 @@ export default function TaxRulesPage() {
 
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="min-w-[900px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
@@ -136,17 +137,17 @@ export default function TaxRulesPage() {
                                     <tbody className="bg-white">
                                         {paginatedRules.map((rule) => (
                                             <tr key={rule.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.bandName}</td>
-                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.lower}</td>
-                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.upper}</td>
-                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{rule.rate}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{rule.bandName}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{rule.lower}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{rule.upper}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{rule.rate}</td>
 
                                                 <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex items-center justify-center gap-3">
-                                                        <button onClick={() => openEditModal(rule)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
+                                                        <button onClick={() => openEditModal(rule)} className="text-[#111827] hover:text-[#257BFC] transition-colors cursor-pointer">
                                                             <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
                                                         </button>
-                                                        <button onClick={() => { setRuleToDelete(rule.id); setIsDeleteModalOpen(true); }} className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
+                                                        <button onClick={() => { setRuleToDelete(rule.id); setIsDeleteModalOpen(true); }} className="text-[#111827] hover:text-red-500 transition-colors cursor-pointer">
                                                             <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none" />
                                                         </button>
                                                     </div>
@@ -165,7 +166,7 @@ export default function TaxRulesPage() {
                                     Rows per page:
                                 </span>
                                 <div className="w-[80px]">
-                                    <CustomSelect 
+                                    <CustomSelect
                                         value={String(rowsPerPage)}
                                         onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
                                         options={[
@@ -184,14 +185,14 @@ export default function TaxRulesPage() {
                             </span>
 
                             <div className="flex items-center gap-1 ml-4">
-                                <button 
+                                <button
                                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                                     disabled={currentPage === 1}
                                     className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                                     disabled={currentPage === totalPages}
                                     className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
@@ -234,8 +235,8 @@ export default function TaxRulesPage() {
                                         type="text"
                                         name="bandName"
                                         value={editFormData.bandName}
-                                        onChange={(e) => setEditFormData({...editFormData, bandName: e.target.value})}
-                                        className="lg:h-[52px] h-[42px] w-full rounded-2xl border border-[#E2E8F0] px-4 md:text-[14px] text-[12px] outline-none transition focus:border-[#257BFC]"
+                                        onChange={(e) => setEditFormData({ ...editFormData, bandName: e.target.value })}
+                                        className="lg:h-[52px] h-[42px] w-full rounded-xl border border-[#E2E8F0] px-4 md:text-[14px] text-[12px] outline-none transition focus:border-[#257BFC]"
                                     />
                                 </div>
 
@@ -247,14 +248,14 @@ export default function TaxRulesPage() {
                                     <div className="relative">
                                         <CustomSelect
                                             value={editFormData.lower}
-                                            onChange={(val) => setEditFormData({...editFormData, lower: val})}
+                                            onChange={(val) => setEditFormData({ ...editFormData, lower: val })}
                                             options={[
                                                 { label: "$0", value: "$0" },
                                                 { label: "$12,571", value: "$12,571" },
                                                 { label: "$50,271", value: "$50,271" },
                                                 { label: "$125,141", value: "$125,141" }
                                             ]}
-                                            className="lg:h-[52px] h-[42px] !rounded-2xl"
+                                            className="lg:h-[52px] h-[42px] !rounded-xl"
                                         />
                                     </div>
                                 </div>
@@ -267,14 +268,14 @@ export default function TaxRulesPage() {
                                     <div className="relative">
                                         <CustomSelect
                                             value={editFormData.upper}
-                                            onChange={(val) => setEditFormData({...editFormData, upper: val})}
+                                            onChange={(val) => setEditFormData({ ...editFormData, upper: val })}
                                             options={[
                                                 { label: "$12,570", value: "$12,570" },
                                                 { label: "$50,270", value: "$50,270" },
                                                 { label: "$125,140", value: "$125,140" },
                                                 { label: "Unlimited", value: "Unlimited" }
                                             ]}
-                                            className="lg:h-[52px] h-[42px] !rounded-2xl"
+                                            className="lg:h-[52px] h-[42px] !rounded-xl"
                                         />
                                     </div>
                                 </div>
@@ -287,14 +288,14 @@ export default function TaxRulesPage() {
                                     <div className="relative">
                                         <CustomSelect
                                             value={editFormData.rate}
-                                            onChange={(val) => setEditFormData({...editFormData, rate: val})}
+                                            onChange={(val) => setEditFormData({ ...editFormData, rate: val })}
                                             options={[
                                                 { label: "0%", value: "0%" },
                                                 { label: "20%", value: "20%" },
                                                 { label: "40%", value: "40%" },
                                                 { label: "45%", value: "45%" }
                                             ]}
-                                            className="lg:h-[52px] h-[42px] !rounded-2xl"
+                                            className="lg:h-[52px] h-[42px] !rounded-xl"
                                         />
                                     </div>
                                 </div>
@@ -304,12 +305,12 @@ export default function TaxRulesPage() {
                                 <button
                                     type="button"
                                     onClick={() => setIsEditModalOpen(false)}
-                                    className="lg:h-[48px] h-[40px] rounded-2xl border border-[#E2E8F0] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
+                                    className="lg:h-[48px] h-[40px] rounded-xl border border-[#E2E8F0] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-[#101828] transition hover:bg-neutral-100 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
 
-                                <button type="submit" className="lg:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                <button type="submit" className="lg:h-[48px] h-[40px] rounded-xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[13px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                     Save Change
                                 </button>
                             </div>
@@ -320,13 +321,12 @@ export default function TaxRulesPage() {
 
             {isDeleteModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
-                    <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+                    <div className="w-full max-w-[350px] rounded-xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
                         <div className="mb-6 flex flex-col items-center text-center">
-                            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-100">
-                                <Image src={deleteIcon} alt="Delete" width={28} height={28} className="h-7 w-7 text-red-600" />
+                            <div className="mb-4 rounded-xl p-[9px] bg-red-100">
+                                <Image src={deleteRedIcon} alt="Delete" className="text-red-600" />
                             </div>
-                            <h2 className="mb-2 text-xl font-bold text-neutral-900">Delete Tax Rule</h2>
-                            <p className="text-sm text-neutral-500">Are you sure you want to delete this tax rule? This action cannot be undone.</p>
+                            <p className="text-[16px] font-medium text-[#111827]">Are you sure you want to delete this tax rule?</p>
                         </div>
                         <div className="flex gap-3">
                             <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>

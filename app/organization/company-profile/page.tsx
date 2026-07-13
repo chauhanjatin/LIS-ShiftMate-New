@@ -31,15 +31,15 @@ export default function CompanyProfilePage() {
   return (
     <DashboardLayout title="Company Profile" subtitle="Home/ Organization/ Company Profile">
       <div className="flex-1 p-4 2xl:p-6">
-        <div className="rounded-2xl border border-neutral-200 bg-white md:p-8 p-5 shadow-sm">
+        <div className="rounded-xl border border-neutral-200 bg-white 2xl:p-6 p-5 shadow-sm">
 
-          <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-5 rounded-2xl bg-[#F9FAFB] border border-[#E4E7EC] md:p-6 p-4 md:mb-10 mb-8">
+          <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-5 rounded-xl bg-[#F9FAFB] border border-[#E4E7EC] 2xl:p-6 p-4 mb-6">
             <Image
               src={appLogo}
               alt="App Logo"
               width={80}
               height={80}
-              className="rounded-2xl"
+              className="rounded-xl"
             />
             <div>
               <h1 className="md:text-[32px] text-[22px] font-medium text-[#111827] mb-2">Shiftmate</h1>
@@ -49,18 +49,18 @@ export default function CompanyProfilePage() {
                   alt="Verify"
                   width={18}
                   height={18}
-                  className="rounded-2xl"
+                  className="rounded-xl"
                 />
                 <span className="text-[12px] font-normal text-[#4DB949]">Verified Company</span>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-12 gap-y-12">
-            <div className="border-r border-[#E4E7EC] pr-8">
-              <div className="mb-8">
-                <h2 className="text-[18px] font-bold text-neutral-900 mb-1">Basic Information</h2>
-                <p className="text-[13px] text-neutral-500">Official company identity and registration details.</p>
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 2xl:gap-x-8 gap-y-12">
+            <div className="border-r border-[#E4E7EC] pr-6 2xl:pr-8">
+              <div className="2xl:mb-6 mb-4">
+                <h2 className="text-[20px] font-medium text-[#111827] mb-2">Basic Information</h2>
+                <p className="text-[14px] font-normal text-[#98A2B3]">Official company identity and registration details.</p>
               </div>
 
               <div className="space-y-6">
@@ -102,9 +102,9 @@ export default function CompanyProfilePage() {
                 </div>
               </div>
 
-              <div className="mt-12 mb-8">
-                <h2 className="text-[18px] font-bold text-neutral-900 mb-1">Contact Information</h2>
-                <p className="text-[13px] text-neutral-500">Business contact and location details.</p>
+              <div className="mt-10 2xl:mb-8 mb-6">
+                <h2 className="text-[20px] font-medium text-[#111827] mb-2">Contact Information</h2>
+                <p className="text-[14px] font-normal text-[#98A2B3]">Business contact and location details.</p>
               </div>
 
               <div className="space-y-6">
@@ -184,9 +184,9 @@ export default function CompanyProfilePage() {
             </div>
 
             <div>
-              <div className="mb-8">
-                <h2 className="text-[18px] font-bold text-neutral-900 mb-1">Tax & Payroll Details</h2>
-                <p className="text-[13px] text-neutral-500">Official tax and payroll references for financial compliance.</p>
+              <div className="2xl:mb-6 mb-4">
+                <h2 className="text-[20px] font-medium text-[#111827] mb-2">Tax & Payroll Details</h2>
+                <p className="text-[14px] font-normal text-[#98A2B3]">Official tax and payroll references for financial compliance.</p>
               </div>
 
               <div className="space-y-6">
@@ -240,15 +240,15 @@ export default function CompanyProfilePage() {
                   </div>
                 </div>
 
-                <div className="mt-8 rounded-2xl bg-[#F0F6FF] border border-[#D1E4FF] p-4 md:p-6">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#257BFC] text-white mb-4">
-                    <span className="text-[18px] font-bold">$</span>
+                <div className="mt-8 rounded-xl bg-[#F0F6FF] border border-[#257BFC] p-4 2xl:p-6">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#257BFC] text-white mb-2 2xl:mb-4">
+                    <span className="text-[18px] font-normal">$</span>
                   </div>
-                  <h3 className="text-[16px] font-bold text-neutral-900 mb-2">PAYE & Accounts Office Reference</h3>
-                  <p className="text-[11px] md:text-[13px] text-neutral-600 leading-relaxed mb-4">
+                  <h3 className="2xl:text-[20px] text-[16px] font-medium text-[#111827] mb-2">PAYE & Accounts Office Reference</h3>
+                  <p className="text-[11px] md:text-[12px] 2xl:text-[14px] font-normal text-[#98A2B3] leading-relaxed mb-2 2xl:mb-4">
                     Your PAYE reference is used for monthly reporting to HMRC. The Accounts Office reference is required when making payments to HMRC via BACS or Direct Debit.
                   </p>
-                  <a href="#" className="text-[12px] md:text-[14px] font-semibold text-brand-500 hover:text-blue-700 flex items-center gap-1">
+                  <a href="#" className="text-[14px] 2xl:text-[16px] font-medium text-[#257BFC] flex items-center gap-1">
                     Learn more about HMRC references
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="7" y1="17" x2="17" y2="7"></line>

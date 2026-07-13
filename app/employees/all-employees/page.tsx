@@ -11,6 +11,7 @@ import listViewIcon from "@/assets/images/icons/list-view-circle.svg";
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import deleteRedIcon from "@/assets/images/icons/delete-popup.svg";
+import deleteredIcon from "@/assets/images/icons/delete-red.svg"
 import Link from "next/link";
 import { useEmployees } from "@/hooks/useEmployees";
 import { Employee, Status } from "@/Data/employees";
@@ -41,10 +42,17 @@ export default function AllEmployeesPage() {
   const [selectedEmployees, setSelectedEmployees] = useState<string[]>([]);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [selectedDepartment, setSelectedDepartment] = useState("All Departments");
+  const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
-  const totalPages = Math.ceil(employeesList.length / rowsPerPage) || 1;
+  const filteredEmployees = employeesList.filter((emp) => 
+    selectedDepartment === "All Departments" ? true : emp.dept === selectedDepartment
+  );
+
+  const totalPages = Math.ceil(filteredEmployees.length / rowsPerPage) || 1;
   const startIndex = (currentPage - 1) * rowsPerPage;
-  const paginatedEmployees = employeesList.slice(startIndex, startIndex + rowsPerPage);
+  const paginatedEmployees = filteredEmployees.slice(startIndex, startIndex + rowsPerPage);
 
   const allSelected = paginatedEmployees.length > 0 && selectedEmployees.length === paginatedEmployees.length;
 
@@ -74,9 +82,9 @@ export default function AllEmployeesPage() {
     <DashboardLayout title="Employees" subtitle="Home/ All Employees">
 
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
+        <div className="rounded-xl bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
-            <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Employee List</h2>
+            <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Employee List</h2>
 
             <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
               <div className="relative 2xl:w-75 md:w-60 w-32">
@@ -93,15 +101,41 @@ export default function AllEmployeesPage() {
                 />
               </div>
 
-              <button className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50">
-                <Image
-                  src={filterIcon}
-                  alt="Filter"
-                  width={24}
-                  height={24}
-                  className="cursor-pointer"
-                />
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setFilterOpen(!filterOpen)}
+                  className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50"
+                >
+                  <Image
+                    src={filterIcon}
+                    alt="Filter"
+                    width={24}
+                    height={24}
+                    className="cursor-pointer"
+                  />
+                </button>
+                {filterOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-40 rounded-xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-[#E2E8F0] p-2 z-50">
+                    {["All Departments", "Engineering", "Sales", "Marketing", "HR", "Finance"].map((dept) => (
+                      <div
+                        key={dept}
+                        onClick={() => {
+                          setSelectedDepartment(dept);
+                          setFilterOpen(false);
+                          setCurrentPage(1);
+                        }}
+                        className={`px-3 py-2 rounded-lg cursor-pointer text-[14px] font-normal mb-1 ${
+                          selectedDepartment === dept
+                            ? "bg-[#257BFC] text-white"
+                            : "hover:bg-neutral-50 text-neutral-700"
+                        }`}
+                      >
+                        {dept}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               {view === "list" ? (
                 <button
@@ -120,7 +154,7 @@ export default function AllEmployeesPage() {
               )}
 
               <Link href="/employees/add-employee">
-                <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] px-2.5 py-2 md:px-5 md:py-3 text-[12px] md:text-[16px] text-white transition hover:bg-blue-600 cursor-pointer">
+                <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] px-2.5 py-2 2xl:px-5 md:py-3 text-[12px] 2xl:text-[16px] text-white transition hover:bg-blue-600 cursor-pointer">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -133,17 +167,17 @@ export default function AllEmployeesPage() {
 
           {view === "list" ? (
             <div className="p-3 2xl:p-6">
-              <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+              <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="min-w-[1100px] w-full text-left border-collapse">
                     <thead className="bg-[#F8F9FC]">
                       <tr>
-                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#475467] whitespace-nowrap cursor-pointer">
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#475467] whitespace-nowrap">
                           <input
                             type="checkbox"
                             checked={allSelected}
                             onChange={handleSelectAll}
-                            className="h-4 w-4 rounded border-[#E2E8F0] text-brand-500 focus:ring-brand-500"
+                            className="h-4 w-4 rounded border-[#E2E8F0] text-brand-500 focus:ring-brand-500 cursor-pointer"
                           />
                         </th>
 
@@ -187,7 +221,7 @@ export default function AllEmployeesPage() {
                           key={emp.id}
                           className="group transition-colors hover:bg-neutral-50"
                         >
-                          <td className="px-4 md:py-6 py-2 sm:px-6 2xl:pl-6 pl-3 pr-2">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 2xl:pl-6 pl-3 pr-2">
                             <input
                               type="checkbox"
                               checked={selectedEmployees.includes(emp.id)}
@@ -196,47 +230,47 @@ export default function AllEmployeesPage() {
                             />
                           </td>
 
-                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-medium whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-medium whitespace-nowrap">
                             {emp.id}
                           </td>
 
-                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6">
                             <Link href={`/employees/${emp.id}`}>
-                              <div className="flex min-w-[180px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
+                              <div className="flex min-w-[180px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline ">
                                 <img
                                   src={emp.avatar}
                                   alt={emp.name}
                                   className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover flex-shrink-0"
                                 />
 
-                                <span className="text-[12px] sm:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                                <span className="text-[12px] md:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
                                   {emp.name}
                                 </span>
                               </div>
                             </Link>
                           </td>
 
-                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] md:text-[14px] whitespace-nowrap">
                             {emp.dept}
                           </td>
 
-                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] md:text-[14px] whitespace-nowrap">
                             {emp.role}
                           </td>
 
-                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] md:text-[14px] whitespace-nowrap">
                             {emp.type}
                           </td>
 
-                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 whitespace-nowrap">
                             <StatusPill status={emp.status} />
                           </td>
 
-                          <td className="px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] sm:text-[14px] whitespace-nowrap">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 pr-6 text-[12px] md:text-[14px] whitespace-nowrap">
                             {emp.joinDate}
                           </td>
 
-                          <td className="px-4 md:py-6 py-2 sm:px-6 md:pr-4 pr-2">
+                          <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-2 sm:px-6 md:pr-4 pr-2">
                             <div className="flex items-center gap-2 md:gap-3">
                               <Link href={`/employees/${emp.id}`}>
                                 <button className="text-neutral-400 hover:text-brand-500 mt-2 cursor-pointer">
@@ -341,32 +375,46 @@ export default function AllEmployeesPage() {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 p-3 sm:grid-cols-2 gap-4 sm:p-4 xl:grid-cols-3 xl:grid-cols-4 2xl:gap-6 2xl:p-6">
+            <div className="grid grid-cols-1 p-3 sm:grid-cols-2 gap-4 sm:p-4 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-6 2xl:p-6">
               {paginatedEmployees.map((emp) => (
                 <div
                   key={emp.id}
-                  className="relative rounded-2xl border border-[#E2E8F0] bg-white p-3 2xl:p-5 shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)] overflow-hidden"
+                  className="relative rounded-xl border border-[#E2E8F0] bg-white p-3 2xl:p-5 shadow-[0_4px_20px_rgba(15,23,42,0.03)] transition-all hover:shadow-[0_8px_30px_rgba(15,23,42,0.08)] overflow-hidden"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <StatusPill status={emp.status} />
 
-                    <button className="cursor-pointer text-black transition shrink-0">
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-4 w-4 sm:h-5 sm:w-5"
-                      >
-                        <circle cx="12" cy="12" r="1"></circle>
-                        <circle cx="12" cy="5" r="1"></circle>
-                        <circle cx="12" cy="19" r="1"></circle>
-                      </svg>
-                    </button>
+                    <div className="relative">
+                      <button onClick={() => setOpenDropdownId(openDropdownId === emp.id ? null : emp.id)} className="cursor-pointer text-black transition shrink-0 hover:bg-neutral-100 rounded-full p-1 border-none bg-transparent">
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-4 w-4 sm:h-5 sm:w-5"
+                        >
+                          <circle cx="12" cy="12" r="1"></circle>
+                          <circle cx="12" cy="5" r="1"></circle>
+                          <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                      </button>
+                      {openDropdownId === emp.id && (
+                        <div className="absolute right-0 top-full mt-1 w-32 rounded-xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-[#E2E8F0] p-1.5 z-50">
+                           <Link href={`/employees/${emp.id}`}>
+                             <div className="p-2 hover:bg-neutral-50 rounded-lg cursor-pointer text-[16px] text-[#111827] flex items-center gap-2 font-normal">
+                               <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" /> Edit
+                             </div>
+                           </Link>
+                           <div onClick={() => { setEmployeeToDelete(emp.id); setDeleteModalOpen(true); setOpenDropdownId(null); }} className="p-2 hover:bg-red-50 rounded-lg cursor-pointer text-[14px] text-[#EF4444] flex items-center gap-2 font-medium">
+                               <Image src={deleteredIcon} alt="Delete" width={24} height={24} className="pointer-events-none" /> Delete
+                           </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   <div className="mt-4 flex flex-col items-center text-center">
@@ -379,19 +427,19 @@ export default function AllEmployeesPage() {
                     </div>
 
                     <Link href={`/employees/${emp.id}`} className="hover:underline">
-                      <h3 className="text-[14px] sm:text-[16px] font-bold text-neutral-900 break-words">
+                      <h3 className="text-[14px] md:text-[16px] font-medium text-neutral-900 break-words">
                         {emp.name}
                       </h3>
                     </Link>
 
-                    <p className="mt-1 text-[11px] sm:text-[12px] text-[#98A2B3]">
+                    <p className="mt-1 text-[11px] md:text-[12px] text-[#98A2B3]">
                       EMP ID : {emp.id.replace("EMP", "")}
                     </p>
                   </div>
 
                   <div className="mt-4 flex items-center justify-between border-t border-neutral-300">
                     <div className="flex-1 border-r border-neutral-300 pt-4 text-center min-w-0">
-                      <p className="2xl:text-[14px] xl:text-[13px] font-medium">
+                      <p className="2xl:text-[14px] xl:text-[13px] font-normal text-[#111827]">
                         Department
                       </p>
 
@@ -403,7 +451,7 @@ export default function AllEmployeesPage() {
                     <div className="h-8 w-px bg-neutral-100"></div>
 
                     <div className="flex-1 pt-4 text-center min-w-0">
-                      <p className="2xl:text-[14px] xl:text-[13px] font-medium">
+                      <p className="2xl:text-[14px] xl:text-[13px] font-normal text-[#111827]">
                         Job Title
                       </p>
 
@@ -424,7 +472,7 @@ export default function AllEmployeesPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
           <div className="max-w-[420px] rounded-xl bg-white p-6 text-center shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
 
-            <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px] bg-[#FDEAEA]">
+            <div className="mx-auto mb-7 flex items-center justify-center rounded-[16px]">
               <Image
                 src={deleteRedIcon}
                 alt="Delete"

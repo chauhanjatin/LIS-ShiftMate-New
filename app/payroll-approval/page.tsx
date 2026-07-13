@@ -8,6 +8,12 @@ import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import { Lexend_Deca } from "next/font/google";
 import eyeIcon from "@/assets/images/icons/eye-view.svg";
+import payrollApproval1 from "@/assets/images/icons/payroll-approval1.svg";
+import payrollApproval2 from "@/assets/images/icons/payroll-approval2.svg";
+import payrollApproval3 from "@/assets/images/icons/payroll-approval3.svg";
+import payrollApproval4 from "@/assets/images/icons/payroll-approval4.svg";
+import Toast from '@/Component/UI/Toast';
+
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -32,6 +38,7 @@ const initialApprovals: PayrollApprovalRow[] = [
 export default function PayrollApprovalPage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [employees, setEmployees] = useState<PayrollApprovalRow[]>(initialApprovals);
+    const [showToast, setShowToast] = useState(false);
 
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_payroll_approvals");
@@ -65,51 +72,51 @@ export default function PayrollApprovalPage() {
 
                 <div className="bg-white rounded-xl overflow-hidden">
                     <div className="md:p-6 p-4 overflow-hidden">
-                        <h2 className="text-[18px] font-bold text-neutral-900 mb-6">Payroll Summary</h2>
+                        <h2 className="text-[18px] font-medium text-[#111827] mb-6">Payroll Summary</h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
-                            <div className="rounded-2xl border border-[#E2E8F0] md:p-5 p-4 flex items-center justify-between">
+                            <div className="rounded-xl border border-[#E2E8F0] 2xl:p-5 p-4 flex items-center justify-between">
                                 <div>
-                                    <h3 className="md:text-[24px] text-[20px] font-bold text-neutral-900">324</h3>
+                                    <h3 className="md:text-[24px] text-[20px] font-bold text-[#111827]">324</h3>
                                     <p className="text-[13px] text-neutral-500 font-medium mt-1">Employees Included</p>
                                 </div>
-                                <div className="h-12 w-12 rounded-xl bg-[#257BFC] flex items-center justify-center text-white">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                <div className="2xl:h-12 2xl:w-12 h-10 w-10 rounded-xl bg-[#257BFC] flex items-center justify-center text-white">
+                                    <Image src={payrollApproval1} alt="Employee Icon" />
                                 </div>
                             </div>
 
-                            <div className="rounded-2xl border border-[#E2E8F0] md:p-5 p-4 flex items-center justify-between">
+                            <div className="rounded-xl border border-[#E2E8F0] 2xl:p-5 p-4 flex items-center justify-between">
                                 <div>
                                     <h3 className="md:text-[24px] text-[20px] font-bold text-neutral-900">$487,500</h3>
                                     <p className="text-[13px] text-neutral-500 font-medium mt-1">Total Gross Pay</p>
                                 </div>
-                                <div className="h-12 w-12 rounded-xl bg-[#8B5CF6] flex items-center justify-center text-white">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                                <div className="2xl:h-12 2xl:w-12 h-10 w-10 rounded-xl bg-[#8B5CF6] flex items-center justify-center text-white">
+                                    <Image src={payrollApproval2} alt="Employee Icon" />
                                 </div>
                             </div>
 
-                            <div className="rounded-2xl border border-[#E2E8F0] md:p-5 p-4 flex items-center justify-between">
+                            <div className="rounded-xl border border-[#E2E8F0] 2xl:p-5 p-4 flex items-center justify-between">
                                 <div>
                                     <h3 className="md:text-[24px] text-[20px] font-bold text-neutral-900">$152,750</h3>
                                     <p className="text-[13px] text-neutral-500 font-medium mt-1">Total Deductions</p>
                                 </div>
-                                <div className="h-12 w-12 rounded-xl bg-[#F04438] flex items-center justify-center text-white">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                <div className="2xl:h-12 2xl:w-12 h-10 w-10 rounded-xl bg-[#F04438] flex items-center justify-center text-white">
+                                    <Image src={payrollApproval3} alt="Employee Icon" />
                                 </div>
                             </div>
 
-                            <div className="rounded-2xl border border-[#E2E8F0] md:p-5 p-4 flex items-center justify-between">
+                            <div className="rounded-xl border border-[#E2E8F0] 2xl:p-5 p-4 flex items-center justify-between">
                                 <div>
                                     <h3 className="md:text-[24px] text-[20px] font-bold text-neutral-900">$332,500</h3>
                                     <p className="text-[13px] text-neutral-500 font-medium mt-1">Total Net Pay</p>
                                 </div>
-                                <div className="h-12 w-12 rounded-xl bg-[#22C55E] flex items-center justify-center text-white">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                <div className="2xl:h-12 2xl:w-12 h-10 w-10 rounded-xl bg-[#22C55E] flex items-center justify-center text-white">
+                                    <Image src={payrollApproval4} alt="Employee Icon" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex flex-col md:flex-row gap-4 md:gap-x-26 xl:gap-x-50 2xl:gap-x-72 bg-[#F9FAFB] md:p-6 p-4 rounded-2xl">
+                        <div className="flex flex-col md:flex-row gap-4 md:gap-x-26 xl:gap-x-40 2xl:gap-x-72 bg-[#F9FAFB] md:p-6 p-4 rounded-xl">
                             <div>
                                 <p className="text-[14px] font-normal text-[#98A2B3]">Pay Period</p>
                                 <p className="text-[16px] font-medium text-neutral-900 md:mt-2 mt-1">March 2026</p>
@@ -130,8 +137,8 @@ export default function PayrollApprovalPage() {
                     </div>
 
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 md:p-6 p-4">
-                        <div className="rounded-2xl border border-[#EF4444]">
-                            <div className="mb-4 rounded-t-2xl p-4 bg-[#FEF2F2]">
+                        <div className="rounded-xl border border-[#EF4444]">
+                            <div className="rounded-t-xl p-4 bg-[#FEF2F2]">
                                 <h3 className="text-[20px] font-medium text-[#111827]">Errors (2)</h3>
                                 <p className="text-[12px] text-[#111827] font-normal mt-2">Must be resolved before approval</p>
                             </div>
@@ -155,8 +162,8 @@ export default function PayrollApprovalPage() {
                             </div>
                         </div>
 
-                        <div className=" rounded-2xl border border-[#FFA100]">
-                            <div className="mb-4 rounded-t-2xl p-4 bg-[#FFF6E8]">
+                        <div className=" rounded-xl border border-[#FFA100]">
+                            <div className="rounded-t-xl p-4 bg-[#FFF6E8]">
                                 <h3 className="text-[20px] font-medium text-[#111827]">Warnings (2)</h3>
                                 <p className="text-[12px] text-[#111827] font-normal mt-2">Review recommended</p>
                             </div>
@@ -185,13 +192,13 @@ export default function PayrollApprovalPage() {
                         </div>
                     </div>
 
-                    <div className="rounded-2xl overflow-hidden">
+                    <div className="rounded-xl overflow-hidden">
                         <div className="md:p-5 p-3">
                             <h2 className="text-[18px] font-bold text-neutral-900">Employees Included</h2>
                         </div>
 
                         <div className="p-3 2xl:p-6">
-                            <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                            <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                                 <div className="overflow-x-auto">
                                     <table className="min-w-[1000px] w-full text-left border-collapse">
                                         <thead className="bg-[#F8F9FC]">
@@ -244,7 +251,7 @@ export default function PayrollApprovalPage() {
                                     <button className="xl:h-[48px] h-[42px] rounded-xl border border-[#1D2939] xl:px-8 px-3 text-[14px] font-semibold text-[#1D2939] transition hover:bg-neutral-100 cursor-pointer">
                                         Lock payroll
                                     </button>
-                                    <button className="xl:h-[48px] h-[42px] rounded-xl bg-[#257BFC] xl:px-8 px-3 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                                    <button onClick={() => setShowToast(true)} className="xl:h-[48px] h-[42px] rounded-xl bg-[#257BFC] xl:px-8 px-3 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                         Approve Payroll
                                     </button>
                                 </div>
@@ -256,6 +263,13 @@ export default function PayrollApprovalPage() {
                 </div>
 
             </div>
+            
+            <Toast
+                show={showToast}
+                message="Cannot approve with pending errors"
+                onClose={() => setShowToast(false)}
+                type="error"
+            />
         </DashboardLayout>
     );
 }

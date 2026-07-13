@@ -30,7 +30,7 @@ export default function NotificationsPage() {
   return (
     <DashboardLayout title="Notifications" subtitle="Home / Notifications">
       <div className={`flex-1 p-4 2xl:p-6 pb-20 ${lexendDeca.className}`}>
-        <div className="bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden">
+        <div className="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden">
           
           <div className="flex flex-wrap items-center justify-between md:p-5 p-4 border-b border-neutral-100">
             <h2 className="text-[18px] font-bold text-neutral-900">Notifications</h2>
@@ -76,7 +76,7 @@ export default function NotificationsPage() {
                       {!notification.read && <div className="h-2 w-2 rounded-full bg-[#257BFC]"></div>}
                     </div>
 
-                    <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${styles.bg} ${styles.text}`}>
+                    <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${styles.bg} ${styles.text}`}>
                       {styles.icon}
                     </div>
 

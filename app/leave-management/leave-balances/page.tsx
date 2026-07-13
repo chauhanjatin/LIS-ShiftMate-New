@@ -67,7 +67,7 @@ export default function LeaveBalancesPage() {
   return (
     <DashboardLayout title="Leave Balances" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 relative ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+        <div className="rounded-xl bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Leave Balances</h2>
 
@@ -95,17 +95,17 @@ export default function LeaveBalancesPage() {
                   alt="Filter"
                   width={24}
                   height={24}
-                  className="pointer-events-none"
+                  className="cursor-pointer"
                 />
               </button>
 
               {filterOpen && (
-                <div className="absolute top-[50px] right-0 z-10 w-48 rounded-xl bg-white shadow-lg border border-[#E2E8F0] p-2 animate-in slide-in-from-top-2 overflow-hidden">
+                <div className="absolute top-[50px] right-0 z-10 w-48 rounded-xl bg-white shadow-lg border border-[#E2E8F0] p-2.5 animate-in slide-in-from-top-2 overflow-hidden">
                   {departments.map(dept => (
                     <button
                       key={dept}
                       onClick={() => { setDeptFilter(dept); setFilterOpen(false); }}
-                      className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${deptFilter === dept ? 'bg-[#257BFC] hover:bg-[#257BFC]' : 'text-neutral-700'}`}
+                      className={`w-full text-left px-3 py-2 text-[16px] font-normal rounded-lg cursor-pointer ${deptFilter === dept ? 'bg-[#257BFC] text-white' : 'text-neutral-700'}`}
                     >
                       {dept}
                     </button>
@@ -116,7 +116,7 @@ export default function LeaveBalancesPage() {
           </div>
 
           <div className="p-3 2xl:p-6">
-            <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+            <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-[1000px] w-full text-left border-collapse ">
                   <thead className="bg-[#F8F9FC]">

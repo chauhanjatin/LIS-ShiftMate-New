@@ -16,6 +16,9 @@ export default function EPSSubmissionsPage() {
   const [taxYear, setTaxYear] = useState("2025/2026");
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
@@ -34,9 +37,15 @@ export default function EPSSubmissionsPage() {
     { id: "december-2025", period: "December 2025", taxPeriod: "9", amount: "$2172.48", date: "5 Jan 2026", adjustments: "SMP, SSP, Recovery", status: "Accepted" },
   ];
 
-  const totalPages = Math.ceil(submissions.length / rowsPerPage) || 1;
+  const filteredSubmissions = submissions.filter(sub => {
+    const matchesStatus = statusFilter === "All" || sub.status === statusFilter;
+    const matchesSearch = sub.period.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesStatus && matchesSearch;
+  });
+
+  const totalPages = Math.ceil(filteredSubmissions.length / rowsPerPage) || 1;
   const startIndex = (currentPage - 1) * rowsPerPage;
-  const paginatedSubmissions = submissions.slice(startIndex, startIndex + rowsPerPage);
+  const paginatedSubmissions = filteredSubmissions.slice(startIndex, startIndex + rowsPerPage);
 
   const handleAction = () => {
     setShowToast(true);
@@ -58,14 +67,20 @@ export default function EPSSubmissionsPage() {
   return (
     <DashboardLayout title="EPS Submissions" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] px-4 md:px-6 pt-4 md:pt-6 pb-10">
+        <div className="rounded-xl bg-white shadow-sm min-h-[800px] px-4 md:px-6 pt-4 md:pt-6 pb-10">
           
           <div className="flex flex-wrap md:flex-nowrap justify-between items-center md:mb-8 mb-6">
             <h2 className="text-[20px] font-medium text-[#111827]">EPS Submissions</h2>
             <div className="flex flex-wrap md:flex-nowrap md:gap-4 gap-2 mt-3 md:mt-0">
               <div className="relative">
                 <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" placeholder="Search.." className="rounded-xl border border-neutral-200 bg-white py-2 pl-9 pr-4 text-[14px] text-neutral-900 outline-none focus:border-[#257BFC] transition-colors w-[200px]" />
+                <input 
+                  type="text" 
+                  placeholder="Search.." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="rounded-xl border border-neutral-200 bg-white py-2 pl-9 pr-4 text-[14px] text-neutral-900 outline-none focus:border-[#257BFC] transition-colors w-[200px]" 
+                />
               </div>
               <div className="w-[140px]">
                 <CustomSelect
@@ -78,9 +93,19 @@ export default function EPSSubmissionsPage() {
                   className="min-h-[42px]"
                 />
               </div>
-              <button className="flex items-center justify-center rounded-xl border border-neutral-200 bg-white w-[42px] h-[42px] text-neutral-700 hover:bg-neutral-50 transition-colors">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
-              </button>
+              <div className="relative">
+                <button onClick={() => setIsFilterOpen(!isFilterOpen)} className="flex items-center justify-center rounded-xl border border-neutral-200 bg-white w-[42px] h-[42px] text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                </button>
+                {isFilterOpen && (
+                  <div className="absolute top-[50px] right-0 z-10 w-40 rounded-xl bg-white shadow-lg border border-[#E2E8F0] p-2 animate-in slide-in-from-top-2 overflow-hidden">
+                    <button onClick={() => { setStatusFilter("All"); setIsFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-[16px] rounded-lg hover:bg-[#257BFC] hover:text-white cursor-pointer ${statusFilter === 'All' ? 'font-normal' : ''}`}>All</button>
+                    <button onClick={() => { setStatusFilter("Pending"); setIsFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-[16px] rounded-lg hover:bg-[#257BFC] hover:text-white cursor-pointer ${statusFilter === 'Pending' ? 'font-normal' : ''}`}>Pending</button>
+                    <button onClick={() => { setStatusFilter("Accepted"); setIsFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-[16px] rounded-lg hover:bg-[#257BFC] hover:text-white cursor-pointer ${statusFilter === 'Accepted' ? 'font-normal' : ''}`}>Accepted</button>
+                    <button onClick={() => { setStatusFilter("Rejected"); setIsFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-[16px] rounded-lg hover:bg-[#257BFC] hover:text-white cursor-pointer ${statusFilter === 'Rejected' ? 'font-normal' : ''}`}>Rejected</button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -88,25 +113,25 @@ export default function EPSSubmissionsPage() {
             <table className="w-full text-left">
               <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] lg:text-[16px] md:text-[14px] text-[13px]">
                 <tr>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Period</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Tax Period</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Amount</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Submitted Date</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Adjustments</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Status</th>
-                  <th className="md:px-6 px-3 md:py-2.5 py-1.5 font-normal">Action</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Period</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Tax Period</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Amount</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Submitted Date</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Adjustments</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Status</th>
+                  <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E2E8F0] text-[11px] md:text-[12px] lg:text-[14px]">
                 {paginatedSubmissions.map((row, idx) => (
                   <tr key={idx} className="hover:bg-neutral-50">
-                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.period}</td>
-                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.taxPeriod}</td>
-                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.amount}</td>
-                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.date}</td>
-                    <td className="md:p-6 px-4 p-3 font-normal text-[#111827]">{row.adjustments}</td>
-                    <td className="md:p-6 px-4 p-3">{renderBadge(row.status)}</td>
-                    <td className="md:p-6 px-4 p-3">
+                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.period}</td>
+                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.taxPeriod}</td>
+                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.amount}</td>
+                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.date}</td>
+                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.adjustments}</td>
+                    <td className="2xl:p-6 p-4">{renderBadge(row.status)}</td>
+                    <td className="2xl:p-6 p-4">
                       <div className="flex items-center md:gap-3 gap-2">
                         <Link href={`/hmrc-rti/eps-submissions/${row.id}`} className="text-[#111827] hover:text-[#257BFC]">
                           <Image src={viewIcon} alt="View" />
@@ -149,7 +174,7 @@ export default function EPSSubmissionsPage() {
               </div>
 
               <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
-                  {submissions.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, submissions.length)} of ${submissions.length}` : '0-0 of 0'}
+                  {filteredSubmissions.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, filteredSubmissions.length)} of ${filteredSubmissions.length}` : '0-0 of 0'}
               </span>
 
               <div className="flex items-center gap-1 ml-4">

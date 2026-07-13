@@ -58,7 +58,7 @@ function StatCard({
   chartColor?: string;
 }>) {
   return (
-    <article className="rounded-2xl border border-[#E2E8F0] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden">
+    <article className="rounded-xl border border-[#E2E8F0] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden">
       <div className="flex items-center justify-between gap-4">
         <div className="min-w-0">
           <p className="text-[26px] 2xl:text-[32px] font-bold tracking-tight text-neutral-900">
@@ -160,7 +160,7 @@ export default function DashboardPage() {
             />
           </div>
 
-          <article className="rounded-2xl border border-[#E2E8F0] bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden">
+          <article className="rounded-xl border border-[#E2E8F0] bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden">
             <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
                 Workforce Growth
@@ -276,7 +276,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="space-y-4 xl:col-span-4 col-span-8">
-          <article className="rounded-2xl border border-[#E2E8F0] bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden">
+          <article className="rounded-xl border border-[#E2E8F0] bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-[20px] font-medium tracking-tight">
                 Recent Activity
@@ -322,7 +322,7 @@ export default function DashboardPage() {
             </ul>
           </article>
 
-          <article className="w-full rounded-2xl bg-white 2xl:p-5 p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] font-sans">
+          <article className="w-full rounded-xl bg-white 2xl:p-5 p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] font-sans">
             <h2 className="2xl:mb-8 text-xl font-bold tracking-tight text-[#1a1c24] xl:mb-2 xl:text-[22px] 2xl:text-[26px]">
               Employees by Department
             </h2>
@@ -372,7 +372,7 @@ export default function DashboardPage() {
           </article>
         </div>
 
-        <article className="rounded-2xl border border-[#E2E8F0] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8 overflow-hidden">
+        <article className="rounded-xl border border-[#E2E8F0] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8 overflow-hidden">
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-lg font-bold tracking-tight sm:text-xl">
               Pending Approvals Table
@@ -464,7 +464,7 @@ export default function DashboardPage() {
           </div>
         </article>
 
-        <article className="rounded-2xl border border-[#E2E8F0] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8 overflow-hidden">
+        <article className="rounded-xl border border-[#E2E8F0] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8 overflow-hidden">
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-lg font-bold tracking-tight sm:text-xl">
               Recently Added Employees

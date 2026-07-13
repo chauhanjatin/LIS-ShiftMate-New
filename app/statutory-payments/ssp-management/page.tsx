@@ -112,7 +112,7 @@ export default function SSPManagementPage() {
   return (
     <DashboardLayout title="SSP Management" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 md:pt-6 pt-4">
+        <div className="rounded-xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 md:pt-6 pt-4">
           <h2 className="text-[20px] font-medium text-[#111827] md:mb-8 mb-6">SSP Management</h2>
           
           <form onSubmit={handleSubmit} className="md:mx-[6%] space-y-8">
@@ -204,7 +204,7 @@ export default function SSPManagementPage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="rounded-2xl bg-[#F9FAFB] md:p-6 p-4">
+              <div className="rounded-xl bg-[#F9FAFB] md:p-6 p-4">
                 <h3 className="text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-4">Eligibility Check</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:gap-y-5 gap-y-3 md:gap-x-4 gap-x-2">
                   <CustomCheckbox 
@@ -225,7 +225,7 @@ export default function SSPManagementPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-[#F9FAFB] md:p-6 p-4">
+              <div className="rounded-xl bg-[#F9FAFB] md:p-6 p-4">
                 <h3 className="text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-4">Qualifying Days</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 md:gap-y-5 gap-y-3 md:gap-x-4 gap-x-2">
                   <CustomCheckbox 
@@ -268,7 +268,7 @@ export default function SSPManagementPage() {
             </div>
 
             {isCalculated && (
-              <div className="rounded-2xl bg-[#F0F6FF] border border-[#257BFC] border-opacity-30 p-6 shadow-sm">
+              <div className="rounded-xl bg-[#F0F6FF] border border-[#257BFC] border-opacity-30 p-6 shadow-sm">
                 <h3 className="text-[16px] font-bold text-neutral-900 mb-4 border-b border-[#257BFC] border-opacity-10 pb-4">SSP Calculation</h3>
                 
                 <div className="space-y-4">
@@ -289,20 +289,28 @@ export default function SSPManagementPage() {
             )}
 
             <div className="flex justify-end items-center gap-4 pt-10 pb-5">
-              <button 
-                type="button" 
-                onClick={handleSubmit}
-                className="rounded-xl border border-[#111827] bg-white md:px-8 px-4 md:py-3 py-2 md:text-[14px] text-[12px] font-bold text-neutral-700 hover:bg-neutral-50 transition-colors shadow-sm"
-              >
-                Save Record
-              </button>
-              <button 
-                type="button" 
-                onClick={handleCalculate}
-                className={`rounded-xl md:px-8 px-4 md:py-3 py-2 md:text-[14px] text-[12px] font-bold transition-colors shadow-sm ${isCalculated ? 'bg-brand-500 text-white hover:bg-brand-600' : 'bg-[#E0EAFF] text-[#257BFC]'}`}
-              >
-                Calculate SSP
-              </button>
+              {isCalculated ? (
+                <button 
+                  type="button" 
+                  onClick={handleSubmit}
+                  className="rounded-xl border border-[#111827] bg-white md:px-8 px-4 md:py-3 py-2 md:text-[14px] text-[12px] font-bold text-neutral-700 hover:bg-neutral-50 transition-colors shadow-sm cursor-pointer"
+                >
+                  Save Record
+                </button>
+              ) : (
+                <button 
+                  type="button" 
+                  onClick={handleCalculate}
+                  disabled={!formData.startDate || !formData.endDate}
+                  className={`rounded-xl md:px-8 px-4 md:py-3 py-2 md:text-[14px] text-[12px] font-bold transition-colors shadow-sm ${
+                    !formData.startDate || !formData.endDate 
+                      ? 'bg-[#EBF2FE] text-[#B0C4DF] cursor-not-allowed' 
+                      : 'bg-[#257BFC] text-white cursor-pointer hover:bg-blue-600'
+                  }`}
+                >
+                  Calculate SSP
+                </button>
+              )}
             </div>
 
           </form>
@@ -315,7 +323,6 @@ export default function SSPManagementPage() {
         onClose={() => setShowToast(false)}
       />
 
-      {/* Hide default calendar picker icon across all browsers */}
       <style dangerouslySetInnerHTML={{__html: `
         .custom-date-input::-webkit-calendar-picker-indicator {
           opacity: 0;

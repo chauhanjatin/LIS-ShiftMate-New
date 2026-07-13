@@ -7,6 +7,7 @@ import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import CustomSelect from '@/Component/UI/CustomSelect';
 import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
+import deleteRedIcon from "@/assets/images/icons/delete-red.svg";
 import { Lexend_Deca } from "next/font/google";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
@@ -85,13 +86,12 @@ export default function NationalInsuranceRulePage() {
     return (
         <DashboardLayout title="National Insurance" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                <div className="rounded-xl bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">National Insurance Categories</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <div className="w-[140px] mt-2">
-                                <p className="text-[14px] text-[#111827] mb-2">Tax Year</p>
                                 <CustomSelect 
                                     value={taxYear}
                                     onChange={setTaxYear}
@@ -108,7 +108,7 @@ export default function NationalInsuranceRulePage() {
                     </div>
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="min-w-[900px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
@@ -198,17 +198,115 @@ export default function NationalInsuranceRulePage() {
 
             {isDeleteModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
-                    <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+                    <div className="w-full max-w-[350px] rounded-xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
                         <div className="mb-6 flex flex-col items-center text-center">
-                            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-100">
-                                <Image src={deleteIcon} alt="Delete" width={28} height={28} className="h-7 w-7 text-red-600" />
+                            <div className="mb-4 rounded-xl p-[9px] bg-red-100">
+                                <Image src={deleteRedIcon} alt="Delete" className="text-red-600" />
                             </div>
-                            <h2 className="mb-2 text-xl font-bold text-neutral-900">Delete National Insurance Rule</h2>
-                            <p className="text-sm text-neutral-500">Are you sure you want to delete this national insurance rule? This action cannot be undone.</p>
+                            <p className="text-[16px] font-medium text-[#111827]">Are you sure you want to delete this national insurance rule?</p>
                         </div>
                         <div className="flex gap-3">
                             <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
                             <button onClick={handleDelete} className="flex-1 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-700 cursor-pointer">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {isEditModalOpen && (
+                <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
+                    <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl max-h-[90vh] flex flex-col">
+                        <div className="flex items-center justify-between border-b border-[#E2E8F0] lg:px-8 md:px-6 px-4 lg:py-6 py-4 shrink-0">
+                            <h2 className="md:text-[24px] text-[18px] font-bold text-[#1D2939]">
+                                Edit National Insurance Category
+                            </h2>
+
+                            <button
+                                onClick={() => setIsEditModalOpen(false)}
+                                className="text-neutral-500 transition hover:text-black cursor-pointer"
+                            >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+
+                        <div className="md:px-8 px-4 md:py-6 py-4 overflow-y-auto">
+                            <div className="grid grid-cols-1 gap-3 md:gap-5 md:grid-cols-2">
+                                <div className="md:col-span-2">
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        NI Category
+                                    </label>
+                                    <input
+                                        type="text"
+                                        defaultValue={selectedRule?.niCategory || ""}
+                                        className="md:h-[52px] h-[40px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[14px] bg-white outline-none transition focus:border-[#257BFC]"
+                                    />
+                                </div>
+                                <div className="md:col-span-2">
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Description
+                                    </label>
+                                    <input
+                                        type="text"
+                                        defaultValue={selectedRule?.description || ""}
+                                        className="md:h-[52px] h-[40px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[14px] bg-white outline-none transition focus:border-[#257BFC]"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Lower Threshold($)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        defaultValue={selectedRule?.lowerThreshold || ""}
+                                        className="md:h-[52px] h-[40px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[14px] bg-white outline-none transition focus:border-[#257BFC]"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Upper Threshold($)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        defaultValue={selectedRule?.upperThreshold || ""}
+                                        className="md:h-[52px] h-[40px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[14px] bg-white outline-none transition focus:border-[#257BFC]"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Employee rate (%)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        defaultValue={selectedRule?.employeeRate || ""}
+                                        className="md:h-[52px] h-[40px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[14px] bg-white outline-none transition focus:border-[#257BFC]"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="mb-2 block text-[14px] font-medium text-[#344054]">
+                                        Employer Rate(%)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        defaultValue={selectedRule?.employerRate || ""}
+                                        className="md:h-[52px] h-[40px] w-full rounded-xl border border-[#E2E8F0] px-4 text-[14px] bg-white outline-none transition focus:border-[#257BFC]"
+                                    />
+                                </div>
+                            </div>
+                            
+                            <div className="mt-4 flex items-center justify-end gap-3 pt-4 border-t border-[#E2E8F0]">
+                                <button
+                                    onClick={() => setIsEditModalOpen(false)}
+                                    className="md:h-[48px] h-[40px] rounded-xl border border-[#D0D5DD] md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={() => setIsEditModalOpen(false)}
+                                    className="md:h-[48px] h-[40px] rounded-xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
+                                >
+                                    Save Changes
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

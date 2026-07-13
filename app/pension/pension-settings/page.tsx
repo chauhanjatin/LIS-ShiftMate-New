@@ -89,55 +89,55 @@ export default function PensionSettingsPage() {
   return (
     <DashboardLayout title="Pension" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm h-full flex flex-col md:px-6 px-4 md:pt-6 pt-4">
-          <h2 className="text-[18px] md:text-[20px] font-medium text-[#111827] mb-6 md:mb-10">Pension Settings</h2>
+        <div className="rounded-xl bg-white shadow-sm h-full flex flex-col md:px-6 px-4 md:pt-6 pt-4">
+          <h2 className="text-[18px] md:text-[20px] font-medium text-[#111827] mb-6 2xl:mb-10">Pension Settings</h2>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-auto">
+          <div className="grid grid-cols-1 xl:grid-cols-2 2xl:gap-8 gap-6 mb-auto">
             
-            <div className="space-y-10 xl:border-r xl:border-[#E4E7EC] xl:pr-8">
+            <div className="space-y-10 xl:border-r xl:border-[#E4E7EC] 2xl:pr-8 pr-6">
               
               <div>
-                <h3 className="text-[15px] md:text-[20px] font-medium text-[#111827] md:mb-2 mb-1">Pension Scheme Details</h3>
+                <h3 className="text-[15px] md:text-[18px] 2xl:text-[20px] font-medium text-[#111827] md:mb-2 mb-1">Pension Scheme Details</h3>
                 <p className="md:text-[14px] text-[12px] text-[#98A2B3] mb-6">Manage your organization's registered pension scheme information and compliance details.</p>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 2xl:gap-5 gap-3">
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">Scheme Name</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">Scheme Name</label>
                     <input
                       name="schemeName"
                       value={formData.schemeName}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.schemeName ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.schemeName ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.schemeName && <p className="text-red-500 text-xs mt-1">{errors.schemeName}</p>}
                   </div>
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">Scheme Provider</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">Scheme Provider</label>
                     <input
                       name="schemeProvider"
                       value={formData.schemeProvider}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.schemeProvider ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.schemeProvider ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.schemeProvider && <p className="text-red-500 text-xs mt-1">{errors.schemeProvider}</p>}
                   </div>
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">Employer Reference Number</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">Employer Reference Number</label>
                     <input
                       name="employerRef"
                       value={formData.employerRef}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.employerRef ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.employerRef ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.employerRef && <p className="text-red-500 text-xs mt-1">{errors.employerRef}</p>}
                   </div>
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">Pension Regulator Number</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">Pension Regulator Number</label>
                     <input
                       name="regulatorNumber"
                       value={formData.regulatorNumber}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.regulatorNumber ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.regulatorNumber ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.regulatorNumber && <p className="text-red-500 text-xs mt-1">{errors.regulatorNumber}</p>}
                   </div>
@@ -145,47 +145,47 @@ export default function PensionSettingsPage() {
               </div>
 
               <div>
-                <h3 className="md:text-[20px] text-[15px] font-medium text-[#111827] mb-1">Auto-Enrolment Settings</h3>
+                <h3 className="2xl:text-[20px] md:text-[18px] text-[15px] font-medium text-[#111827] mb-1">Auto-Enrolment Settings</h3>
                 <p className="md:text-[14px] text-[12px] text-[#98A2B3] mb-6">Configure automatic enrolment rules in line with pension regulations.</p>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 2xl:gap-5 gap-3">
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">Minimum Age</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">Minimum Age</label>
                     <input
                       name="minAge"
                       value={formData.minAge}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.minAge ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.minAge ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.minAge && <p className="text-red-500 text-xs mt-1">{errors.minAge}</p>}
                   </div>
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">State Pension Age</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">State Pension Age</label>
                     <input
                       name="stateAge"
                       value={formData.stateAge}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.stateAge ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.stateAge ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.stateAge && <p className="text-red-500 text-xs mt-1">{errors.stateAge}</p>}
                   </div>
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">Postponement Period (months)</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">Postponement Period (months)</label>
                     <input
                       name="postponement"
                       value={formData.postponement}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.postponement ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.postponement ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.postponement && <p className="text-red-500 text-xs mt-1">{errors.postponement}</p>}
                   </div>
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">Re-enrolment Frequency (years)</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">Re-enrolment Frequency (years)</label>
                     <input
                       name="reenrolment"
                       value={formData.reenrolment}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.reenrolment ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.reenrolment ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.reenrolment && <p className="text-red-500 text-xs mt-1">{errors.reenrolment}</p>}
                   </div>
@@ -196,47 +196,47 @@ export default function PensionSettingsPage() {
 
             <div>
               <div>
-                <h3 className="md:text-[20px] text-[15px] font-medium text-[#111827] mb-1">Contribution Rates</h3>
+                <h3 className="2xl:text-[20px] md:text-[18px] text-[15px] font-medium text-[#111827] mb-1">Contribution Rates</h3>
                 <p className="md:text-[14px] text-[12px] text-[#98A2B3] mb-6">Define employee and employer contribution percentages and applicable earning thresholds.</p>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 2xl:gap-5 gap-3">
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">Employee Contribution (%)</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">Employee Contribution (%)</label>
                     <input
                       name="empContribution"
                       value={formData.empContribution}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.empContribution ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.empContribution ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.empContribution && <p className="text-red-500 text-xs mt-1">{errors.empContribution}</p>}
                   </div>
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">Employer Contribution (%)</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">Employer Contribution (%)</label>
                     <input
                       name="employerContribution"
                       value={formData.employerContribution}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.employerContribution ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.employerContribution ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.employerContribution && <p className="text-red-500 text-xs mt-1">{errors.employerContribution}</p>}
                   </div>
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">Lower Earnings Threshold (Annual)</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">Lower Earnings Threshold (Annual)</label>
                     <input
                       name="lowerThreshold"
                       value={formData.lowerThreshold}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.lowerThreshold ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.lowerThreshold ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.lowerThreshold && <p className="text-red-500 text-xs mt-1">{errors.lowerThreshold}</p>}
                   </div>
                   <div>
-                    <label className="mb-2 block text-[14px] font-normal text-[#111827]">Upper Earnings Threshold (Annual)</label>
+                    <label className="mb-2 block 2xl:text-[14px] text-[13px] font-normal text-[#111827]">Upper Earnings Threshold (Annual)</label>
                     <input
                       name="upperThreshold"
                       value={formData.upperThreshold}
                       onChange={handleChange}
-                      className={`md:h-[48px] h-[40px] w-full rounded-xl border ${errors.upperThreshold ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
+                      className={`2xl:h-[48px] xl:h-[45px] lg:h-[44px] h-[40px] w-full rounded-xl border ${errors.upperThreshold ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 text-[14px] text-[#98A2B3] outline-none transition focus:border-black`}
                     />
                     {errors.upperThreshold && <p className="text-red-500 text-xs mt-1">{errors.upperThreshold}</p>}
                   </div>

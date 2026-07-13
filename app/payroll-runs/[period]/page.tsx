@@ -10,6 +10,7 @@ import editIcon from "@/assets/images/icons/edit.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";
 import { Lexend_Deca } from "next/font/google";
 import eyeIcon from "@/assets/images/icons/eye-view.svg";
+import backArrow from "@/assets/images/icons/back-arrow.svg";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -55,51 +56,59 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
 
     return (
         <DashboardLayout title="Payroll Runs" subtitle={breadcrumb}>
-            <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl bg-white md:p-6 p-4">
+            <div className={`flex-1 2xl:px-6 p-4 ${lexendDeca.className}`}>
+
+                <Link href="/payroll-runs">
+                    <div className="flex items-center gap-2 cursor-pointer mb-4">
+                        <Image src={backArrow} alt="back" />
+                        <p className="text-[#111827] font-normal text-[16px]">Back</p>
+                    </div>
+                </Link>
+
+                <div className="rounded-xl bg-white md:p-6 p-4">
                     <h3 className="md:text-[20px] text-[18px] font-medium text-[#101828] mb-4">Payroll Run Details - {period}</h3>
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 md:mb-6 mb-4">
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white md:p-5 p-3 flex items-center justify-between overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white 2xl:p-5 p-3 flex items-center justify-between overflow-hidden">
                             <div>
-                                <h3 className="md:text-[32px] text-[28px] font-semibold text-[#111827]">5</h3>
+                                <h3 className="2xl:text-[32px] xl:text-[28px] text-[26px] font-semibold text-[#111827]">5</h3>
                                 <p className="md:mt-2 mt-1 md:text-[14px] text-[12px] font-medium text-[#111827]">Employees Included</p>
                             </div>
-                            <div className="flex md:h-[48px] md:w-[48px] h-[40px] w-[40px] items-center justify-center rounded-[14px] bg-[#257BFC]">
+                            <div className="flex 2xl:h-[48px] 2xl:w-[48px] h-[40px] w-[40px] items-center justify-center rounded-[14px] bg-[#257BFC]">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             </div>
                         </div>
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white md:p-5 p-3 flex items-center justify-between overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white 2xl:p-5 p-3 flex items-center justify-between overflow-hidden">
                             <div>
-                                <h3 className="lg:text-[32px] text-[26px] font-semibold text-[#111827]">$122,500</h3>
+                                <h3 className="2xl:text-[32px] xl:text-[28px] text-[26px] font-semibold text-[#111827]">$122,500</h3>
                                 <p className="md:mt-2 mt-1 md:text-[14px] text-[12px] font-medium text-[#111827]">Total Gross Pay</p>
                             </div>
-                            <div className="flex md:h-[48px] md:w-[48px] h-[40px] w-[40px] items-center justify-center rounded-[14px] bg-[#8B5CF6]">
+                            <div className="flex 2xl:h-[48px] 2xl:w-[48px] h-[40px] w-[40px] items-center justify-center rounded-[14px] bg-[#8B5CF6]">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
                             </div>
                         </div>
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white md:p-5 p-3 flex items-center justify-between overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white 2xl:p-5 p-3 flex items-center justify-between overflow-hidden">
                             <div>
-                                <h3 className="lg:text-[32px] text-[26px] font-semibold text-[#111827]">$11712.49</h3>
+                                <h3 className="2xl:text-[32px] xl:text-[28px] text-[26px] font-semibold text-[#111827]">$11712.49</h3>
                                 <p className="md:mt-2 mt-1 md:text-[14px] text-[12px] font-medium text-[#111827]">Total Deductions</p>
                             </div>
-                            <div className="flex md:h-[48px] md:w-[48px] h-[40px] w-[40px] items-center justify-center rounded-[14px] bg-[#EF4444]">
+                            <div className="flex 2xl:h-[48px] 2xl:w-[48px] h-[40px] w-[40px] items-center justify-center rounded-[14px] bg-[#EF4444]">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                             </div>
                         </div>
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white md:p-5 p-3 flex items-center justify-between overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white 2xl:p-5 p-3 flex items-center justify-between overflow-hidden">
                             <div>
-                                <h3 className="lg:text-[32px] text-[26px] font-semibold text-[#111827]">$23037.51</h3>
+                                <h3 className="2xl:text-[32px] xl:text-[28px] text-[26px] font-semibold text-[#111827]">$23037.51</h3>
                                 <p className="md:mt-2 mt-1 md:text-[14px] text-[12px] font-medium text-[#111827]">Total Net Pay</p>
                             </div>
-                            <div className="flex md:h-[48px] md:w-[48px] h-[40px] w-[40px] items-center justify-center rounded-[14px] bg-[#22C55E]">
+                            <div className="flex 2xl:h-[48px] 2xl:w-[48px] h-[40px] w-[40px] items-center justify-center rounded-[14px] bg-[#22C55E]">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                             </div>
                         </div>
                     </div>
 
-                    <div className="rounded-2xl bg-white overflow-hidden">
+                    <div className="rounded-xl bg-white overflow-hidden">
                         <div className="flex flex-wrap items-center justify-between lg:px-6 px-3 md:pt-6 pt-4">
-                            <h2 className="lg:text-[20px] md:text-[18px] text-[16px] font-medium text-neutral-900">Employees Included</h2>
+                            <h2 className="lg:text-[20px] md:text-[18px] text-[16px] font-medium text-[#111827]">Employees Included</h2>
 
                             <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-4 mt-3 md:mt-0">
                                 <div className="relative 2xl:w-60 lg:w-52 w-32">
@@ -131,17 +140,17 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                         </div>
 
                         <div className="md:p-3 2xl:p-6 mt-3 md:mt-0">
-                            <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                            <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                                 <div className="overflow-x-auto">
                                     <table className="min-w-[1000px] w-full text-left border-collapse">
                                         <thead className="bg-[#F8F9FC]">
                                             <tr>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[14px] sm:text-[16px] font-medium text-[#2E334E] rounded-l-lg">Employee</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-medium text-[#2E334E]">Department</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-medium text-[#2E334E]">Gross Pay</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-medium text-[#2E334E]">Deductions</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-medium text-[#2E334E]">Net Pay</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-medium text-[#2E334E] rounded-r-lg text-center">Action</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827] rounded-l-lg">Employee</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Department</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Gross Pay</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Deductions</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Net Pay</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody className="bg-white">
@@ -155,26 +164,26 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                                                             <div className="h-10 w-10 overflow-hidden rounded-full bg-neutral-200">
                                                                 <Image src={emp.avatar} alt={emp.name} width={40} height={40} className="h-full w-full object-cover" />
                                                             </div>
-                                                            <span className="text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.name}</span>
+                                                            <span className="text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.name}</span>
                                                         </div>
                                                     </td>
-                                                    <td className="px-4 md:py-4 py-2 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.department}</td>
-                                                    <td className="px-4 md:py-4 py-2 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.gross}</td>
-                                                    <td className="px-4 md:py-4 py-2 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.deductions}</td>
-                                                    <td className="px-4 md:py-4 py-2 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{emp.net}</td>
+                                                    <td className="px-4 md:py-4 py-2 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.department}</td>
+                                                    <td className="px-4 md:py-4 py-2 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.gross}</td>
+                                                    <td className="px-4 md:py-4 py-2 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.deductions}</td>
+                                                    <td className="px-4 md:py-4 py-2 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.net}</td>
 
                                                     <td className="px-4 md:py-4 py-2 sm:px-6">
                                                         <div className="flex items-center justify-center gap-3">
                                                             <button
                                                                 onClick={() => router.push(`/payroll-runs/${encodeURIComponent(period)}/${emp.id}`)}
-                                                                className="text-neutral-400 hover:text-neutral-700 transition-colors cursor-pointer"
+                                                                className="text-[#111827] transition-colors cursor-pointer"
                                                             >
                                                                 <Image src={eyeIcon} alt="View" className="pointer-events-none" />
                                                             </button>
-                                                            <button className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
+                                                            <button className="text-[#111827] transition-colors cursor-pointer">
                                                                 <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
                                                             </button>
-                                                            <button className="text-neutral-400 hover:text-red-500 transition-colors cursor-pointer">
+                                                            <button className="text-[#111827] transition-colors cursor-pointer">
                                                                 <Image src={deleteIcon} alt="Delete" width={20} height={20} className="pointer-events-none" />
                                                             </button>
                                                         </div>

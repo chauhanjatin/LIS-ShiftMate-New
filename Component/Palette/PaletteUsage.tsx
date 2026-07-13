@@ -108,7 +108,7 @@ export default function PaletteUsage() {
                   {example.description}
                 </p>
               </div>
-              <pre className="mt-4 overflow-x-auto rounded-2xl bg-neutral-900 p-4 text-sm leading-6 text-white">
+              <pre className="mt-4 overflow-x-auto rounded-xl bg-neutral-900 p-4 text-sm leading-6 text-white">
                 <code className="font-mono">{example.code}</code>
               </pre>
             </article>
@@ -138,13 +138,13 @@ export default function PaletteUsage() {
               </div>
 
               <div className="grid gap-3">
-                <div className="rounded-2xl border border-success-100 bg-success-50 px-4 py-3 text-sm text-success-900">
+                <div className="rounded-xl border border-success-100 bg-success-50 px-4 py-3 text-sm text-success-900">
                   Payment completed successfully.
                 </div>
-                <div className="rounded-2xl border border-warning-100 bg-warning-50 px-4 py-3 text-sm text-warning-900">
+                <div className="rounded-xl border border-warning-100 bg-warning-50 px-4 py-3 text-sm text-warning-900">
                   Shift still needs manager approval.
                 </div>
-                <div className="rounded-2xl border border-info-100 bg-info-50 px-4 py-3 text-sm text-info-900">
+                <div className="rounded-xl border border-info-100 bg-info-50 px-4 py-3 text-sm text-info-900">
                   New team updates were published today.
                 </div>
               </div>
@@ -166,7 +166,7 @@ export default function PaletteUsage() {
               {tokenGuide.map((item) => (
                 <div
                   key={item.token}
-                  className="grid gap-3 rounded-2xl border border-neutral-200 bg-surface px-4 py-4 sm:grid-cols-[auto_1fr]"
+                  className="grid gap-3 rounded-xl border border-neutral-200 bg-surface px-4 py-4 sm:grid-cols-[auto_1fr]"
                 >
                   <span
                     className={`inline-flex h-fit rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${item.previewClassName}`}

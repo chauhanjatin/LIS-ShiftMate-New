@@ -8,6 +8,7 @@ import CustomSelect from '@/Component/UI/CustomSelect';
 import filterIcon from "@/assets/images/icons/filter.svg";
 import { Lexend_Deca } from "next/font/google";
 import eyeIcon from "@/assets/images/icons/eye-view.svg";
+import Toast from '@/Component/UI/Toast';
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -40,6 +41,18 @@ export default function PayslipListPage() {
     
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [statusFilter, setStatusFilter] = useState("All Status");
+    const [periodFilter, setPeriodFilter] = useState("All Periods");
+    const [tempStatusFilter, setTempStatusFilter] = useState("All Status");
+    const [tempPeriodFilter, setTempPeriodFilter] = useState("All Periods");
+    const [toastMessage, setToastMessage] = useState("");
+    const [showToast, setShowToast] = useState(false);
+
+    const triggerToast = (msg: string) => {
+        setToastMessage(msg);
+        setShowToast(true);
+    };
 
     const breadcrumb = (
         <span className="text-[#98A2B3]">
@@ -62,7 +75,12 @@ export default function PayslipListPage() {
         }
     };
 
-    const filteredPayslips = payslips.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    const filteredPayslips = payslips.filter(p => {
+        const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesStatus = statusFilter === "All Status" || p.status === statusFilter;
+        const matchesPeriod = periodFilter === "All Periods" || p.payPeriod === periodFilter;
+        return matchesSearch && matchesStatus && matchesPeriod;
+    });
     
     const totalPages = Math.ceil(filteredPayslips.length / rowsPerPage) || 1;
     const startIndex = (currentPage - 1) * rowsPerPage;
@@ -85,7 +103,7 @@ export default function PayslipListPage() {
     return (
         <DashboardLayout title="Payslip List" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                <div className="rounded-xl bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[18px] font-medium text-[#111827]">Employee List</h2>
 
@@ -102,20 +120,81 @@ export default function PayslipListPage() {
                                 />
                             </div>
 
-                            <button className="flex h-9 w-9 md:h-[42px] md:w-[42px] items-center justify-center rounded-xl border border-[#E2E8F0] bg-white text-neutral-500 transition hover:bg-neutral-50 cursor-pointer overflow-hidden">
-                                <Image
-                                    src={filterIcon}
-                                    alt="Filter"
-                                    width={24}
-                                    height={24}
-                                    className="pointer-events-none"
-                                />
-                            </button>
+                            <div className="relative">
+                                <button 
+                                    onClick={() => setIsFilterOpen(!isFilterOpen)}
+                                    className="flex h-9 w-9 md:h-[42px] md:w-[42px] items-center justify-center rounded-xl border border-[#E2E8F0] bg-white text-neutral-500 transition hover:bg-neutral-50 cursor-pointer overflow-hidden"
+                                >
+                                    <Image
+                                        src={filterIcon}
+                                        alt="Filter"
+                                        width={24}
+                                        height={24}
+                                        className="pointer-events-none"
+                                    />
+                                </button>
+
+                                {isFilterOpen && (
+                                    <div className="absolute right-0 top-full mt-2 w-[280px] rounded-xl border border-[#E2E8F0] bg-white p-4 shadow-lg z-10 animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <div className="mb-4">
+                                            <label className="mb-2 block text-[14px] font-medium text-[#344054]">Status</label>
+                                            <CustomSelect
+                                                value={tempStatusFilter}
+                                                onChange={setTempStatusFilter}
+                                                options={[
+                                                    { label: "All Status", value: "All Status" },
+                                                    { label: "Downloaded", value: "Downloaded" },
+                                                    { label: "Generated", value: "Generated" },
+                                                    { label: "Email Sent", value: "Email Sent" }
+                                                ]}
+                                                className="!h-[40px] !py-2"
+                                            />
+                                        </div>
+                                        <div className="mb-6">
+                                            <label className="mb-2 block text-[14px] font-medium text-[#344054]">Pay Period</label>
+                                            <CustomSelect
+                                                value={tempPeriodFilter}
+                                                onChange={setTempPeriodFilter}
+                                                options={[
+                                                    { label: "All Periods", value: "All Periods" },
+                                                    { label: "January 2026", value: "January 2026" },
+                                                    { label: "February 2026", value: "February 2026" }
+                                                ]}
+                                                className="!h-[40px] !py-2"
+                                            />
+                                        </div>
+                                        <div className="flex gap-3">
+                                            <button 
+                                                onClick={() => {
+                                                    setTempStatusFilter("All Status");
+                                                    setTempPeriodFilter("All Periods");
+                                                    setStatusFilter("All Status");
+                                                    setPeriodFilter("All Periods");
+                                                    setIsFilterOpen(false);
+                                                }}
+                                                className="flex-1 rounded-xl border border-[#D0D5DD] px-4 py-2 text-[14px] font-semibold text-[#344054] hover:bg-neutral-50 cursor-pointer"
+                                            >
+                                                Reset
+                                            </button>
+                                            <button 
+                                                onClick={() => {
+                                                    setStatusFilter(tempStatusFilter);
+                                                    setPeriodFilter(tempPeriodFilter);
+                                                    setIsFilterOpen(false);
+                                                }}
+                                                className="flex-1 rounded-xl bg-[#257BFC] px-4 py-2 text-[14px] font-semibold text-white hover:bg-blue-600 cursor-pointer"
+                                            >
+                                                Apply
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="min-w-[1000px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
@@ -128,12 +207,12 @@ export default function PayslipListPage() {
                                                     className="md:h-4 h-3 md:w-4 w-3 rounded border-[#F8F9FC] text-[#257BFC] focus:ring-[#257BFC] cursor-pointer"
                                                 />
                                             </th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Employee</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Pay Period</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Pay Date</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827]">Net Pay</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827] text-center">Status</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-medium text-[#111827] text-center rounded-r-lg">Action</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827]">Employee</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827]">Pay Period</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827]">Pay Date</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827]">Net Pay</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827] text-center">Status</th>
+                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827] text-center rounded-r-lg">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
@@ -168,10 +247,10 @@ export default function PayslipListPage() {
                                                         <Link href={`/payslip-list/${encodeURIComponent(payslip.name)}`} className="text-neutral-400 hover:text-neutral-700 transition-colors cursor-pointer">
                                                             <Image src={eyeIcon} alt="View" className="pointer-events-none" />
                                                         </Link>
-                                                        <button className="text-[#111827] transition-colors cursor-pointer">
+                                                        <button onClick={() => triggerToast("Payslip Downloaded")} className="text-[#111827] transition-colors cursor-pointer">
                                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                                                         </button>
-                                                        <button className="text-[#111827] transition-colors cursor-pointer">
+                                                        <button onClick={() => triggerToast("Email sent")} className="text-[#111827] transition-colors cursor-pointer">
                                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                                         </button>
                                                     </div>
@@ -227,6 +306,12 @@ export default function PayslipListPage() {
                     </div>
                 </div>
             </div>
+            
+            <Toast
+                show={showToast}
+                message={toastMessage}
+                onClose={() => setShowToast(false)}
+            />
         </DashboardLayout>
     );
 }

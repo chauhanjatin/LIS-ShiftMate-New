@@ -35,12 +35,12 @@ const mockPayments: ActivePayment[] = [
 
 function MetricCard({ title, value, iconClass, icon }: { title: string, value: string, iconClass: string, icon: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-xl border border-[#E2E8F0] bg-white md:p-5 p-4 overflow-hidden">
+    <div className="flex items-center justify-between 2xl:gap-4 gap-3 rounded-xl border border-[#E2E8F0] bg-white 2xl:p-5 p-3 overflow-hidden">
       <div className="space-y-1">
-        <p className="md:text-[32px] text-[28px] font-bold tracking-tight text-neutral-900 leading-tight">{value}</p>
-        <p className="md:text-[13px] text-[12px] font-bold text-neutral-700">{title}</p>
+        <p className="2xl:text-[32px] md:text-[30px] text-[28px] font-bold tracking-tight text-[#111827]">{value}</p>
+        <p className="md:text-[14px] text-[12px] font-medium text-[#111827] mt-4">{title}</p>
       </div>
-      <div className={`flex md:h-12 md:w-12 h-10 w-10 items-center justify-center rounded-xl text-white ${iconClass}`}>
+      <div className={`flex 2xl:h-12 2xl:w-12 h-10 w-10 items-center justify-center rounded-xl text-white ${iconClass}`}>
         {icon}
       </div>
     </div>
@@ -79,7 +79,7 @@ export default function PaymentsDashboardPage() {
   return (
     <DashboardLayout title="Payments Dashboard" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm md:px-6 px-4 md:pt-6 pt-4 min-h-[800px]">
+        <div className="rounded-xl bg-white shadow-sm md:px-6 px-4 md:pt-6 pt-4 min-h-[800px]">
           <h2 className="md:text-[20px] text-[18px] font-medium text-[#111827] md:mb-6 mb-4">Payments Dashboard</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
@@ -111,7 +111,7 @@ export default function PaymentsDashboardPage() {
 
           <h2 className="text-[18px] font-bold text-neutral-900 mb-6">Active Payments</h2>
 
-          <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+          <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
             <div className="overflow-x-auto">
               <table className="min-w-[1000px] w-full text-left border-collapse">
                 <thead className="bg-[#F2F4F7]">

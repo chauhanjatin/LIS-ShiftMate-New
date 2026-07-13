@@ -3,8 +3,10 @@
 import React, { use, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 import DashboardLayout from '@/Component/Layout/DashboardLayout';
 import Toast from '@/Component/UI/Toast';
+import backArrow from "@/assets/images/icons/back-arrow.svg";
 import { Lexend_Deca } from "next/font/google";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
@@ -29,9 +31,17 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
 
     return (
         <DashboardLayout title="Employee Payroll Breakdown" subtitle={breadcrumb}>
-            <div className={`flex-1 p-4 2xl:p-6 lg:pb-24 pb-8 ${lexendDeca.className}`}>
+            <div className={`flex-1 p-4 lg:pb-24 pb-8 ${lexendDeca.className}`}>
+
+                <Link href={`/payroll-runs/${encodeURIComponent(period)}`}>
+                    <div className="flex items-center gap-2 cursor-pointer mb-4">
+                        <Image src={backArrow} alt="back" />
+                        <p className="text-[#111827] font-normal text-[16px]">Back</p>
+                    </div>
+                </Link>
+
                 <div className="bg-white md:p-6 p-4 rounded-xl">
-                    <div className="mb-6 rounded-2xl overflow-hidden">
+                    <div className="mb-6 rounded-xl overflow-hidden">
                         <h3 className="md:mb-6 mb-3 text-[18px] font-medium text-[#101828]">
                             {employeeName} - {period}
                         </h3>
@@ -71,7 +81,7 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
                     </div>
 
                     <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                        <div className="rounded-2xl bg-[#F9FAFB] md:p-6 p-4 overflow-hidden">
+                        <div className="rounded-xl bg-[#F9FAFB] md:p-6 p-4 overflow-hidden">
                             <h4 className="pb-4 md:pb-6 md:mb-6 mb-4 md:text-[20px] text-[18px] font-medium text-neutral-900 border-b border-[#D0D5DD]">Earnings</h4>
 
                             <div className="md:space-y-4 space-y-2">
@@ -94,7 +104,7 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
                             </div>
                         </div>
 
-                        <div className="rounded-2xl bg-[#F9FAFB] md:p-6 p-4 overflow-hidden">
+                        <div className="rounded-xl bg-[#F9FAFB] md:p-6 p-4 overflow-hidden">
                             <h4 className="pb-4 md:pb-6 md:mb-6 mb-4 md:text-[20px] text-[18px] font-medium text-neutral-900 border-b border-[#D0D5DD]">Deductions</h4>
 
                             <div className="md:space-y-4 space-y-2">
@@ -121,43 +131,54 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
                     <div className="mb-6">
                         <h3 className="mb-4 md:text-[18px] text-[16px] font-medium text-[#101828]">Tax Breakdown</h3>
 
-                        <div className="overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white shadow-sm">
+                        <div className="overflow-hidden rounded-xl border border-[#E2E8F0] bg-white shadow-sm">
                             <div className="overflow-x-auto">
                                 <table className="min-w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
                                         <tr className="border-b border-[#E2E8F0]">
-                                            <th className="py-[10px] pl-6 pr-6 md:text-[16px] text-[13px] font-semibold text-[#344054]">Tax Type</th>
-                                            <th className="py-[10px] pr-6 md:text-[16px] text-[13px] font-semibold text-[#344054]">Rate</th>
-                                            <th className="px-4 py-[10px] sm:px-6 md:text-[16px] text-[13px] font-semibold text-[#344054]">Amount</th>
+                                            <th className="py-[10px] pl-6 pr-6 md:text-[16px] text-[13px] font-semibold text-[#111827]">Tax Type</th>
+                                            <th className="py-[10px] pr-6 md:text-[16px] text-[13px] font-semibold text-[#111827]">Rate</th>
+                                            <th className="px-4 py-[10px] sm:px-6 md:text-[16px] text-[13px] font-semibold text-[#111827]">Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
                                         <tr className="border-b border-[#E2E8F0]">
-                                            <td className="md:py-6 py-4 md:pl-6 pl-4 pr-6 md:text-[14px] text-[11px] font-normal text-neutral-900">Income Tax</td>
-                                            <td className="md:py-6 py-4 pr-6 md:text-[14px] text-[11px] font-normal text-neutral-900">20%</td>
-                                            <td className="px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[11px] font-normal text-neutral-900">$720</td>
+                                            <td className="md:py-6 py-4 md:pl-6 pl-4 pr-6 md:text-[14px] text-[11px] font-normal text-[#111827]">Income Tax</td>
+                                            <td className="md:py-6 py-4 pr-6 md:text-[14px] text-[11px] font-normal text-[#111827]">20%</td>
+                                            <td className="px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[11px] font-normal text-[#111827]">$720</td>
                                         </tr>
                                         <tr className="border-b border-[#E2E8F0]">
-                                            <td className="md:py-6 py-4 md:pl-6 pl-4 pr-6 md:text-[14px] text-[11px] font-normal text-neutral-900">Employee NI</td>
-                                            <td className="md:py-6 py-4 pr-6 md:text-[14px] text-[11px] font-normal text-neutral-900">12%</td>
-                                            <td className="px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[11px] font-normal text-neutral-900">$425</td>
+                                            <td className="md:py-6 py-4 md:pl-6 pl-4 pr-6 md:text-[14px] text-[11px] font-normal text-[#111827]">Employee NI</td>
+                                            <td className="md:py-6 py-4 pr-6 md:text-[14px] text-[11px] font-normal text-[#111827]">12%</td>
+                                            <td className="px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[11px] font-normal text-[#111827]">$425</td>
                                         </tr>
                                         <tr>
-                                            <td className="md:py-6 py-4 md:pl-6 pl-4 pr-6 md:text-[14px] text-[11px] font-normal text-neutral-900">Employer NI</td>
-                                            <td className="md:py-6 py-4 pr-6 md:text-[14px] text-[11px] font-normal text-neutral-900">13.8%</td>
-                                            <td className="px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[11px] font-normal text-neutral-900">$621</td>
+                                            <td className="md:py-6 py-4 md:pl-6 pl-4 pr-6 md:text-[14px] text-[11px] font-normal text-[#111827]">Employer NI</td>
+                                            <td className="md:py-6 py-4 pr-6 md:text-[14px] text-[11px] font-normal text-[#111827]">13.8%</td>
+                                            <td className="px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[11px] font-normal text-[#111827]">$621</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        
+                        <div className="mt-6 flex items-center justify-between rounded-xl bg-[#F0FDF4] md:p-6 p-4 border border-[#DCFCE7]">
+                            <div>
+                                <p className="text-[12px] font-semibold text-[#111827] mb-1">After All Deductions</p>
+                                <p className="md:text-[20px] text-[16px] font-bold text-[#111827]">Gross: £4,500 - Deductions: £1,245</p>
+                            </div>
+                            <div className="text-right">
+                                <p className="text-[12px] font-semibold text-[#111827] mb-1">Net Pay</p>
+                                <p className="md:text-[24px] text-[20px] font-bold text-[#4DB949]">$3,255</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="mt-8 flex items-center justify-end md:gap-4 gap-2">
-                        <button className="md:h-[48px] h-[40px] rounded-2xl border border-[#E2E8F0] bg-white md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer overflow-hidden">
+                        <button className="md:h-[48px] h-[40px] rounded-xl border border-[#E2E8F0] bg-white md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer overflow-hidden">
                             Adjust Pay
                         </button>
-                        <button onClick={() => setShowToast(true)} className="md:h-[48px] h-[40px] rounded-2xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                        <button onClick={() => setShowToast(true)} className="md:h-[48px] h-[40px] rounded-xl bg-[#257BFC] md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                             Save Changes
                         </button>
                     </div>

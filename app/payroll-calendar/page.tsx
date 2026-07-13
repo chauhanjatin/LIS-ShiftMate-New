@@ -77,7 +77,7 @@ export default function PayrollCalendarPage() {
         if (!formData.startDate) newErrors.startDate = "Required";
         if (!formData.endDate) newErrors.endDate = "Required";
         if (!formData.payDate) newErrors.payDate = "Required";
-        
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -164,9 +164,9 @@ export default function PayrollCalendarPage() {
     return (
         <DashboardLayout title="Payroll Calendar" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-                <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+                <div className="rounded-xl bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between px-4 md:px-6 md:pt-6 pt-4">
-                        <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">Pay Periods</h2>
+                        <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Pay Periods</h2>
 
                         <div className="flex items-center gap-4.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
                             <div className="relative 2xl:w-75 md:w-60 w-36">
@@ -196,7 +196,7 @@ export default function PayrollCalendarPage() {
                     </div>
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+                        <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="min-w-[1000px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
@@ -212,12 +212,12 @@ export default function PayrollCalendarPage() {
                                     <tbody className="bg-white">
                                         {paginatedCalendars.map((cal) => (
                                             <tr key={cal.id} className="group transition-colors hover:bg-neutral-50">
-                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.payPeriod}</td>
-                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.startDate}</td>
-                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.endDate}</td>
-                                                <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.payDate}</td>
-                                                <td className="px-4 md:py-6 py-3 sm:px-6"><StatusPill status={cal.status} /></td>
-                                                <td className="px-4 md:py-6 py-3 sm:px-6">
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.payPeriod}</td>
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.startDate}</td>
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.endDate}</td>
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-neutral-900">{cal.payDate}</td>
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6"><StatusPill status={cal.status} /></td>
+                                                <td className="border-b border-[#E2E8F0] px-4 md:py-6 py-3 sm:px-6">
                                                     <div className="flex items-center gap-3">
                                                         <button onClick={() => openEditModal(cal)} className="text-neutral-400 hover:text-[#257BFC] cursor-pointer transition-colors">
                                                             <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
@@ -239,7 +239,7 @@ export default function PayrollCalendarPage() {
                             <div className="flex items-center gap-2">
                                 <span className="text-[12px] sm:text-[14px] text-neutral-500">Rows per page:</span>
                                 <div className="w-[80px]">
-                                    <CustomSelect 
+                                    <CustomSelect
                                         value={String(rowsPerPage)}
                                         onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
                                         options={[
@@ -256,14 +256,14 @@ export default function PayrollCalendarPage() {
                                 {filteredCalendars.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, filteredCalendars.length)} of ${filteredCalendars.length}` : '0-0 of 0'}
                             </span>
                             <div className="flex items-center gap-1 ml-4">
-                                <button 
+                                <button
                                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                                     disabled={currentPage === 1}
                                     className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                                     disabled={currentPage === totalPages}
                                     className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
@@ -281,7 +281,7 @@ export default function PayrollCalendarPage() {
                 (isAddModalOpen || isEditModalOpen) && (
                     <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
                         <div className="w-full max-w-[700px] rounded-[24px] bg-white shadow-xl animate-in fade-in zoom-in-95 duration-200">
-                            <div className="flex items-center justify-between border-b border-[#E2E8F0] p-4 md:px-8 md:py-6">
+                            <div className="flex items-center justify-between border-b border-[#E2E8F0] px-5 2xl:px-8 py-4 2xl:py-6">
                                 <h2 className="md:text-[22px] text-[18px] font-bold text-[#111827]">
                                     {isEditModalOpen ? "Edit Calendar" : "Generate New Calendar"}
                                 </h2>
@@ -289,7 +289,7 @@ export default function PayrollCalendarPage() {
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                                 </button>
                             </div>
-                            <div className="p-4 md:p-8">
+                            <div className="p-4 md:p-6 2xl:p-8">
                                 <div className="md:mb-8 mb-5">
                                     <h3 className="md:text-[18px] text-[16px] font-semibold text-[#111827]">Basic Information</h3>
                                     <p className="md:text-[14px] text-[12px] text-neutral-500 mt-1">Create a new earnings or deduction component to include in employee payroll calculations.</p>
@@ -317,7 +317,7 @@ export default function PayrollCalendarPage() {
                                     </div>
                                     <div>
                                         <label className="mb-2 block text-sm font-medium text-[#111827]">Status</label>
-                                        <CustomSelect 
+                                        <CustomSelect
                                             value={formData.status}
                                             onChange={(val) => {
                                                 setFormData(prev => ({ ...prev, status: val as "Active" | "Completed" }));
@@ -345,17 +345,16 @@ export default function PayrollCalendarPage() {
             {
                 isDeleteModalOpen && (
                     <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
-                        <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+                        <div className="w-full max-w-[407px] rounded-xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
                             <div className="mb-6 flex flex-col items-center text-center">
-                                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-100">
+                                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-red-100">
                                     <Image src={deleteIcon} alt="Delete" width={28} height={28} className="h-7 w-7 text-red-600" />
                                 </div>
-                                <h2 className="mb-2 text-xl font-bold text-neutral-900">Delete Calendar</h2>
-                                <p className="text-sm text-neutral-500">Are you sure you want to delete this calendar? This action cannot be undone.</p>
+                                <p className="text-[16px] font-medium text-[#111827]">Are you sure you want to delete this Pay Periods Record?</p>
                             </div>
                             <div className="flex gap-3">
-                                <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
-                                <button onClick={handleDelete} className="flex-1 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-700 cursor-pointer">Delete</button>
+                                <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-3 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
+                                <button onClick={handleDelete} className="flex-1 rounded-xl bg-red-600 px-4 py-3 text-sm font-semibold text-white hover:bg-red-700 cursor-pointer">Delete</button>
                             </div>
                         </div>
                     </div>

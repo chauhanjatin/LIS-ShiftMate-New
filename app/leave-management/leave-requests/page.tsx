@@ -37,13 +37,16 @@ export default function LeaveRequestsPage() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [statusFilter, setStatusFilter] = useState<string>("All");
   const [leaveType, setLeaveType] = useState<string>("All Type");
+  const [searchQuery, setSearchQuery] = useState("");
   
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const filteredRequests = requests.filter(req => {
-    if (statusFilter === "All") return true;
-    return req.status === statusFilter;
+    const matchesStatus = statusFilter === "All" || req.status === statusFilter;
+    const matchesLeaveType = leaveType === "All Type" || req.leaveType === leaveType;
+    const matchesSearch = req.employeeName.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesStatus && matchesLeaveType && matchesSearch;
   });
 
   const totalPages = Math.ceil(filteredRequests.length / rowsPerPage) || 1;
@@ -63,9 +66,9 @@ export default function LeaveRequestsPage() {
   return (
     <DashboardLayout title="Leave Requests" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 relative ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm overflow-hidden">
+        <div className="rounded-xl bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 pt-4 md:pt-6">
-            <h2 className="md:text-[20px] text-[16px] font-bold text-neutral-900">All Leave Requests</h2>
+            <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">All Leave Requests</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 relative">
               <div className="relative 2xl:w-75 xl:w-60 w-40">
@@ -77,8 +80,10 @@ export default function LeaveRequestsPage() {
                   className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                 />
                 <input
-                  className="w-full rounded-xl border border-[#E2E8F0] bg-neutral-50 py-1.5 md:py-2.5 pl-11 pr-4 text-sm"
+                  className="w-full rounded-xl border border-[#E2E8F0] bg-neutral-50 py-1.5 md:py-2.5 pl-11 pr-4 text-sm outline-none focus:border-[#257BFC]"
                   placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
 
@@ -105,35 +110,33 @@ export default function LeaveRequestsPage() {
                   alt="Filter"
                   width={24}
                   height={24}
-                  className="pointer-events-none"
+                  className="cursor-pointer"
                 />
               </button>
 
               {filterOpen && (
                 <div className="absolute top-[50px] right-0 z-10 w-40 rounded-xl bg-white shadow-lg border border-[#E2E8F0] p-2 animate-in slide-in-from-top-2 overflow-hidden">
-                  <p className="text-xs font-semibold text-neutral-500 mb-2 px-2">Filter Dropdown</p>
-                  <button onClick={() => { setStatusFilter("All"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${statusFilter === 'All' ? 'font-bold' : ''}`}>All</button>
-                  <button onClick={() => { setStatusFilter("Pending"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${statusFilter === 'Pending' ? 'font-bold' : ''}`}>Pending</button>
-                  <button onClick={() => { setStatusFilter("Approved"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${statusFilter === 'Approved' ? 'font-bold' : ''}`}>Approved</button>
-                  <button onClick={() => { setStatusFilter("Rejected"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-neutral-50 ${statusFilter === 'Rejected' ? 'font-bold' : ''}`}>Rejected</button>
+                  <button onClick={() => { setStatusFilter("Pending"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-[16px] rounded-lg hover:bg-[#257BFC] hover:text-white cursor-pointer ${statusFilter === 'Pending' ? 'font-normal' : ''}`}>Pending</button>
+                  <button onClick={() => { setStatusFilter("Approved"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-[16px] rounded-lg hover:bg-[#257BFC] hover:text-white cursor-pointer ${statusFilter === 'Approved' ? 'font-normal' : ''}`}>Approved</button>
+                  <button onClick={() => { setStatusFilter("Rejected"); setFilterOpen(false); }} className={`w-full text-left px-3 py-2 text-[16px] rounded-lg hover:bg-[#257BFC] hover:text-white cursor-pointer ${statusFilter === 'Rejected' ? 'font-normal' : ''}`}>Rejected</button>
                 </div>
               )}
             </div>
           </div>
 
           <div className="p-3 2xl:p-6">
-            <div className="rounded-2xl border border-[#D0D5DD] bg-white overflow-hidden">
+            <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-[1000px] w-full text-left border-collapse">
                   <thead className="bg-[#F8F9FC]">
                     <tr>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Employee</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Leave Type</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Start Date</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">End Date</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Total Days</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827] text-center">Status</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[16px] font-normal text-[#111827] text-center">Action</th>
+                      <th className="border-b border-[#E2E8F0] 2xl:px-4 px-2 2xl:py-[10px] py-2 sm:px-6 pl-4 2xl:pr-4 pr-3 md:text-[16px] text-[14px] font-normal text-[#111827]">Employee</th>
+                      <th className="border-b border-[#E2E8F0] 2xl:px-4 px-2 2xl:py-[10px] py-2 sm:px-6 2xl:pr-4 pr-3 md:text-[16px] text-[14px] font-normal text-[#111827]">Leave Type</th>
+                      <th className="border-b border-[#E2E8F0] 2xl:px-4 px-2 2xl:py-[10px] py-2 sm:px-6 2xl:pr-4 pr-3 md:text-[16px] text-[14px] font-normal text-[#111827]">Start Date</th>
+                      <th className="border-b border-[#E2E8F0] 2xl:px-4 px-2 2xl:py-[10px] py-2 sm:px-6 2xl:pr-4 pr-3 md:text-[16px] text-[14px] font-normal text-[#111827]">End Date</th>
+                      <th className="border-b border-[#E2E8F0] 2xl:px-4 px-2 2xl:py-[10px] py-2 sm:px-6 2xl:pr-4 pr-3 md:text-[16px] text-[14px] font-normal text-[#111827]">Total Days</th>
+                      <th className="border-b border-[#E2E8F0] 2xl:px-4 px-2 2xl:py-[10px] py-2 sm:px-6 2xl:pr-4 pr-3 md:text-[16px] text-[14px] font-normal text-[#111827] text-center">Status</th>
+                      <th className="border-b border-[#E2E8F0] 2xl:px-4 px-2 2xl:py-[10px] py-2 sm:px-6 2xl:pr-4 pr-3 md:text-[16px] text-[14px] font-normal text-[#111827] text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white">
@@ -151,19 +154,19 @@ export default function LeaveRequestsPage() {
                             </span>
                           </div>
                         </td>
-                        <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.leaveType}</td>
-                        <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.startDate}</td>
-                        <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.endDate}</td>
-                        <td className="px-4 md:py-6 py-3 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.totalDays}</td>
-                        <td className="px-4 md:py-6 py-3 sm:px-6 text-center">
-                          <span className={`inline-flex rounded-full md:px-5 px-3 md:py-2.5 py-1 md:text-[14px] text-[12px] font-normal ${req.status === 'Approved' ? 'bg-[#EDFAF2] text-[#4DB949]' :
+                        <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.leaveType}</td>
+                        <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.startDate}</td>
+                        <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.endDate}</td>
+                        <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.totalDays}</td>
+                        <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-center">
+                          <span className={`inline-flex rounded-full 2xl:px-5 xl:px-4 px-3 2xl:py-2.5 xl:py-2 py-1 text-[14px] text-[12px] font-normal ${req.status === 'Approved' ? 'bg-[#EDFAF2] text-[#4DB949]' :
                               req.status === 'Pending' ? 'bg-[#FFF6E8] text-[#FFA100]' :
                                 'bg-[#FEE2E2] text-[#EF4444]'
                             }`}>
                             {req.status}
                           </span>
                         </td>
-                        <td className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 text-center">
+                        <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-center">
                           <Link href={`/leave-management/leave-requests/${req.id}`}>
                             <button className="text-neutral-400 hover:text-neutral-900 transition-colors cursor-pointer">
                               <Image src={eyeIcon} alt="View"/>

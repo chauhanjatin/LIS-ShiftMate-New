@@ -54,12 +54,12 @@ const MetricCard = ({ title, value, type }: { title: string, value: string, type
   const { bg, icon } = styles[type];
 
   return (
-    <div className="rounded-2xl border border-[#D0D5DD] bg-white md:p-6 p-3 flex justify-between items-center">
+    <div className="rounded-xl border border-[#D0D5DD] bg-white 2xl:p-5 p-3 flex justify-between items-center">
       <div>
         <h3 className="md:text-[28px] text-[24px] font-bold text-[#111827]">{value}</h3>
-        <p className="md:text-[13px] text-[12px] font-medium text-[#111827] mt-1">{title}</p>
+        <p className="2xl:text-[14px] text-[12px] font-medium text-[#111827] mt-1">{title}</p>
       </div>
-      <div className={`md:h-12 md:w-12 h-10 w-10 rounded-[12px] flex items-center justify-center ${bg}`}>
+      <div className={`2xl:h-12 2xl:w-12 xl:h-10 xl:w-10 h-8 w-8 rounded-[12px] flex items-center justify-center ${bg}`}>
         {icon}
       </div>
     </div>
@@ -102,7 +102,7 @@ export default function RTIDashboardPage() {
   return (
     <DashboardLayout title="RTI Dashboard" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="rounded-2xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 pt-4 md:pt-6 pb-10">
+        <div className="rounded-xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 pt-4 md:pt-6 pb-10">
           <h2 className="text-[20px] font-medium text-[#111827] mb-6">RTI Dashboard</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
