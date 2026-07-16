@@ -16,6 +16,8 @@ import Link from "next/link";
 import { useEmployees } from "@/hooks/useEmployees";
 import { Employee, Status } from "@/Data/employees";
 import { Lexend_Deca } from "next/font/google";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { useRef } from "react";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -45,6 +47,11 @@ export default function AllEmployeesPage() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState("All Departments");
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
+
+  const filterRef = useRef<HTMLDivElement>(null);
+  useClickOutside(filterRef, () => {
+    if (filterOpen) setFilterOpen(false);
+  });
 
   const filteredEmployees = employeesList.filter((emp) => 
     selectedDepartment === "All Departments" ? true : emp.dept === selectedDepartment
@@ -101,7 +108,7 @@ export default function AllEmployeesPage() {
                 />
               </div>
 
-              <div className="relative">
+              <div className="relative" ref={filterRef}>
                 <button
                   onClick={() => setFilterOpen(!filterOpen)}
                   className="flex md:h-[42px] md:w-[42px] h-[38px] w-[38px] p-2 items-center justify-center rounded-xl border border-[#E2E8F0] text-neutral-600 transition hover:bg-neutral-50"

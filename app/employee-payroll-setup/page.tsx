@@ -41,7 +41,7 @@ export default function EmployeePayrollSetupPage() {
     const [employees, setEmployees] = useState<EmployeePayroll[]>(initialPayrollSetup);
     const [searchQuery, setSearchQuery] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
+    const [itemsPerPage, setItemsPerPage] = useState(10);
 
     useEffect(() => {
         const stored = localStorage.getItem("shiftmate_employee_payroll_setup");
@@ -122,7 +122,7 @@ export default function EmployeePayrollSetupPage() {
                                     className="w-full rounded-xl border border-[#E2E8F0] bg-white py-1.5 md:py-2.5 pl-11 pr-4 text-sm outline-none focus:border-[#257BFC] overflow-hidden"
                                     placeholder="Search..."
                                     value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    onChange={(e) => setSearchQuery(e.target.value)} 
                                 />
                             </div>
                         </div>
@@ -132,44 +132,44 @@ export default function EmployeePayrollSetupPage() {
                         <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="min-w-[1100px] w-full text-left border-collapse">
-                                    <thead className="bg-[#F8F9FC]">
+                                    <thead className="bg-[#F9FAFB]">
                                         <tr>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Name</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Salary</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Tax Code</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">NI Category</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Student Loan Plan</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] text-center">Pension Status</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] text-center">Pay Frequency</th>
-                                            <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] text-center">Action</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pl-4 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827]">Name</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827]">Salary</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827]">Tax Code</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827]">NI Category</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827]">Student Loan Plan</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] text-center">Pension Status</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] text-center">Pay Frequency</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] text-center">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-[#E2E8F0] bg-white">
+                                    <tbody className="divide-y divide-[#D0D5DD] bg-white">
                                         {paginatedEmployees.map((emp) => (
-                                            <tr key={emp.id} className="hover:bg-neutral-50 transition-colors">
-                                                <td className="px-4 py-4 sm:px-6">
+                                            <tr key={emp.id} className="border-b border-[#D0D5DD] hover:bg-neutral-50 transition-colors">
+                                                <td className="px-4 py-6 sm:px-5">
                                                     <div className="flex items-center gap-3">
                                                         <img src={emp.avatar} alt={emp.name} className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover" />
                                                         <span className="text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.name}</span>
                                                     </div>
                                                 </td>
-                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.salary}</td>
-                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.taxCode}</td>
-                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.niCategory}</td>
-                                                <td className="px-4 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.studentLoanPlan}</td>
+                                                <td className="px-4 py-6 sm:px-5 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.salary}</td>
+                                                <td className="px-4 py-6 sm:px-5 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.taxCode}</td>
+                                                <td className="px-4 py-6 sm:px-5 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.niCategory}</td>
+                                                <td className="px-4 py-6 sm:px-5 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.studentLoanPlan}</td>
 
-                                                <td className="px-4 py-4 sm:px-6 text-center">
-                                                    <span className={`inline-flex rounded-full px-3 py-1 text-[12px] font-normal ${emp.pensionStatus === "Auto-enrolled" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FDEAEA] text-[#F04438]"
+                                                <td className="px-4 py-6 sm:px-5 text-center">
+                                                    <span className={`inline-flex rounded-full px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal ${emp.pensionStatus === "Auto-enrolled" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FDEAEA] text-[#F04438]"
                                                         }`}>
                                                         {emp.pensionStatus}
                                                     </span>
                                                 </td>
 
-                                                <td className="px-4 py-4 sm:px-6 text-center text-[13px] sm:text-[14px] font-normal text-[#2E334E]">
+                                                <td className="px-4 py-4 sm:px-5 text-center text-[13px] sm:text-[14px] font-normal text-[#2E334E]">
                                                     {emp.payFrequency}
                                                 </td>
 
-                                                <td className="px-4 py-4 sm:px-6">
+                                                <td className="px-4 py-4 sm:px-5">
                                                     <div className="flex items-center justify-center gap-3">
                                                         <button onClick={() => openEditModal(emp)} className="text-neutral-400 hover:text-[#257BFC] transition-colors cursor-pointer">
                                                             <Image src={editIcon} alt="Edit" width={20} height={20} className="pointer-events-none" />
@@ -186,39 +186,44 @@ export default function EmployeePayrollSetupPage() {
                             </div>
                             
                             {/* Pagination */}
-                            <div className="flex items-center justify-between border-t border-[#E2E8F0] px-4 py-4 sm:px-6">
-                                <span className="text-[14px] text-[#667085]">
-                                    Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredEmployees.length)} of {filteredEmployees.length} entries
-                                </span>
+                            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
                                 <div className="flex items-center gap-2">
+                                    <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                                        Rows per page:
+                                    </span>
+                                    <div className="w-[80px]">
+                                        <CustomSelect 
+                                            value={String(itemsPerPage)}
+                                            onChange={(val) => { setItemsPerPage(Number(val)); setCurrentPage(1); }}
+                                            options={[
+                                                { label: "5", value: "5" },
+                                                { label: "10", value: "10" },
+                                                { label: "20", value: "20" }
+                                            ]}
+                                            menuPlacement="top"
+                                            className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                                        />
+                                    </div>
+                                </div>
+
+                                <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                                    {filteredEmployees.length > 0 ? `${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, filteredEmployees.length)} of ${filteredEmployees.length}` : '0-0 of 0'}
+                                </span>
+
+                                <div className="flex items-center gap-1 ml-4">
                                     <button 
                                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                                         disabled={currentPage === 1}
-                                        className="flex h-8 items-center justify-center rounded-lg border border-[#D0D5DD] px-3 text-[14px] font-medium text-[#344054] transition-colors hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        Previous
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                     </button>
-                                    <div className="flex items-center gap-1">
-                                        {Array.from({ length: totalPages }).map((_, idx) => (
-                                            <button
-                                                key={idx}
-                                                onClick={() => setCurrentPage(idx + 1)}
-                                                className={`flex h-8 w-8 items-center justify-center rounded-lg text-[14px] font-medium transition-colors ${
-                                                    currentPage === idx + 1
-                                                        ? "bg-neutral-100 text-[#1D2939]"
-                                                        : "text-[#667085] hover:bg-neutral-50"
-                                                }`}
-                                            >
-                                                {idx + 1}
-                                            </button>
-                                        ))}
-                                    </div>
                                     <button 
                                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                                         disabled={currentPage === totalPages}
-                                        className="flex h-8 items-center justify-center rounded-lg border border-[#D0D5DD] px-3 text-[14px] font-medium text-[#344054] transition-colors hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        Next
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                     </button>
                                 </div>
                             </div>

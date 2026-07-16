@@ -9,6 +9,8 @@ import filterIcon from "@/assets/images/icons/filter.svg";
 import { Lexend_Deca } from "next/font/google";
 import eyeIcon from "@/assets/images/icons/eye-view.svg";
 import Toast from '@/Component/UI/Toast';
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { useRef } from "react";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -48,6 +50,11 @@ export default function PayslipListPage() {
     const [tempPeriodFilter, setTempPeriodFilter] = useState("All Periods");
     const [toastMessage, setToastMessage] = useState("");
     const [showToast, setShowToast] = useState(false);
+
+    const filterRef = useRef<HTMLDivElement>(null);
+    useClickOutside(filterRef, () => {
+        if (isFilterOpen) setIsFilterOpen(false);
+    });
 
     const triggerToast = (msg: string) => {
         setToastMessage(msg);
@@ -117,10 +124,10 @@ export default function PayslipListPage() {
                                     placeholder="Search by employee, department, period..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                />
+                                /> 
                             </div>
 
-                            <div className="relative">
+                            <div className="relative" ref={filterRef}>
                                 <button 
                                     onClick={() => setIsFilterOpen(!isFilterOpen)}
                                     className="flex h-9 w-9 md:h-[42px] md:w-[42px] items-center justify-center rounded-xl border border-[#E2E8F0] bg-white text-neutral-500 transition hover:bg-neutral-50 cursor-pointer overflow-hidden"
@@ -237,7 +244,7 @@ export default function PayslipListPage() {
                                                 <td className="px-4 md:py-4 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-neutral-900">{payslip.netPay}</td>
 
                                                 <td className="px-4 md:py-4 py-3 sm:px-6 text-center">
-                                                    <span className={`inline-flex rounded-full px-3 py-1 text-[12px] md:text-[14px] font-normal ${getStatusColor(payslip.status)}`}>
+                                                    <span className={`inline-flex rounded-full px-3.5 py-2.5 text-[12px] md:text-[14px] font-normal ${getStatusColor(payslip.status)}`}>
                                                         {payslip.status}
                                                     </span>
                                                 </td>

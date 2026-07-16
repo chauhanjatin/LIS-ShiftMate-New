@@ -8,6 +8,8 @@ import CustomSelect from '@/Component/UI/CustomSelect';
 import searchIcon from "@/assets/images/icons/search.svg";
 import filterIcon from "@/assets/images/icons/filter.svg";
 import { Lexend_Deca } from "next/font/google";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { useRef } from "react";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -40,6 +42,11 @@ export default function LeaveBalancesPage() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [deptFilter, setDeptFilter] = useState<string>("All Departments");
 
+  const filterRef = useRef<HTMLDivElement>(null);
+  useClickOutside(filterRef, () => {
+    if (filterOpen) setFilterOpen(false);
+  });
+
   const filteredBalances = balances.filter(bal => {
     if (deptFilter === "All Departments") return true;
     return bal.department === deptFilter;
@@ -71,7 +78,7 @@ export default function LeaveBalancesPage() {
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Leave Balances</h2>
 
-            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 relative">
+            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 relative" ref={filterRef}>
               <div className="relative 2xl:w-75 md:w-60 w-32">
                 <Image
                   src={searchIcon}
@@ -132,7 +139,7 @@ export default function LeaveBalancesPage() {
                   <tbody className="bg-white">
                     {paginatedBalances.map((bal) => (
                       <tr key={bal.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                        <td className="px-4 py-4 sm:px-6">
+                        <td className="px-4 py-6 sm:px-6">
                           <div className="flex items-center gap-3">
                             <img
                               src={bal.avatar}
@@ -144,11 +151,11 @@ export default function LeaveBalancesPage() {
                             </span>
                           </div>
                         </td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.department}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.entitlement}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.used}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.carryOver}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.remaining}</td>
+                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.department}</td>
+                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.entitlement}</td>
+                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.used}</td>
+                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.carryOver}</td>
+                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.remaining}</td>
                       </tr>
                     ))}
                   </tbody>

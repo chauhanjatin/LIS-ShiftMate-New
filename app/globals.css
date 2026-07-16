@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant 3xl (@media (min-width: 1440px) and (max-width: 1600px));
 
 :root {
   --background: #f4f4f5;

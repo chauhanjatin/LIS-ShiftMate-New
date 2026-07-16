@@ -9,6 +9,8 @@ import searchIcon from "@/assets/images/icons/search.svg";
 import filterIcon from "@/assets/images/icons/filter.svg";
 import { Lexend_Deca } from "next/font/google";
 import eyeIcon from "@/assets/images/icons/eye-view.svg";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { useRef } from "react";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -38,6 +40,11 @@ export default function LeaveRequestsPage() {
   const [statusFilter, setStatusFilter] = useState<string>("All");
   const [leaveType, setLeaveType] = useState<string>("All Type");
   const [searchQuery, setSearchQuery] = useState("");
+  
+  const filterRef = useRef<HTMLDivElement>(null);
+  useClickOutside(filterRef, () => {
+    if (filterOpen) setFilterOpen(false);
+  });
   
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -70,7 +77,7 @@ export default function LeaveRequestsPage() {
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 pt-4 md:pt-6">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">All Leave Requests</h2>
 
-            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 relative">
+            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 relative" ref={filterRef}>
               <div className="relative 2xl:w-75 xl:w-60 w-40">
                 <Image
                   src={searchIcon}
@@ -159,7 +166,7 @@ export default function LeaveRequestsPage() {
                         <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.endDate}</td>
                         <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.totalDays}</td>
                         <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-center">
-                          <span className={`inline-flex rounded-full 2xl:px-5 xl:px-4 px-3 2xl:py-2.5 xl:py-2 py-1 text-[14px] text-[12px] font-normal ${req.status === 'Approved' ? 'bg-[#EDFAF2] text-[#4DB949]' :
+                          <span className={`inline-flex rounded-full 2xl:px-5 xl:px-4 px-3 2xl:py-2.5 xl:py-2 py-1 2xl:text-[14px] md:text-[12px] font-normal ${req.status === 'Approved' ? 'bg-[#EDFAF2] text-[#4DB949]' :
                               req.status === 'Pending' ? 'bg-[#FFF6E8] text-[#FFA100]' :
                                 'bg-[#FEE2E2] text-[#EF4444]'
                             }`}>

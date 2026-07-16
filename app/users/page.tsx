@@ -17,6 +17,8 @@ import { User, UserStatus } from "@/Data/users";
 import Toast from '@/Component/UI/Toast';
 import { Lexend_Deca } from "next/font/google";
 import CustomSelect from "@/Component/UI/CustomSelect";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { useRef } from "react";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -262,6 +264,10 @@ export default function UsersPage() {
     const [selectedRole, setSelectedRole] = useState("All Roles");
     const [view, setView] = useState<"list" | "grid">("list");
     const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
+    const filterRef = useRef<HTMLDivElement>(null);
+    useClickOutside(filterRef, () => {
+        if (filterOpen) setFilterOpen(false);
+    });
 
     // Pagination state
     const [currentPage, setCurrentPage] = useState(1);
@@ -327,7 +333,7 @@ export default function UsersPage() {
                                 />
                             </div>
 
-                            <div className="relative">
+                            <div className="relative" ref={filterRef}>
                                 <button onClick={() => setFilterOpen(!filterOpen)} className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-[#E2E8F0] cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
                                     <Image
                                         src={filterIcon}
@@ -384,13 +390,13 @@ export default function UsersPage() {
                     </div>
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-xl bg-white overflow-hidden border border-[#E2E8F0]">
+                        <div className="rounded-xl bg-white overflow-hidden border border-[#D0D5DD]">
                             {view === "list" ? (
                                 <div className="overflow-x-auto">
                                     <table className="min-w-[1100px] w-full text-left border-collapse">
-                                        <thead className="bg-[#F2F4F7]">
+                                        <thead className="bg-[#F9FAFB]">
                                             <tr>
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] text-[#111827] whitespace-nowrap">
+                                                <th className="border-b border-[#D0D5DD] px-[10px] py-[10px] sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] text-[#111827] whitespace-nowrap">
                                                     <input
                                                         type="checkbox"
                                                         checked={allSelected}

@@ -44,11 +44,11 @@ export default function FPSSubmissionsPage() {
   const renderBadge = (status: string) => {
     switch (status) {
       case "Accepted":
-        return <span className="inline-flex items-center rounded-full bg-[#ECFDF5] px-3 py-1 text-[12px] font-medium text-[#10B981]">Accepted</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#EAF9EA] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#4DB949]">Accepted</span>;
       case "Pending":
-        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] px-3 py-1 text-[12px] font-medium text-[#F59E0B]">Pending</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#F59E0B]">Pending</span>;
       case "Rejected":
-        return <span className="inline-flex items-center rounded-full bg-[#FEF2F2] px-3 py-1 text-[12px] font-medium text-[#EF4444]">Rejected</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#FEF2F2] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#EF4444]">Rejected</span>;
       default:
         return <span>{status}</span>;
     }
@@ -75,7 +75,7 @@ export default function FPSSubmissionsPage() {
 
           <div className="overflow-x-auto rounded-xl border border-[#E2E8F0]">
             <table className="w-full text-left">
-              <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] text-[12px] md:text-[14px] lg::text-[16px]">
+              <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] text-[12px] md:text-[14px] 2xl:text-[16px]">
                 <tr>
                   <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Period</th>
                   <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Employees</th>

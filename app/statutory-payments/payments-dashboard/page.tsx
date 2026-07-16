@@ -68,9 +68,9 @@ export default function PaymentsDashboardPage() {
 
   const getTypeBadge = (type: string) => {
     switch (type) {
-      case "SSP": return "bg-[#EFF8FF] text-[#257BFC]";
+      case "SSP": return "bg-[#EAF2FF] text-[#07265C]";
       case "SMP": return "bg-[#EAF9EA] text-[#4DB949]";
-      case "SAP": return "bg-[#F3E8FF] text-[#8B5CF6]";
+      case "SAP": return "bg-[#F0ECFE] text-[#775AF4]";
       case "SPP": return "bg-[#FFF4E5] text-[#FFA100]";
       default: return "bg-neutral-100 text-neutral-600";
     }
@@ -114,19 +114,19 @@ export default function PaymentsDashboardPage() {
           <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
             <div className="overflow-x-auto">
               <table className="min-w-[1000px] w-full text-left border-collapse">
-                <thead className="bg-[#F2F4F7]">
+                <thead className="bg-[#F9FAFB]">
                   <tr>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Employee</th>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Start Date</th>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">End Date</th>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Weekly Amount</th>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Type</th>
-                    <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827] text-center">Action</th>
+                    <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Employee</th>
+                    <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Start Date</th>
+                    <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">End Date</th>
+                    <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Weekly Amount</th>
+                    <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827]">Type</th>
+                    <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 md:text-[16px] text-[14px] font-normal text-[#111827] text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white">
                   {paginatedPayments.map((item) => (
-                    <tr key={item.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
+                    <tr key={item.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#D0D5DD] last:border-none">
                       <td className="px-4 py-4 sm:px-6">
                         <div className="flex items-center gap-3">
                           <img
@@ -143,7 +143,7 @@ export default function PaymentsDashboardPage() {
                       <td className="px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[12px] font-normal text-[#111827]">{item.endDate}</td>
                       <td className="px-4 md:py-6 py-4 sm:px-6 md:text-[14px] text-[12px] font-normal text-[#111827]">{item.weeklyAmount}</td>
                       <td className="px-4 md:py-6 py-4 sm:px-6">
-                        <span className={`inline-flex rounded-full px-3 py-1 md:text-[12px] text-[10px] font-bold ${getTypeBadge(item.type)}`}>
+                        <span className={`inline-flex rounded-full px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal ${getTypeBadge(item.type)}`}>
                           {item.type}
                         </span>
                       </td>

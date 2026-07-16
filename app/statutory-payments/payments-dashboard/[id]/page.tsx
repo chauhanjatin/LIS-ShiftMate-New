@@ -132,18 +132,18 @@ export default function PaymentDetailsPage() {
           </div>
 
           <div>
-            <h3 className="text-[18px] font-bold text-neutral-900">Payment History</h3>
+            <h3 className="2xl:text-[20px] text-[18px] font-medium text-[#111827]">Payment History</h3>
 
             <div className="py-6">
               <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="min-w-[800px] w-full text-left border-collapse">
-                    <thead className="bg-[#F2F4F7]">
+                    <thead className="bg-[#F9FAFB]">
                       <tr>
-                        <th className="border-b border-t border-[#E2E8F0] py-[10px] pl-4 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Week</th>
-                        <th className="border-b border-t border-[#E2E8F0] py-[10px] pl-4 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Period</th>
-                        <th className="border-b border-t border-[#E2E8F0] py-[10px] pl-4 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Paid Date</th>
-                        <th className="border-b border-t border-[#E2E8F0] py-[10px] pl-4 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Amount</th>
+                        <th className="border-b border-[#D0D5DD] py-[10px] pl-4 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Week</th>
+                        <th className="border-b border-[#D0D5DD] py-[10px] pl-4 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Period</th>
+                        <th className="border-b border-[#D0D5DD] py-[10px] pl-4 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Paid Date</th>
+                        <th className="border-b border-[#D0D5DD] py-[10px] pl-4 pr-4 md:text-[16px] text-[14px] font-normal text-[#111827]">Amount</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white">

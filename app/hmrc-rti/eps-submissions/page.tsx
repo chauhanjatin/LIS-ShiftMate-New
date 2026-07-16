@@ -8,6 +8,8 @@ import Toast from "@/Component/UI/Toast";
 import CustomSelect from '@/Component/UI/CustomSelect';
 import viewIcon from "@/assets/images/icons/eye-view.svg";
 import { Lexend_Deca } from "next/font/google";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { useRef } from "react";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -19,6 +21,11 @@ export default function EPSSubmissionsPage() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [statusFilter, setStatusFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+
+  const filterRef = useRef<HTMLDivElement>(null);
+  useClickOutside(filterRef, () => {
+    if (isFilterOpen) setIsFilterOpen(false);
+  });
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
@@ -54,11 +61,11 @@ export default function EPSSubmissionsPage() {
   const renderBadge = (status: string) => {
     switch (status) {
       case "Accepted":
-        return <span className="inline-flex items-center rounded-full bg-[#ECFDF5] px-3 py-1 text-[12px] font-medium text-[#10B981]">Accepted</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#EAF9EA] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#4DB949]">Accepted</span>;
       case "Pending":
-        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] px-3 py-1 text-[12px] font-medium text-[#F59E0B]">Pending</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#F59E0B]">Pending</span>;
       case "Rejected":
-        return <span className="inline-flex items-center rounded-full bg-[#FEF2F2] px-3 py-1 text-[12px] font-medium text-[#EF4444]">Rejected</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#FEF2F2] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#EF4444]">Rejected</span>;
       default:
         return <span>{status}</span>;
     }
@@ -69,11 +76,11 @@ export default function EPSSubmissionsPage() {
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-xl bg-white shadow-sm min-h-[800px] px-4 md:px-6 pt-4 md:pt-6 pb-10">
           
-          <div className="flex flex-wrap md:flex-nowrap justify-between items-center md:mb-8 mb-6">
+          <div className="flex flex-wrap md:flex-nowrap justify-between items-center mb-6">
             <h2 className="text-[20px] font-medium text-[#111827]">EPS Submissions</h2>
             <div className="flex flex-wrap md:flex-nowrap md:gap-4 gap-2 mt-3 md:mt-0">
               <div className="relative">
-                <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <svg className="absolute left-3 top-[45%] -translate-y-1/2 text-neutral-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 <input 
                   type="text" 
                   placeholder="Search.." 
@@ -93,7 +100,7 @@ export default function EPSSubmissionsPage() {
                   className="min-h-[42px]"
                 />
               </div>
-              <div className="relative">
+              <div className="relative" ref={filterRef}>
                 <button onClick={() => setIsFilterOpen(!isFilterOpen)} className="flex items-center justify-center rounded-xl border border-neutral-200 bg-white w-[42px] h-[42px] text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
                 </button>
@@ -109,9 +116,9 @@ export default function EPSSubmissionsPage() {
             </div>
           </div>
 
-          <div className="overflow-x-auto rounded-xl border border-[#E2E8F0]">
+          <div className="overflow-x-auto rounded-xl border border-[#D0D5DD]">
             <table className="w-full text-left">
-              <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] lg:text-[16px] md:text-[14px] text-[13px]">
+              <thead className="border-b border-[#D0D5DD] bg-[#F9FAFB] text-[#111827] lg:text-[16px] md:text-[14px] text-[13px]">
                 <tr>
                   <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Period</th>
                   <th className="2xl:px-6 px-4 md:py-2.5 py-1.5 font-normal">Tax Period</th>
@@ -141,9 +148,9 @@ export default function EPSSubmissionsPage() {
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                           </button>
                         )}
-                        <button onClick={handleAction} className="text-[#111827] hover:text-[#257BFC]">
+                        {/* <button onClick={handleAction} className="text-[#111827] hover:text-[#257BFC]">
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                        </button>
+                        </button> */}
                       </div>
                     </td>
                   </tr>
