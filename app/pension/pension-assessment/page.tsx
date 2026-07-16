@@ -116,7 +116,7 @@ export default function PensionAssessmentPage() {
                               alt={item.employeeName}
                               className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover flex-shrink-0"
                             />
-                            <span className="text-[13px] md:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                            <span className="text-[13px] md:text-[14px] font-normal text-neutral-900 whitespace-nowrap">
                               {item.employeeName}
                             </span>
                           </div>

@@ -124,7 +124,7 @@ export default function PayslipListPage() {
                                     placeholder="Search by employee, department, period..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                />
+                                /> 
                             </div>
 
                             <div className="relative" ref={filterRef}>
@@ -244,7 +244,7 @@ export default function PayslipListPage() {
                                                 <td className="px-4 md:py-4 py-3 sm:px-6 text-[12px] xl:text-[14px] font-normal text-neutral-900">{payslip.netPay}</td>
 
                                                 <td className="px-4 md:py-4 py-3 sm:px-6 text-center">
-                                                    <span className={`inline-flex rounded-full px-3 py-1 text-[12px] md:text-[14px] font-normal ${getStatusColor(payslip.status)}`}>
+                                                    <span className={`inline-flex rounded-full px-3.5 py-2.5 text-[12px] md:text-[14px] font-normal ${getStatusColor(payslip.status)}`}>
                                                         {payslip.status}
                                                     </span>
                                                 </td>

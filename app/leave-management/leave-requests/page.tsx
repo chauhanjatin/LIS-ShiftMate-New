@@ -166,7 +166,7 @@ export default function LeaveRequestsPage() {
                         <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.endDate}</td>
                         <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-[13px] sm:text-[14px] font-normal text-[#111827]">{req.totalDays}</td>
                         <td className="2xl:py-6 xl:py-5 py-3 2xl:px-6 xl:px-5 px-4 text-center">
-                          <span className={`inline-flex rounded-full 2xl:px-5 xl:px-4 px-3 2xl:py-2.5 xl:py-2 py-1 text-[14px] text-[12px] font-normal ${req.status === 'Approved' ? 'bg-[#EDFAF2] text-[#4DB949]' :
+                          <span className={`inline-flex rounded-full 2xl:px-5 xl:px-4 px-3 2xl:py-2.5 xl:py-2 py-1 2xl:text-[14px] md:text-[12px] font-normal ${req.status === 'Approved' ? 'bg-[#EDFAF2] text-[#4DB949]' :
                               req.status === 'Pending' ? 'bg-[#FFF6E8] text-[#FFA100]' :
                                 'bg-[#FEE2E2] text-[#EF4444]'
                             }`}>

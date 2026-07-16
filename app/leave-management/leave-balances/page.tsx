@@ -139,7 +139,7 @@ export default function LeaveBalancesPage() {
                   <tbody className="bg-white">
                     {paginatedBalances.map((bal) => (
                       <tr key={bal.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                        <td className="px-4 py-4 sm:px-6">
+                        <td className="px-4 py-6 sm:px-6">
                           <div className="flex items-center gap-3">
                             <img
                               src={bal.avatar}
@@ -151,11 +151,11 @@ export default function LeaveBalancesPage() {
                             </span>
                           </div>
                         </td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.department}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.entitlement}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.used}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.carryOver}</td>
-                        <td className="px-4 py-6 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{bal.remaining}</td>
+                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.department}</td>
+                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.entitlement}</td>
+                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.used}</td>
+                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.carryOver}</td>
+                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.remaining}</td>
                       </tr>
                     ))}
                   </tbody>

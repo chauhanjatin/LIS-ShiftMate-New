@@ -390,13 +390,13 @@ export default function UsersPage() {
                     </div>
 
                     <div className="p-3 2xl:p-6">
-                        <div className="rounded-xl bg-white overflow-hidden border border-[#E2E8F0]">
+                        <div className="rounded-xl bg-white overflow-hidden border border-[#D0D5DD]">
                             {view === "list" ? (
                                 <div className="overflow-x-auto">
                                     <table className="min-w-[1100px] w-full text-left border-collapse">
-                                        <thead className="bg-[#F2F4F7]">
+                                        <thead className="bg-[#F9FAFB]">
                                             <tr>
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] text-[#111827] whitespace-nowrap">
+                                                <th className="border-b border-[#D0D5DD] px-[10px] py-[10px] sm:px-6 2xl:pl-6 pl-3 pr-2 text-[12px] sm:text-[14px] 2xl:text-[16px] text-[#111827] whitespace-nowrap">
                                                     <input
                                                         type="checkbox"
                                                         checked={allSelected}

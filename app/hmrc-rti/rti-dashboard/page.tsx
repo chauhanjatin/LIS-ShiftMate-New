@@ -91,9 +91,9 @@ export default function RTIDashboardPage() {
   const renderBadge = (status: string) => {
     switch (status) {
       case "Pending":
-        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] px-3 py-1 text-[12px] font-medium text-[#F59E0B]">Pending</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] px-3.5 py-2.5 text-[12px] md:text-[14px] font-normal text-[#F59E0B]">Pending</span>;
       case "Successful":
-        return <span className="inline-flex items-center rounded-full bg-[#ECFDF5] px-3 py-1 text-[12px] font-medium text-[#10B981]">Successful</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#EAF9EA] px-3.5 py-2.5 text-[12px] md:text-[14px] font-normal text-[#4DB949]">Successful</span>;
       default:
         return <span>{status}</span>;
     }
@@ -113,7 +113,7 @@ export default function RTIDashboardPage() {
           </div>
 
           <div className="mb-8">
-            <h3 className="text-[16px] font-bold text-[#111827] mb-4">Upcoming Filings</h3>
+            <h3 className="2xl:text-[20px] text-[16px] font-medium text-[#111827] mb-4">Upcoming Filings</h3>
             <div className="overflow-x-auto rounded-xl border border-[#E2E8F0]">
               <table className="w-full text-left">
                 <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] md:text-[16px] text-[12px]">
@@ -145,10 +145,10 @@ export default function RTIDashboardPage() {
           </div>
 
           <div>
-            <h3 className="text-[16px] font-bold text-[#111827] mb-4">Recent Submissions</h3>
+            <h3 className="2xl:text-[20px] text-[16px] font-medium text-[#111827] mb-4">Recent Submissions</h3>
             <div className="overflow-x-auto rounded-xl border border-[#E2E8F0]">
               <table className="w-full text-left text-[14px]">
-                <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827]">
+                <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] md:text-[16px] text-[12px]">
                   <tr>
                     <th className="px-6 py-2.5 font-normal">Filing Type</th>
                     <th className="px-6 py-2.5 font-normal">Tax Period</th>
@@ -157,7 +157,7 @@ export default function RTIDashboardPage() {
                     <th className="px-6 py-2.5 font-normal">Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E2E8F0]">
+                <tbody className="divide-y divide-[#E2E8F0] md:text-[14px] text-[10px]">
                   {recentSubmissions.map((row, idx) => (
                     <tr key={idx} className="hover:bg-neutral-50">
                       <td className="p-6 font-normal text-[#111827]">{row.type}</td>

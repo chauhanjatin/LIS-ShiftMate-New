@@ -34,31 +34,31 @@ const getStatusBadge = (status: string) => {
   switch (status.toLowerCase()) {
     case 'enrolled':
       return (
-        <span className="inline-flex items-center justify-center rounded-full bg-[#EDFAF2] px-2.5 py-1 text-[12px] font-medium text-[#4DB949]">
+        <span className="inline-flex items-center justify-center rounded-full bg-[#EDFAF2] px-3.5 py-2.5 2xl:text-[14px] md:text-[12px] font-normal text-[#4DB949]">
           Enrolled
         </span>
       );
     case 'pending':
       return (
-        <span className="inline-flex items-center justify-center rounded-full bg-[#FFF6E8] px-2.5 py-1 text-[12px] font-medium text-[#FFA100]">
+        <span className="inline-flex items-center justify-center rounded-full bg-[#FFF6E8] px-3.5 py-2.5 2xl:text-[14px] md:text-[12px] font-normal text-[#FFA100]">
           Pending
         </span>
       );
     case 'not enrolled':
       return (
-        <span className="inline-flex items-center justify-center rounded-full bg-[#EAF2FF] px-2.5 py-1 text-[12px] font-medium text-[#2E334E]">
+        <span className="inline-flex items-center justify-center rounded-full bg-[#EAF2FF] px-3.5 py-2.5 2xl:text-[14px] md:text-[12px] font-normal text-[#2E334E]">
           Not Enrolled
         </span>
       );
     case 'opted out':
       return (
-        <span className="inline-flex items-center justify-center rounded-full bg-[#FEE2E2] px-2.5 py-1 text-[12px] font-medium text-[#EF4444]">
+        <span className="inline-flex items-center justify-center rounded-full bg-[#FEE2E2] px-3.5 py-2.5 2xl:text-[14px] md:text-[12px] font-normal text-[#EF4444]">
           Opted Out
         </span>
       );
     default:
       return (
-        <span className="inline-flex items-center justify-center rounded-full bg-neutral-100 px-2.5 py-1 text-[12px] font-medium text-neutral-800">
+        <span className="inline-flex items-center justify-center rounded-full bg-neutral-100 px-3.5 py-2.5 2xl:text-[14px] md:text-[12px] font-normal text-neutral-800">
           {status}
         </span>
       );
@@ -141,16 +141,16 @@ export default function PensionContributionPage() {
                               alt={item.employeeName}
                               className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover flex-shrink-0"
                             />
-                            <span className="text-[13px] md:text-[14px] font-medium text-neutral-900 whitespace-nowrap">
+                            <span className="text-[13px] md:text-[14px] font-normal text-neutral-900 whitespace-nowrap">
                               {item.employeeName}
                             </span>
                           </div>
                         </td>
-                        <td className="md:px-4 py-4 sm:px-6 text-[13px] md:text-[14px] font-medium text-neutral-900">{item.pensionScheme}</td>
-                        <td className="md:px-4 py-4 sm:px-6 text-[13px] md:text-[14px] font-medium text-neutral-900">{item.employeeContribution}</td>
-                        <td className="md:px-4 py-4 sm:px-6 text-[13px] md:text-[14px] font-medium text-neutral-900">{item.employerContribution}</td>
-                        <td className="md:px-4 py-4 sm:px-6 text-[13px] md:text-[14px] font-medium text-neutral-900">{getStatusBadge(item.totalContribution)}</td>
-                        <td className="md:px-4 py-4 sm:px-6 text-[13px] md:text-[14px] font-medium text-neutral-500">{item.date}</td>
+                        <td className="md:px-4 py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{item.pensionScheme}</td>
+                        <td className="md:px-4 py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{item.employeeContribution}</td>
+                        <td className="md:px-4 py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{item.employerContribution}</td>
+                        <td className="md:px-4 py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{getStatusBadge(item.totalContribution)}</td>
+                        <td className="md:px-4 py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-neutral-500">{item.date}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -163,7 +163,7 @@ export default function PensionContributionPage() {
                     Rows per page:
                   </span>
                   <div className="w-[80px]">
-                    <CustomSelect 
+                    <CustomSelect
                       value={String(rowsPerPage)}
                       onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
                       options={[

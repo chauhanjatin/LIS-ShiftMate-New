@@ -148,9 +148,9 @@ export default function PayrollCalendarPage() {
 
     const StatusPill = ({ status }: { status: "Active" | "Completed" }) => {
         if (status === "Active") {
-            return <span className="inline-flex rounded-full bg-[#ECFDF3] px-3 py-1 text-[12px] font-semibold text-[#027A48]">Active</span>;
+            return <span className="inline-flex rounded-full bg-[#ECFDF3] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#027A48]">Active</span>;
         }
-        return <span className="inline-flex rounded-full bg-[#EFF8FF] px-3 py-1 text-[12px] font-semibold text-[#175CD3]">Completed</span>;
+        return <span className="inline-flex rounded-full bg-[#EAF2FF] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#07265C]">Completed</span>;
     };
 
     const breadcrumb = (

@@ -206,7 +206,7 @@ export default function PayrollRunsPage() {
                                                 <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{run.date}</td>
                                                 <td className="px-4 md:py-6 py-4 sm:px-6 text-[13px] sm:text-[14px] font-normal text-[#111827]">{run.cost}</td>
                                                 <td className="px-4 md:py-6 py-4 sm:px-6">
-                                                    <span className={`inline-flex rounded-full px-3 py-2 text-[12px] font-medium ${run.status === "Paid" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FFF6E8] text-[#FFA100]"
+                                                    <span className={`inline-flex rounded-full px-3.5 py-2.5 md:text-[14px] text-[12px] font-medium ${run.status === "Paid" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FFF6E8] text-[#FFA100]"
                                                         }`}>
                                                         {run.status}
                                                     </span>
@@ -400,7 +400,7 @@ export default function PayrollRunsPage() {
                             </div>
                         </div>
 
-                        <div className="mt-4 flex items-center justify-end gap-3 pt-6 shrink-0">
+                        <div className="mt-4 flex items-center justify-end gap-3 pt-6 shrink-0 mb-2.5 mr-6">
                                 <button
                                     onClick={() => setIsAddModalOpen(false)}
                                     className="md:h-[48px] h-[40px] rounded-xl border border-[#D0D5DD] md:px-8 px-4 md:text-[15px] text-[12px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer"
