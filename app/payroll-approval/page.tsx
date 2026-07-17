@@ -116,7 +116,7 @@ export default function PayrollApprovalPage() {
                             </div>
                         </div>
 
-                        <div className="flex flex-col md:flex-row gap-4 md:gap-x-26 xl:gap-x-40 2xl:gap-x-72 bg-[#F9FAFB] md:p-6 p-4 rounded-xl">
+                        <div className="flex flex-col md:flex-row gap-4 md:gap-x-26 xl:gap-x-40 2xl:gap-x-72 3xl:gap-x-60 bg-[#F9FAFB] md:p-6 p-4 rounded-xl">
                             <div>
                                 <p className="text-[14px] font-normal text-[#98A2B3]">Pay Period</p>
                                 <p className="text-[16px] font-medium text-neutral-900 md:mt-2 mt-1">March 2026</p>
@@ -136,14 +136,14 @@ export default function PayrollApprovalPage() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 md:p-6 p-4">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 3xl:gap-4 gap-6 md:p-6 p-4">
                         <div className="rounded-xl border border-[#EF4444]">
                             <div className="rounded-t-xl p-4 bg-[#FEF2F2]">
                                 <h3 className="text-[20px] font-medium text-[#111827]">Errors (2)</h3>
                                 <p className="text-[12px] text-[#111827] font-normal mt-2">Must be resolved before approval</p>
                             </div>
 
-                            <div className="space-y-4 2xl:p-6 p-4 pt-0">
+                            <div className="space-y-4 3xl:p-4 2xl:p-6 p-4 pt-0">
                                 {[1, 2, 3].map((item, index) => (
                                     <div key={index} className="md:flex items-center justify-between">
                                         <div className="flex items-center gap-3">
@@ -153,8 +153,8 @@ export default function PayrollApprovalPage() {
                                                 <p className="text-[12px] text-[#98A2B3] font-normal mt-0.5">{index % 2 === 0 ? 'No valid tax code assigned for this period.' : 'National Insurance category not set.'}</p>
                                             </div>
                                         </div>
-                                        <div className="flex items-center 2xl:gap-6 gap-4 mt-2 md:mt-0">
-                                            <span className="2xl:text-[14px] text-[12px] font-normal text-[#F04438] bg-[#FEF2F2] py-0.5 px-2 rounded-xl">{index % 2 === 0 ? 'Missing Tax Code' : 'NI Category Missing'}</span>
+                                        <div className="flex items-center 3xl:gap-4 2xl:gap-6 gap-4 mt-2 md:mt-0">
+                                            <span className="3xl:text-[12px] 2xl:text-[14px] text-[12px] font-normal text-[#F04438] bg-[#FEF2F2] py-0.5 px-2 rounded-xl">{index % 2 === 0 ? 'Missing Tax Code' : 'NI Category Missing'}</span>
                                             <button className="2xl:text-[14px] text-[12px] font-semibold text-[#1D2939] hover:underline cursor-pointer underline">Fix Now</button>
                                         </div>
                                     </div>
@@ -168,7 +168,7 @@ export default function PayrollApprovalPage() {
                                 <p className="text-[12px] text-[#111827] font-normal mt-2">Review recommended</p>
                             </div>
 
-                            <div className="space-y-4 2xl:p-6 p-4 pt-0">
+                            <div className="space-y-4 3xl:p-4 2xl:p-6 p-4 pt-0">
                                 {[1, 2, 3].map((item, index) => (
                                     <div key={index} className="md:flex items-center justify-between">
                                         <div className="flex items-center gap-3">
@@ -180,8 +180,8 @@ export default function PayrollApprovalPage() {
                                                 </p>
                                             </div>
                                         </div>
-                                        <div className="flex items-center 2xl:gap-6 gap-4 mt-2 md:mt-0">
-                                            <span className="2xl:text-[14px] text-[12px] font-normal text-[#FFA100] bg-[#FFF6E8] py-0.5 px-2 rounded-xl">
+                                        <div className="flex items-center 3xl:gap-5 2xl:gap-6 gap-4 mt-2 md:mt-0">
+                                            <span className="3xl:text-[12px] 2xl:text-[14px] text-[12px] font-normal text-[#FFA100] bg-[#FFF6E8] py-0.5 px-2 rounded-xl whitespace-nowrap">
                                                 {index === 0 ? 'Overtime Cap' : index === 1 ? 'Pension Opt-Out' : 'Salary Change'}
                                             </span>
                                             <button className="2xl:text-[14px] text-[12px] font-semibold text-[#1D2939] hover:underline cursor-pointer underline">Review</button>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { type ImageProps } from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChartsContainer } from "@mui/x-charts/ChartsContainer";
 import { LineChart, LinePlot, lineClasses } from "@mui/x-charts/LineChart";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
@@ -127,11 +127,27 @@ const data = [
 export default function DashboardPage() {
   const [workforceView, setWorkforceView] =
     useState<keyof typeof workforceSeries>("days");
+  
+  const chartContainerRef = useRef<HTMLDivElement>(null);
+  const [chartHeight, setChartHeight] = useState(230);
+
+  useEffect(() => {
+    if (!chartContainerRef.current) return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentRect.height >= 230) {
+          setChartHeight(entry.contentRect.height);
+        }
+      }
+    });
+    observer.observe(chartContainerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <DashboardLayout title="Dashboard" subtitle="Overview of your workforce and HR activities">
       <div className={`grid flex-1 gap-4 p-4 xl:grid-cols-12 grid-cols-1 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="space-y-4 col-span-8">
+        <div className="flex flex-col gap-4 col-span-8">
           <div className="grid gap-2 ms:gap-4 sm:grid-cols-2">
             <StatCard
               value="500"
@@ -160,9 +176,9 @@ export default function DashboardPage() {
             />
           </div>
 
-          <article className="rounded-xl border border-[#E2E8F0] bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden">
+          <article className="rounded-xl border border-[#E2E8F0] bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden 3xl:flex-1 3xl:flex 3xl:flex-col">
             <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
+              <h2 className="font-medium tracking-tight text-[18px] 2xl:text-[20px]">
                 Workforce Growth
               </h2>
               <div className="flex w-fit items-center rounded-xl border border-[#E2E8F0] p-1 text-[10px] sm:text-xs">
@@ -181,8 +197,9 @@ export default function DashboardPage() {
                 ))}
               </div>
             </div>
-            <LineChart
-              height={230}
+            <div ref={chartContainerRef} className="flex-1 w-full min-h-[230px]">
+              <LineChart
+                height={chartHeight}
               hideLegend
               axisHighlight={{ x: "line" }}
               grid={{ horizontal: true, vertical: false }}
@@ -272,10 +289,11 @@ export default function DashboardPage() {
                 },
               }}
             />
+            </div>
           </article>
         </div>
 
-        <div className="space-y-4 xl:col-span-4 col-span-8">
+        <div className="flex flex-col gap-4 xl:col-span-4 col-span-8">
           <article className="rounded-xl border border-[#E2E8F0] bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.05)] overflow-hidden">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-[20px] font-medium tracking-tight">
@@ -322,8 +340,8 @@ export default function DashboardPage() {
             </ul>
           </article>
 
-          <article className="w-full rounded-xl bg-white 2xl:p-5 p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] font-sans">
-            <h2 className="2xl:mb-8 text-xl font-bold tracking-tight text-[#1a1c24] xl:mb-2 xl:text-[22px] 2xl:text-[26px]">
+          <article className="w-full rounded-xl bg-white 2xl:p-5 p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] font-sans 3xl:flex-1 3xl:flex 3xl:flex-col 3xl:justify-center">
+            <h2 className="2xl:mb-8 text-xl font-medium tracking-tight text-[#1a1c24] xl:mb-2 xl:text-[22px] 2xl:text-[20px]">
               Employees by Department
             </h2>
 
@@ -374,7 +392,7 @@ export default function DashboardPage() {
 
         <article className="rounded-xl border border-[#E2E8F0] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8 overflow-hidden">
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-lg font-bold tracking-tight sm:text-xl">
+            <h2 className="font-medium 2xl:text-[20px] text-[18px] tracking-tight">
               Pending Approvals Table
             </h2>
 
@@ -447,7 +465,7 @@ export default function DashboardPage() {
                     </td>
 
                     <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
-                      <span className="inline-flex rounded-full bg-[#FFF6E8] px-3 py-1 text-[10px] font-semibold text-[#FFA100] sm:px-5 sm:text-xs 2xl:px-6 2xl:py-2">
+                      <span className="inline-flex rounded-full bg-[#FFF6E8] px-3 py-1 text-[14px] font-normal text-[#FFA100] sm:px-5 2xl:px-6 2xl:py-2">
                         {row[3]}
                       </span>
                     </td>
@@ -466,7 +484,7 @@ export default function DashboardPage() {
 
         <article className="rounded-xl border border-[#E2E8F0] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.05)] xl:col-span-6 col-span-8 overflow-hidden">
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-lg font-bold tracking-tight sm:text-xl">
+            <h2 className="font-medium 2xl:text-[20px] text-[18px] tracking-tight">
               Recently Added Employees
             </h2>
 
@@ -523,19 +541,19 @@ export default function DashboardPage() {
                     key={row[0]}
                     className="font-normal text-[13px] 2xl:text-[14px]"
                   >
-                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-8">
                       {row[0]}
                     </td>
 
-                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-8">
                       {row[1]}
                     </td>
 
-                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-8">
                       {row[2]}
                     </td>
 
-                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-6">
+                    <td className="border-b border-[#E2E8F0] whitespace-nowrap py-5 2xl:py-8">
                       {row[3]}
                     </td>
                   </tr>
