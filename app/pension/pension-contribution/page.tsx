@@ -46,7 +46,7 @@ const getStatusBadge = (status: string) => {
       );
     case 'not enrolled':
       return (
-        <span className="inline-flex items-center justify-center rounded-full bg-[#EAF2FF] px-3.5 py-2.5 2xl:text-[14px] md:text-[12px] font-normal text-[#2E334E]">
+        <span className="inline-flex items-center justify-center rounded-full bg-[#EAF2FF] px-3.5 py-2.5 2xl:text-[14px] md:text-[12px] font-normal text-[#2E334E] whitespace-nowrap">
           Not Enrolled
         </span>
       );

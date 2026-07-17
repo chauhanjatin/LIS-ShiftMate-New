@@ -159,7 +159,7 @@ export default function EmployeePayrollSetupPage() {
                                                 <td className="px-4 py-6 sm:px-5 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.studentLoanPlan}</td>
 
                                                 <td className="px-4 py-6 sm:px-5 text-center">
-                                                    <span className={`inline-flex rounded-full px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal ${emp.pensionStatus === "Auto-enrolled" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FDEAEA] text-[#F04438]"
+                                                    <span className={`inline-flex rounded-full px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal whitespace-nowrap ${emp.pensionStatus === "Auto-enrolled" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FDEAEA] text-[#F04438]"
                                                         }`}>
                                                         {emp.pensionStatus}
                                                     </span>
