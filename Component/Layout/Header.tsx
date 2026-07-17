@@ -8,6 +8,7 @@ import { useNotifications } from "@/hooks/useNotifications";
 import { useRef, useState, useEffect } from "react";
 import CustomSelect from "@/Component/UI/CustomSelect";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import settingsIcon from "@/assets/images/icons/setting.svg";
 
 function AdminDropdown() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -89,25 +90,8 @@ function AdminDropdown() {
           onClick={openSettings}
           className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100 cursor-pointer"
         >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            className="h-6 w-6 text-neutral-700"
-          >
-            <path
-              d="M12 9.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"
-              stroke="currentColor"
-              strokeWidth="1.8"
-            />
-            <path
-              d="M18.5 12a6.5 6.5 0 0 0-.11-1.18l1.53-1.2-1.5-2.6-1.88.61a6.5 6.5 0 0 0-2.04-1.18L14.2 4h-3.4l-.3 2.45a6.5 6.5 0 0 0-2.04 1.18l-1.88-.61-1.5 2.6 1.53 1.2a6.5 6.5 0 0 0 0 2.36l-1.53 1.2 1.5 2.6 1.88-.61a6.5 6.5 0 0 0 2.04 1.18L10.8 20h3.4l.3-2.45a6.5 6.5 0 0 0 2.04-1.18l1.88.61 1.5-2.6-1.53-1.2c.07-.39.11-.78.11-1.18Z"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span>Account Settings</span>
+          <Image src={settingsIcon} alt="settings" />
+          <span className="whitespace-nowrap">Account Settings</span>
         </button>
         <Link href="/">
           <button
