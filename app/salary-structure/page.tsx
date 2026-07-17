@@ -216,12 +216,12 @@ export default function SalaryStructurePage() {
                                     <tbody className="bg-white">
                                         {paginatedStructures.map((structure) => (
                                             <tr key={structure.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] sm:text-[14px] font-normal text-[#2E334E]">{structure.name}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-6 text-[12px] md:text-[14px] font-normal text-[#111827]">{structure.name}</td>
 
                                                 <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex flex-wrap gap-2">
                                                         {structure.earnings.map(e => (
-                                                            <span key={e} className="inline-flex rounded-full bg-[#EAF2FF] px-2.5 py-1 text-[12px] font-normal text-[#257BFC]">
+                                                            <span key={e} className="inline-flex rounded-full bg-[#EAF2FF] px-2.5 py-1 text-[14px] font-normal text-[#257BFC]">
                                                                 {e}
                                                             </span>
                                                         ))}
@@ -231,7 +231,7 @@ export default function SalaryStructurePage() {
                                                 <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex flex-wrap gap-2">
                                                         {structure.deductions.map(d => (
-                                                            <span key={d} className="inline-flex rounded-full bg-[#FDEAEA] px-2.5 py-1 text-[12px] font-normal text-[#F04438]">
+                                                            <span key={d} className="inline-flex rounded-full bg-[#FDEAEA] px-2.5 py-1 text-[14px] font-normal text-[#F04438]">
                                                                 {d}
                                                             </span>
                                                         ))}
@@ -241,7 +241,7 @@ export default function SalaryStructurePage() {
                                                 <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex flex-wrap gap-2">
                                                         {structure.contributions.map(c => (
-                                                            <span key={c} className="inline-flex rounded-full bg-[#EAF9EA] px-2.5 py-1 text-[12px] font-normal text-[#4DB949]">
+                                                            <span key={c} className="inline-flex rounded-full bg-[#EAF9EA] px-2.5 py-1 text-[14px] font-normal text-[#4DB949]">
                                                                 {c}
                                                             </span>
                                                         ))}
