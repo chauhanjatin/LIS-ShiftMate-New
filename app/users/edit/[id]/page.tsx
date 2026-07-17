@@ -131,7 +131,7 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                     </div>
                 </Link>
 
-                <div className="flex flex-col xl:flex-row gap-6 xl:gap-5 2xl:gap-6 bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
+                <div className="flex flex-col xl:flex-row gap-10 md:gap-6 xl:gap-5 2xl:gap-6 bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
 
                     <div className="w-full xl:w-[353px] shrink-0">
                         <div className="rounded-xl border border-[#E4E7EC] p-6 bg-[#F9FAFB]">
@@ -149,18 +149,18 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                             </div>
                         </div>
 
-                        <div className="mt-6 space-y-6">
+                        <div className="mt-6 md:space-y-6 space-y-4">
                             <div>
                                 <p className="text-[14px] font-normal text-[#98A2B3]">User ID</p>
-                                <p className="mt-1 text-[20px] font-medium text-[#111827]">{user.id}</p>
+                                <p className="mt-1 md:text-[20px] text-[18px] font-medium text-[#111827]">{user.id}</p>
                             </div>
                             <div>
                                 <p className="text-[14px] font-normal text-[#98A2B3]">Department</p>
-                                <p className="mt-1 text-[20px] font-medium text-[#111827]">{user.department || '-'}</p>
+                                <p className="mt-1 md:text-[20px] text-[18px] font-medium text-[#111827]">{user.department || '-'}</p>
                             </div>
                             <div>
                                 <p className="text-[14px] font-normal text-[#98A2B3]">Join Date</p>
-                                <p className="mt-1 text-[20px] font-medium text-[#111827]">{user.joinDate || '-'}</p>
+                                <p className="mt-1 md:text-[20px] text-[18px] font-medium text-[#111827]">{user.joinDate || '-'}</p>
                             </div>
                         </div>
                     </div>

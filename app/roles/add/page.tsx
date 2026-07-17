@@ -96,7 +96,7 @@ export default function AddRolePage() {
   return (
     <DashboardLayout title="Roles" subtitle="Home/ Roles List/ Add Role">
       <div className="flex-1 p-4 2xl:p-6 flex flex-col">
-        <div className="rounded-xl bg-white 2xl:p-6 xl:p-5 p-2 shadow-sm flex-1 flex flex-col xl:flex-row 2xl:gap-6 gap-4 overflow-hidden">
+        <div className="rounded-xl bg-white 2xl:p-6 xl:p-5 p-3 shadow-sm flex-1 flex flex-col xl:flex-row 2xl:gap-6 gap-4 overflow-hidden">
           
           <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-xl">
             <h2 className="text-[24px] font-semibold text-[#111827]">Create New Role</h2>
@@ -142,10 +142,10 @@ export default function AddRolePage() {
               <table className="min-w-[800px] w-full text-left">
                 <thead className="bg-white">
                   <tr className="bg-[#F9FAFB]">
-                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] w-[220px]">
+                    <th className="py-3 px-4 text-[15px] md:text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] w-[220px]">
                       Role Name
                     </th>
-                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
+                    <th className="py-3 px-4 text-[15px] md:text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
                       <div className="flex items-center justify-center gap-2">
                         <input 
                           type="checkbox" 
@@ -156,7 +156,7 @@ export default function AddRolePage() {
                         View
                       </div>
                     </th>
-                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
+                    <th className="py-3 px-4 text-[15px] md:text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
                       <div className="flex items-center justify-center gap-2">
                         <input 
                           type="checkbox" 
@@ -167,7 +167,7 @@ export default function AddRolePage() {
                         Create
                       </div>
                     </th>
-                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
+                    <th className="py-3 px-4 text-[15px] md:text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
                       <div className="flex items-center justify-center gap-2">
                         <input 
                           type="checkbox" 
@@ -178,7 +178,7 @@ export default function AddRolePage() {
                         Edit
                       </div>
                     </th>
-                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
+                    <th className="py-3 px-4 text-[15px] md:text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
                       <div className="flex items-center justify-center gap-2">
                         <input 
                           type="checkbox" 
@@ -189,7 +189,7 @@ export default function AddRolePage() {
                         Delete
                       </div>
                     </th>
-                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
+                    <th className="py-3 px-4 text-[15px] md:text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
                       <div className="flex items-center justify-center gap-2">
                         <input 
                           type="checkbox" 
@@ -200,7 +200,7 @@ export default function AddRolePage() {
                         Approve
                       </div>
                     </th>
-                    <th className="py-3 px-4 text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
+                    <th className="py-3 px-4 text-[15px] md:text-[16px] font-normal text-[#111827] border-b border-[#E2E8F0] text-center">
                       Export
                     </th>
                   </tr>
@@ -282,7 +282,7 @@ export default function AddRolePage() {
               </button>
               <button 
                 onClick={handleCreateRole}
-                className="px-6 py-2.5 rounded-xl bg-[#257BFC] text-[14px] font-semibold text-white hover:bg-blue-600 transition cursor-pointer"
+                className="px-6 py-2.5 rounded-xl bg-[#257BFC] text-[12px] md:text-[14px] font-semibold text-white hover:bg-blue-600 transition cursor-pointer"
               >
                 Create Role
               </button>

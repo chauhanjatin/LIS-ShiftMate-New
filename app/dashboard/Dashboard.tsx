@@ -345,7 +345,7 @@ export default function DashboardPage() {
               Employees by Department
             </h2>
 
-            <div className="flex 3xl:flex-col 2xl:flex-row xl:flex-col md:flex-row flex-col items-center justify-center gap-3.5 lg:justify-between">
+            <div className="flex 3xl:flex-col 2xl:flex-row xl:flex-col md:flex-col flex-col items-center justify-center gap-3.5 lg:justify-between">
               <div className="h-[234px] w-[234px] shrink-0">
                 <PieChart
                   series={[
@@ -370,17 +370,17 @@ export default function DashboardPage() {
                 {data.map((item) => (
                   <div
                     key={item.id}
-                    className="flex items-center 2xl:justify-between gap-6"
+                    className="flex items-center 2xl:justify-between justify-between gap-6"
                   >
                     <div className="flex items-center gap-2">
                       <div
                         className={`h-3 w-3 rounded-full ${item.bgClass}`}
                       />
-                      <span className="text-base font-medium text-[#1a1c24] 2xl:text-lg text-[14px]">
+                      <span className="text-base font-normal text-[#1a1c24] lg:text-[14px]">
                         {item.label}
                       </span>
                     </div>
-                    <span className="text-base font-medium tabular-nums text-[#1a1c24] 2xl:text-lg text-[14px]">
+                    <span className="text-base font-normal tabular-nums text-[#1a1c24] lg:text-[14px]">
                       {item.value}
                     </span>
                   </div>

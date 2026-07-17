@@ -368,7 +368,7 @@ export default function Header({
 }) {
   return (
     <header className="flex items-center justify-between border-b border-neutral-200 bg-white px-2 md:px-4 py-3 xl:px-8 xl:py-4">
-      <div className="flex items-center md:gap-4 gap-2">
+      <div className="flex items-center lg:gap-4 gap-2">
         <button
           type="button"
           onClick={onMenuClick}

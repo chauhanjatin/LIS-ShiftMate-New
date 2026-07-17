@@ -116,21 +116,21 @@ export default function OnboardingPage() {
       </span>
     }>
       <div className="flex-1 p-4 2xl:p-6 pb-20">
-        <div className="rounded-xl bg-white shadow-sm overflow-hidden p-6 min-h-[800px]">
+        <div className="rounded-xl bg-white shadow-sm overflow-hidden md:p-6 p-4 min-h-[800px]">
           
           <div className="flex flex-wrap items-center justify-between mb-8">
             <h2 className="text-[20px] font-medium text-[#111827] m-0">Onboarding</h2>
 
             <div className="flex flex-wrap items-center gap-4 mt-3 sm:mt-0">
-              <div className="relative w-full sm:w-[280px]">
+              <div className="relative md:w-[280px] w-[200px]">
                 <Image src={searchIcon} alt="Search" width={20} height={20} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
-                  className="w-full rounded-xl border border-[#E2E8F0] bg-white py-2.5 pl-10 pr-4 text-sm outline-none focus:border-brand-500 transition-colors"
+                  className="w-full rounded-xl border border-[#E2E8F0] bg-white py-2.5 pl-10 pr-4 md:text-[14px] text-[12px] outline-none focus:border-brand-500 transition-colors"
                   placeholder="Search Employee"
                 />
               </div>
 
-              <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-5 py-2.5 2xl:text-[16px] text-[14px] font-normal text-white transition hover:bg-blue-600 cursor-pointer border-none shadow-sm whitespace-nowrap">
+              <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-3 md:px-5 py-2 md:py-2.5 2xl:text-[16px] md:text-[14px] text-[12px] font-normal text-white transition hover:bg-blue-600 cursor-pointer border-none shadow-sm whitespace-nowrap">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 New Onboarding
               </button>
@@ -139,25 +139,25 @@ export default function OnboardingPage() {
 
           <div className="flex flex-col gap-6">
             {data.map(record => (
-              <div key={record.id} className="rounded-2xl border border-[#D0D5DD] bg-white p-5">
+              <div key={record.id} className="rounded-2xl border border-[#D0D5DD] bg-white md:p-5 p-2">
                 <div 
                   className="flex items-center justify-between cursor-pointer group"
                   onClick={() => toggleExpand(record.id)}
                 >
-                  <div className="flex items-start gap-4 w-full">
+                  <div className="md:flex items-start md:gap-4 gap-2 w-full">
                     <img src={record.avatar} alt={record.name} className="w-12 h-12 rounded-full object-cover shrink-0" />
                     <div className="flex-1 w-full min-w-0">
                       <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-col md:flex-row items-start md:items-center md:gap-3">
                           <span className="text-[16px] font-medium text-[#111827]">{record.name}</span>
-                          <span className="text-[14px] font-normal text-[#9CA3AF]">{record.role}</span>
+                          <span className="text-[14px] font-normal text-[#9CA3AF] mt-0.5 md:mt-0">{record.role}</span>
                         </div>
-                        <div className="flex items-center gap-4">
-                          <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2 md:gap-4 mt-1 md:mt-0">
+                          <div className="flex items-center gap-2 md:gap-3">
                             <span className="text-[13px] font-medium text-[#9CA3AF]">{record.tasksCompleted}/{record.totalTasks} Task</span>
                             <span className="text-[15px] font-bold text-[#257BFC]">{record.progress}%</span>
                           </div>
-                          <div className={`text-[#6B7280] transition-transform duration-200 ${expandedIds.includes(record.id) ? 'rotate-180' : ''}`}>
+                          <div className={`text-[#6B7280] transition-transform duration-200 ml-1 ${expandedIds.includes(record.id) ? 'rotate-180' : ''}`}>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                           </div>
                         </div>
@@ -177,7 +177,7 @@ export default function OnboardingPage() {
                     {record.tasks.map(task => (
                       <div 
                         key={task.id} 
-                        className="flex items-center justify-between rounded-xl border border-[#E4E7EC] p-4 transition-colors hover:bg-neutral-50 cursor-pointer"
+                        className="flex items-center justify-between rounded-xl border border-[#E4E7EC] md:p-4 p-2 transition-colors hover:bg-neutral-50 cursor-pointer"
                         onClick={() => toggleTask(record.id, task.id)}
                       >
                         <div className="flex items-center gap-3">
@@ -188,11 +188,11 @@ export default function OnboardingPage() {
                               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                             )}
                           </div>
-                          <span className={`text-[14px] font-medium transition-colors ${task.completed ? 'text-[#9CA3AF] line-through' : 'text-[#111827]'}`}>
+                          <span className={`md:text-[14px] text-[12px] font-medium transition-colors ${task.completed ? 'text-[#9CA3AF] line-through' : 'text-[#111827]'}`}>
                             {task.name}
                           </span>
                         </div>
-                        <span className={`rounded-full px-3 py-1 text-[12px] font-normal ${getDeptColor(task.dept)}`}>
+                        <span className={`rounded-full px-3 py-1 md:text-[12px] text-[10px] font-normal ${getDeptColor(task.dept)}`}>
                           {task.dept}
                         </span>
                       </div>
@@ -210,8 +210,8 @@ export default function OnboardingPage() {
       {isAddModalOpen && (
         <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/40 p-4">
           <div className="w-full max-w-[850px] overflow-hidden rounded-3xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between border-b border-[#E2E8F0] px-6 py-5">
-              <h2 className="text-[18px] md:text-[20px] font-semibold text-[#111827]">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] md:px-6 px-4 md:py-5 py-3">
+              <h2 className="text-[16px] md:text-[20px] font-semibold text-[#111827]">
                 Create New Onboarding
               </h2>
               <button
@@ -222,10 +222,10 @@ export default function OnboardingPage() {
               </button>
             </div>
             
-            <div className="px-6 py-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="md:p-6 p-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 md:gap-5 gap-4">
                 <div className="md:col-span-2">
-                  <label className="mb-2 block text-[14px] font-normal text-[#111827]">
+                  <label className="mb-2 block md:text-[14px] text-[13px] font-normal text-[#111827]">
                     Employee
                   </label>
                   <CustomSelect
@@ -237,7 +237,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-[14px] font-normal text-[#111827]">
+                  <label className="mb-2 block md:text-[14px] text-[13px] font-normal text-[#111827]">
                     Job Title
                   </label>
                   <input
@@ -250,7 +250,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-[14px] font-normal text-[#111827]">
+                  <label className="mb-2 block md:text-[14px] text-[13px] font-normal text-[#111827]">
                     Department
                   </label>
                   <CustomSelect
@@ -262,7 +262,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-[14px] font-normal text-[#111827]">
+                  <label className="mb-2 block md:text-[14px] text-[13px] font-normal text-[#111827]">
                     Start Date
                   </label>
                   <div className="relative">
@@ -278,7 +278,7 @@ export default function OnboardingPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-[14px] font-normal text-[#111827]">
+                  <label className="mb-2 block md:text-[14px] text-[13px] font-normal text-[#111827]">
                     Onboarding Template
                   </label>
                   <CustomSelect
@@ -294,7 +294,7 @@ export default function OnboardingPage() {
                 </div>
               </div>
 
-              <div className="mt-6 flex items-center gap-3 rounded-xl bg-[#F9FAFB] p-4 text-[14px] text-[#98A2B3] font-normal">
+              <div className="mt-6 flex items-center gap-3 rounded-xl bg-[#F9FAFB] md:p-4 p-2 md:text-[14px] text-[12px] text-[#98A2B3] font-normal">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-[#111827]"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                 8 default tasks will be added and assigned to HR, IT, Finance, and Manager.
               </div>
@@ -302,13 +302,13 @@ export default function OnboardingPage() {
               <div className="mt-8 flex items-center justify-end gap-3">
                 <button
                   onClick={() => setIsAddModalOpen(false)}
-                  className="h-[40px] rounded-xl border border-[#D0D5DD] px-6 text-[14px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer"
+                  className="h-[40px] rounded-xl border border-[#D0D5DD] px-6 md:text-[14px] text-[13px] font-semibold text-[#344054] transition hover:bg-neutral-50 cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={() => setIsAddModalOpen(false)}
-                  className="h-[40px] rounded-xl bg-[#257BFC] px-6 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
+                  className="h-[40px] rounded-xl bg-[#257BFC] md:px-6 px-4 md:text-[14px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
                 >
                   Create Onboarding
                 </button>

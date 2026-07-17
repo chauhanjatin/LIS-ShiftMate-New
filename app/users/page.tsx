@@ -32,7 +32,7 @@ function StatusPill({ status }: { status: UserStatus }) {
     };
     return (
         <span
-            className={`inline-flex rounded-full px-6 py-2.5 text-[14px] font-normal ${styles[status]}`}
+            className={`inline-flex rounded-full px-4 md:px-6 py-2 md:py-2.5 text-[13px] md:text-[14px] font-normal ${styles[status]}`}
         >
             {status}
         </span>
@@ -214,7 +214,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                         {accessMethod === "temp_password" && (
                             <div className="mt-4 rounded-xl bg-white p-4">
                                 <label className="block text-[12px] font-medium text-neutral-900 mb-1.5">Temporary Password</label>
-                                <div className="flex gap-3">
+                                <div className="flex flex-col md:flex-row gap-3">
                                     <input
                                         type="text"
                                         value={tempPassword}
@@ -405,27 +405,27 @@ export default function UsersPage() {
                                                     />
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Name
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Email
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Role
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Company
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Status
                                                 </th>
 
-                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                                                <th className="border-b border-[#E2E8F0] px-[10px] py-[10px] sm:px-6 2xl:pr-6 pr-4 text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                                                     Action
                                                 </th>
                                             </tr>
@@ -437,7 +437,7 @@ export default function UsersPage() {
                                                     key={user.id}
                                                     className="group transition-colors hover:bg-neutral-50"
                                                 >
-                                                    <td className="px-4 py-4 lg:px-6 2xl:pl-6 pl-3 pr-2 border-b border-[#E2E8F0]">
+                                                    <td className="px-4 md:py-6 py-4 lg:px-6 2xl:pl-6 pl-3 pr-2 border-b border-[#E2E8F0]">
                                                         <input
                                                             type="checkbox"
                                                             checked={selectedUsers.includes(user.id)}
@@ -446,7 +446,7 @@ export default function UsersPage() {
                                                         />
                                                     </td>
 
-                                                    <td className="px-4 py-4 sm:px-6 pr-6 border-b border-[#E2E8F0]">
+                                                    <td className="px-4 md:py-6 py-4 sm:px-6 pr-6 border-b border-[#E2E8F0]">
                                                         <Link href={`/users/edit/${user.id}`}>
                                                             <div className="flex md:min-w-[180px] min-w-[150px] items-center gap-2 sm:gap-3 cursor-pointer hover:underline">
                                                                 <img
@@ -454,30 +454,30 @@ export default function UsersPage() {
                                                                     alt={user.name}
                                                                     className="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover flex-shrink-0"
                                                                 />
-                                                                <span className="text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap">
+                                                                <span className="text-[13px] md:text-[14px] font-normal text-[#111827] whitespace-nowrap">
                                                                     {user.name}
                                                                 </span>
                                                             </div>
                                                         </Link>
                                                     </td>
 
-                                                    <td className="px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
+                                                    <td className="px-4 md:py-6 py-4 sm:px-6 pr-6 text-[13px] md:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
                                                         {user.email}
                                                     </td>
 
-                                                    <td className="px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
+                                                    <td className="px-4 md:py-6 py-4 sm:px-6 pr-6 text-[13px] md:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
                                                         {user.role}
                                                     </td>
 
-                                                    <td className="px-4 py-6 sm:px-6 pr-6 text-[12px] sm:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
+                                                    <td className="px-4 md:py-6 py-4 sm:px-6 pr-6 text-[13px] md:text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#E2E8F0]">
                                                         {user.company}
                                                     </td>
 
-                                                    <td className="px-4 py-6 sm:px-6 pr-6 whitespace-nowrap border-b border-[#E2E8F0]">
+                                                    <td className="px-4 md:py-6 py-4 sm:px-6 pr-6 whitespace-nowrap border-b border-[#E2E8F0]">
                                                         <StatusPill status={user.status} />
                                                     </td>
 
-                                                    <td className="px-4 py-6 sm:px-6 pr-6 border-b border-[#E2E8F0]">
+                                                    <td className="px-4 md:py-6 py-4 sm:px-6 pr-6 border-b border-[#E2E8F0]">
                                                         <div className="flex items-center gap-2 sm:gap-4">
                                                             <Link href={`/users/edit/${user.id}`}>
                                                                 <button className="text-[#111827] hover:text-brand-500 mt-2 transition-colors">

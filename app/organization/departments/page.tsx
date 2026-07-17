@@ -82,7 +82,7 @@ export default function DepartmentsPage() {
             </h2>
 
             <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-              <div className="relative 2xl:w-75 lg:w-60 md:w-50 w-32">
+              <div className="relative 2xl:w-75 lg:w-60 md:w-50 w-45">
                 <Image
                   src={searchIcon}
                   alt="Search"
@@ -113,21 +113,21 @@ export default function DepartmentsPage() {
             <div className="rounded-xl border border-[#D0D5DD] bg-white overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-full w-full text-left border-collapse">
-                  <thead className="bg-[#F2F4F7]">
+                  <thead className="bg-[#F9FAFB]">
                     <tr>
-                      <th className="py-[10px] 2xl:pl-6 pl-3 md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap rounded-tl-xl border-b border-[#E2E8F0] w-[20%]">
+                      <th className="py-[10px] 2xl:pl-6 pl-3 md:pr-4 pr-11 md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap rounded-tl-xl border-b border-[#D0D5DD] w-[20%]">
                         Department Name
                       </th>
-                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] w-[12%]">
+                      <th className="py-[10px] md:pr-4 pr-11 md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD] w-[12%]">
                         Code
                       </th>
-                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] w-[20%]">
+                      <th className="py-[10px] md:pr-4 pr-11 md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD] w-[20%]">
                         Manager
                       </th>
-                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] w-[10%]">
+                      <th className="py-[10px] md:pr-4 pr-11 md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD] w-[10%]">
                         Employee count
                       </th>
-                      <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap border-b border-[#E2E8F0] rounded-tr-xl w-[8%]">
+                      <th className="py-[10px] md:pr-4 pr-11 md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD] rounded-tr-xl w-[8%]">
                         Action
                       </th>
                     </tr>
@@ -136,7 +136,7 @@ export default function DepartmentsPage() {
                     {paginatedDepartments.map((dept) => {
                       const manager = employees.find((e) => e.id === dept.managerId);
                       return (
-                        <tr key={dept.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-0">
+                        <tr key={dept.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#D0D5DD] last:border-0">
                           <td className="md:py-6 py-2 2xl:pl-6 pl-3 md:pr-4 pr-18 text-[14px] font-medium text-neutral-900 whitespace-nowrap">
                             <Link href={`/organization/departments/${dept.id}`} className="hover:text-[#257BFC] transition-colors cursor-pointer">
                               {dept.name}
@@ -145,7 +145,7 @@ export default function DepartmentsPage() {
                           <td className="md:py-6 py-2 md:pr-4 pr-18 text-[14px] font-medium text-neutral-900">
                             {dept.code}
                           </td>
-                          <td className="md:py-6 py-4 md:pr-4 pr-18">
+                          <td className="md:py-6 py-2 md:pr-4 pr-18">
                             {manager ? (
                               <div className="flex items-center gap-3">
                                 <img src={manager.avatar} alt={manager.name} className="h-9 w-9 rounded-full object-cover" />
