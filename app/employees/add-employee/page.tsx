@@ -148,7 +148,7 @@ export default function AddEmployeePage() {
         <div className="rounded-xl bg-white md:p-8 p-5 shadow-sm flex-1 flex flex-col">
           <h2 className="md:text-[24px] text-[20px] font-medium text-[#111827] md:mb-10 mb-7">Add Employee</h2>
 
-          <div className="flex max-[425px]:flex-col max-[425px]:items-start items-center justify-center 2xl:gap-[48px] xl:gap-[24px] gap-[8px] max-[425px]:gap-0 2xl:mb-20 md:mb-15 mb-12 2xl:mt-4 mt-3 px-4">
+          <div className="flex max-[425px]:flex-col max-[425px]:items-start items-center justify-center 3xl:gap-[20px] 2xl:gap-[48px] xl:gap-[24px] gap-[8px] max-[425px]:gap-0 2xl:mb-20 md:mb-15 mb-12 2xl:mt-4 mt-3 px-4">
             {STEPS.map((step, index) => {
               const stepNumber = index + 1;
               const isActive = currentStep === stepNumber;
