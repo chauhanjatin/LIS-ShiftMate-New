@@ -79,16 +79,16 @@ export default function RolesPage() {
                 <table className="min-w-[800px] w-full text-left border-collapse">
                   <thead className="bg-[#F9FAFB]">
                     <tr>
-                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[14px] md:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                         Role Name
                       </th>
-                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[14px] md:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                         Description
                       </th>
-                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[14px] md:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                         Number of Users
                       </th>
-                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[16px] font-normal text-[#111827] whitespace-nowrap w-[120px]">
+                      <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-6 text-[14px] md:text-[16px] font-normal text-[#111827] whitespace-nowrap w-[120px]">
                         Action
                       </th>
                     </tr>
@@ -96,16 +96,16 @@ export default function RolesPage() {
                   <tbody className="bg-white">
                     {paginatedRoles.map((role) => (
                       <tr key={role.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-0">
-                        <td className="px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827] whitespace-nowrap">
+                        <td className="px-4 py-4 md:py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-[#111827] whitespace-nowrap">
                           {role.name}
                         </td>
-                        <td className="px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827]">
+                        <td className="px-4 py-4 md:py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">
                           {role.description}
                         </td>
-                        <td className="px-4 py-6 sm:px-6 text-[14px] font-normal text-[#111827] whitespace-nowrap">
+                        <td className="px-4 py-4 md:py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-[#111827] whitespace-nowrap">
                           {role.userCount} users
                         </td>
-                        <td className="px-4 py-6 sm:px-6">
+                        <td className="px-4 py-4 md:py-6 sm:px-6">
                           <div className="flex items-center gap-3">
                             <button className="text-[#111827] hover:text-brand-500">
                               <Image

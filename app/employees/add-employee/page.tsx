@@ -201,7 +201,7 @@ export default function AddEmployeePage() {
             <h3 className="mb-[32px] text-[20px] font-medium text-neutral-900">{STEPS[currentStep - 1]}</h3>
 
             {currentStep === 1 && (
-              <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
+              <div className="md:mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">First name</label>
                   <input name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" className={`w-full rounded-xl border ${errors.firstName ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
@@ -259,7 +259,7 @@ export default function AddEmployeePage() {
             )}
 
             {currentStep === 2 && (
-              <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
+              <div className="md:mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Employee ID</label>
                   <input name="employeeId" value={formData.employeeId} onChange={handleInputChange} placeholder="Enter Employee ID" className={`w-full rounded-xl border ${errors.employeeId ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
@@ -338,7 +338,7 @@ export default function AddEmployeePage() {
             )}
 
             {currentStep === 3 && (
-              <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
+              <div className="md:mx-[6%] grid gap-6 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Bank Account Number</label>
                   <input name="bankAccount" value={formData.bankAccount} onChange={handleInputChange} placeholder="Enter your bank account number" className={`w-full rounded-xl border ${errors.bankAccount ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
@@ -385,7 +385,7 @@ export default function AddEmployeePage() {
             )}
 
             {currentStep === 4 && (
-              <div className="mx-[6%] grid gap-6 sm:grid-cols-2">
+              <div className="md:mx-[6%] grid gap-6 sm:grid-cols-2">
                 {[
                   { label: "Right to Work document", desc: "PDF, PNG, JPG up to 10MB", field: "rightToWorkFile" },
                   { label: "Signed Employment Contract", desc: "PDF, DOCX up to 10MB", field: "employmentContractFile" },

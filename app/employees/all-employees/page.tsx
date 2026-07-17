@@ -29,7 +29,7 @@ function StatusPill({ status }: { status: Status }) {
   };
   return (
     <span
-      className={`inline-flex rounded-full px-4 py-1.5 text-[12px] font-semibold ${styles[status]}`}
+      className={`inline-flex rounded-full px-4 py-1.5 text-[12px] md:text-[14px] font-normal ${styles[status]}`}
     >
       {status === "Inactive" ? "In Active" : status}
     </span>
@@ -188,35 +188,35 @@ export default function AllEmployeesPage() {
                           />
                         </th>
 
-                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[13px] md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                           Employee ID
                         </th>
 
-                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[13px] md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                           Name
                         </th>
 
-                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[13px] md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                           Department
                         </th>
 
-                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[13px] md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                           Job Title
                         </th>
 
-                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[13px] md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                           Employment Type
                         </th>
 
-                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[13px] md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                           Status
                         </th>
 
-                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-medium text-[#111827] whitespace-nowrap">
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[13px] md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                           Joining Date
                         </th>
 
-                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[12px] sm:text-[14px] 2xl:text-[16px] font-medium text-[#111827] whitespace-nowrap">
+                        <th className="border-b border-[#E2E8F0] px-4 py-4 sm:px-6 2xl:pr-6 pr-4 text-[13px] md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] whitespace-nowrap">
                           Action
                         </th>
                       </tr>

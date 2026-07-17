@@ -88,41 +88,41 @@ export default function DepartmentDetailsPage() {
           </div>
         </Link>
         
-        <div className="flex flex-col xl:flex-row 2xl:gap-6 gap-4 min-h-[800px] border border-[#D0D5DD] bg-white rounded-xl p-6">
+        <div className="flex flex-col xl:flex-row 2xl:gap-6 md:gap-4 gap-8 min-h-[800px] border border-[#D0D5DD] bg-white rounded-xl md:p-6 p-4">
           <div className="w-full 2xl:w-[320px] xl:w-[280px] shrink-0">
-            <h2 className="text-[24px] font-semibold text-[#111827] mb-4">{department.name}</h2>
+            <h2 className="md:text-[24px] text-[18px] font-semibold text-[#111827] mb-4">{department.name}</h2>
             
-            <div className="border border-[#D0D5DD] rounded-xl bg-[#F9FAFB] p-6 text-center flex flex-col items-center justify-center mb-6">
+            <div className="border border-[#D0D5DD] rounded-xl bg-[#F9FAFB] md:p-6 p-4 text-center flex flex-col items-center justify-center mb-6">
               {manager ? (
                 <>
                   <img src={manager.avatar} alt={manager.name} className="w-[100px] h-[100px] rounded-full object-cover shadow-sm mb-4" />
-                  <h3 className="text-[24px] font-medium text-[#111827] leading-tight mb-2">{manager.name}</h3>
-                  <p className="text-[14px] text-[#98A2B3] font-normal leading-tight">{department.name} Manager</p>
+                  <h3 className="md:text-[24px] text-[18px] font-medium text-[#111827] leading-tight md:mb-2 mb-1">{manager.name}</h3>
+                  <p className="md:text-[14px] text-[12px] text-[#98A2B3] font-normal leading-tight">{department.name} Manager</p>
                 </>
               ) : (
                 <div className="text-center text-[#9CA3AF]">No Manager Assigned</div>
               )}
             </div>
 
-            <div className="space-y-6 px-1">
+            <div className="md:space-y-6 px-1 space-y-4">
               <div>
-                <p className="text-[14px] text-[#98A2B3] mb-2">Manager</p>
-                <p className="text-[20px] font-medium text-[#111827]">{manager ? manager.name : '-'}</p>
+                <p className="text-[14px] text-[#98A2B3] md:mb-2">Manager</p>
+                <p className="md:text-[20px] text-[16px] font-medium text-[#111827]">{manager ? manager.name : '-'}</p>
               </div>
               <div>
-                <p className="text-[14px] text-[#98A2B3] mb-2">Department Code</p>
-                <p className="text-[20px] font-medium text-[#111827]">{department.code}</p>
+                <p className="text-[14px] text-[#98A2B3] md:mb-2">Department Code</p>
+                <p className="md:text-[20px] text-[16px] font-medium text-[#111827]">{department.code}</p>
               </div>
               <div>
-                <p className="text-[14px] text-[#98A2B3] mb-2">Established</p>
-                <p className="text-[20px] font-medium text-[#111827]">March, 2019</p>
+                <p className="text-[14px] text-[#98A2B3] md:mb-2">Established</p>
+                <p className="md:text-[20px] text-[16px] font-medium text-[#111827]">March, 2019</p>
               </div>
             </div>
           </div>
 
-          <div className="flex-1 overflow-hidden flex flex-col border-l border-[#E4E7EC] pl-6">
-            <div className="flex flex-wrap items-center justify-between">
-              <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">
+          <div className="flex-1 overflow-hidden flex flex-col md:border-l md:border-[#E4E7EC] md:pl-6">
+            <div className="flex flex-wrap items-center justify-between mb-2 md:mb-0">
+              <h2 className="md:text-[20px] text-[13px] font-medium text-[#111827]">
                 All Employees <span className="text-[#111827] mx-1">•</span> {department.name}
               </h2>
 
@@ -146,13 +146,13 @@ export default function DepartmentDetailsPage() {
                                 className="appearance-none h-4 w-4 rounded-[4px] border border-[#D0D5DD] bg-white checked:border-transparent checked:bg-[#257BFC] checked:bg-[url('data:image/svg+xml;utf8,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%203L4.5%208.5L2%206%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] checked:bg-center checked:bg-no-repeat cursor-pointer focus:outline-none focus:ring-0 focus:ring-offset-0" />
                            </div>
                         </th>
-                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">ID</th>
-                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Name</th>
-                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Job Title</th>
-                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Employment Type</th>
-                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Status</th>
-                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Joining Date</th>
-                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD] rounded-tr-xl">Action</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">ID</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Name</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Job Title</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Employment Type</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Status</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Joining Date</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] md:text-[16px] text-[14px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD] rounded-tr-xl">Action</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white">
@@ -167,23 +167,23 @@ export default function DepartmentDetailsPage() {
                                  className="appearance-none h-4 w-4 rounded-[4px] border border-[#D0D5DD] bg-white checked:border-transparent checked:bg-[#257BFC] checked:bg-[url('data:image/svg+xml;utf8,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%203L4.5%208.5L2%206%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] checked:bg-center checked:bg-no-repeat cursor-pointer focus:outline-none focus:ring-0 focus:ring-offset-0" />
                             </div>
                           </td>
-                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] text-[14px] font-medium text-neutral-900">{emp.id}</td>
-                          <td className="md:py-4 py-2 md:pr-4 pr-11">
+                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] md:text-[14px] text-[13px] font-medium text-[#111827]">{emp.id}</td>
+                          <td className="md:py-4 py-2 md:pr-4 pr-16">
                             <Link href={`/employees/${emp.id}`} className="flex items-center gap-3 cursor-pointer transition-colors">
                               <img src={emp.avatar} alt={emp.name} className="h-9 w-9 rounded-full object-cover" />
-                              <p className="3xl:text-[13px] text-[14px] font-medium">{emp.name}</p>
+                              <p className="3xl:text-[13px] md:text-[14px] text-[13px] font-medium text-[#111827]">{emp.name}</p>
                             </Link>
                           </td>
-                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] text-[14px] font-medium text-neutral-900">{emp.role}</td>
-                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] text-[14px] font-medium text-neutral-900">{emp.type || 'Full-Time'}</td>
+                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] md:text-[14px] text-[13px] font-medium text-[#111827]">{emp.role}</td>
+                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] md:text-[14px] text-[13px] font-medium text-[#111827]">{emp.type || 'Full-Time'}</td>
                           <td className="md:py-4 py-2 md:pr-4 pr-11">
-                            <span className={`inline-flex items-center justify-center rounded-full px-3 py-1 3xl:text-[13px] text-[14px] font-normal capitalize whitespace-nowrap ${emp.status === 'Active' ? 'bg-[#EDFAF2] text-[#37AB3F]' : emp.status === 'Inactive' ? 'bg-[#FEE2E2] text-[#EF4444]' : 'bg-[#FFF6E8] text-[#FFA100]'}`}>
+                            <span className={`inline-flex items-center justify-center rounded-full px-3 py-1 3xl:text-[13px] md:text-[14px] text-[13px] font-normal capitalize whitespace-nowrap ${emp.status === 'Active' ? 'bg-[#EDFAF2] text-[#37AB3F]' : emp.status === 'Inactive' ? 'bg-[#FEE2E2] text-[#EF4444]' : 'bg-[#FFF6E8] text-[#FFA100]'}`}>
                               {emp.status}
                             </span>
                           </td>
-                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] text-[14px] font-medium text-neutral-900">01/15/2023</td>
+                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] md:text-[14px] text-[13px] font-medium text-[#111827]">01/15/2023</td>
                           <td className="md:py-4 py-2 3xl:pr-2 md:pr-4 pr-11">
-                            <div className="flex items-center 3xl:gap-2 gap-3">
+                            <div className="flex items-center 3xl:gap-2 md:gap-3 gap-1">
                               <button className="cursor-pointer hover:opacity-80 transition-opacity">
                                 <Image src={editIcon} alt="Edit" width={20} height={20} />
                               </button>
