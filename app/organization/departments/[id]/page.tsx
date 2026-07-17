@@ -137,28 +137,28 @@ export default function DepartmentDetailsPage() {
                   <table className="min-w-full w-full text-left border-collapse">
                     <thead className="bg-[#F9FAFB]">
                       <tr>
-                        <th className="py-[10px] 2xl:pl-6 pl-3 md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap rounded-tl-xl border-b border-[#E2E8F0] w-[5%]">
+                        <th className="py-[10px] 3xl:pl-4 2xl:pl-6 pl-3 md:pr-4 pr-11 text-[16px] font-normal text-[#2E334E] whitespace-nowrap rounded-tl-xl border-b border-[#E2E8F0] w-[5%]">
                            <div className="flex items-center justify-center">
                               <input 
                                 type="checkbox" 
                                 checked={paginatedEmployees.length > 0 && selectedEmployees.length === paginatedEmployees.length}
                                 onChange={handleSelectAll}
-                                className="appearance-none h-4 w-4 rounded-[4px] border border-[#D0D5DD] bg-white checked:border-transparent checked:bg-[#257BFC] checked:bg-[url('data:image/svg+xml;utf8,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%203L4.5%208.5L2%206%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] checked:bg-center checked:bg-no-repeat cursor-pointer focus:outline-none focus:ring-0 focus:ring-offset-0" />
+                                className="appearance-none h-4 w-4 rounded-[4px] border border-[#D0D5DD] bg-white checked:border-transparent checked:bg-[#257BFC] checked:bg-[url('data:image/svg+xml;utf8,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%203L4.5%208.5L2%206%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] checked:bg-center checked:bg-no-repeat cursor-pointer focus:outline-none focus:ring-0 focus:ring-offset-0" />
                            </div>
                         </th>
-                        <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">ID</th>
-                        <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Name</th>
-                        <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Job Title</th>
-                        <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Employment Type</th>
-                        <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Status</th>
-                        <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Joining Date</th>
-                        <th className="py-[10px] md:pr-4 pr-11 text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD] rounded-tr-xl">Action</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">ID</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Name</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Job Title</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Employment Type</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Status</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD]">Joining Date</th>
+                        <th className="py-[10px] md:pr-4 pr-11 3xl:text-[14px] text-[16px] font-normal text-[#111827] whitespace-nowrap border-b border-[#D0D5DD] rounded-tr-xl">Action</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white">
                       {paginatedEmployees.map((emp) => (
                         <tr key={emp.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#D0D5DD]">
-                          <td className="md:py-4 py-2 2xl:pl-6 pl-3 md:pr-4 pr-11">
+                          <td className="md:py-4 py-2 3xl:pl-2 2xl:pl-6 pl-3 3xl:pr-2 md:pr-4 pr-11">
                             <div className="flex items-center justify-center">
                                <input 
                                  type="checkbox" 
@@ -167,23 +167,23 @@ export default function DepartmentDetailsPage() {
                                  className="appearance-none h-4 w-4 rounded-[4px] border border-[#D0D5DD] bg-white checked:border-transparent checked:bg-[#257BFC] checked:bg-[url('data:image/svg+xml;utf8,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%203L4.5%208.5L2%206%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] checked:bg-center checked:bg-no-repeat cursor-pointer focus:outline-none focus:ring-0 focus:ring-offset-0" />
                             </div>
                           </td>
-                          <td className="md:py-4 py-2 md:pr-4 pr-11 text-[14px] font-medium text-neutral-900">{emp.id}</td>
+                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] text-[14px] font-medium text-neutral-900">{emp.id}</td>
                           <td className="md:py-4 py-2 md:pr-4 pr-11">
                             <Link href={`/employees/${emp.id}`} className="flex items-center gap-3 cursor-pointer transition-colors">
                               <img src={emp.avatar} alt={emp.name} className="h-9 w-9 rounded-full object-cover" />
-                              <p className="text-[14px] font-medium">{emp.name}</p>
+                              <p className="3xl:text-[13px] text-[14px] font-medium">{emp.name}</p>
                             </Link>
                           </td>
-                          <td className="md:py-4 py-2 md:pr-4 pr-11 text-[14px] font-medium text-neutral-900">{emp.role}</td>
-                          <td className="md:py-4 py-2 md:pr-4 pr-11 text-[14px] font-medium text-neutral-900">{emp.type || 'Full-Time'}</td>
+                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] text-[14px] font-medium text-neutral-900">{emp.role}</td>
+                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] text-[14px] font-medium text-neutral-900">{emp.type || 'Full-Time'}</td>
                           <td className="md:py-4 py-2 md:pr-4 pr-11">
-                            <span className={`inline-flex items-center justify-center rounded-full px-3 py-1 text-[14px] font-normal capitalize ${emp.status === 'Active' ? 'bg-[#EDFAF2] text-[#37AB3F]' : emp.status === 'Inactive' ? 'bg-[#FEE2E2] text-[#EF4444]' : 'bg-[#FFF6E8] text-[#FFA100]'}`}>
+                            <span className={`inline-flex items-center justify-center rounded-full px-3 py-1 3xl:text-[13px] text-[14px] font-normal capitalize whitespace-nowrap ${emp.status === 'Active' ? 'bg-[#EDFAF2] text-[#37AB3F]' : emp.status === 'Inactive' ? 'bg-[#FEE2E2] text-[#EF4444]' : 'bg-[#FFF6E8] text-[#FFA100]'}`}>
                               {emp.status}
                             </span>
                           </td>
-                          <td className="md:py-4 py-2 md:pr-4 pr-11 text-[14px] font-medium text-neutral-900">01/15/2023</td>
-                          <td className="md:py-4 py-2 md:pr-4 pr-11">
-                            <div className="flex items-center gap-3">
+                          <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] text-[14px] font-medium text-neutral-900">01/15/2023</td>
+                          <td className="md:py-4 py-2 3xl:pr-2 md:pr-4 pr-11">
+                            <div className="flex items-center 3xl:gap-2 gap-3">
                               <button className="cursor-pointer hover:opacity-80 transition-opacity">
                                 <Image src={editIcon} alt="Edit" width={20} height={20} />
                               </button>
