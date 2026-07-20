@@ -143,6 +143,25 @@ export default function Sidebar({
         setActiveSubItem("FPS Submissions");
       if (pathname.includes("/eps-submissions"))
         setActiveSubItem("EPS Submissions");
+    } else if (pathname.includes("/my-profile")) {
+      setActiveItem("Dashboard");
+      setOpenMenu("Dashboard");
+      setActiveSubItem("My Profile");
+    } else if (pathname.includes("/my-documents")) {
+      setActiveItem("Dashboard");
+      setOpenMenu("Dashboard");
+      setActiveSubItem("My Documents");
+    } else if (pathname.includes("/my-leave-requests")) {
+      setActiveItem("Dashboard");
+      setOpenMenu("Dashboard");
+      setActiveSubItem("My Leave & Requests");
+    } else if (pathname.includes("/time-and-attendance")) {
+      setActiveItem("Time & Attendance");
+      setOpenMenu("Time & Attendance");
+      if (pathname.includes("/dashboard")) setActiveSubItem("Attendance Dashboard");
+      if (pathname.includes("/timesheets")) setActiveSubItem("Timesheets");
+      if (pathname.includes("/clock-in-out")) setActiveSubItem("Clock In / Clock Out");
+      if (pathname.includes("/shift-schedule")) setActiveSubItem("Shift Schedule");
     } else {
       setActiveItem("Dashboard");
     }
@@ -153,7 +172,7 @@ export default function Sidebar({
     icon: "dashboard" | "users" | "role" | "organisation" | "employees" | "payrollsetting" | "paycalendar" | "dollar" | "deduction" | "salarystructure" | "employeepayroll" | "payrollruns" | "payrollapproval" | "taxrules" | "nationalrule" | "studentloan" | "paysliplist" | "leavemanagement" | "pension" | "statutory" | "hmrc";
     expandable?: boolean;
   }> = [
-    { label: "Dashboard", icon: "dashboard" },
+    { label: "Dashboard", icon: "dashboard", expandable: true },
     { label: "Users", icon: "users" },
     { label: "Roles", icon: "role" },
     { label: "Organization", icon: "organisation", expandable: true },
@@ -174,13 +193,16 @@ export default function Sidebar({
     { label: "Pension", icon: "pension", expandable: true },
     { label: "Statutory Payments", icon: "statutory", expandable: true },
     { label: "HMRC RTI", icon: "hmrc", expandable: true },
+    { label: "Time & Attendance", icon: "dashboard", expandable: true },
+    { label: "Expenses Management", icon: "dollar", expandable: true },
+    { label: "Reporting Compliance", icon: "paysliplist", expandable: true },
   ] as const;
 
   const moduleItemsMap: Record<string, string[]> = {
     "System Flow": ["Dashboard", "Users", "Roles", "Organization", "Employees"],
     "Payroll": ["Dashboard", "Payroll Settings", "Payroll Calendar", "Pay Components", "Deduction Components", "Salary Structure", "Employee Payroll Setup", "Payroll Runs", "Payroll Approval", "Tax Rules", "National Insurance Rule", "Student Loan Rules", "Payslip List"],
     "HR Operations": ["Leave Management", "Pension", "Statutory Payments", "HMRC RTI"],
-    "Employee Self-Service Portal": ["Dashboard"],
+    "Employee Self-Service Portal": ["Dashboard", "Time & Attendance", "Expenses Management", "Reporting Compliance"],
     "Multi-Company Management": ["Dashboard"],
   };
 
@@ -210,6 +232,38 @@ export default function Sidebar({
     "Pension": "",
     "Statutory Payments": "",
     "HMRC RTI": "",
+    "My Profile": "/my-profile",
+    "My Documents": "/my-documents",
+    "My Leave & Requests": "/my-leave-requests",
+    "Time & Attendance": "",
+    "Expenses Management": "",
+    "Reporting Compliance": "",
+  };
+
+  const dashboardSubMenus = [
+    "My Profile",
+    "My Documents",
+    "My Leave & Requests",
+  ];
+
+  const dashboardSubRoutes: Record<string, string> = {
+    "My Profile": "/my-profile",
+    "My Documents": "/my-documents",
+    "My Leave & Requests": "/my-leave-requests",
+  };
+
+  const timeAttendanceSubMenus = [
+    "Attendance Dashboard",
+    "Timesheets",
+    "Clock In / Clock Out",
+    "Shift Schedule",
+  ];
+
+  const timeAttendanceSubRoutes: Record<string, string> = {
+    "Attendance Dashboard": "/time-and-attendance/dashboard",
+    "Timesheets": "/time-and-attendance/timesheets",
+    "Clock In / Clock Out": "/time-and-attendance/clock-in-out",
+    "Shift Schedule": "/time-and-attendance/shift-schedule",
   };
 
   const employeeSubMenus = [
@@ -423,6 +477,62 @@ export default function Sidebar({
                   </svg>
                 )}
               </button>
+
+              {!collapsed && item.label === "Dashboard" && activeModule === "Employee Self-Service Portal" && isOpen && (
+                <div
+                  className="relative mt-2 ml-[33px] animate-in slide-in-from-top-2 duration-300"
+                >
+                  <div className="space-y-1">
+                    {dashboardSubMenus.map((subLabel) => {
+                      const isSubActive = activeSubItem === subLabel;
+
+                      return (
+                        <button
+                          key={subLabel}
+                          onClick={() => {
+                            setActiveSubItem(subLabel);
+
+                            const route = dashboardSubRoutes[subLabel];
+                            if (route) router.push(route);
+                          }}
+                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left md:text-[16px] text-[13px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                            }`}
+                        >
+                          {subLabel}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {!collapsed && item.label === "Time & Attendance" && activeModule === "Employee Self-Service Portal" && isOpen && (
+                <div
+                  className="relative mt-2 ml-[33px] animate-in slide-in-from-top-2 duration-300"
+                >
+                  <div className="space-y-1">
+                    {timeAttendanceSubMenus.map((subLabel) => {
+                      const isSubActive = activeSubItem === subLabel;
+
+                      return (
+                        <button
+                          key={subLabel}
+                          onClick={() => {
+                            setActiveSubItem(subLabel);
+
+                            const route = timeAttendanceSubRoutes[subLabel];
+                            if (route) router.push(route);
+                          }}
+                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left md:text-[16px] text-[13px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                            }`}
+                        >
+                          {subLabel}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               {!collapsed && item.label === "Employees" && isOpen && (
                 <div
