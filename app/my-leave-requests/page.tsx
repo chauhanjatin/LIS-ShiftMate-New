@@ -76,10 +76,9 @@ function MyLeaveRequestsContent() {
 
   return (
     <DashboardLayout title="Dashboard" subtitle={<><Link href="/dashboard" className="text-[#98A2B3] hover:text-brand-500 transition-colors">Home</Link> <span className="text-[#98A2B3]">/</span> <span className="text-[#111827]">My Leave & Requests</span></>}>
-      <div className={`p-4 md:p-6 ${lexendDeca.className} relative`}>
+      <div className={`p-4 xl:p-6 ${lexendDeca.className} relative`}>
 
-        <div className="bg-white p-6 rounded-2xl">
-          {/* Stats Row */}
+        <div className="bg-white xl:p-6 p-4 rounded-2xl">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
             {[
               { name: "Annual Leave", value: "16", total: "28", used: "12 days used this year", color: "#4DB949", icon: <Image src={annualLeave} alt="Annual Leave" /> },
@@ -87,7 +86,7 @@ function MyLeaveRequestsContent() {
               { name: "Parental", value: "14", total: "14", used: "0 days used this year", color: "#FFA100", icon: <Image src={parentalLeave} alt="Parental Leave" /> },
               { name: "Study Leave", value: "4", total: "5", used: "1 days used this year", color: "#775AF4", icon: <Image src={studyLeave} alt="Study Leave" /> },
             ].map((stat, idx) => (
-              <div key={idx} className="bg-white rounded-[16px] p-5 border border-[#E4E7EC] shadow-sm">
+              <div key={idx} className="bg-white rounded-[16px] md:p-5 p-4 border border-[#E4E7EC] shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <p className="text-[14px] font-medium text-[#111827] mb-2">{stat.name}</p>
@@ -96,7 +95,7 @@ function MyLeaveRequestsContent() {
                       <span className="text-[14px] text-[#98A2B3]">/ {stat.total} days left</span>
                     </div>
                   </div>
-                  <div className="w-[54px] h-[54px] rounded-[14px] flex items-center justify-center shrink-0" style={{ backgroundColor: stat.color }}>
+                  <div className="md:w-[54px] md:h-[54px] w-[45px] h-[45px] rounded-[14px] flex items-center justify-center shrink-0" style={{ backgroundColor: stat.color }}>
                     {stat.icon}
                   </div>
                 </div>
@@ -110,22 +109,22 @@ function MyLeaveRequestsContent() {
 
           {/* Content Box */}
           <div className="overflow-hidden">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
-              <h2 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827]">Leave Request History</h2>
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6 gap-4">
+              <h2 className="lg:text-[18px] text-[20px] 2xl:text-[20px] font-medium text-[#111827]">Leave Request History</h2>
 
-              <div className="flex items-center gap-6 w-full md:w-auto">
-                <div className="relative flex-1 md:flex-none hidden md:block">
+              <div className="flex flex-wrap lg:flex-nowrap items-center xl:gap-6 gap-3 w-full md:w-auto">
+                <div className="relative flex-1 md:flex-none block">
                   <input
                     type="text"
                     placeholder="Search..."
-                    className="w-full md:w-[360px] h-10 pl-10 pr-4 rounded-xl border border-neutral-200 text-[14px] outline-none focus:border-[#257BFC] transition-colors"
+                    className="w-[140px] lg:w-[150px] xl:w-[360px] h-10 pl-10 pr-4 rounded-xl border border-neutral-200 text-[14px] outline-none focus:border-[#257BFC] transition-colors"
                   />
                   <div className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                   </div>
                 </div>
 
-                <div className="w-[100px] hidden md:block">
+                <div className="w-[100px] block">
                   <CustomSelect
                     options={[{ value: '2026', label: '2026' }, { value: '2025', label: '2025' }]}
                     value={selectedYear}
@@ -164,7 +163,7 @@ function MyLeaveRequestsContent() {
 
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="h-10 px-4 flex items-center gap-2 rounded-xl bg-[#257BFC] hover:bg-blue-600 transition-colors text-white text-[14px] font-semibold cursor-pointer"
+                  className="h-10 px-4 flex items-center gap-2 rounded-xl bg-[#257BFC] hover:bg-blue-600 transition-colors text-white xl:text-[14px] text-[13px] font-semibold cursor-pointer"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                   Request Leave
@@ -176,25 +175,25 @@ function MyLeaveRequestsContent() {
               <table className="w-full text-left whitespace-nowrap">
                 <thead>
                   <tr className="border-b border-[#D0D5DD] bg-[#F9FAFB] text-left">
-                    <th className="py-3 px-6 text-[16px] font-normal text-[#111827]">Type</th>
-                    <th className="py-3 px-6 text-[16px] font-normal text-[#111827]">Start Date</th>
-                    <th className="py-3 px-6 text-[16px] font-normal text-[#111827]">End Date</th>
-                    <th className="py-3 px-6 text-[16px] font-normal text-[#111827]">Total Days</th>
-                    <th className="py-3 px-6 text-[16px] font-normal text-[#111827]">Request Date</th>
-                    <th className="py-3 px-6 text-[16px] font-normal text-[#111827]">Status</th>
-                    <th className="py-3 px-6 text-[16px] font-normal text-[#111827] text-center">Action</th>
+                    <th className="py-3 px-6 xl:text-[16px] text-[14px] font-normal text-[#111827]">Type</th>
+                    <th className="py-3 px-6 xl:text-[16px] text-[14px] font-normal text-[#111827]">Start Date</th>
+                    <th className="py-3 px-6 xl:text-[16px] text-[14px] font-normal text-[#111827]">End Date</th>
+                    <th className="py-3 px-6 xl:text-[16px] text-[14px] font-normal text-[#111827]">Total Days</th>
+                    <th className="py-3 px-6 xl:text-[16px] text-[14px] font-normal text-[#111827]">Request Date</th>
+                    <th className="py-3 px-6 xl:text-[16px] text-[14px] font-normal text-[#111827]">Status</th>
+                    <th className="py-3 px-6 xl:text-[16px] text-[14px] font-normal text-[#111827] text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredData.map((req) => (
                     <tr key={req.id} className="border-b border-[#D0D5DD] hover:bg-neutral-50/50 transition-colors">
-                      <td className="py-4 px-6 text-[14px] text-[#111827]">{req.type}</td>
-                      <td className="py-4 px-6 text-[14px] text-[#111827]">{req.start}</td>
-                      <td className="py-4 px-6 text-[14px] text-[#111827]">{req.end}</td>
-                      <td className="py-4 px-6 text-[14px] text-[#111827]">{req.totalDays}</td>
-                      <td className="py-4 px-6 text-[14px] text-[#111827]">{req.requestDate}</td>
+                      <td className="py-4 px-6 xl:text-[14px] text-[12px] text-[#111827]">{req.type}</td>
+                      <td className="py-4 px-6 xl:text-[14px] text-[12px] text-[#111827]">{req.start}</td>
+                      <td className="py-4 px-6 xl:text-[14px] text-[12px] text-[#111827]">{req.end}</td>
+                      <td className="py-4 px-6 xl:text-[14px] text-[12px] text-[#111827]">{req.totalDays}</td>
+                      <td className="py-4 px-6 xl:text-[14px] text-[12px] text-[#111827]">{req.requestDate}</td>
                       <td className="py-4 px-6">
-                        <span className={`px-3.5 py-2.5 rounded-full text-[14px] font-medium inline-flex ${getStatusColor(req.status)}`}>
+                        <span className={`px-3.5 py-2.5 rounded-full xl:text-[14px] text-[12px] font-medium inline-flex ${getStatusColor(req.status)}`}>
                           {req.status}
                         </span>
                       </td>
