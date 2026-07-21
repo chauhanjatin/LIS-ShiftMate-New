@@ -21,12 +21,9 @@ export default function MyProfilePage() {
 
   return (
     <DashboardLayout title="Dashboard" subtitle={<><Link href="/dashboard" className="text-[#98A2B3] hover:text-brand-500 transition-colors">Home</Link> <span className="text-[#98A2B3]">/</span> <span className="text-[#111827]">My Profile</span></>}>
-      <div className={`p-4 md:p-6 ${lexendDeca.className}`}>
-        
-
-
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 p-6 bg-white rounded-2xl">
-          <div className="w-full lg:w-[320px] xl:w-[360px] shrink-0 space-y-6 border-r border-[#E4E7EC] pr-6">
+      <div className={`p-4 2xl:p-6 ${lexendDeca.className}`}>
+        <div className="flex flex-col xl:flex-row gap-6 lg:gap-8 xl:p-6 p-4 bg-white rounded-2xl">
+          <div className="w-full xl:w-[360px] shrink-0 space-y-6 xl:border-r xl:border-[#E4E7EC] xl:pr-6">
             <div className="bg-[#F9FAFB] border border-[#E4E7EC] rounded-xl p-6 xl:p-8 flex flex-col items-center text-center">
               <div className="relative mb-4">
                 <img 
@@ -63,22 +60,24 @@ export default function MyProfilePage() {
             </div>
           </div>
 
-          <div className="flex-1 rounded-2xl">
-            <div className="flex items-center justify-center overflow-x-auto hide-scrollbar gap-1 mb-6 p-1.5 bg-[#F2F4F7] rounded-xl">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.name}
-                  onClick={() => setActiveTab(tab.name)}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-lg whitespace-nowrap text-[14px] font-medium transition-all cursor-pointer ${
-                    activeTab === tab.name 
-                      ? "bg-[#111827] text-white shadow-sm" 
-                      : "text-[#98A2B3] hover:text-[#111827]"
-                  }`}
-                >
-                  {tab.icon}
-                  {tab.name}
-                </button>
-              ))}
+          <div className="flex-1 rounded-2xl w-full flex flex-col min-w-0">
+            <div className="w-full overflow-x-auto scrollbar-hide mb-6">
+              <div className="flex items-center justify-self-center gap-1 bg-[#F9FAFB] p-1.5 rounded-xl w-max">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.name}
+                    onClick={() => setActiveTab(tab.name)}
+                    className={`whitespace-nowrap rounded-lg 2xl:px-4 px-3.5 2xl:py-2.5 py-2 text-[14px] font-medium flex items-center gap-2 transition-all duration-200 cursor-pointer border-none ${
+                      activeTab === tab.name 
+                        ? "bg-[#111827] text-white shadow-sm" 
+                        : "bg-transparent text-[#98A2B3] hover:text-[#111827]"
+                    }`}
+                  >
+                    {tab.icon}
+                    {tab.name}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {activeTab === "Personal Details" && (
