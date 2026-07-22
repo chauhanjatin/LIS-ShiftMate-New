@@ -60,23 +60,23 @@ export default function DepartmentDetailsPage() {
   const startIndex = (currentPage - 1) * rowsPerPage;
   const paginatedEmployees = filteredEmployees.slice(startIndex, startIndex + rowsPerPage);
 
-  if (!department) {
-    return (
-      <DashboardLayout title="Departments" subtitle="Home/ Departments">
-        <div className="p-6">Department not found.</div>
-      </DashboardLayout>
-    );
-  }
-
   const breadcrumb = (
     <span className="text-[#98A2B3]">
       <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <Link href="/organization/departments" className="hover:text-brand-500 transition-colors">Departments</Link>
       <span className="mx-1">/</span>
-      <span className="text-neutral-900">{department.name}</span>
+      <span className="text-neutral-900">{department?.name || 'Edit Department'}</span>
     </span>
   );
+
+  if (!department) {
+    return (
+      <DashboardLayout title="Departments" subtitle={breadcrumb}>
+        <div className="p-6">Department not found.</div>
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout title="Departments" subtitle={breadcrumb}>
@@ -207,10 +207,10 @@ export default function DepartmentDetailsPage() {
               </div>
 
               {/* Pagination */}
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end py-4 mt-2">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4">
+                <div className="flex items-center gap-2 shrink-0">
                   <span className="text-[12px] sm:text-[14px] text-neutral-500">Rows per page:</span>
-                  <div className="w-[80px]">
+                  <div className="w-[70px] sm:w-[80px]">
                     <CustomSelect
                       value={String(rowsPerPage)}
                       onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
@@ -224,10 +224,11 @@ export default function DepartmentDetailsPage() {
                     />
                   </div>
                 </div>
-                <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
-                  {filteredEmployees.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, filteredEmployees.length)} of ${filteredEmployees.length}` : '0-0 of 0'}
-                </span>
-                <div className="flex items-center gap-1 ml-4">
+                <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+                  <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                    {filteredEmployees.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, filteredEmployees.length)} of ${filteredEmployees.length}` : '0-0 of 0'}
+                  </span>
+                  <div className="flex items-center gap-1">
                   <button
                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
@@ -242,6 +243,7 @@ export default function DepartmentDetailsPage() {
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                   </button>
+                  </div>
                 </div>
               </div>
             </div>

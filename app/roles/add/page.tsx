@@ -4,8 +4,11 @@ import { useState } from "react";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import { useRouter } from "next/navigation";
 import { useRoles } from "@/hooks/useRoles";
-import { RolePermissions } from "@/Data/roles";
+import { RolePermissions } from "@/types";
 import Toast from '@/Component/UI/Toast';
+import backArrow from "@/assets/images/icons/back-arrow.svg";
+import Image from "next/image";
+import Link from "next/link";
 
 const CHECKBOX_CLASS = "appearance-none w-5 h-5 border border-[#D0D5DD] rounded-[6px] checked:bg-[#257BFC] checked:border-[#257BFC] cursor-pointer relative after:content-[''] after:absolute after:hidden checked:after:block after:left-[6px] after:top-[2px] after:w-[6px] after:h-[11px] after:border-white after:border-b-[2.5px] after:border-r-[2.5px] after:rotate-45";
 
@@ -92,10 +95,25 @@ export default function AddRolePage() {
       router.push("/roles");
     }, 2000);
   };
+  const breadcrumb = (
+    <span className="text-[#98A2B3]">
+      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <span className="mx-1">/</span>
+      <Link href="/roles" className="hover:text-brand-500 transition-colors">Roles List</Link>
+      <span className="mx-1">/</span>
+      <span className="text-neutral-900">Add Role</span>
+    </span>
+  );
 
   return (
-    <DashboardLayout title="Roles" subtitle="Home/ Roles List/ Add Role">
+    <DashboardLayout title="Roles" subtitle={breadcrumb}>
       <div className="flex-1 p-4 2xl:p-6 flex flex-col">
+        <Link href={`/roles`}>
+          <div className="flex items-center gap-2 cursor-pointer mb-4">
+            <Image src={backArrow} alt="back" />
+            <p className="text-[#111827] font-normal text-[16px]">Back</p>
+          </div>
+        </Link>
         <div className="rounded-xl bg-white 2xl:p-6 xl:p-5 p-3 shadow-sm flex-1 flex flex-col xl:flex-row 2xl:gap-6 gap-4 overflow-hidden">
           
           <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-xl">

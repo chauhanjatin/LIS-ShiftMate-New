@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Department, initialDepartments } from "@/Data/departments";
+import { initialDepartments } from "@/Data/departments";
+import { Department } from "@/types";
 
 export function useDepartments() {
   const [departments, setDepartments] = useState<Department[]>([]);

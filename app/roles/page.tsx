@@ -35,9 +35,16 @@ export default function RolesPage() {
       setRoleToDelete(null);
     }
   };
+  const breadcrumb = (
+    <span className="text-[#98A2B3]">
+      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <span className="mx-1">/</span>
+      <span className="text-neutral-900">Roles List</span>
+    </span>
+  );
 
   return (
-    <DashboardLayout title="Roles" subtitle="Home/ Roles List">
+    <DashboardLayout title="Roles" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
@@ -148,13 +155,12 @@ export default function RolesPage() {
             </div>
           </div>
 
-          {/* Pagination */}
-          <div className="flex flex-wrap items-center sm:justify-end  gap-y-4 px-2 sm:px-6 py-4 mt-2">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between sm:justify-end px-2 md:px-6 py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 shrink-0">
               <span className="text-[12px] md:text-[14px] text-neutral-500">
                 Rows per page:
               </span>
-              <div className="w-[80px]">
+              <div className="w-[54px] md:w-[80px]">
                 <CustomSelect
                   value={String(rowsPerPage)}
                   onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
@@ -169,11 +175,12 @@ export default function RolesPage() {
               </div>
             </div>
 
-            <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
-              {roles.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, roles.length)} of ${roles.length}` : '0-0 of 0'}
-            </span>
+            <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+              <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                {roles.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, roles.length)} of ${roles.length}` : '0-0 of 0'}
+              </span>
 
-            <div className="flex items-center gap-1 ml-4">
+              <div className="flex items-center gap-1">
               <button
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
@@ -188,6 +195,7 @@ export default function RolesPage() {
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
               </button>
+              </div>
             </div>
           </div>
 

@@ -6,7 +6,7 @@ import Link from "next/link";
 import backArrow from "@/assets/images/icons/back-arrow.svg";
 import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
-import { User, UserStatus } from "@/Data/users";
+import { User, UserStatus } from "@/types";
 import { useUsers } from "@/hooks/useUsers";
 import Toast from '@/Component/UI/Toast';
 import CustomSelect from "@/Component/UI/CustomSelect";

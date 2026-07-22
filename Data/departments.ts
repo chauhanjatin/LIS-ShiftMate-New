@@ -1,10 +1,5 @@
-export interface Department {
-  id: string;
-  name: string;
-  code: string;
-  managerId: string;
-  employeeCount: number;
-}
+import { Department } from "@/types";
+
 
 export const initialDepartments: Department[] = [
   { id: "D001", name: "Business Development", code: "BD", managerId: "EMP001", employeeCount: 22 },

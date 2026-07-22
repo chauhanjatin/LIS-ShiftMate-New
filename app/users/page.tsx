@@ -13,7 +13,7 @@ import appRectangleIcon from "@/assets/images/icons/apps-rectangle.svg";
 import listViewIcon from "@/assets/images/icons/list-view-circle.svg";
 import deleteredIcon from "@/assets/images/icons/delete-red.svg"
 import Link from "next/link";
-import { User, UserStatus } from "@/Data/users";
+import { User, UserStatus } from "@/types";
 import Toast from '@/Component/UI/Toast';
 import { Lexend_Deca } from "next/font/google";
 import CustomSelect from "@/Component/UI/CustomSelect";
@@ -310,9 +310,16 @@ export default function UsersPage() {
             setUserToDelete(null);
         }
     };
+    const breadcrumb = (
+        <span className="text-[#98A2B3]">
+            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <span className="mx-1">/</span>
+            <span className="text-neutral-900">Users List</span>
+        </span>
+    );
 
     return (
-        <DashboardLayout title="Users" subtitle="Home/ Users List">
+        <DashboardLayout title="Users" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
                 <div className="rounded-xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between md:px-6 md:pt-6 px-4 pt-4">
@@ -561,12 +568,12 @@ export default function UsersPage() {
                             )}
                         </div>
 
-                        <div className="flex flex-wrap items-center sm:justify-end gap-y-4 px-2 sm:px-6 py-4 mt-2">
-                            <div className="flex items-center gap-2">
+                        <div className="flex items-center justify-between sm:justify-end px-2 sm:px-6 py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4">
+                            <div className="flex items-center gap-2 shrink-0">
                                 <span className="text-[12px] sm:text-[14px] text-neutral-500">
                                     Rows per page:
                                 </span>
-                                <div className="w-[80px]">
+                                <div className="w-[70px] sm:w-[80px]">
                                     <CustomSelect 
                                         value={String(rowsPerPage)}
                                         onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
@@ -581,11 +588,12 @@ export default function UsersPage() {
                                 </div>
                             </div>
 
-                            <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">1
-                                {users.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, users.length)} of ${users.length}` : '0-0 of 0'}
-                            </span>
+                            <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+                                <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                                    {users.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, users.length)} of ${users.length}` : '0-0 of 0'}
+                                </span>
 
-                            <div className="flex items-center gap-1 ml-4">
+                                <div className="flex items-center gap-1">
                                 <button
                                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                                     disabled={currentPage === 1}
@@ -602,6 +610,7 @@ export default function UsersPage() {
                                 </button>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>

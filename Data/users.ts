@@ -1,17 +1,5 @@
-export type UserStatus = "Active" | "Inactive" | "On Leave" | "Suspended" | "Pending";
+import { User } from "@/types";
 
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  company: string;
-  status: UserStatus;
-  avatar: string;
-  department?: string;
-  joinDate?: string;
-  employmentType?: string;
-}
 
 export const initialUsers: User[] = [
   { id: "EMP001", name: "Cameron Williamson", email: "georgia.young@example.com", role: "Admin", company: "Shiftmate", status: "Active", avatar: "https://i.pravatar.cc/150?u=1", department: "Engineering", joinDate: "October 25, 2026", employmentType: "Full-time" },

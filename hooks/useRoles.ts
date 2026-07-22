@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Role, initialRoles } from "@/Data/roles";
+import { initialRoles } from "@/Data/roles";
+import { Role } from "@/types";
 
 export function useRoles() {
   const [roles, setRoles] = useState<Role[]>([]);

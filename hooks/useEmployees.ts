@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Employee, initialEmployees } from "@/Data/employees";
+import { initialEmployees } from "@/Data/employees";
+import { Employee } from "@/types";
 
 export function useEmployees() {
   const [employees, setEmployees] = useState<Employee[]>([]);

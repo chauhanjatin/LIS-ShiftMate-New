@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { User, initialUsers } from "@/Data/users";
+import { initialUsers } from "@/Data/users";
+import { User } from "@/types";
 
 export function useUsers() {
   const [users, setUsers] = useState<User[]>([]);

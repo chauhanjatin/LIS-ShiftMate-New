@@ -14,7 +14,7 @@ import deleteRedIcon from "@/assets/images/icons/delete-popup.svg";
 import deleteredIcon from "@/assets/images/icons/delete-red.svg"
 import Link from "next/link";
 import { useEmployees } from "@/hooks/useEmployees";
-import { Employee, Status } from "@/Data/employees";
+import { Employee, Status } from "@/types";
 import { Lexend_Deca } from "next/font/google";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useRef } from "react";
@@ -85,9 +85,16 @@ export default function AllEmployeesPage() {
     }
   };
 
-  return (
-    <DashboardLayout title="Employees" subtitle="Home/ All Employees">
+  const breadcrumb = (
+    <span className="text-[#98A2B3]">
+      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <span className="mx-1">/</span>
+      <span className="text-neutral-900">All Employees</span>
+    </span>
+  );
 
+  return (
+    <DashboardLayout title="Employees" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-xl bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
@@ -315,13 +322,13 @@ export default function AllEmployeesPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between sm:justify-end px-2 sm:px-6 py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4">
+                <div className="flex items-center gap-2 shrink-0">
                   <span className="text-[12px] sm:text-[14px] text-neutral-500">
                     Rows per page:
                   </span>
 
-                  <div className="w-[80px]">
+                  <div className="w-[70px] sm:w-[80px]">
                     <CustomSelect 
                         value={String(rowsPerPage)}
                         onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
@@ -336,11 +343,12 @@ export default function AllEmployeesPage() {
                   </div>
                 </div>
 
-                <span className="text-[12px] sm:text-[14px] text-neutral-500">
-                  {employeesList.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, employeesList.length)} of ${employeesList.length}` : '0-0 of 0'}
-                </span>
+                <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+                  <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                    {employeesList.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, employeesList.length)} of ${employeesList.length}` : '0-0 of 0'}
+                  </span>
 
-                <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1">
                   <button 
                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
@@ -380,6 +388,7 @@ export default function AllEmployeesPage() {
                   </button>
                 </div>
               </div>
+            </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 p-3 sm:grid-cols-2 gap-4 sm:p-4 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-6 2xl:p-6">
