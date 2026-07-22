@@ -99,11 +99,11 @@ export default function AddRolePage() {
         <div className="rounded-xl bg-white 2xl:p-6 xl:p-5 p-3 shadow-sm flex-1 flex flex-col xl:flex-row 2xl:gap-6 gap-4 overflow-hidden">
           
           <div className="w-full xl:w-[320px] 2xl:w-[380px] shrink-0 rounded-xl">
-            <h2 className="text-[24px] font-semibold text-[#111827]">Create New Role</h2>
+            <h2 className="md:text-[24px] text-[20px] font-semibold text-[#111827]">Create New Role</h2>
             
             <div className="mt-6 lg:mb-8">
-              <h3 className="text-[20px] font-medium text-[#111827] mb-1">Role Details</h3>
-              <p className="text-[14px] font-normal text-[#98A2B3] mb-6 leading-relaxed">
+              <h3 className="md:text-[20px] text-[18px] font-medium text-[#111827] mb-1">Role Details</h3>
+              <p className="md:text-[14px] text-[12px] font-normal text-[#98A2B3] mb-6 leading-relaxed">
                 Enter the employee's basic personal information for identification and contact purposes.
               </p>
 
@@ -114,7 +114,7 @@ export default function AddRolePage() {
                     type="text"
                     value={roleName}
                     onChange={(e) => { setRoleName(e.target.value); setErrors(prev => ({...prev, roleName: ""})); }}
-                    className={`w-full rounded-xl border ${errors.roleName ? 'border-red-500' : 'border-[#111827]'} px-4 py-2.5 text-[14px] outline-none bg-white`}
+                    className={`w-full rounded-xl border ${errors.roleName ? 'border-red-500' : 'border-[#111827]'} px-4 py-2.5 md:text-[14px] text-[12px] outline-none bg-white`}
                     placeholder="e.g. Senior Manager"
                   />
                   {errors.roleName && <p className="text-red-500 text-xs mt-1">{errors.roleName}</p>}
@@ -126,7 +126,7 @@ export default function AddRolePage() {
                     value={description}
                     onChange={(e) => { setDescription(e.target.value); setErrors(prev => ({...prev, description: ""})); }}
                     rows={4}
-                    className={`w-full rounded-xl border ${errors.description ? 'border-red-500' : 'border-[#111827]'} px-4 py-2.5 text-[14px] outline-none bg-white resize-none`}
+                    className={`w-full rounded-xl border ${errors.description ? 'border-red-500' : 'border-[#111827]'} px-4 py-2.5 md:text-[14px] text-[12px] outline-none bg-white resize-none`}
                     placeholder="Responsible for team management and project oversight"
                   />
                   {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description}</p>}
@@ -135,7 +135,7 @@ export default function AddRolePage() {
             </div>
           </div>
 
-          <div className="flex-1 bg-white px-4 2xl:px-6 lg:border-l border-[#E4E7EC] overflow-hidden flex flex-col">
+          <div className="flex-1 bg-white md:px-4 px-2 2xl:px-6 lg:border-l border-[#E4E7EC] overflow-hidden flex flex-col">
             <h3 className="text-[20px] font-medium text-[#111827] mb-6">Permissions Matrix</h3>
             
             <div className="flex-1 rounded-xl border border-[#E2E8F0] overflow-auto">
@@ -273,10 +273,10 @@ export default function AddRolePage() {
               </table>
             </div>
             
-            <div className="flex items-center justify-end gap-4 pt-6 2xl:mt-4">
+            <div className="flex items-center justify-end md:gap-4 gap-2 pt-6 2xl:mt-4">
               <button 
                 onClick={() => router.push('/roles')}
-                className="px-6 py-2.5 rounded-xl cursor-pointer border border-neutral-300 bg-white text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition overflow-hidden"
+                className="px-6 py-2.5 rounded-xl cursor-pointer border border-neutral-300 bg-white text-[12px] md:text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition overflow-hidden"
               >
                 Cancel
               </button>

@@ -2,7 +2,7 @@
 
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import { Lexend_Deca } from "next/font/google";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import CustomSelect from "@/Component/UI/CustomSelect";
 
@@ -10,6 +10,8 @@ const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 export default function MyProfilePage() {
   const [activeTab, setActiveTab] = useState("Personal Details");
+  const [gender, setGender] = useState("Male");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const tabs = [
     { name: "Personal Details", icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> },
@@ -62,7 +64,7 @@ export default function MyProfilePage() {
 
           <div className="flex-1 rounded-2xl w-full flex flex-col min-w-0">
             <div className="w-full overflow-x-auto scrollbar-hide mb-6">
-              <div className="flex items-center justify-self-center gap-1 bg-[#F9FAFB] p-1.5 rounded-xl w-max">
+              <div className="flex items-center gap-1 bg-[#F9FAFB] p-1.5 rounded-xl min-w-max">
                 {tabs.map((tab) => (
                   <button
                     key={tab.name}
@@ -109,21 +111,18 @@ export default function MyProfilePage() {
                     <label className="block text-[14px] text-[#111827] mb-2">Date of Birth</label>
                     <div className="relative">
                       <input 
-                        type="text" 
-                        defaultValue="03/15/1990"
-                        className="w-full h-11 pl-4 pr-10 rounded-xl border border-[#D0D5DD] bg-white text-[14px] text-[#111827] outline-none focus:border-[#111827] focus:ring-1 transition-all"
+                        type="date" 
+                        defaultValue="1990-03-15"
+                        className="w-full h-11 px-4 rounded-xl border border-[#D0D5DD] bg-white text-[14px] text-[#111827] outline-none focus:border-[#111827] focus:ring-1 transition-all"
                       />
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                      </div>
                     </div>
                   </div>
                   <div>
                     <label className="block text-[14px] text-[#111827] mb-2">Gender</label>
                     <CustomSelect 
                       options={[{ value: 'Male', label: 'Male' }, { value: 'Female', label: 'Female' }]}
-                      value="Male"
-                      onChange={() => {}}
+                      value={gender}
+                      onChange={setGender}
                       placeholder="Select Gender"
                     />
                   </div>
@@ -157,13 +156,10 @@ export default function MyProfilePage() {
                     <label className="block text-[14px] text-[#111827] mb-2">Join Date</label>
                     <div className="relative">
                       <input 
-                        type="text" 
-                        defaultValue="03/13/2021"
-                        className="w-full h-11 pl-4 pr-10 rounded-xl border border-[#D0D5DD] bg-white text-[14px] text-[#111827] outline-none focus:border-[#111827] focus:ring-1 transition-all"
+                        type="date" 
+                        defaultValue="2021-03-13"
+                        className="w-full h-11 px-4 rounded-xl border border-[#D0D5DD] bg-white text-[14px] text-[#111827] outline-none focus:border-[#111827] focus:ring-1 transition-all"
                       />
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                      </div>
                     </div>
                   </div>
                 </div>

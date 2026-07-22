@@ -47,7 +47,7 @@ export default function RolesPage() {
 
             <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
               
-              <div className="relative 2xl:w-75 lg:w-60 md:w-50 w-32">
+              <div className="relative 2xl:w-75 lg:w-60 md:w-50 w-38">
                 <Image
                   src={searchIcon}
                   alt="Search"
@@ -62,7 +62,7 @@ export default function RolesPage() {
               </div>
 
               <Link href="/roles/add">
-                <button className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-1.5 md:px-2.5 md:py-2.5 lg:px-5 lg:py-3 text-[11px] md:text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                <button className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-2 md:px-2.5 md:py-2.5 lg:px-5 lg:py-3 text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -149,9 +149,9 @@ export default function RolesPage() {
           </div>
 
           {/* Pagination */}
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+          <div className="flex flex-wrap items-center sm:justify-end  gap-y-4 px-2 sm:px-6 py-4 mt-2">
             <div className="flex items-center gap-2">
-              <span className="text-[12px] sm:text-[14px] text-neutral-500">
+              <span className="text-[12px] md:text-[14px] text-neutral-500">
                 Rows per page:
               </span>
               <div className="w-[80px]">
