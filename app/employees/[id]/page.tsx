@@ -7,7 +7,7 @@ import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import CustomSelect from "@/Component/UI/CustomSelect";
 import { useEmployees } from "@/hooks/useEmployees";
-import { Employee, Status } from "@/Data/employees";
+import { Employee, Status } from "@/types";
 import editIcon from "@/assets/images/icons/edit.svg";
 import backArrow from "@/assets/images/icons/back-arrow.svg";
 import deleteIcon from "@/assets/images/icons/delete.svg";

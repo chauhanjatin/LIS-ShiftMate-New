@@ -35,9 +35,16 @@ export default function RolesPage() {
       setRoleToDelete(null);
     }
   };
+  const breadcrumb = (
+    <span className="text-[#98A2B3]">
+      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <span className="mx-1">/</span>
+      <span className="text-neutral-900">Roles List</span>
+    </span>
+  );
 
   return (
-    <DashboardLayout title="Roles" subtitle="Home/ Roles List">
+    <DashboardLayout title="Roles" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
@@ -45,9 +52,9 @@ export default function RolesPage() {
               Roles List
             </h2>
 
-            <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+            <div className="flex flex-col md:flex-row md:items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 w-full md:w-auto">
               
-              <div className="relative 2xl:w-75 lg:w-60 md:w-50 w-32">
+              <div className="relative w-full md:w-50 lg:w-60 2xl:w-75">
                 <Image
                   src={searchIcon}
                   alt="Search"
@@ -61,8 +68,8 @@ export default function RolesPage() {
                 />
               </div>
 
-              <Link href="/roles/add">
-                <button className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-1.5 md:px-2.5 md:py-2.5 lg:px-5 lg:py-3 text-[11px] md:text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+              <Link href="/roles/add" className="w-full md:w-auto flex">
+                <button className="flex-1 md:flex-none flex items-center justify-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-2 md:px-2.5 md:py-2.5 lg:px-5 lg:py-3 text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -148,13 +155,12 @@ export default function RolesPage() {
             </div>
           </div>
 
-          {/* Pagination */}
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
-            <div className="flex items-center gap-2">
-              <span className="text-[12px] sm:text-[14px] text-neutral-500">
+          <div className="flex items-center justify-between sm:justify-end px-2 md:px-6 py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="text-[12px] md:text-[14px] text-neutral-500">
                 Rows per page:
               </span>
-              <div className="w-[80px]">
+              <div className="w-[54px] md:w-[80px]">
                 <CustomSelect
                   value={String(rowsPerPage)}
                   onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
@@ -169,11 +175,12 @@ export default function RolesPage() {
               </div>
             </div>
 
-            <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
-              {roles.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, roles.length)} of ${roles.length}` : '0-0 of 0'}
-            </span>
+            <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+              <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                {roles.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, roles.length)} of ${roles.length}` : '0-0 of 0'}
+              </span>
 
-            <div className="flex items-center gap-1 ml-4">
+              <div className="flex items-center gap-1">
               <button
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
@@ -188,6 +195,7 @@ export default function RolesPage() {
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
               </button>
+              </div>
             </div>
           </div>
 

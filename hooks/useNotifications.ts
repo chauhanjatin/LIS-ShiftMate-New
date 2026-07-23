@@ -1,15 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
-export interface Notification {
-  id: string;
-  title: string;
-  message: string;
-  time: string;
-  read: boolean;
-  type: "profile" | "department" | "company" | "request" | "general" | "warning";
-}
+import { Notification } from "@/types";
 
 const initialNotifications: Notification[] = [
   { id: "1", title: "Employee Profile Updated", message: "Sarah Johnson's information was updated successfully.", time: "2 min ago", read: false, type: "profile" },

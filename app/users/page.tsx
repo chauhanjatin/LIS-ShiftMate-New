@@ -13,7 +13,7 @@ import appRectangleIcon from "@/assets/images/icons/apps-rectangle.svg";
 import listViewIcon from "@/assets/images/icons/list-view-circle.svg";
 import deleteredIcon from "@/assets/images/icons/delete-red.svg"
 import Link from "next/link";
-import { User, UserStatus } from "@/Data/users";
+import { User, UserStatus } from "@/types";
 import Toast from '@/Component/UI/Toast';
 import { Lexend_Deca } from "next/font/google";
 import CustomSelect from "@/Component/UI/CustomSelect";
@@ -96,7 +96,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                     </button>
                 </div>
 
-                <div className="overflow-y-auto px-6 py-6 flex-1 space-y-6">
+                <div className="overflow-y-auto p-4 md:p-6 flex-1 space-y-6">
                     <div>
                         <h3 className="text-[16px] font-semibold text-neutral-900">Basic Information</h3>
                         <p className="mt-1 text-[12px] text-neutral-500">Enter the employee's basic personal information for identification and contact purposes.</p>
@@ -212,7 +212,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                         </div>
 
                         {accessMethod === "temp_password" && (
-                            <div className="mt-4 rounded-xl bg-white p-4">
+                            <div className="mt-4 rounded-xl bg-white p-1 md:p-4">
                                 <label className="block text-[12px] font-medium text-neutral-900 mb-1.5">Temporary Password</label>
                                 <div className="flex flex-col md:flex-row gap-3">
                                     <input
@@ -244,7 +244,7 @@ function CreateUserModal({ onClose, onCreate }: { onClose: () => void, onCreate:
                     <button onClick={onClose} className="rounded-xl border border-[#E2E8F0] bg-white px-6 py-2.5 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer overflow-hidden">
                         Cancel
                     </button>
-                    <button onClick={handleCreate} className="rounded-xl bg-[#257BFC] px-6 py-2.5 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                    <button onClick={handleCreate} className="rounded-xl bg-[#257BFC] px-6 py-2.5 md:text-[14px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                         Create User
                     </button>
                 </div>
@@ -310,16 +310,23 @@ export default function UsersPage() {
             setUserToDelete(null);
         }
     };
+    const breadcrumb = (
+        <span className="text-[#98A2B3]">
+            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <span className="mx-1">/</span>
+            <span className="text-neutral-900">Users List</span>
+        </span>
+    );
 
     return (
-        <DashboardLayout title="Users" subtitle="Home/ Users List">
+        <DashboardLayout title="Users" subtitle={breadcrumb}>
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
                 <div className="rounded-xl border border-[#E2E8F0] bg-white shadow-sm overflow-hidden">
                     <div className="flex flex-wrap items-center justify-between md:px-6 md:pt-6 px-4 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-neutral-900">Users List</h2>
 
-                        <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative 2xl:w-75 xl:w-60 md:w-50 w-32">
+                        <div className="flex flex-col md:flex-row md:items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 w-full md:w-auto">
+                            <div className="relative w-full md:w-50 xl:w-60 2xl:w-75">
                                 <Image
                                     src={searchIcon}
                                     alt="Search"
@@ -333,7 +340,8 @@ export default function UsersPage() {
                                 />
                             </div>
 
-                            <div className="relative" ref={filterRef}>
+                            <div className="flex items-center gap-2.5 md:gap-3 w-full md:w-auto">
+                                <div className="relative" ref={filterRef}>
                                 <button onClick={() => setFilterOpen(!filterOpen)} className="flex md:h-[42px] md:w-[42px] h-[35px] w-[35px] md:p-2 p-1.5 items-center justify-center rounded-xl border border-[#E2E8F0] cursor-pointer text-neutral-600 transition hover:bg-neutral-50">
                                     <Image
                                         src={filterIcon}
@@ -378,7 +386,7 @@ export default function UsersPage() {
 
                             <button
                                 onClick={() => setCreateModalOpen(true)}
-                                className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-1.5 md:px-2.5 md:py-2 2xl:px-5 2xl:py-3 text-[12px] md:text-[15px] 2xl:text-[16px] text-white transition hover:bg-blue-600"
+                                className="flex-1 md:flex-none flex items-center justify-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-1.5 md:px-2.5 md:py-2 2xl:px-5 2xl:py-3 text-[12px] md:text-[15px] 2xl:text-[16px] text-white transition hover:bg-blue-600"
                             >
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -386,6 +394,7 @@ export default function UsersPage() {
                                 </svg>
                                 Add User
                             </button>
+                            </div>
                         </div>
                     </div>
 
@@ -547,11 +556,11 @@ export default function UsersPage() {
                                             </div>
                                             <div className="mt-4 flex items-center justify-between border-t border-neutral-300">
                                                 <div className="flex-1 border-r border-neutral-300 pt-4 text-center min-w-0">
-                                                    <p className="2xl:text-[14px] xl:text-[13px] font-medium">Role</p>
+                                                    <p className="2xl:text-[14px] md:text-[13px] text-[15px] font-medium">Role</p>
                                                     <p className="mt-1 truncate text-[11px] 2xl:text-[12px] font-normal text-[#98A2B3]">{user.role}</p>
                                                 </div>
                                                 <div className="flex-1 pt-4 text-center min-w-0">
-                                                    <p className="2xl:text-[14px] xl:text-[13px] font-medium">Company</p>
+                                                    <p className="2xl:text-[14px] md:text-[13px] text-[15px] font-medium">Company</p>
                                                     <p className="mt-1 truncate text-[11px] 2xl:text-[12px] font-normal text-[#98A2B3]">{user.company}</p>
                                                 </div>
                                             </div>
@@ -561,12 +570,12 @@ export default function UsersPage() {
                             )}
                         </div>
 
-                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
-                            <div className="flex items-center gap-2">
+                        <div className="flex items-center justify-between sm:justify-end px-2 sm:px-6 py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4">
+                            <div className="flex items-center gap-2 shrink-0">
                                 <span className="text-[12px] sm:text-[14px] text-neutral-500">
                                     Rows per page:
                                 </span>
-                                <div className="w-[80px]">
+                                <div className="w-[70px] sm:w-[80px]">
                                     <CustomSelect 
                                         value={String(rowsPerPage)}
                                         onChange={(val) => { setRowsPerPage(Number(val)); setCurrentPage(1); }}
@@ -581,11 +590,12 @@ export default function UsersPage() {
                                 </div>
                             </div>
 
-                            <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">1
-                                {users.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, users.length)} of ${users.length}` : '0-0 of 0'}
-                            </span>
+                            <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+                                <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                                    {users.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, users.length)} of ${users.length}` : '0-0 of 0'}
+                                </span>
 
-                            <div className="flex items-center gap-1 ml-4">
+                                <div className="flex items-center gap-1">
                                 <button
                                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                                     disabled={currentPage === 1}
@@ -603,6 +613,7 @@ export default function UsersPage() {
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
 
@@ -613,24 +624,24 @@ export default function UsersPage() {
             {deleteModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
                     <div className="max-w-[420px] rounded-xl bg-white p-6 text-center shadow-[0px_8px_30px_rgba(0,0,0,0.12)]">
-                        <div className="mx-auto mb-7 flex h-[72px] w-[72px] items-center justify-center rounded-[16px]">
+                        <div className="mx-auto md:mb-7 mb-5 flex h-[45px] w-[45px] md:h-[72px] md:w-[72px] items-center justify-center rounded-[16px]">
                             <Image src={deleteRedIcon} alt="Delete" className="pointer-events-none" />
                         </div>
-                        <h3 className="mx-auto mb-6 max-w-[290px] text-[16px] font-semibold leading-[22px] text-[#1D2939]">
+                        <h3 className="mx-auto mb-6 max-w-[290px] md:text-[16px] text-[13px] font-semibold leading-[22px] text-[#1D2939]">
                             Are you sure you want to delete this <br /> User?
                         </h3>
                         <div className="flex gap-4">
                             <button
                                 type="button"
                                 onClick={() => { setDeleteModalOpen(false); setUserToDelete(null); }}
-                                className="w-full rounded-xl border border-[#344054] bg-white px-6 py-3 text-[16px] font-semibold leading-none text-[#344054] overflow-hidden cursor-pointer"
+                                className="w-full rounded-xl border border-[#344054] bg-white md:px-6 px-4 md:py-3 py-2 md:text-[16px] text-[14px] font-semibold leading-none text-[#344054] overflow-hidden cursor-pointer"
                             >
                                 Cancel
                             </button>
                             <button
                                 type="button"
                                 onClick={handleDelete}
-                                className="w-full rounded-xl px-6 py-3 text-[16px] font-semibold leading-none text-white bg-[#F04438] cursor-pointer"
+                                className="w-full rounded-xl md:px-6 px-4 py-3 md:text-[16px] text-[14px] font-semibold leading-none text-white bg-[#F04438] cursor-pointer"
                             >
                                 Delete
                             </button>

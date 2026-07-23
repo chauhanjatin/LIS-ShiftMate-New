@@ -15,7 +15,7 @@ function AdminDropdown() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("Security");
   const detailsRef = useRef<HTMLDetailsElement>(null);
-  
+
   useClickOutside(detailsRef, () => {
     detailsRef.current?.removeAttribute("open");
   });
@@ -32,81 +32,81 @@ function AdminDropdown() {
 
   return (
     <>
-    <details ref={detailsRef} className="relative">
-      <summary className="list-none cursor-pointer rounded-xl px-1 py-1 hover:bg-neutral-100 outline-none">
-        <span className="flex items-center gap-2 sm:gap-3">
-          <Image
-            src={adminImage}
-            alt="Mathieu Wade"
-            width={40}
-            height={40}
-            className="md:h-10 h-8 md:w-10 w-8 rounded-xl sm:rounded-xl object-cover"
-          />
-          <span className="hidden sm:block text-left leading-tight">
-            <span className="block xl:text-base text-[14px] font-bold text-neutral-900">
-              Mathieu Wade
+      <details ref={detailsRef} className="relative">
+        <summary className="list-none cursor-pointer rounded-xl px-1 py-1 hover:bg-neutral-100 outline-none">
+          <span className="flex items-center gap-2 sm:gap-3">
+            <Image
+              src={adminImage}
+              alt="Mathieu Wade"
+              width={40}
+              height={40}
+              className="2xl:h-[52px] md:h-10 h-8 2xl:w-[52px] md:w-10 w-8 rounded-xl sm:rounded-xl object-cover"
+            />
+            <span className="hidden sm:block text-left leading-tight">
+              <span className="block xl:text-base text-[14px] font-bold text-neutral-900">
+                Mathieu Wade
+              </span>
+              <span className="block text-xs font-medium text-[#98A2B3]">HR Admin</span>
             </span>
-            <span className="block text-xs font-medium text-[#98A2B3]">HR Admin</span>
+            <svg
+              viewBox="0 0 20 20"
+              fill="none"
+              className="h-4 w-4 text-neutral-800"
+            >
+              <path
+                d="M5.5 7.5L10 12L14.5 7.5"
+                stroke="currentColor"
+                strokeWidth="1.9"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </span>
-          <svg
-            viewBox="0 0 20 20"
-            fill="none"
-            className="h-4 w-4 text-neutral-800"
-          >
-            <path
-              d="M5.5 7.5L10 12L14.5 7.5"
-              stroke="currentColor"
-              strokeWidth="1.9"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-      </summary>
+        </summary>
 
-      <div className="absolute right-0 z-20 mt-3 w-[calc(100vw-2rem)] xl:max-w-[280px] max-w-[215px] sm:w-72 rounded-xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
-        <button
-          type="button"
-          onClick={openProfile}
-          className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100 cursor-pointer"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            className="h-6 w-6 text-neutral-700"
-          >
-            <path
-              d="M12 12.75a4.25 4.25 0 1 0 0-8.5 4.25 4.25 0 0 0 0 8.5ZM5 20a7 7 0 0 1 14 0"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span>My Profile</span>
-        </button>
-        <button
-          type="button"
-          onClick={openSettings}
-          className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100 cursor-pointer"
-        >
-          <Image src={settingsIcon} alt="settings" />
-          <span className="whitespace-nowrap">Account Settings</span>
-        </button>
-        <Link href="/">
+        <div className="absolute right-0 z-20 mt-3 w-[calc(100vw-2rem)] xl:max-w-[280px] max-w-[215px] sm:w-72 rounded-xl border border-neutral-200 bg-white p-3 shadow-[0_16px_35px_rgba(15,23,42,0.14)]">
           <button
             type="button"
-            className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-[#EF4444] hover:bg-[#FDEAEA] cursor-pointer"
+            onClick={openProfile}
+            className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100 cursor-pointer"
           >
-            <Image src={logoutIcon} alt="logout" />
-            <span>Logout</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="h-6 w-6 text-neutral-700"
+            >
+              <path
+                d="M12 12.75a4.25 4.25 0 1 0 0-8.5 4.25 4.25 0 0 0 0 8.5ZM5 20a7 7 0 0 1 14 0"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span>My Profile</span>
           </button>
-        </Link>
+          <button
+            type="button"
+            onClick={openSettings}
+            className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-neutral-800 hover:bg-neutral-100 cursor-pointer"
+          >
+            <Image src={settingsIcon} alt="settings" />
+            <span className="whitespace-nowrap">Account Settings</span>
+          </button>
+          <Link href="/">
+            <button
+              type="button"
+              className="flex w-full items-center md:gap-3 gap-2 rounded-xl md:px-3 md:py-3 px-2 py-2 text-left text-[14px] md:text-[16px] font-medium text-[#EF4444] hover:bg-[#FDEAEA] cursor-pointer"
+            >
+              <Image src={logoutIcon} alt="logout" />
+              <span>Logout</span>
+            </button>
+          </Link>
 
-      </div>
-    </details>
+        </div>
+      </details>
 
-    {isProfileOpen && (
+      {isProfileOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4">
           <div className="w-full max-w-[620px] overflow-hidden rounded-3xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] px-6 py-5">
@@ -120,7 +120,7 @@ function AdminDropdown() {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
               </button>
             </div>
-            
+
             <div className="px-6 py-6">
               <div className="flex flex-col items-center justify-center rounded-2xl bg-[#F8F9FC] py-6 mb-8 border border-[#F3F4F6]">
                 <div className="relative mb-3">
@@ -153,7 +153,7 @@ function AdminDropdown() {
                 </div>
                 <div>
                   <label className="mb-2 block text-[13px] font-medium text-[#344054]">Department</label>
-                  <CustomSelect value="Marketing" onChange={() => {}} options={[{label: "Marketing", value: "Marketing"}]} placeholder="" />
+                  <CustomSelect value="Marketing" onChange={() => { }} options={[{ label: "Marketing", value: "Marketing" }]} placeholder="" />
                 </div>
                 <div>
                   <label className="mb-2 block text-[13px] font-medium text-[#344054]">Joined Date</label>
@@ -182,12 +182,12 @@ function AdminDropdown() {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
               </button>
             </div>
-            
+
             <div className="px-6 py-6 h-full max-h-[75vh] overflow-y-auto">
               <div className="flex bg-[#F8F9FC] rounded-xl p-1 mb-8 overflow-x-auto no-scrollbar">
                 {['Personal Info', 'Security', 'Notifications', 'Preferences'].map((tab) => (
-                  <button 
-                    key={tab} 
+                  <button
+                    key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-[13px] font-semibold transition-colors whitespace-nowrap min-w-[120px] ${activeTab === tab ? 'bg-[#0F172A] text-white' : 'text-[#667085] hover:text-[#0F172A]'}`}
                   >
@@ -240,7 +240,7 @@ function AdminDropdown() {
                 <div className="animate-in fade-in slide-in-from-right-4 duration-300">
                   <h3 className="text-[16px] font-bold text-[#1D2939]">Push Notification Preferences</h3>
                   <p className="text-[13px] text-[#667085] mb-5">Control which events trigger push notifications</p>
-                  
+
                   <div className="space-y-3">
                     {[1, 2, 3, 4].map((item) => (
                       <div key={item} className="flex items-center justify-between bg-[#F8F9FC] rounded-xl p-4 border border-transparent hover:border-[#F3F4F6] transition-colors">
@@ -305,10 +305,10 @@ function NotificationDropdown() {
   return (
     <details ref={detailsRef} className="relative" onToggle={(e) => setIsOpen(e.currentTarget.open)}>
       <summary className="list-none cursor-pointer outline-none">
-        <div className="relative inline-flex md:h-10 md:w-10 h-8 w-8 items-center justify-center rounded-xl bg-brand-50 transition-transform hover:bg-brand-100 active:scale-95">
-          <Image src={notificationIcon} alt="Notifications" width={20} height={20} className="h-5 w-5" />
+        <div className="relative inline-flex xl:h-[54px] xl:w-[54px] md:h-10 md:w-10 h-8 w-8 items-center justify-center rounded-xl bg-brand-50 transition-transform hover:bg-brand-100 active:scale-95">
+          <Image src={notificationIcon} alt="Notifications" width={28} height={28} className="h-[20px] w-[20px] md:h-[28px] md:w-[28px] " />
           {unreadCount > 0 && (
-            <span className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full border-2 border-white bg-[#EE5340]"></span>
+            <span className="absolute top-3.5 right-4 h-2.5 w-2.5 rounded-full bg-[#257BFC]"></span>
           )}
         </div>
       </summary>
@@ -372,7 +372,7 @@ export default function Header({
         <button
           type="button"
           onClick={onMenuClick}
-          className="flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-50 text-neutral-600 lg:hidden"
+          className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-lg bg-neutral-50 text-neutral-600 lg:hidden"
           aria-label="Open menu"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -389,7 +389,7 @@ export default function Header({
       </div>
 
       <div className="flex items-center md:gap-3 gap-2 xl:gap-4">
-        <div className="relative hidden sm:block xl:w-56 w-40">
+        <div className="relative hidden sm:block 2xl:w-[360px] xl:w-56 w-40">
           <Image
             src={searchIcon}
             alt="Search"
@@ -398,18 +398,18 @@ export default function Header({
             className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2"
           />
           <input
-            className="w-full rounded-xl border border-neutral-200 bg-neutral-50 py-2 sm:py-2.5 pl-10 sm:pl-11 pr-4 text-sm outline-none focus:border-brand-500 transition-colors"
+            className="w-full rounded-xl border border-[#D9D9D9] py-2 md:py-2.5 xl:py-4 pl-10 sm:pl-11 pr-4 text-sm outline-none focus:border-brand-500 transition-colors"
             placeholder="Search"
           />
         </div>
 
-        <button className="flex md:h-10 md:w-10 h-8 w-8 items-center justify-center rounded-xl hover:bg-neutral-50 sm:hidden">
+        <button className="flex md:h-10 md:w-10 h-6 w-6 items-center justify-center rounded-xl hover:bg-neutral-50 sm:hidden">
           <Image
             src={searchIcon}
             alt="Search"
             width={20}
             height={20}
-            className="h-5 w-5"
+            className="md:h-5 md:w-5 h-4 w-4"
           />
         </button>
 

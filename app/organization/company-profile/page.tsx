@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import appLogo from "@/assets/images/icons/company-profileicon.svg";
 import verifyIcon from "@/assets/images/icons/verified-check.svg";
@@ -28,8 +29,16 @@ export default function CompanyProfilePage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const breadcrumb = (
+    <span className="text-[#98A2B3]">
+      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <span className="mx-1">/</span>
+      <span className="text-neutral-900">Company Profile</span>
+    </span>
+  );
+
   return (
-    <DashboardLayout title="Company Profile" subtitle="Home/ Organization/ Company Profile">
+    <DashboardLayout title="Company Profile" subtitle={breadcrumb}>
       <div className="flex-1 p-4 2xl:p-6">
         <div className="rounded-xl border border-neutral-200 bg-white 2xl:p-6 p-5 shadow-sm">
 

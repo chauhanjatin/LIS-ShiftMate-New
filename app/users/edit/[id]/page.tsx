@@ -6,7 +6,7 @@ import Link from "next/link";
 import backArrow from "@/assets/images/icons/back-arrow.svg";
 import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
-import { User, UserStatus } from "@/Data/users";
+import { User, UserStatus } from "@/types";
 import { useUsers } from "@/hooks/useUsers";
 import Toast from '@/Component/UI/Toast';
 import CustomSelect from "@/Component/UI/CustomSelect";
@@ -134,7 +134,7 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                 <div className="flex flex-col xl:flex-row gap-10 md:gap-6 xl:gap-5 2xl:gap-6 bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
 
                     <div className="w-full xl:w-[353px] shrink-0">
-                        <div className="rounded-xl border border-[#E4E7EC] p-6 bg-[#F9FAFB]">
+                        <div className="rounded-xl border border-[#E4E7EC] p-3 md:p-6 bg-[#F9FAFB]">
                             <div className="flex flex-col items-center text-center">
                                 <img
                                     src={user.avatar}
@@ -149,18 +149,18 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                             </div>
                         </div>
 
-                        <div className="mt-6 md:space-y-6 space-y-4">
+                        <div className="mt-6 md:space-y-6 space-y-2">
                             <div>
-                                <p className="text-[14px] font-normal text-[#98A2B3]">User ID</p>
-                                <p className="mt-1 md:text-[20px] text-[18px] font-medium text-[#111827]">{user.id}</p>
+                                <p className="md:text-[14px] text-[12px] font-normal text-[#98A2B3]">User ID</p>
+                                <p className="mt-1 md:text-[20px] text-[16px] font-medium text-[#111827]">{user.id}</p>
                             </div>
                             <div>
-                                <p className="text-[14px] font-normal text-[#98A2B3]">Department</p>
-                                <p className="mt-1 md:text-[20px] text-[18px] font-medium text-[#111827]">{user.department || '-'}</p>
+                                <p className="md:text-[14px] text-[12px] font-normal text-[#98A2B3]">Department</p>
+                                <p className="mt-1 md:text-[20px] text-[16px] font-medium text-[#111827]">{user.department || '-'}</p>
                             </div>
                             <div>
-                                <p className="text-[14px] font-normal text-[#98A2B3]">Join Date</p>
-                                <p className="mt-1 md:text-[20px] text-[18px] font-medium text-[#111827]">{user.joinDate || '-'}</p>
+                                <p className="md:text-[14px] text-[12px] font-normal text-[#98A2B3]">Join Date</p>
+                                <p className="mt-1 md:text-[20px] text-[16px] font-medium text-[#111827]">{user.joinDate || '-'}</p>
                             </div>
                         </div>
                     </div>
@@ -171,8 +171,8 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                         <div className="bg-white">
 
                             <div className="mb-8">
-                                <h2 className="text-[20px] font-medium text-[#111827]">Basic Information</h2>
-                                <p className="mt-2 text-[14px] text-[#98A2B3] font-normal mb-6">Enter the employee's basic personal information for identification and contact purposes.</p>
+                                <h2 className="md:text-[20px] text-[18px] font-medium text-[#111827]">Basic Information</h2>
+                                <p className="mt-2 md:text-[14px] text-[12px] text-[#98A2B3] font-normal mb-6">Enter the employee's basic personal information for identification and contact purposes.</p>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                                     <div>
@@ -250,8 +250,8 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                             </div>
 
                             <div>
-                                <h2 className="text-[20px] font-medium text-[#111827]">Account Status</h2>
-                                <p className="mt-1 text-[14px] text-[#98A2B3] mb-6">Enter the employee's basic personal information for identification and contact purposes.</p>
+                                <h2 className="md:text-[20px] text-[18px] font-medium text-[#111827]">Account Status</h2>
+                                <p className="mt-1 md:text-[14px] text-[12px] text-[#98A2B3] mb-6">Enter the employee's basic personal information for identification and contact purposes.</p>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-5">
                                     {statuses.map((status) => (

@@ -146,7 +146,7 @@ export default function LoginForm() {
           className="mt-4 min-h-[3.7rem] w-full rounded-[1rem] cursor-pointer"
           disabled={isSubmitting || !email || !password}
         >
-          <span className="text-[1.15rem] font-semibold">
+          <span className="md:text-[16px] text-[14px] font-semibold">
             {isSubmitting ? "Signing in..." : "Login"}
           </span>
         </Button>

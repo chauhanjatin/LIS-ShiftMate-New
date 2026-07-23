@@ -1,21 +1,5 @@
-export interface RolePermissions {
-  [module: string]: {
-    view: boolean;
-    create: boolean;
-    edit: boolean;
-    delete: boolean;
-    approve: boolean;
-    export: boolean;
-  };
-}
+import { Role } from "@/types";
 
-export interface Role {
-  id: string;
-  name: string;
-  description: string;
-  userCount: number;
-  permissions?: RolePermissions;
-}
 
 export const initialRoles: Role[] = [
   {

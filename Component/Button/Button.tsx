@@ -98,7 +98,7 @@ export default function Button({
       disabled={state === "disabled"}
       onMouseDown={handleMouseDown}
       className={cn(
-        "relative isolate inline-flex select-none items-center justify-center gap-2.5 overflow-hidden rounded-[0.9rem] text-base font-semibold tracking-[0.01em] transition-[background-color,border-color,box-shadow,transform,color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-4 disabled:transform-none",
+        "relative isolate inline-flex select-none items-center justify-center gap-2.5 overflow-hidden rounded-[0.9rem] md:text-[16px] text-[14px] font-semibold tracking-[0.01em] transition-[background-color,border-color,box-shadow,transform,color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-4 disabled:transform-none",
         "active:translate-y-px",
         isLink ? "min-h-11 px-3" : "min-h-11 min-w-[150px] px-6",
         buttonStyles[variant][state],

@@ -1,20 +1,5 @@
-export type Status = "Active" | "On Leave" | "Inactive";
+import { Employee } from "@/types";
 
-export interface Employee {
-  id: string;
-  name: string;
-  dept: string;
-  role: string;
-  type: string;
-  status: Status;
-  joinDate: string;
-  avatar: string;
-  firstName?: string;
-  lastName?: string;
-  workEmail?: string;
-  personalEmail?: string;
-  workPhone?: string;
-}
 
 export const initialEmployees: Employee[] = [
   { id: "EMP001", name: "Cameron Williamson", firstName: "Cameron", lastName: "Williamson", workEmail: "cameron.williamson@example.com", personalEmail: "cameron@personal.com", workPhone: "+1 (415) 555-0191", dept: "Engineering", role: "Senior Developer", type: "Full Time", status: "Active", joinDate: "October 25, 2026", avatar: "https://i.pravatar.cc/150?u=1" },

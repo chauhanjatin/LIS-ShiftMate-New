@@ -2,6 +2,7 @@
 
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import Image from "next/image";
+import Link from "next/link";
 import { useNotifications } from "@/hooks/useNotifications";
 import filterIcon from "@/assets/images/icons/filter.svg";
 import { Lexend_Deca } from "next/font/google";
@@ -27,8 +28,16 @@ export default function NotificationsPage() {
     }
   };
 
+  const breadcrumb = (
+    <span className="text-[#98A2B3]">
+      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <span className="mx-1">/</span>
+      <span className="text-neutral-900">Notifications</span>
+    </span>
+  );
+
   return (
-    <DashboardLayout title="Notifications" subtitle="Home / Notifications">
+    <DashboardLayout title="Notifications" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 pb-20 ${lexendDeca.className}`}>
         <div className="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden">
           
