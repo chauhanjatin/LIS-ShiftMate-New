@@ -100,8 +100,8 @@ export default function AllEmployeesPage() {
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Employee List</h2>
 
-            <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-              <div className="relative 2xl:w-75 md:w-60 w-32">
+            <div className="flex flex-col md:flex-row md:items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 w-full md:w-auto">
+              <div className="relative w-full md:w-60 2xl:w-75">
                 <Image
                   src={searchIcon}
                   alt="Search"
@@ -115,6 +115,7 @@ export default function AllEmployeesPage() {
                 />
               </div>
 
+              <div className="flex items-center gap-2.5 md:gap-3 w-full md:w-auto">
               <div className="relative" ref={filterRef}>
                 <button
                   onClick={() => setFilterOpen(!filterOpen)}
@@ -167,8 +168,8 @@ export default function AllEmployeesPage() {
                 </button>
               )}
 
-              <Link href="/employees/add-employee">
-                <button className="flex items-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] px-2.5 py-2 2xl:px-5 md:py-3 text-[12px] 2xl:text-[16px] text-white transition hover:bg-blue-600 cursor-pointer">
+              <Link href="/employees/add-employee" className="flex-1 md:flex-none flex">
+                <button className="w-full flex items-center justify-center gap-1 md:gap-2 rounded-xl bg-[#257BFC] px-2.5 py-2 2xl:px-5 md:py-3 text-[12px] 2xl:text-[16px] text-white transition hover:bg-blue-600 cursor-pointer">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -176,6 +177,7 @@ export default function AllEmployeesPage() {
                   Add Employee
                 </button>
               </Link>
+              </div>
             </div>
           </div>
 

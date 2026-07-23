@@ -52,9 +52,9 @@ export default function RolesPage() {
               Roles List
             </h2>
 
-            <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+            <div className="flex flex-col md:flex-row md:items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 w-full md:w-auto">
               
-              <div className="relative 2xl:w-75 lg:w-60 md:w-50 w-38">
+              <div className="relative w-full md:w-50 lg:w-60 2xl:w-75">
                 <Image
                   src={searchIcon}
                   alt="Search"
@@ -68,8 +68,8 @@ export default function RolesPage() {
                 />
               </div>
 
-              <Link href="/roles/add">
-                <button className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-2 md:px-2.5 md:py-2.5 lg:px-5 lg:py-3 text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+              <Link href="/roles/add" className="w-full md:w-auto flex">
+                <button className="flex-1 md:flex-none flex items-center justify-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] p-2 md:px-2.5 md:py-2.5 lg:px-5 lg:py-3 text-[12px] xl:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
