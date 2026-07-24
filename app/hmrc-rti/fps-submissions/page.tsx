@@ -18,7 +18,7 @@ export default function FPSSubmissionsPage() {
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">HMRC RTI</span>
       <span className="mx-1">/</span>
@@ -44,11 +44,11 @@ export default function FPSSubmissionsPage() {
   const renderBadge = (status: string) => {
     switch (status) {
       case "Accepted":
-        return <span className="inline-flex items-center rounded-full bg-[#EAF9EA] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#4DB949]">Accepted</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#EAF9EA] md:px-3.5 px-2 md:py-2.5 py-1.5 md:text-[14px] text-[11px] font-normal text-[#4DB949]">Accepted</span>;
       case "Pending":
-        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#F59E0B]">Pending</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] md:px-3.5 px-2 md:py-2.5 py-1.5 md:text-[14px] text-[11px] font-normal text-[#F59E0B]">Pending</span>;
       case "Rejected":
-        return <span className="inline-flex items-center rounded-full bg-[#FEF2F2] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#EF4444]">Rejected</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#FEF2F2] md:px-3.5 px-2 md:py-2.5 py-1.5 md:text-[14px] text-[11px] font-normal text-[#EF4444]">Rejected</span>;
       default:
         return <span>{status}</span>;
     }
@@ -59,14 +59,14 @@ export default function FPSSubmissionsPage() {
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 pt-4 md:pt-6 pb-10">
           
-          <div className="flex flex-wrap md:flex-nowrap justify-between items-center mb-8">
+          <div className="flex flex-wrap md:flex-nowrap justify-between items-center md:mb-8 mb-4">
             <h2 className="text-[20px] font-medium text-[#111827]">FPS Submissions</h2>
-            <div className="flex flex-wrap md:flex-nowrap mt-3 md:mt-0 md:gap-4 gap-2">
+            <div className="flex mt-3 md:mt-0 md:gap-4 gap-2">
               <div className="relative">
                 <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" placeholder="Search.." className="rounded-xl border border-neutral-200 bg-white py-2 pl-9 pr-4 text-[14px] text-neutral-900 outline-none focus:border-[#257BFC] transition-colors md:min-w-[240px]" />
+                <input type="text" placeholder="Search.." className="rounded-xl border border-neutral-200 bg-white py-2 pl-9 pr-4 md:text-[14px] text-[12px] text-neutral-900 outline-none focus:border-[#257BFC] transition-colors md:min-w-[240px]" />
               </div>
-              <button onClick={handleExport} className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer">
+              <button onClick={handleExport} className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2 md:text-[14px] text-[12px] font-medium text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 Export
               </button>
@@ -75,7 +75,7 @@ export default function FPSSubmissionsPage() {
 
           <div className="overflow-x-auto rounded-xl border border-[#E2E8F0]">
             <table className="w-full text-left">
-              <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] text-[12px] md:text-[14px] 2xl:text-[16px]">
+              <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] text-[14px] 2xl:text-[16px]">
                 <tr>
                   <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Period</th>
                   <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Employees</th>
@@ -83,7 +83,7 @@ export default function FPSSubmissionsPage() {
                   <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Submitted Date</th>
                   <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Acknowledgement</th>
                   <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Status</th>
-                  <th className="px-6 py-2.5 font-normal">Action</th>
+                  <th className="md:px-6 px-4 py-2.5 font-normal">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E2E8F0] text-[11px] md:text-[12px] lg:text-[14px]">
@@ -112,7 +112,7 @@ export default function FPSSubmissionsPage() {
           </div>
 
           {/* Pagination */}
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+          <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
               <div className="flex items-center gap-2">
                   <span className="text-[12px] sm:text-[14px] text-neutral-500">
                       Rows per page:

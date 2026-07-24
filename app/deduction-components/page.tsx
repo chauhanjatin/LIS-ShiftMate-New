@@ -183,7 +183,7 @@ export default function DeductionComponentsPage() {
 
     const breadcrumb = (
         <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <span className="text-neutral-900">Deduction Components</span>
         </span>
@@ -196,8 +196,8 @@ export default function DeductionComponentsPage() {
                     <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Deduction Components</h2>
 
-                        <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative 2xl:w-75 md:w-60 w-32">
+                        <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+                            <div className="relative 2xl:w-75 md:w-60 w-full">
                                 <Image
                                     src={searchIcon}
                                     alt="Search"
@@ -230,20 +230,20 @@ export default function DeductionComponentsPage() {
                                 <table className="min-w-[1100px] w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
                                         <tr>
-                                            <th className="border-b border-[#E2E8F0] py-[10px] pl-4 pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] rounded-l-lg">Deduction Name</th>
-                                            <th className="border-b border-[#E2E8F0] py-[10px] pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Type</th>
-                                            <th className="border-b border-[#E2E8F0] py-[10px] pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Rate</th>
-                                            <th className="border-b border-[#E2E8F0] py-[10px] pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827]">Applicable Rules</th>
-                                            <th className="border-b border-[#E2E8F0] px-6 py-[10px] pr-4 text-[12px] sm:text-[16px] font-normal text-[#111827] rounded-r-lg">Action</th>
+                                            <th className="border-b border-[#E2E8F0] py-[10px] pl-4 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827] rounded-l-lg">Deduction Name</th>
+                                            <th className="border-b border-[#E2E8F0] py-[10px] pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Type</th>
+                                            <th className="border-b border-[#E2E8F0] py-[10px] pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Rate</th>
+                                            <th className="border-b border-[#E2E8F0] py-[10px] pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Applicable Rules</th>
+                                            <th className="border-b border-[#E2E8F0] px-6 py-[10px] pr-4 text-[14px] md:text-[16px] font-normal text-[#111827] rounded-r-lg">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white">
                                         {paginatedDeductions.map((deduction) => (
                                             <tr key={deduction.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                                                <td className="py-6 pl-4 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.name}</td>
-                                                <td className="py-6 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.type}</td>
-                                                <td className="py-6 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.rate}</td>
-                                                <td className="py-6 pr-6 text-[13px] sm:text-[14px] text-[#111827]">
+                                                <td className="md:py-6 py-4 pl-4 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.name}</td>
+                                                <td className="md:py-6 py-4 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.type}</td>
+                                                <td className="md:py-6 py-4 pr-26 text-[13px] sm:text-[14px] font-normal text-[#111827]">{deduction.rate}</td>
+                                                <td className="md:py-6 py-4 pr-6 text-[13px] sm:text-[14px] text-[#111827]">
                                                     <div className="flex items-start gap-2 max-w-[500px]">
                                                         <input
                                                             type="checkbox"
@@ -275,7 +275,7 @@ export default function DeductionComponentsPage() {
                         </div>
 
                         {/* Pagination */}
-                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+                        <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
                             <div className="flex items-center gap-2">
                                 <span className="text-[12px] sm:text-[14px] text-neutral-500">
                                     Rows per page:

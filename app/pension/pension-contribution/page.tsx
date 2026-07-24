@@ -34,25 +34,25 @@ const getStatusBadge = (status: string) => {
   switch (status.toLowerCase()) {
     case 'enrolled':
       return (
-        <span className="inline-flex items-center justify-center rounded-full bg-[#EDFAF2] px-3.5 py-2.5 2xl:text-[14px] md:text-[12px] font-normal text-[#4DB949]">
+        <span className="inline-flex items-center justify-center rounded-full bg-[#EDFAF2] px-3.5 py-2.5 2xl:text-[14px] text-[12px] font-normal text-[#4DB949]">
           Enrolled
         </span>
       );
     case 'pending':
       return (
-        <span className="inline-flex items-center justify-center rounded-full bg-[#FFF6E8] px-3.5 py-2.5 2xl:text-[14px] md:text-[12px] font-normal text-[#FFA100]">
+        <span className="inline-flex items-center justify-center rounded-full bg-[#FFF6E8] px-3.5 py-2.5 2xl:text-[14px] text-[12px] font-normal text-[#FFA100]">
           Pending
         </span>
       );
     case 'not enrolled':
       return (
-        <span className="inline-flex items-center justify-center rounded-full bg-[#EAF2FF] px-3.5 py-2.5 2xl:text-[14px] md:text-[12px] font-normal text-[#2E334E] whitespace-nowrap">
+        <span className="inline-flex items-center justify-center rounded-full bg-[#EAF2FF] px-3.5 py-2.5 2xl:text-[14px] text-[12px] font-normal text-[#2E334E] whitespace-nowrap">
           Not Enrolled
         </span>
       );
     case 'opted out':
       return (
-        <span className="inline-flex items-center justify-center rounded-full bg-[#FEE2E2] px-3.5 py-2.5 2xl:text-[14px] md:text-[12px] font-normal text-[#EF4444]">
+        <span className="inline-flex items-center justify-center rounded-full bg-[#FEE2E2] px-3.5 py-2.5 2xl:text-[14px] text-[12px] font-normal text-[#EF4444]">
           Opted Out
         </span>
       );
@@ -77,7 +77,7 @@ export default function PensionContributionPage() {
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Pension</span>
       <span className="mx-1">/</span>
@@ -89,11 +89,11 @@ export default function PensionContributionPage() {
     <DashboardLayout title="Pension Contribution" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-xl bg-white shadow-sm overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
+          <div className="flex flex-wrap items-center justify-between md:px-6 px-3 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Pension Contribution</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-              <div className="relative 2xl:w-75 md:w-60 w-32">
+              <div className="relative 2xl:w-75 md:w-60 w-50">
                 <Image
                   src={searchIcon}
                   alt="Search"
@@ -146,20 +146,20 @@ export default function PensionContributionPage() {
                             </span>
                           </div>
                         </td>
-                        <td className="md:px-4 py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{item.pensionScheme}</td>
-                        <td className="md:px-4 py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{item.employeeContribution}</td>
-                        <td className="md:px-4 py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{item.employerContribution}</td>
-                        <td className="md:px-4 py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{getStatusBadge(item.totalContribution)}</td>
-                        <td className="md:px-4 py-6 sm:px-6 text-[13px] md:text-[14px] font-normal text-neutral-500">{item.date}</td>
+                        <td className="px-4 md:py-6 py-4 md:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{item.pensionScheme}</td>
+                        <td className="px-4 md:py-6 py-4 md:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{item.employeeContribution}</td>
+                        <td className="px-4 md:py-6 py-4 md:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{item.employerContribution}</td>
+                        <td className="px-4 md:py-6 py-4 md:px-6 text-[13px] md:text-[14px] font-normal text-neutral-900">{getStatusBadge(item.totalContribution)}</td>
+                        <td className="px-4 md:py-6 py-4 md:px-6 text-[13px] md:text-[14px] font-normal text-neutral-500">{item.date}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+              <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
                 <div className="flex items-center gap-2">
-                  <span className="text-[12px] sm:text-[14px] text-neutral-500">
+                  <span className="text-[12px] md:text-[14px] text-neutral-500">
                     Rows per page:
                   </span>
                   <div className="w-[80px]">
@@ -172,12 +172,12 @@ export default function PensionContributionPage() {
                         { label: "20", value: "20" }
                       ]}
                       menuPlacement="top"
-                      className="!py-1 !px-2 text-[12px] sm:text-[14px] min-h-[32px]"
+                      className="!py-1 !px-2 text-[12px] md:text-[14px] min-h-[32px]"
                     />
                   </div>
                 </div>
 
-                <span className="text-[12px] sm:text-[14px] text-neutral-500 ml-4">
+                <span className="text-[12px] md:text-[14px] text-neutral-500 ml-4">
                   {contributions.length > 0 ? `${startIndex + 1}-${Math.min(startIndex + rowsPerPage, contributions.length)} of ${contributions.length}` : '0-0 of 0'}
                 </span>
 

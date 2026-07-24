@@ -20,7 +20,7 @@ function FieldShell({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="group flex min-h-14 items-center rounded-[1rem] border border-[#c9d5e8] bg-white px-4 transition-all duration-200 focus-within:border-brand-500 focus-within:ring-4 focus-within:ring-brand-100/70">
+    <div className="group flex md:min-h-14 min-h-10 items-center rounded-[1rem] border border-[#c9d5e8] bg-white px-4 transition-all duration-200 focus-within:border-[#111827] focus-within:ring-1 focus-within:ring-[#111827]">
       {children}
     </div>
   );
@@ -67,7 +67,7 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-[37.5rem] rounded-[2rem] px-6 py-7 xl:px-8 xl:py-9">
+    <div className="w-full max-w-[37.5rem] rounded-[2rem] px-4 py-5 md:px-6 md:py-7 xl:px-8 xl:py-9">
       <div className="text-center">
         <h1 className="xl:text-[32px] text-[30px] font-black text-neutral-900">
           Welcome Back
@@ -77,11 +77,11 @@ export default function LoginForm() {
         </p>
       </div>
 
-      <form className="mt-10 space-y-5" onSubmit={handleSubmit}>
+      <form className="md:mt-10 mt-8 space-y-5" onSubmit={handleSubmit}>
         <div className="space-y-2">
           <label
             htmlFor="login-email"
-            className="block text-[1.05rem] font-semibold tracking-tight text-neutral-900"
+            className="block text-[14px] font-semibold tracking-tight text-neutral-900"
           >
             Email
           </label>
@@ -91,7 +91,7 @@ export default function LoginForm() {
               id="login-email"
               type="email"
               autoComplete="email"
-              className="w-full border-0 bg-transparent text-[1.1rem] text-neutral-900 outline-none placeholder:text-neutral-400"
+              className="w-full border-0 bg-transparent text-[14px] text-[#111827] outline-none placeholder:text-neutral-400"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -101,7 +101,7 @@ export default function LoginForm() {
         <div className="space-y-2">
           <label
             htmlFor="login-password"
-            className="block text-[1.05rem] font-semibold tracking-tight text-neutral-900"
+            className="block text-[14px] font-semibold tracking-tight text-neutral-900"
           >
             Password
           </label>
@@ -111,7 +111,7 @@ export default function LoginForm() {
               id="login-password"
               type={showPassword ? "text" : "password"}
               autoComplete="current-password"
-              className="w-full border-0 bg-transparent text-[1.1rem] text-neutral-900 outline-none placeholder:text-neutral-400"
+              className="w-full border-0 bg-transparent text-[14px] text-[#111927] outline-none placeholder:text-neutral-400"
               placeholder="Enter your password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
@@ -129,13 +129,13 @@ export default function LoginForm() {
         <div className="flex flex-wrap items-center justify-between gap-4 pt-1">
           <Checkbox
             checked={rememberMe}
-            className="gap-2.5 text-[1rem] font-medium text-neutral-600"
+            className="gap-2 text-[12px] md:text-[14px] font-medium text-neutral-600"
             label="Remember me"
             onChange={(event) => setRememberMe(event.target.checked)}
           />
           <Link
             href="/forgot-password"
-            className="text-[1rem] font-semibold text-brand-500 underline-offset-4 transition-colors hover:text-brand-600 hover:underline"
+            className="text-[12px] md:text-[14px] font-semibold text-brand-500 underline-offset-4 transition-colors hover:text-brand-600 hover:underline"
           >
             Forgot Password?
           </Link>
@@ -143,7 +143,7 @@ export default function LoginForm() {
 
         <Button
           type="submit"
-          className="mt-4 min-h-[3.7rem] w-full rounded-[1rem] cursor-pointer"
+          className="mt-4 md:min-h-[3.7rem] w-full rounded-[1rem] cursor-pointer"
           disabled={isSubmitting || !email || !password}
         >
           <span className="md:text-[16px] text-[14px] font-semibold">
@@ -152,7 +152,7 @@ export default function LoginForm() {
         </Button>
       </form>
 
-      <div className="mt-8 text-center text-[1rem] text-neutral-400">
+      <div className="md:mt-8 mt-4 text-center md:text-[16px] text-[14px] text-neutral-400">
         Don't have an account?{" "}
         <Link
           href="#"
@@ -163,12 +163,12 @@ export default function LoginForm() {
       </div>
 
       <div className="mt-5 border-t border-neutral-200 pt-4">
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[0.98rem] font-medium text-neutral-400">
-          <span className="inline-flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-center md:gap-x-6 gap-x-5 gap-y-3 md:text-[16px] text-[14px] font-medium text-neutral-400">
+          <span className="inline-flex items-center md:gap-2 gap-1">
             <ShieldCheckIcon className="text-neutral-400" />
             Secure login
           </span>
-          <span className="inline-flex items-center gap-2">
+          <span className="inline-flex items-center md:gap-2 gap-1">
             <LockIcon className="text-neutral-400" />
             Data encrypted
           </span>

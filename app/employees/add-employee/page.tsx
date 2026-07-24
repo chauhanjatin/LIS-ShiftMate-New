@@ -134,7 +134,7 @@ export default function AddEmployeePage() {
 
   const breadcrumb = (
     <span className="text-[#98A2B3]">
-        <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+        <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
         <span className="mx-1">/</span>
         <Link href="/employees/all-employees" className="hover:text-brand-500 transition-colors">Employees</Link>
         <span className="mx-1">/</span>
@@ -198,24 +198,24 @@ export default function AddEmployeePage() {
           </div>
 
           <div className="md:mt-[48px] mb-8">
-            <h3 className="mb-[32px] text-[20px] font-medium text-neutral-900">{STEPS[currentStep - 1]}</h3>
+            <h3 className="md:mb-[32px] mb-[28px] text-[20px] font-medium text-neutral-900">{STEPS[currentStep - 1]}</h3>
 
             {currentStep === 1 && (
-              <div className="md:mx-[6%] grid gap-6 sm:grid-cols-2">
+              <div className="md:mx-[6%] grid md:gap-6 gap-4 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">First name</label>
-                  <input name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" className={`w-full rounded-xl border ${errors.firstName ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
+                  <input name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" className={`w-full rounded-xl border ${errors.firstName ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 text-[12px] md:text-[14px] outline-none focus:border-[#257BFC]`} />
                   {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Last Name</label>
-                  <input name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Enter your last name" className={`w-full rounded-xl border ${errors.lastName ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
+                  <input name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Enter your last name" className={`w-full rounded-xl border ${errors.lastName ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 text-[12px] md:text-[14px] outline-none focus:border-[#257BFC]`} />
                   {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Date of Birth</label>
                   <div className="relative">
-                    <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.dob ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC] text-neutral-500`} />
+                    <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className={`w-full rounded-xl border ${errors.dob ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 text-[12px] md:text-[14px] outline-none focus:border-[#257BFC] text-neutral-500`} />
                   </div>
                   {errors.dob && <p className="text-red-500 text-xs mt-1">{errors.dob}</p>}
                 </div>
@@ -231,28 +231,28 @@ export default function AddEmployeePage() {
                     ]}
                     placeholder="Select your gender"
                     error={!!errors.gender}
-                    className="md:!p-3 !p-2"
+                    className="md:!p-3 !p-2 "
                   />
                   {errors.gender && <p className="text-red-500 text-xs mt-1">{errors.gender}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Phone</label>
-                  <input name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter your phone number" className={`w-full rounded-xl border ${errors.phone ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
+                  <input name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter your phone number" className={`w-full rounded-xl border ${errors.phone ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 text-[12px] md:text-[14px] outline-none focus:border-[#257BFC]`} />
                   {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Email</label>
-                  <input name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" type="email" className={`w-full rounded-xl border ${errors.email ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
+                  <input name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" type="email" className={`w-full rounded-xl border ${errors.email ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 text-[12px] md:text-[14px] outline-none focus:border-[#257BFC]`} />
                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Address</label>
-                  <input name="address" value={formData.address} onChange={handleInputChange} placeholder="Enter your address" className={`w-full rounded-xl border ${errors.address ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
+                  <input name="address" value={formData.address} onChange={handleInputChange} placeholder="Enter your address" className={`w-full rounded-xl border ${errors.address ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 text-[12px] md:text-[14px] outline-none focus:border-[#257BFC]`} />
                   {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address}</p>}
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[#111827]">Emergency Contact</label>
-                  <input name="emergencyContact" value={formData.emergencyContact} onChange={handleInputChange} placeholder="Enter emergency contact number" className={`w-full rounded-xl border ${errors.emergencyContact ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 outline-none focus:border-[#257BFC]`} />
+                  <input name="emergencyContact" value={formData.emergencyContact} onChange={handleInputChange} placeholder="Enter emergency contact number" className={`w-full rounded-xl border ${errors.emergencyContact ? 'border-red-500' : 'border-neutral-200'} md:p-3 p-2 text-[12px] md:text-[14px] outline-none focus:border-[#257BFC]`} />
                   {errors.emergencyContact && <p className="text-red-500 text-xs mt-1">{errors.emergencyContact}</p>}
                 </div>
               </div>
@@ -755,7 +755,7 @@ export default function AddEmployeePage() {
             )}
           </div>
 
-          <div className="md:mt-[48px] mt-8 flex justify-end md:gap-4 gap-2 md:pt-8">
+          <div className="md:mt-[48px] mt-3 flex justify-end md:gap-4 gap-2 md:pt-8">
             {currentStep === 1 ? (
               <Link href="/employees/all-employees">
                 <button className="rounded-xl cursor-pointer border border-neutral-300 bg-white 2xl:px-6 xl:px-7 px-4 2xl:py-3 py-2 2xl:text-[16px] text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50">

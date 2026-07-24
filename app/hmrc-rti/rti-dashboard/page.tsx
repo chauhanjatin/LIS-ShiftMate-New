@@ -69,7 +69,7 @@ const MetricCard = ({ title, value, type }: { title: string, value: string, type
 export default function RTIDashboardPage() {
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">HMRC RTI</span>
       <span className="mx-1">/</span>
@@ -91,9 +91,9 @@ export default function RTIDashboardPage() {
   const renderBadge = (status: string) => {
     switch (status) {
       case "Pending":
-        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] px-3.5 py-2.5 text-[12px] md:text-[14px] font-normal text-[#F59E0B]">Pending</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] md:px-3.5 px-2 md:py-2.5 py-1.5 text-[12px] md:text-[14px] font-normal text-[#F59E0B]">Pending</span>;
       case "Successful":
-        return <span className="inline-flex items-center rounded-full bg-[#EAF9EA] px-3.5 py-2.5 text-[12px] md:text-[14px] font-normal text-[#4DB949]">Successful</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#EAF9EA] md:px-3.5 px-2 md:py-2.5 py-1.5 text-[12px] md:text-[14px] font-normal text-[#4DB949]">Successful</span>;
       default:
         return <span>{status}</span>;
     }
@@ -118,11 +118,11 @@ export default function RTIDashboardPage() {
               <table className="w-full text-left">
                 <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] md:text-[16px] text-[12px]">
                   <tr>
-                    <th className="px-6 md:py-2.5 py-1.5 font-normal">Filing Type</th>
-                    <th className="px-6 md:py-2.5 py-1.5 font-normal">Tax Period</th>
-                    <th className="px-6 md:py-2.5 py-1.5 font-normal">Due Date</th>
-                    <th className="px-6 md:py-2.5 py-1.5 font-normal">Status</th>
-                    <th className="px-6 md:py-2.5 py-1.5 font-normal">Action</th>
+                    <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Filing Type</th>
+                    <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Tax Period</th>
+                    <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Due Date</th>
+                    <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Status</th>
+                    <th className="md:px-6 px-4 md:py-2.5 py-1.5 font-normal">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#E2E8F0] md:text-[14px] text-[10px]">
@@ -150,21 +150,21 @@ export default function RTIDashboardPage() {
               <table className="w-full text-left text-[14px]">
                 <thead className="border-b border-[#E2E8F0] bg-[#F8FAFC] text-[#111827] md:text-[16px] text-[12px]">
                   <tr>
-                    <th className="px-6 py-2.5 font-normal">Filing Type</th>
-                    <th className="px-6 py-2.5 font-normal">Tax Period</th>
-                    <th className="px-6 py-2.5 font-normal">Due Date</th>
-                    <th className="px-6 py-2.5 font-normal">Status</th>
-                    <th className="px-6 py-2.5 font-normal">Action</th>
+                    <th className="md:px-6 px-4 py-2.5 font-normal">Filing Type</th>
+                    <th className="md:px-6 px-4 py-2.5 font-normal">Tax Period</th>
+                    <th className="md:px-6 px-4 py-2.5 font-normal">Due Date</th>
+                    <th className="md:px-6 px-4 py-2.5 font-normal">Status</th>
+                    <th className="md:px-6 px-4 py-2.5 font-normal">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#E2E8F0] md:text-[14px] text-[10px]">
                   {recentSubmissions.map((row, idx) => (
                     <tr key={idx} className="hover:bg-neutral-50">
-                      <td className="p-6 font-normal text-[#111827]">{row.type}</td>
-                      <td className="p-6 font-normal text-[#111827]">{row.period}</td>
-                      <td className="p-6 font-normal text-[#111827]">{row.date}</td>
-                      <td className="p-6">{renderBadge(row.status)}</td>
-                      <td className="p-6">
+                      <td className="md:p-6 p-3 font-normal text-[#111827]">{row.type}</td>
+                      <td className="md:p-6 p-3 font-normal text-[#111827]">{row.period}</td>
+                      <td className="md:p-6 p-3 font-normal text-[#111827]">{row.date}</td>
+                      <td className="md:p-6 p-3">{renderBadge(row.status)}</td>
+                      <td className="md:p-6 p-3">
                         <Link href={row.link} className="text-[#64748B] hover:text-[#257BFC]">
                           <Image src={viewIcon} alt="View" />
                         </Link>

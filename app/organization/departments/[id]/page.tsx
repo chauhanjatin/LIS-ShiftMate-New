@@ -62,7 +62,7 @@ export default function DepartmentDetailsPage() {
 
   const breadcrumb = (
     <span className="text-[#98A2B3]">
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <Link href="/organization/departments" className="hover:text-brand-500 transition-colors">Departments</Link>
       <span className="mx-1">/</span>

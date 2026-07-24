@@ -5,6 +5,7 @@ import Image from "next/image";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import CustomSelect from "@/Component/UI/CustomSelect";
 import searchIcon from "@/assets/images/icons/search.svg";
+import Link from "next/link";
 
 type Task = {
   id: number;
@@ -110,7 +111,7 @@ export default function OnboardingPage() {
   return (
     <DashboardLayout title="Onboarding" subtitle={
       <span className="text-[#98A2B3]">
-        <span className="hover:text-brand-500 transition-colors cursor-pointer">Home</span>
+        <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
         <span className="mx-1">/</span>
         <span className="text-neutral-900">Onboarding</span>
       </span>
@@ -118,14 +119,14 @@ export default function OnboardingPage() {
       <div className="flex-1 p-4 2xl:p-6 pb-20">
         <div className="rounded-xl bg-white shadow-sm overflow-hidden md:p-6 p-4 min-h-[800px]">
           
-          <div className="flex flex-wrap items-center justify-between mb-8">
+          <div className="flex flex-wrap items-center justify-between md:mb-8 mb-6">
             <h2 className="text-[20px] font-medium text-[#111827] m-0">Onboarding</h2>
 
-            <div className="flex flex-wrap items-center gap-4 mt-3 sm:mt-0">
-              <div className="relative md:w-[280px] w-[200px]">
+            <div className="flex flex-wrap items-center md:gap-4 gap-2 mt-3 sm:mt-0">
+              <div className="relative w-full md:w-[280px]">
                 <Image src={searchIcon} alt="Search" width={20} height={20} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
-                  className="w-full rounded-xl border border-[#E2E8F0] bg-white py-2.5 pl-10 pr-4 md:text-[14px] text-[12px] outline-none focus:border-brand-500 transition-colors"
+                  className="w-full rounded-xl border border-[#E2E8F0] bg-white md:py-2.5 py-2 pl-10 pr-4 md:text-[14px] text-[12px] outline-none focus:border-brand-500 transition-colors"
                   placeholder="Search Employee"
                 />
               </div>

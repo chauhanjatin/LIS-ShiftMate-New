@@ -47,9 +47,9 @@ export default function PayrollSettingsPage() {
 
     const breadcrumb = (
         <span className="text-[#98A2B3]">
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
-            <span className="text-neutral-900">Payroll Settings</span>
+            <span className="text-[#111827]">Payroll Settings</span>
         </span>
     );
 
@@ -58,13 +58,13 @@ export default function PayrollSettingsPage() {
             <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
                 <div className="rounded-xl bg-white shadow-sm pb-10">
                     <div className="flex flex-wrap items-center justify-between md:p-6 p-4">
-                        <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">General Setting</h2>
+                        <h2 className="md:text-[20px] text-[18px] font-medium text-[#111827]">General Setting</h2>
                     </div>
 
                     <div className="mx-[6%]">
-                        <div className="grid gap-6 sm:grid-cols-2">
+                        <div className="grid gap-4 md:gap-6 sm:grid-cols-2">
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-[#111827]">Payroll Frequency</label>
+                                <label className="mb-2 block text-[14px] text-[#111827]">Payroll Frequency</label>
                                 <CustomSelect 
                                     value={formData.payrollFrequency} 
                                     onChange={(val) => setFormData(prev => ({ ...prev, payrollFrequency: val }))} 
@@ -76,11 +76,11 @@ export default function PayrollSettingsPage() {
                                 />
                             </div>
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-[#111827]">Payroll Start Date</label>
+                                <label className="mb-2 block text-[14px] text-[#111827]">Payroll Start Date</label>
                                 <input type="date" name="payrollStartDate" value={formData.payrollStartDate} onChange={handleInputChange} placeholder="MM/DD/YYYY" className="w-full rounded-xl border border-neutral-200 md:p-3 p-2 text-[12px] md:text-[16px] outline-none focus:border-[#257BFC] text-[#9CA3AF]" />
                             </div>
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-[#111827]">Tax Year</label>
+                                <label className="mb-2 block text-[14px] text-[#111827]">Tax Year</label>
                                 <CustomSelect 
                                     value={formData.taxYear} 
                                     onChange={(val) => setFormData(prev => ({ ...prev, taxYear: val }))} 
@@ -92,7 +92,7 @@ export default function PayrollSettingsPage() {
                                 />
                             </div>
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-[#111827]">Currency</label>
+                                <label className="mb-2 block text-[14px] text-[#111827]">Currency</label>
                                 <CustomSelect 
                                     value={formData.currency} 
                                     onChange={(val) => setFormData(prev => ({ ...prev, currency: val }))} 
@@ -106,20 +106,20 @@ export default function PayrollSettingsPage() {
                                 />
                             </div>
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-[#111827]">Default Working Hours (per week)</label>
+                                <label className="mb-2 block text-[14px] text-[#111827]">Default Working Hours (per week)</label>
                                 <input name="defaultWorkingHours" value={formData.defaultWorkingHours} onChange={handleInputChange} placeholder="Enter Working Hours" className="w-full rounded-xl border border-neutral-200 md:p-3 p-2 text-[12px] md:text-[16px] outline-none focus:border-[#257BFC] text-[#4B5563]" />
                             </div>
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-[#111827]">Payroll Cut-off Date (Day of Month)</label>
+                                <label className="mb-2 block text-[14px] text-[#111827]">Payroll Cut-off Date (Day of Month)</label>
                                 <input name="payrollCutoffDate" value={formData.payrollCutoffDate} onChange={handleInputChange} placeholder="25" className="w-full rounded-xl border border-neutral-200 md:p-3 p-2 text-[12px] md:text-[16px] outline-none focus:border-[#257BFC] text-[#4B5563]" />
                             </div>
                         </div>
 
-                        <div className="mt-10 flex items-center justify-end gap-4">
-                            <button className="rounded-xl border border-neutral-200 md:px-8 px-4 py-2.5 text-[12px] md:text-[16px] font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer">
+                        <div className="md:mt-10 mt-8 flex items-center justify-end gap-4">
+                            <button className="rounded-xl border border-neutral-200 md:px-8 px-4 py-2.5 text-[14px] md:text-[16px] font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer">
                                 Reset
                             </button>
-                            <button onClick={handleSave} className="rounded-xl bg-[#257BFC] px-8 py-2.5 text-[12px] md:text-[16px] font-semibold text-white hover:bg-blue-600 transition-colors cursor-pointer">
+                            <button onClick={handleSave} className="rounded-xl bg-[#257BFC] px-8 py-2.5 text-[14px] md:text-[16px] font-semibold text-white hover:bg-blue-600 transition-colors cursor-pointer">
                                 Save
                             </button>
                         </div>

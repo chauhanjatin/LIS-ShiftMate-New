@@ -27,7 +27,7 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
 
     const breadcrumb = (
         <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <Link href="/payslip-list" className="hover:text-brand-500 transition-colors">Payslip List</Link>
             <span className="mx-1">/</span>
@@ -68,7 +68,7 @@ export default function PayslipDetailsPage({ params }: { params: Promise<{ id: s
                     </div>
                 </Link>
 
-                <div className="bg-white p-6 rounded-2xl">
+                <div className="bg-white md:p-6 p-4 rounded-2xl">
                     <div className="mb-6 flex flex-wrap items-center justify-between gap-4 print:hidden">
                         <h2 className="lg:text-[20px] md:text-[18px] text-[16px] font-bold text-neutral-900">{decodedName} - March 2026</h2>
 

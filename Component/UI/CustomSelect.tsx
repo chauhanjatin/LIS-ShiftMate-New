@@ -42,7 +42,7 @@ export default function CustomSelect({
       <div
         className={`w-full rounded-xl border ${
           error ? "border-red-500" : "border-[#D0D5DD]"
-        } bg-white px-4 py-2.5 text-[14px] outline-none cursor-pointer flex justify-between items-center transition-colors ${
+        } bg-white px-4 py-2.5 text-[12px] md:text-[14px] outline-none cursor-pointer flex justify-between items-center transition-colors ${
           isOpen ? "border-black ring-1 ring-black" : ""
         } ${className}`}
         onClick={() => setIsOpen(!isOpen)}
@@ -70,7 +70,7 @@ export default function CustomSelect({
           {options.map((option) => (
             <div
               key={option.value}
-              className={`px-4 py-2.5 text-[14px] cursor-pointer hover:bg-neutral-100 transition-colors ${
+              className={`px-4 md:py-2.5 py-2 text-[12px] md:text-[14px] cursor-pointer hover:bg-neutral-100 transition-colors ${
                 value === option.value ? "bg-neutral-50 font-medium text-[#257BFC]" : "text-neutral-900"
               }`}
               onClick={() => {

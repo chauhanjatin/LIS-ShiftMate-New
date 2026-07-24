@@ -19,7 +19,7 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
 
     const breadcrumb = (
         <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <Link href="/payroll-runs" className="hover:text-brand-500 transition-colors">Payroll Runs</Link>
             <span className="mx-1">/</span>
@@ -136,7 +136,7 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
                                 <table className="min-w-full text-left border-collapse">
                                     <thead className="bg-[#F8F9FC]">
                                         <tr className="border-b border-[#E2E8F0]">
-                                            <th className="py-[10px] pl-6 pr-6 md:text-[16px] text-[13px] font-semibold text-[#111827]">Tax Type</th>
+                                            <th className="py-[10px] md:pl-6 pl-4 pr-6 md:text-[16px] text-[13px] font-semibold text-[#111827]">Tax Type</th>
                                             <th className="py-[10px] pr-6 md:text-[16px] text-[13px] font-semibold text-[#111827]">Rate</th>
                                             <th className="px-4 py-[10px] sm:px-6 md:text-[16px] text-[13px] font-semibold text-[#111827]">Amount</th>
                                         </tr>
@@ -162,14 +162,14 @@ export default function EmployeePayrollBreakdownPage({ params }: { params: Promi
                             </div>
                         </div>
                         
-                        <div className="mt-6 flex items-center justify-between rounded-xl bg-[#F0FDF4] md:p-6 p-4 border border-[#DCFCE7]">
+                        <div className="mt-6 flex items-center justify-between rounded-xl bg-[#F0FDF4] md:p-6 p-3 border border-[#DCFCE7]">
                             <div>
                                 <p className="text-[12px] font-semibold text-[#111827] mb-1">After All Deductions</p>
-                                <p className="md:text-[20px] text-[16px] font-bold text-[#111827]">Gross: £4,500 - Deductions: £1,245</p>
+                                <p className="md:text-[20px] text-[14px] font-bold text-[#111827]">Gross: £4,500 - Deductions: £1,245</p>
                             </div>
                             <div className="text-right">
                                 <p className="text-[12px] font-semibold text-[#111827] mb-1">Net Pay</p>
-                                <p className="md:text-[24px] text-[20px] font-bold text-[#4DB949]">$3,255</p>
+                                <p className="md:text-[24px] text-[18px] font-bold text-[#4DB949]">$3,255</p>
                             </div>
                         </div>
                     </div>

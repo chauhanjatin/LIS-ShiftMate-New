@@ -30,7 +30,7 @@ export default function NotificationsPage() {
 
   const breadcrumb = (
     <span className="text-[#98A2B3]">
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Notifications</span>
     </span>
@@ -41,17 +41,17 @@ export default function NotificationsPage() {
       <div className={`flex-1 p-4 2xl:p-6 pb-20 ${lexendDeca.className}`}>
         <div className="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden">
           
-          <div className="flex flex-wrap items-center justify-between md:p-5 p-4 border-b border-neutral-100">
+          <div className="flex flex-wrap gap-3 md:gap-0 items-center justify-between md:p-5 p-4 border-b border-neutral-100">
             <h2 className="text-[18px] font-bold text-neutral-900">Notifications</h2>
             
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-3">
               <button className="flex md:h-10 h-9 md:w-10 w-9 items-center justify-center rounded-xl border border-neutral-200 text-neutral-600 hover:bg-neutral-50 transition-colors cursor-pointer">
                 <Image src={filterIcon} alt="Filter" />
               </button>
               
               <button 
                 onClick={markAllAsRead}
-                className="flex items-center gap-2 rounded-xl bg-[#257BFC] md:px-5 px-2 md:py-2.5 py-1 md:text-[14px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
+                className="flex items-center gap-2 rounded-xl bg-[#257BFC] md:px-5 px-2 md:py-2.5 py-2 md:text-[14px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12"></polyline>
@@ -61,7 +61,7 @@ export default function NotificationsPage() {
 
               <button 
                 onClick={clearAll}
-                className="flex items-center gap-2 rounded-xl border border-[#EE5340] md:px-5 px-2 md:py-2.5 py-1 md:text-[14px] text-[12px] font-semibold text-[#EE5340] transition hover:bg-[#FEE2E2] cursor-pointer"
+                className="flex items-center gap-2 rounded-xl border border-[#EE5340] md:px-5 px-3 md:py-2.5 py-2 md:text-[14px] text-[12px] font-semibold text-[#EE5340] transition hover:bg-[#FEE2E2] cursor-pointer"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -80,26 +80,26 @@ export default function NotificationsPage() {
               notifications.map((notification) => {
                 const styles = getTypeStyles(notification.type);
                 return (
-                  <div key={notification.id} className="grid grid-cols-1 sm:flex flex-wrap items-center gap-4 p-5 hover:bg-neutral-50 transition-colors">
+                  <div key={notification.id} className="grid grid-cols-1 sm:flex flex-wrap items-center md:gap-4 gap-2 md:p-5 p-3 hover:bg-neutral-50 transition-colors">
                     <div className="w-2 flex justify-center shrink-0">
                       {!notification.read && <div className="h-2 w-2 rounded-full bg-[#257BFC]"></div>}
                     </div>
 
-                    <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${styles.bg} ${styles.text}`}>
+                    <div className={`flex h-10 w-10 md:h-12 md:w-12 shrink-0 items-center justify-center rounded-xl ${styles.bg} ${styles.text}`}>
                       {styles.icon}
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-[15px] font-semibold text-neutral-900 truncate">{notification.title}</h4>
-                      <p className="text-[14px] text-neutral-500 leading-tight mt-1 line-clamp-1">{notification.message}</p>
+                      <h4 className="text-[14px] font-semibold text-neutral-900 truncate">{notification.title}</h4>
+                      <p className="text-[12px] text-neutral-500 leading-tight mt-1 md:line-clamp-1">{notification.message}</p>
                     </div>
 
-                    <div className="flex items-center gap-6 shrink-0 ml-4">
+                    <div className="flex items-center md:gap-6 gap-2 shrink-0 md:ml-4">
                       <span className="text-[13px] font-medium text-neutral-400">{notification.time}</span>
                       
                       <button 
                         onClick={() => removeNotification(notification.id)}
-                        className="text-neutral-400 hover:text-[#EE5340] transition-colors p-2"
+                        className="text-neutral-400 hover:text-[#EE5340] transition-colors p-2 cursor-pointer"
                         aria-label="Delete notification"
                       >
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

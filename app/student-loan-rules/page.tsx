@@ -104,7 +104,7 @@ export default function StudentLoanRulesPage() {
 
     const breadcrumb = (
         <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <span className="text-neutral-900">Student Loan Rules</span>
         </span>
@@ -118,7 +118,7 @@ export default function StudentLoanRulesPage() {
                         <h2 className="lg:text-[20px] md:text-[18px] text-[16px] font-medium text-[#111827]">Student Loan Plans</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <button onClick={openAddModal} className="flex items-center gap-2 rounded-xl bg-[#257BFC] px-4 py-2.5 md:text-[16px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+                            <button onClick={openAddModal} className="flex items-center gap-2 rounded-xl bg-[#257BFC] md:px-4 px-2 md:py-2.5 py-2 md:text-[16px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                 Add Loan Plan
                             </button>
@@ -164,7 +164,7 @@ export default function StudentLoanRulesPage() {
                         </div>
 
                         {/* Pagination */}
-                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+                        <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
                             <div className="flex items-center gap-2">
                                 <span className="text-[12px] sm:text-[14px] text-neutral-500">
                                     Rows per page:
