@@ -43,7 +43,7 @@ export default function PensionAssessmentPage() {
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Pension</span>
       <span className="mx-1">/</span>
@@ -65,11 +65,11 @@ export default function PensionAssessmentPage() {
     <DashboardLayout title="Pension Assessment" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-xl bg-white shadow-sm overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
+          <div className="flex flex-wrap items-center justify-between md:px-6 px-3 md:pt-6 pt-4">
             <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Pension Assessment</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-              <div className="relative 2xl:w-75 md:w-60 w-32">
+              <div className="relative 2xl:w-75 md:w-60 w-50">
                 <Image
                   src={searchIcon}
                   alt="Search"
@@ -137,7 +137,7 @@ export default function PensionAssessmentPage() {
             </div>
 
             {/* Pagination */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+            <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
                 <div className="flex items-center gap-2">
                     <span className="text-[12px] sm:text-[14px] text-neutral-500">Rows per page:</span>
                     <div className="w-[80px]">

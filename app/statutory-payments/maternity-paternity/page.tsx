@@ -49,7 +49,7 @@ export default function MaternityPaternityPage() {
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Statutory Payments</span>
       <span className="mx-1">/</span>
@@ -61,11 +61,11 @@ export default function MaternityPaternityPage() {
     <DashboardLayout title="Maternity / Paternity / Adoption Pay" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-xl bg-white shadow-sm min-h-[800px] md:px-6 px-4 pt-4 md:pt-6">
-          <h2 className="text-[20px] font-medium text-[#111827] mb-8">Maternity, Paternity and Adoption Pay</h2>
+          <h2 className="md:text-[20px] text-[18px] font-medium text-[#111827] md:mb-8 mb-4">Maternity, Paternity and Adoption Pay</h2>
           
-          <form onSubmit={handleSubmit} className="md:mx-[6%] space-y-6">
+          <form onSubmit={handleSubmit} className="md:mx-[6%] md:space-y-6 space-y-4">
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-y-6 gap-y-4">
               <div className="space-y-2">
                 <label className="text-[14px] font-normal text-[#111827]">Employee</label>
                 <div className="relative mt-2">

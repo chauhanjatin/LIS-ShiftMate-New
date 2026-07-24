@@ -96,7 +96,7 @@ export default function EmployeePayrollSetupPage() {
 
     const breadcrumb = (
         <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <span className="text-neutral-900">Employee Payroll Setup</span>
         </span>
@@ -110,7 +110,7 @@ export default function EmployeePayrollSetupPage() {
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Employee Records</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative 2xl:w-75 md:w-60 w-48">
+                            <div className="relative 2xl:w-75 md:w-60 w-full">
                                 <Image
                                     src={searchIcon}
                                     alt="Search"
@@ -134,38 +134,38 @@ export default function EmployeePayrollSetupPage() {
                                 <table className="min-w-[1100px] w-full text-left border-collapse">
                                     <thead className="bg-[#F9FAFB]">
                                         <tr>
-                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pl-4 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827]">Name</th>
-                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827]">Salary</th>
-                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827]">Tax Code</th>
-                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827]">NI Category</th>
-                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827]">Student Loan Plan</th>
-                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] text-center">Pension Status</th>
-                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] text-center">Pay Frequency</th>
-                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 md:text-[14px] 2xl:text-[16px] font-normal text-[#111827] text-center">Action</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pl-4 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Name</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Salary</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Tax Code</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">NI Category</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Student Loan Plan</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827] text-center">Pension Status</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Pay Frequency</th>
+                                            <th className="border-b border-[#D0D5DD] px-4 py-[10px] sm:px-5 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827] text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-[#D0D5DD] bg-white">
                                         {paginatedEmployees.map((emp) => (
                                             <tr key={emp.id} className="border-b border-[#D0D5DD] hover:bg-neutral-50 transition-colors">
-                                                <td className="px-4 py-6 sm:px-5">
+                                                <td className="px-4 md:py-6 py-4 sm:px-5">
                                                     <div className="flex items-center gap-3">
                                                         <img src={emp.avatar} alt={emp.name} className="h-8 w-8 sm:h-10 sm:w-10 rounded-full object-cover" />
-                                                        <span className="text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.name}</span>
+                                                        <span className="text-[12px] md:text-[14px] font-normal text-[#111827]">{emp.name}</span>
                                                     </div>
                                                 </td>
-                                                <td className="px-4 py-6 sm:px-5 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.salary}</td>
-                                                <td className="px-4 py-6 sm:px-5 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.taxCode}</td>
-                                                <td className="px-4 py-6 sm:px-5 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.niCategory}</td>
-                                                <td className="px-4 py-6 sm:px-5 text-[13px] sm:text-[14px] font-normal text-[#111827]">{emp.studentLoanPlan}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-5 text-[12px] md:text-[14px] font-normal text-[#111827]">{emp.salary}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-5 text-[12px] md:text-[14px] font-normal text-[#111827]">{emp.taxCode}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-5 text-[12px] md:text-[14px] font-normal text-[#111827]">{emp.niCategory}</td>
+                                                <td className="px-4 md:py-6 py-4 sm:px-5 text-[12px] md:text-[14px] font-normal text-[#111827]">{emp.studentLoanPlan}</td>
 
-                                                <td className="px-4 py-6 sm:px-5 text-center">
+                                                <td className="px-4 md:py-6 py-4 sm:px-5 text-center">
                                                     <span className={`inline-flex rounded-full px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal whitespace-nowrap ${emp.pensionStatus === "Auto-enrolled" ? "bg-[#EAF9EA] text-[#4DB949]" : "bg-[#FDEAEA] text-[#F04438]"
                                                         }`}>
                                                         {emp.pensionStatus}
                                                     </span>
                                                 </td>
 
-                                                <td className="px-4 py-4 sm:px-5 text-center text-[13px] sm:text-[14px] font-normal text-[#2E334E]">
+                                                <td className="px-4 py-4 sm:px-5 text-[13px] sm:text-[14px] font-normal text-[#2E334E]">
                                                     {emp.payFrequency}
                                                 </td>
 
@@ -186,7 +186,7 @@ export default function EmployeePayrollSetupPage() {
                             </div>
                             
                             {/* Pagination */}
-                            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+                            <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
                                 <div className="flex items-center gap-2">
                                     <span className="text-[12px] sm:text-[14px] text-neutral-500">
                                         Rows per page:
@@ -409,16 +409,16 @@ export default function EmployeePayrollSetupPage() {
 
             {isDeleteModalOpen && (
                 <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
-                    <div className="w-full max-w-[370px] rounded-xl bg-white p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+                    <div className="w-full max-w-[370px] rounded-xl bg-white md:p-6 p-4 shadow-xl animate-in fade-in zoom-in-95 duration-200">
                         <div className="mb-6 flex flex-col items-center text-center">
                             <div className="mb-4 p-[9px] rounded-xl bg-red-100">
                                 <Image src={deleteIcon} alt="Delete" className="text-red-600" />
                             </div>
-                            <p className="text-[16px] text-[#111827] font-medium">Are you sure you want to permanently remove this employee from payroll?</p>
+                            <p className="md:text-[16px] text-[12px] text-[#111827] font-medium">Are you sure you want to permanently remove this employee from payroll?</p>
                         </div>
                         <div className="flex gap-3">
-                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-2.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
-                            <button onClick={handleDelete} className="flex-1 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-700 cursor-pointer">Delete</button>
+                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] md:px-4 px-2 py-2.5 md:text-[14px] text-[12px] font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>
+                            <button onClick={handleDelete} className="flex-1 rounded-xl bg-red-600 md:px-4 px-2 py-2.5 md:text-[14px] text-[12px] font-semibold text-white hover:bg-red-700 cursor-pointer">Delete</button>
                         </div>
                     </div>
                 </div>

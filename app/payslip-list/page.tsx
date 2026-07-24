@@ -63,7 +63,7 @@ export default function PayslipListPage() {
 
     const breadcrumb = (
         <span className="text-[#98A2B3]">
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <span className="text-neutral-900">Payslip List</span>
         </span>
@@ -115,7 +115,7 @@ export default function PayslipListPage() {
                         <h2 className="md:text-[20px] text-[18px] font-medium text-[#111827]">Employee List</h2>
 
                         <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative 2xl:w-75 md:w-60 w-48">
+                            <div className="relative 2xl:w-75 md:w-60 w-full">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2 text-neutral-400">
                                     <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                 </svg>
@@ -179,7 +179,7 @@ export default function PayslipListPage() {
                                                     setPeriodFilter("All Periods");
                                                     setIsFilterOpen(false);
                                                 }}
-                                                className="flex-1 rounded-xl border border-[#D0D5DD] px-4 py-2 text-[14px] font-semibold text-[#344054] hover:bg-neutral-50 cursor-pointer"
+                                                className="flex-1 rounded-xl border border-[#D0D5DD] md:px-4 px-2 py-2 md:text-[14px] text-[12px] font-semibold text-[#344054] hover:bg-neutral-50 cursor-pointer"
                                             >
                                                 Reset
                                             </button>
@@ -189,7 +189,7 @@ export default function PayslipListPage() {
                                                     setPeriodFilter(tempPeriodFilter);
                                                     setIsFilterOpen(false);
                                                 }}
-                                                className="flex-1 rounded-xl bg-[#257BFC] px-4 py-2 text-[14px] font-semibold text-white hover:bg-blue-600 cursor-pointer"
+                                                className="flex-1 rounded-xl bg-[#257BFC] md:px-4 px-2 py-2 md:text-[14px] text-[12px] font-semibold text-white hover:bg-blue-600 cursor-pointer"
                                             >
                                                 Apply
                                             </button>
@@ -268,7 +268,7 @@ export default function PayslipListPage() {
                                 </table>
                             </div>
 
-                            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+                            <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
                                 <div className="flex items-center gap-2">
                                     <span className="text-[12px] sm:text-[14px] text-neutral-500">
                                         Rows per page:

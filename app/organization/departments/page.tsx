@@ -74,7 +74,7 @@ export default function DepartmentsPage() {
 
   const breadcrumb = (
     <span className="text-[#98A2B3]">
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Departments</span>
     </span>
@@ -292,7 +292,7 @@ export default function DepartmentsPage() {
 
             <div className="grid md:grid-cols-2 gap-3 md:gap-4 md:mb-6 mb-4">
               <div>
-                <label className="block text-[13px] font-medium text-neutral-500 mb-1.5">Department Name</label>
+                <label className="block text-[13px] font-medium text-[#111827] mb-1.5">Department Name</label>
                 <input
                   type="text"
                   value={newDeptName}
@@ -303,7 +303,7 @@ export default function DepartmentsPage() {
                 {errors.newDeptName && <p className="text-red-500 text-xs mt-1">{errors.newDeptName}</p>}
               </div>
               <div>
-                <label className="block text-[13px] font-medium text-neutral-500 mb-1.5">Department Code</label>
+                <label className="block text-[13px] font-medium text-[#111827] mb-1.5">Department Code</label>
                 <input
                   type="text"
                   value={newDeptCode}
@@ -316,7 +316,7 @@ export default function DepartmentsPage() {
             </div>
 
             <div className="2xl:mb-8 mb-5">
-              <label className="block text-[13px] font-medium text-neutral-500 mb-1.5">Department Manager</label>
+              <label className="block text-[13px] font-medium text-[#111827] mb-1.5">Department Manager</label>
               <CustomSelect
                 value={selectedManagerId}
                 onChange={(val) => { setSelectedManagerId(val); setErrors(prev => ({ ...prev, selectedManagerId: "" })) }}

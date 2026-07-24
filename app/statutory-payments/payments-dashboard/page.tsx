@@ -58,7 +58,7 @@ export default function PaymentsDashboardPage() {
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Statutory Payments</span>
       <span className="mx-1">/</span>
@@ -160,7 +160,7 @@ export default function PaymentsDashboardPage() {
           </div>
 
           {/* Pagination */}
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+          <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
               <div className="flex items-center gap-2">
                   <span className="text-[12px] sm:text-[14px] text-neutral-500">
                       Rows per page:

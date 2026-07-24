@@ -75,7 +75,7 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
 
     const breadcrumb = (
         <span className="text-[#98A2B3]">
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <Link href="/users" className="hover:text-brand-500 transition-colors">Users</Link>
             <span className="mx-1">/</span>
@@ -139,10 +139,10 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                                 <img
                                     src={user.avatar}
                                     alt={user.name}
-                                    className="h-24 w-24 rounded-full object-cover shadow-sm mb-4"
+                                    className="md:h-24 h-20 md:w-24 w-20 rounded-full object-cover shadow-sm mb-4"
                                 />
-                                <h3 className="text-[24px] font-medium text-[#111827]">{user.name}</h3>
-                                <p className="text-[14px] text-[#98A2B3] mt-1 font-normal">{user.role}</p>
+                                <h3 className="md:text-[24px] text-[20px] font-medium text-[#111827]">{user.name}</h3>
+                                <p className="md:text-[14px] text-[13px] text-[#98A2B3] mt-1 font-normal">{user.role}</p>
                                 <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[#EAF9EA] px-3 py-1 text-[12px] font-normal text-[#4DB949]">
                                     {user.status} • {user.employmentType || 'Full-time'}
                                 </div>
@@ -282,7 +282,7 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                                 </div>
                             </div>
 
-                            <div className="mt-12 flex justify-end gap-3">
+                            <div className="md:mt-12 mt-8 flex justify-end gap-3">
                                 <button
                                     onClick={() => {
                                         if (user) {
@@ -296,13 +296,13 @@ export default function EditUserPage({ params }: { params: Promise<{ id: string 
                                             setErrors({});
                                         }
                                     }}
-                                    className="rounded-xl border border-neutral-200 bg-white md:px-8 px-5 py-2 md:py-3 text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer"
+                                    className="rounded-xl border border-neutral-200 bg-white md:px-8 px-5 py-2 md:py-3 md:text-[14px] text-[12px] font-semibold text-neutral-700 transition hover:bg-neutral-50 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={handleUpdate}
-                                    className="rounded-xl bg-[#257BFC] md:px-8 px-5 py-2 md:py-3 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
+                                    className="rounded-xl bg-[#257BFC] md:px-8 px-5 py-2 md:py-3 md:text-[14px] text-[12px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
                                 >
                                     Update Info
                                 </button>

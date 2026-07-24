@@ -81,7 +81,7 @@ export default function LeaveCalendarPage() {
 
   const breadcrumb = (
     <span className="text-[#98A2B3]">
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Leave Management</span>
       <span className="mx-1">/</span>

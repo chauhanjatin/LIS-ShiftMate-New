@@ -113,7 +113,7 @@ function MyLeaveRequestsContent() {
               <h2 className="lg:text-[18px] text-[20px] 2xl:text-[20px] font-medium text-[#111827]">Leave Request History</h2>
 
               <div className="flex flex-wrap lg:flex-nowrap items-center xl:gap-6 gap-3 w-full md:w-auto">
-                <div className="relative flex-1 md:flex-none block">
+                <div className="relative">
                   <input
                     type="text"
                     placeholder="Search..."
@@ -216,14 +216,12 @@ function MyLeaveRequestsContent() {
           </div>
         </div>
 
-        {/* Modal */}
         <RequestLeaveModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           onSubmit={handleSubmitRequest}
         />
 
-        {/* Toast Notification */}
         <Toast
           show={showToast}
           message="Annual Leave request submitted successfully"

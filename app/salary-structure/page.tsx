@@ -160,7 +160,7 @@ export default function SalaryStructurePage() {
 
     const breadcrumb = (
         <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <span className="text-neutral-900">Salary Structure</span>
         </span>
@@ -173,8 +173,8 @@ export default function SalaryStructurePage() {
                     <div className="flex flex-wrap items-center justify-between md:px-6 md:pt-6 px-4 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Salary Structure</h2>
 
-                        <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative 2xl:w-75 md:w-60 w-32">
+                        <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+                            <div className="relative 2xl:w-75 md:w-60 w-full">
                                 <Image
                                     src={searchIcon}
                                     alt="Search"
@@ -190,7 +190,7 @@ export default function SalaryStructurePage() {
                                 />
                             </div>
 
-                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 md:px-5 md:py-2.5 text-[10px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 md:px-5 md:py-2.5 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -221,7 +221,7 @@ export default function SalaryStructurePage() {
                                                 <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex flex-wrap gap-2">
                                                         {structure.earnings.map(e => (
-                                                            <span key={e} className="inline-flex rounded-full bg-[#EAF2FF] px-2.5 py-1 text-[14px] font-normal text-[#257BFC]">
+                                                            <span key={e} className="inline-flex rounded-full bg-[#EAF2FF] px-2.5 py-1 text-[12px] md:text-[14px] font-normal text-[#257BFC]">
                                                                 {e}
                                                             </span>
                                                         ))}
@@ -231,7 +231,7 @@ export default function SalaryStructurePage() {
                                                 <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex flex-wrap gap-2">
                                                         {structure.deductions.map(d => (
-                                                            <span key={d} className="inline-flex rounded-full bg-[#FDEAEA] px-2.5 py-1 text-[14px] font-normal text-[#F04438]">
+                                                            <span key={d} className="inline-flex rounded-full bg-[#FDEAEA] px-2.5 py-1 text-[12px] md:text-[14px] font-normal text-[#F04438]">
                                                                 {d}
                                                             </span>
                                                         ))}
@@ -241,7 +241,7 @@ export default function SalaryStructurePage() {
                                                 <td className="px-4 md:py-6 py-4 sm:px-6">
                                                     <div className="flex flex-wrap gap-2">
                                                         {structure.contributions.map(c => (
-                                                            <span key={c} className="inline-flex rounded-full bg-[#EAF9EA] px-2.5 py-1 text-[14px] font-normal text-[#4DB949]">
+                                                            <span key={c} className="inline-flex rounded-full bg-[#EAF9EA] px-2.5 py-1 text-[12px] md:text-[14px] font-normal text-[#4DB949]">
                                                                 {c}
                                                             </span>
                                                         ))}
@@ -266,7 +266,7 @@ export default function SalaryStructurePage() {
                         </div>
 
                         {/* Pagination */}
-                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+                        <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
                             <div className="flex items-center gap-2">
                                 <span className="text-[12px] sm:text-[14px] text-neutral-500">
                                     Rows per page:

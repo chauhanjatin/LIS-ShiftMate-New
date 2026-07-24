@@ -155,7 +155,7 @@ export default function PayrollCalendarPage() {
 
     const breadcrumb = (
         <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <span className="text-neutral-900">Payroll Calendar</span>
         </span>
@@ -168,8 +168,8 @@ export default function PayrollCalendarPage() {
                     <div className="flex flex-wrap items-center justify-between px-4 md:px-6 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Pay Periods</h2>
 
-                        <div className="flex items-center gap-4.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative 2xl:w-75 md:w-60 w-36">
+                        <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+                            <div className="relative 2xl:w-75 md:w-60 w-full">
                                 <Image
                                     src={searchIcon}
                                     alt="Search"
@@ -185,7 +185,7 @@ export default function PayrollCalendarPage() {
                                 />
                             </div>
 
-                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-2 py-1 md:px-5 md:py-2.5 text-[10px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-2 py-2 md:px-5 md:py-2.5 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -235,7 +235,7 @@ export default function PayrollCalendarPage() {
                         </div>
 
                         {/* Pagination */}
-                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+                        <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
                             <div className="flex items-center gap-2">
                                 <span className="text-[12px] sm:text-[14px] text-neutral-500">Rows per page:</span>
                                 <div className="w-[80px]">
@@ -281,7 +281,7 @@ export default function PayrollCalendarPage() {
                 (isAddModalOpen || isEditModalOpen) && (
                     <div className="fixed inset-0 z-80 flex items-center justify-center bg-black/50 p-4">
                         <div className="w-full max-w-[700px] rounded-[24px] bg-white shadow-xl animate-in fade-in zoom-in-95 duration-200">
-                            <div className="flex items-center justify-between border-b border-[#E2E8F0] px-5 2xl:px-8 py-4 2xl:py-6">
+                            <div className="flex items-center justify-between border-b border-[#E2E8F0] px-3 md:px-5 2xl:px-8 py-4 2xl:py-6">
                                 <h2 className="md:text-[22px] text-[18px] font-bold text-[#111827]">
                                     {isEditModalOpen ? "Edit Calendar" : "Generate New Calendar"}
                                 </h2>
@@ -350,7 +350,7 @@ export default function PayrollCalendarPage() {
                                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-red-100">
                                     <Image src={deleteIcon} alt="Delete" width={28} height={28} className="h-7 w-7 text-red-600" />
                                 </div>
-                                <p className="text-[16px] font-medium text-[#111827]">Are you sure you want to delete this Pay Periods Record?</p>
+                                <p className="md:text-[16px] text-[14px] font-medium text-[#111827]">Are you sure you want to delete this Pay Periods Record?</p>
                             </div>
                             <div className="flex gap-3">
                                 <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 rounded-xl cursor-pointer border border-[#E2E8F0] px-4 py-3 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">Cancel</button>

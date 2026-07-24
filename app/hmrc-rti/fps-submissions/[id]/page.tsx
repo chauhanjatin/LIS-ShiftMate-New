@@ -24,7 +24,7 @@ export default function FPSSubmissionDetailsPage() {
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <Link href="/hmrc-rti/fps-submissions" className="hover:text-brand-500 transition-colors">HMRC RTI</Link>
       <span className="mx-1">/</span>
@@ -40,18 +40,18 @@ export default function FPSSubmissionDetailsPage() {
 
   return (
     <DashboardLayout title={`${month} Submission Details`} subtitle={breadcrumb}>
-      <div className="p-6">
+      <div className="md:p-6 p-4">
         <div className={`flex-1  ${lexendDeca.className}`}>
 
           <Link href="/hmrc-rti/fps-submissions">
             <div className="flex items-center gap-2 cursor-pointer mb-4">
               <Image src={backArrow} alt="back" />
-              <p className="text-[#111827] font-normal text-[16px]">Back</p>
+              <p className="text-[#111827] font-normal md:text-[16px] text-[14px]">Back</p>
             </div>
           </Link>
 
           <div className="bg-white 2xl:p-6 p-4 rounded-xl">
-            <div className="flex justify-between items-center md:mb-6 mb-4">
+            <div className="flex flex-wrap gap-3 md:gap-0 justify-between items-center md:mb-6 mb-4">
               <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">{month} Submission Details</h2>
               <button onClick={handleExport} className="flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2 text-[14px] font-medium text-neutral-700 hover:bg-neutral-50 transition-colors">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>

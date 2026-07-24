@@ -44,7 +44,7 @@ export default function LeaveTypesAndPoliciesPage() {
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Leave Management</span>
       <span className="mx-1">/</span>
@@ -57,10 +57,10 @@ export default function LeaveTypesAndPoliciesPage() {
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         <div className="rounded-xl bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 pt-4 md:pt-6">
-            <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Leave Types & Policies</h2>
+            <h2 className="md:text-[20px] text-[17px] font-medium text-[#111827]">Leave Types & Policies</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-              <button className="flex items-center md:gap-2 gap-1.5 rounded-xl bg-[#257BFC] md:px-4 px-2 py-2.5 text-[12px] md:text-[16px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
+              <button className="flex items-center md:gap-2 gap-1.5 rounded-xl bg-[#257BFC] px-4 py-2.5 text-[12px] md:text-[16px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 Add New Policy
               </button>

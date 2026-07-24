@@ -46,7 +46,7 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
 
     const breadcrumb = (
         <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <Link href="/payroll-runs" className="hover:text-brand-500 transition-colors">Payroll Runs</Link>
             <span className="mx-1">/</span>
@@ -66,7 +66,7 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                 </Link>
 
                 <div className="rounded-xl bg-white md:p-6 p-4">
-                    <h3 className="md:text-[20px] text-[18px] font-medium text-[#101828] mb-4">Payroll Run Details - {period}</h3>
+                    <h3 className="md:text-[20px] text-[17px] font-medium text-[#101828] mb-4">Payroll Run Details - {period}</h3>
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 md:mb-6 mb-4">
                         <div className="rounded-xl border border-[#D0D5DD] bg-white 2xl:p-5 p-3 flex items-center justify-between overflow-hidden">
                             <div>
@@ -107,11 +107,11 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                     </div>
 
                     <div className="rounded-xl bg-white overflow-hidden">
-                        <div className="flex flex-wrap items-center justify-between lg:px-6 px-3 md:pt-6 pt-4">
+                        <div className="flex flex-wrap items-center justify-between lg:px-6 md:px-3 md:pt-6 pt-4">
                             <h2 className="lg:text-[20px] md:text-[18px] text-[16px] font-medium text-[#111827]">Employees Included</h2>
 
                             <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-4 mt-3 md:mt-0">
-                                <div className="relative 2xl:w-60 lg:w-52 w-32">
+                                <div className="relative 2xl:w-60 lg:w-52 w-full">
                                     <Image
                                         src={searchIcon}
                                         alt="Search"
@@ -127,12 +127,12 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                                     />
                                 </div>
 
-                                <button className="flex items-center justify-center gap-2 rounded-xl border border-[#E2E8F0] bg-white md:px-4 px-2 py-2 lg:text-[14px] text-[12px] font-semibold text-[#344054] transition hover:bg-neutral-50 overflow-hidden">
+                                <button className="flex items-center justify-center gap-2 rounded-xl border border-[#E2E8F0] bg-white md:px-4 px-2 py-2 lg:text-[14px] md:text-[12px] text-[11px] font-semibold text-[#344054] transition hover:bg-neutral-50 overflow-hidden">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                                     Recalculate
                                 </button>
 
-                                <button className="flex items-center justify-center gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-4 py-2 lg:text-[14px] text-[12px] font-semibold text-white transition hover:bg-blue-600">
+                                <button className="flex items-center justify-center gap-2 rounded-xl cursor-pointer bg-[#257BFC] md:px-4 px-3 py-2 lg:text-[14px] md:text-[12px] text-[11px] font-semibold text-white transition hover:bg-blue-600">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                     Approve Payroll
                                 </button>
@@ -145,18 +145,18 @@ export default function PayrollRunDetailsPage({ params }: { params: Promise<{ pe
                                     <table className="min-w-[1000px] w-full text-left border-collapse">
                                         <thead className="bg-[#F8F9FC]">
                                             <tr>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827] rounded-l-lg">Employee</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Department</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Gross Pay</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Deductions</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827]">Net Pay</th>
-                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] sm:text-[16px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] md:px-6 pl-4 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827] rounded-l-lg">Employee</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] md:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Department</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] md:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Gross Pay</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] md:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Deductions</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] md:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827]">Net Pay</th>
+                                                <th className="border-b border-[#E2E8F0] px-4 py-[10px] md:px-6 pr-4 text-[14px] md:text-[16px] font-normal text-[#111827] rounded-r-lg text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody className="bg-white">
                                             {filteredEmployees.map((emp) => (
                                                 <tr key={emp.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                                                    <td className="px-4 md:py-4 py-2 sm:px-6">
+                                                    <td className="px-4 md:py-4 py-2 md:px-6">
                                                         <div
                                                             className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
                                                             onClick={() => router.push(`/payroll-runs/${encodeURIComponent(period)}/${emp.id}`)}

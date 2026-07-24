@@ -24,8 +24,8 @@ export default function MyProfilePage() {
   return (
     <DashboardLayout title="Dashboard" subtitle={<><Link href="/dashboard" className="text-[#98A2B3] hover:text-brand-500 transition-colors">Home</Link> <span className="text-[#98A2B3]">/</span> <span className="text-[#111827]">My Profile</span></>}>
       <div className={`p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="flex flex-col xl:flex-row gap-6 lg:gap-8 xl:p-6 p-4 bg-white rounded-2xl">
-          <div className="w-full xl:w-[360px] shrink-0 space-y-6 xl:border-r xl:border-[#E4E7EC] xl:pr-6">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 xl:p-6 p-4 bg-white rounded-2xl">
+          <div className="w-full lg:w-[320px] xl:w-[360px] shrink-0 space-y-6 lg:border-r lg:border-[#E4E7EC] lg:pr-6">
             <div className="bg-[#F9FAFB] border border-[#E4E7EC] rounded-xl p-6 xl:p-8 flex flex-col items-center text-center">
               <div className="relative mb-4">
                 <img 
@@ -69,7 +69,7 @@ export default function MyProfilePage() {
                   <button
                     key={tab.name}
                     onClick={() => setActiveTab(tab.name)}
-                    className={`whitespace-nowrap rounded-lg 2xl:px-4 px-3.5 2xl:py-2.5 py-2 text-[14px] font-medium flex items-center gap-2 transition-all duration-200 cursor-pointer border-none ${
+                    className={`whitespace-nowrap rounded-lg 2xl:px-4 px-3.5 2xl:py-2.5 py-2 xl:text-[14px] text-[12px] font-medium flex items-center gap-2 transition-all duration-200 cursor-pointer border-none ${
                       activeTab === tab.name 
                         ? "bg-[#111827] text-white shadow-sm" 
                         : "bg-transparent text-[#98A2B3] hover:text-[#111827]"
@@ -91,7 +91,7 @@ export default function MyProfilePage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6 mb-8">
                   <div>
-                    <label className="block text-[14px] text-[#111827] mb-2">First name</label>
+                    <label className="block text-[12px] 2xl:text-[14px] text-[#111827] mb-2">First name</label>
                     <input 
                       type="text" 
                       defaultValue="John"
@@ -99,7 +99,7 @@ export default function MyProfilePage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[14px] text-[#111827] mb-2">Last Name</label>
+                    <label className="block text-[12px] 2xl:text-[14px] text-[#111827] mb-2">Last Name</label>
                     <input 
                       type="text" 
                       defaultValue="Smith"
@@ -108,17 +108,17 @@ export default function MyProfilePage() {
                   </div>
 
                   <div>
-                    <label className="block text-[14px] text-[#111827] mb-2">Date of Birth</label>
+                    <label className="block text-[12px] 2xl:text-[14px] text-[#111827] mb-2">Date of Birth</label>
                     <div className="relative">
                       <input 
                         type="date" 
                         defaultValue="1990-03-15"
-                        className="w-full h-11 px-4 rounded-xl border border-[#D0D5DD] bg-white text-[14px] text-[#111827] outline-none focus:border-[#111827] focus:ring-1 transition-all"
+                        className="w-full h-11 px-4 rounded-xl border border-[#D0D5DD] bg-transparent text-[14px] text-[#111827] outline-none focus:border-[#111827] focus:ring-1 transition-all"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[14px] text-[#111827] mb-2">Gender</label>
+                    <label className="block text-[12px] 2xl:text-[14px] text-[#111827] mb-2">Gender</label>
                     <CustomSelect 
                       options={[{ value: 'Male', label: 'Male' }, { value: 'Female', label: 'Female' }]}
                       value={gender}
@@ -128,7 +128,7 @@ export default function MyProfilePage() {
                   </div>
 
                   <div>
-                    <label className="block text-[14px] text-[#111827] mb-2">National Insurance Number</label>
+                    <label className="block text-[12px] 2xl:text-[14px] text-[#111827] mb-2">National Insurance Number</label>
                     <input 
                       type="text" 
                       defaultValue="AB123456C"
@@ -136,7 +136,7 @@ export default function MyProfilePage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[14px] text-[#111827] mb-2">Job Title</label>
+                    <label className="block text-[12px] 2xl:text-[14px] text-[#111827] mb-2">Job Title</label>
                     <input 
                       type="text" 
                       defaultValue="Senior Software Engineer"
@@ -145,7 +145,7 @@ export default function MyProfilePage() {
                   </div>
 
                   <div>
-                    <label className="block text-[14px] text-[#111827] mb-2">Department</label>
+                    <label className="block text-[12px] 2xl:text-[14px] text-[#111827] mb-2">Department</label>
                     <input 
                       type="text" 
                       defaultValue="Engineering"
@@ -153,12 +153,12 @@ export default function MyProfilePage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[14px] text-[#111827] mb-2">Join Date</label>
+                    <label className="block text-[12px] 2xl:text-[14px] text-[#111827] mb-2">Join Date</label>
                     <div className="relative">
                       <input 
                         type="date" 
                         defaultValue="2021-03-13"
-                        className="w-full h-11 px-4 rounded-xl border border-[#D0D5DD] bg-white text-[14px] text-[#111827] outline-none focus:border-[#111827] focus:ring-1 transition-all"
+                        className="w-full h-11 px-4 rounded-xl border border-[#D0D5DD] bg-transparent text-[14px] text-[#111827] outline-none focus:border-[#111827] focus:ring-1 transition-all"
                       />
                     </div>
                   </div>

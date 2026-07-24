@@ -63,7 +63,7 @@ export default function LeaveBalancesPage() {
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">Leave Management</span>
       <span className="mx-1">/</span>
@@ -76,10 +76,10 @@ export default function LeaveBalancesPage() {
       <div className={`flex-1 p-4 2xl:p-6 relative ${lexendDeca.className}`}>
         <div className="rounded-xl bg-white shadow-sm overflow-hidden">
           <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
-            <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Leave Balances</h2>
+            <h2 className="md:text-[20px] text-[18px] font-medium text-[#111827]">Leave Balances</h2>
 
             <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0 relative" ref={filterRef}>
-              <div className="relative 2xl:w-75 md:w-60 w-32">
+              <div className="relative 2xl:w-75 md:w-60 w-full">
                 <Image
                   src={searchIcon}
                   alt="Search"
@@ -112,7 +112,7 @@ export default function LeaveBalancesPage() {
                     <button
                       key={dept}
                       onClick={() => { setDeptFilter(dept); setFilterOpen(false); }}
-                      className={`w-full text-left px-3 py-2 text-[16px] font-normal rounded-lg cursor-pointer ${deptFilter === dept ? 'bg-[#257BFC] text-white' : 'text-neutral-700'}`}
+                      className={`w-full text-left px-3 py-2 md:text-[16px] text-[14px] font-normal rounded-lg cursor-pointer ${deptFilter === dept ? 'bg-[#257BFC] text-white' : 'text-neutral-700'}`}
                     >
                       {dept}
                     </button>
@@ -128,18 +128,18 @@ export default function LeaveBalancesPage() {
                 <table className="min-w-[1000px] w-full text-left border-collapse ">
                   <thead className="bg-[#F8F9FC]">
                     <tr>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Employee</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Department</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Entitlement</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Used</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Carry-over</th>
-                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[12px] sm:text-[16px] font-medium text-[#111827]">Remaining</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pl-4 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Employee</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Department</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Entitlement</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Used</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Carry-over</th>
+                      <th className="border-b border-[#E2E8F0] px-4 py-[10px] sm:px-6 pr-4 text-[14px] md:text-[16px] font-medium text-[#111827]">Remaining</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white">
                     {paginatedBalances.map((bal) => (
                       <tr key={bal.id} className="group transition-colors hover:bg-neutral-50 border-b border-[#E2E8F0] last:border-none">
-                        <td className="px-4 py-6 sm:px-6">
+                        <td className="px-4 md:py-6 py-4 sm:px-6">
                           <div className="flex items-center gap-3">
                             <img
                               src={bal.avatar}
@@ -151,11 +151,11 @@ export default function LeaveBalancesPage() {
                             </span>
                           </div>
                         </td>
-                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.department}</td>
-                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.entitlement}</td>
-                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.used}</td>
-                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.carryOver}</td>
-                        <td className="px-4 py-6 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.remaining}</td>
+                        <td className="px-4 md:py-6 py-4 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.department}</td>
+                        <td className="px-4 md:py-6 py-4 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.entitlement}</td>
+                        <td className="px-4 md:py-6 py-4 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.used}</td>
+                        <td className="px-4 md:py-6 py-4 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.carryOver}</td>
+                        <td className="px-4 md:py-6 py-4 md:px-6 text-[13px] md:text-[14px] font-normal text-[#111827]">{bal.remaining}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -164,7 +164,7 @@ export default function LeaveBalancesPage() {
             </div>
 
             {/* Pagination */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+            <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
                 <div className="flex items-center gap-2">
                     <span className="text-[12px] sm:text-[14px] text-neutral-500">Rows per page:</span>
                     <div className="w-[80px]">

@@ -29,7 +29,7 @@ export default function EPSSubmissionsPage() {
 
   const breadcrumb = (
     <span className={`${lexendDeca.className} text-[#98A2B3]`}>
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <span className="text-neutral-900">HMRC RTI</span>
       <span className="mx-1">/</span>
@@ -61,11 +61,11 @@ export default function EPSSubmissionsPage() {
   const renderBadge = (status: string) => {
     switch (status) {
       case "Accepted":
-        return <span className="inline-flex items-center rounded-full bg-[#EAF9EA] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#4DB949]">Accepted</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#EAF9EA] md:px-3.5 px-2 md:py-2.5 py-1.5 md:text-[14px] text-[11px] font-normal text-[#4DB949]">Accepted</span>;
       case "Pending":
-        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#F59E0B]">Pending</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#FFFBEB] md:px-3.5 px-2 md:py-2.5 py-1.5 md:text-[14px] text-[11px] font-normal text-[#F59E0B]">Pending</span>;
       case "Rejected":
-        return <span className="inline-flex items-center rounded-full bg-[#FEF2F2] px-3.5 py-2.5 md:text-[14px] text-[12px] font-normal text-[#EF4444]">Rejected</span>;
+        return <span className="inline-flex items-center rounded-full bg-[#FEF2F2] md:px-3.5 px-2 md:py-2.5 py-1.5 md:text-[14px] text-[11px] font-normal text-[#EF4444]">Rejected</span>;
       default:
         return <span>{status}</span>;
     }
@@ -132,13 +132,13 @@ export default function EPSSubmissionsPage() {
               <tbody className="divide-y divide-[#E2E8F0] text-[11px] md:text-[12px] lg:text-[14px]">
                 {paginatedSubmissions.map((row, idx) => (
                   <tr key={idx} className="hover:bg-neutral-50">
-                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.period}</td>
-                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.taxPeriod}</td>
-                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.amount}</td>
-                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.date}</td>
-                    <td className="2xl:p-6 p-4 font-normal text-[#111827]">{row.adjustments}</td>
-                    <td className="2xl:p-6 p-4">{renderBadge(row.status)}</td>
-                    <td className="2xl:p-6 p-4">
+                    <td className="2xl:p-6 p-3 font-normal text-[#111827]">{row.period}</td>
+                    <td className="2xl:p-6 p-3 font-normal text-[#111827]">{row.taxPeriod}</td>
+                    <td className="2xl:p-6 p-3 font-normal text-[#111827]">{row.amount}</td>
+                    <td className="2xl:p-6 p-3 font-normal text-[#111827]">{row.date}</td>
+                    <td className="2xl:p-6 p-3 font-normal text-[#111827]">{row.adjustments}</td>
+                    <td className="2xl:p-6 p-3">{renderBadge(row.status)}</td>
+                    <td className="2xl:p-6 p-3">
                       <div className="flex items-center md:gap-3 gap-2">
                         <Link href={`/hmrc-rti/eps-submissions/${row.id}`} className="text-[#111827] hover:text-[#257BFC]">
                           <Image src={viewIcon} alt="View" />
@@ -160,7 +160,7 @@ export default function EPSSubmissionsPage() {
           </div>
 
           {/* Pagination */}
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end px-2 sm:px-6 py-4 mt-2">
+          <div className="flex items-center justify-between sm:justify-end py-4 mt-2 overflow-x-auto w-full whitespace-nowrap gap-2 sm:gap-4 px-2 sm:px-6">
               <div className="flex items-center gap-2">
                   <span className="text-[12px] sm:text-[14px] text-neutral-500">
                       Rows per page:

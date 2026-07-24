@@ -130,7 +130,7 @@ export default function PayrollRunsPage() {
 
     const breadcrumb = (
         <span className="${lexendDeca.className} text-[#98A2B3]">
-            <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+            <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
             <span className="mx-1">/</span>
             <span className="text-neutral-900">Payroll Runs</span>
         </span>
@@ -143,8 +143,8 @@ export default function PayrollRunsPage() {
                     <div className="flex flex-wrap items-center justify-between md:px-6 px-4 md:pt-6 pt-4">
                         <h2 className="md:text-[20px] text-[16px] font-medium text-[#111827]">Employee Records</h2>
 
-                        <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
-                            <div className="relative 2xl:w-75 md:w-60 w-32">
+                        <div className="flex flex-wrap items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+                            <div className="relative 2xl:w-75 md:w-60 w-full">
                                 <Image
                                     src={searchIcon}
                                     alt="Search"
@@ -153,14 +153,14 @@ export default function PayrollRunsPage() {
                                     className="pointer-events-none absolute left-3 top-1/2 md:h-5 md:w-5 h-4 w-4 -translate-y-1/2"
                                 />
                                 <input
-                                    className="w-full rounded-xl border border-[#E2E8F0] bg-white py-1.5 md:py-2.5 pl-11 pr-4 text-sm outline-none focus:border-[#257BFC] overflow-hidden"
+                                    className="w-full rounded-xl border border-[#E2E8F0] bg-white py-1.5 md:py-2.5 pl-11 pr-4 text-[14px] outline-none focus:border-[#257BFC] overflow-hidden"
                                     placeholder="Search..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
                             </div>
 
-                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-1 md:px-5 md:py-2.5 text-[11px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
+                            <button onClick={openAddModal} className="flex items-center gap-1 md:gap-2 rounded-xl cursor-pointer bg-[#257BFC] px-3 py-2 md:px-5 md:py-2.5 text-[12px] md:text-[14px] font-semibold text-white transition hover:bg-blue-600">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -168,7 +168,7 @@ export default function PayrollRunsPage() {
                                 Create Payroll Run
                             </button>
 
-                            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6 mt-3 md:mt-0">
+                            <div className="flex items-center gap-2.5 md:gap-3 2xl:gap-6">
                                 <div className="w-[140px]">
                                     <CustomSelect
                                         value={taxYear}

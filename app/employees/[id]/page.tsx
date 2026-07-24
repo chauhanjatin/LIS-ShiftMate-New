@@ -150,7 +150,7 @@ export default function EmployeeDetailsPage({ params }: { params: Promise<{ id: 
 
   const breadcrumb = (
     <span className="text-[#98A2B3]">
-      <Link href="/" className="hover:text-brand-500 transition-colors">Home</Link>
+      <Link href="/dashboard" className="hover:text-brand-500 transition-colors">Home</Link>
       <span className="mx-1">/</span>
       <Link href="/employees/all-employees" className="hover:text-brand-500 transition-colors">All Employees</Link>
       <span className="mx-1">/</span>
@@ -172,8 +172,8 @@ export default function EmployeeDetailsPage({ params }: { params: Promise<{ id: 
         <div className="flex flex-col xl:flex-row 2xl:gap-[34px] gap-[26px] bg-white 2xl:p-6 p-4 rounded-[20px] min-h-[800px]">
 
           <div className="w-full 2xl:w-[353px] xl:w-[320px] shrink-0">
-            <div className="rounded-xl border border-[#E4E7EC] bg-[#F9FAFB] p-8 text-center">
-              <div className="relative mx-auto mb-6 h-[120px] w-[120px]">
+            <div className="rounded-xl border border-[#E4E7EC] bg-[#F9FAFB] md:p-8 p-5 text-center">
+              <div className="relative mx-auto mb-6 md:h-[120px] md:w-[120px] h-[100px] w-[100px]">
                 <div className="h-full w-full overflow-hidden rounded-full shadow-sm">
                   <img src={employee.avatar} alt={employee.name} className="h-full w-full object-cover" />
                 </div>
@@ -187,8 +187,8 @@ export default function EmployeeDetailsPage({ params }: { params: Promise<{ id: 
                 <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleImageChange} />
               </div>
 
-              <h2 className="text-[24px] font-medium text-[#111827] m-0">{employee.name}</h2>
-              <p className="mt-1 mb-5 text-[14px] text-[#6B7280] font-normal">{employee.role}</p>
+              <h2 className="md:text-[24px] text-[20px] font-medium text-[#111827] m-0">{employee.name}</h2>
+              <p className="mt-1 md:mb-5 mb-3 md:text-[14px] text-[13px] text-[#6B7280] font-normal">{employee.role}</p>
               <StatusPill status={employee.status} type={employee.type} />
             </div>
 
@@ -210,13 +210,13 @@ export default function EmployeeDetailsPage({ params }: { params: Promise<{ id: 
 
           <div className="w-[1px] bg-[#E5E7EB] self-stretch hidden lg:block"></div>
 
-          <div className="flex-1 min-w-[300px] flex flex-col">
+          <div className="flex-1 min-w-0 flex flex-col">
             <div className="flex items-center 2xl:gap-1 gap-2 justify-between overflow-x-auto 2xl:mb-12 mb-8 bg-[#F9FAFB] p-1.5 rounded-xl scrollbar-hide w-full shrink-0">
               {TABS.map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`whitespace-nowrap rounded-lg 2xl:px-4 px-3.5 2xl:py-2.5 py-2 text-[14px] font-medium flex items-center gap-2 transition-all duration-200 cursor-pointer border-none ${activeTab === tab
+                  className={`whitespace-nowrap rounded-lg 2xl:px-4 px-3.5 2xl:py-2.5 py-2 md:text-[14px] text-[12px] font-medium flex items-center gap-2 transition-all duration-200 cursor-pointer border-none ${activeTab === tab
                     ? "bg-[#111827] text-white shadow-sm"
                     : "bg-transparent text-[#6B7280] hover:text-[#111827]"
                     }`}
