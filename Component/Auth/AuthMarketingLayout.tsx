@@ -11,7 +11,7 @@ export default function AuthMarketingLayout({
   return (
     <main className="fixed inset-0 z-0 flex h-[100vh] max-h-[100vh] flex-col overflow-hidden bg-[#eaf2ff] ">
       <div className="mx-auto flex min-h-0 w-full flex-1 flex-col">
-        <div className="grid min-h-0 flex-1 grid-cols-1  lg:grid-cols-[minmax(0,1.03fr)_minmax(0,0.97fr)]">
+        <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-[minmax(0,1.03fr)_minmax(0,0.97fr)]">
           <section className="relative hidden min-h-0 overflow-hidden rounded-[2.5rem] lg:flex bg-[#4c51f5] m-[30px]">
             <Image
               src="/login/login-gif.gif"
@@ -22,10 +22,10 @@ export default function AuthMarketingLayout({
             />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_-20%,rgba(255,255,255,0.15),transparent_45%),radial-gradient(circle_at_70%_120%,rgba(255,255,255,0.1),transparent_50%)] mix-blend-overlay" />
 
-            <div className="relative z-10 flex min-h-0 flex-1 flex-col 2xl:p-[60px] xl:p-[45px] p-[40px]">
+            <div className="relative z-10 flex min-h-0 flex-1 flex-col 2xl:p-[60px] xl:p-[45px] p-[40px] 12xl:p-[38px]">
               <div className="max-w-[45rem]">
                 <h2
-                  className="2xl:text-[48px] text-[40px] font-semibold 2xl:leading-[58px] leading-[48px] text-white"
+                  className="2xl:text-[48px] text-[40px] 12xl:text-[28px] font-semibold 2xl:leading-[58px] leading-[48px] text-white"
                   style={{
                     textShadow: "-1px -1px 0 #000000, 1px -1px 0 #000000,-1px  1px 0 #000000, 1px  1px 0 #000000, 0 8px 16px rgba(0,0,0,.12)",
                   }}
@@ -41,7 +41,7 @@ export default function AuthMarketingLayout({
                   width={800}
                   height={1080}
                   priority
-                  className="h-auto 2xl:w-[66%] w-[100%] max-w-[700px] 2xl:max-w-[850px] object-contain object-bottom select-none pointer-events-none translate-y-[2px] 2xl:translate-x-[20%] translate-x-[2%]"
+                  className="h-auto 2xl:w-[66%] w-[100%] max-w-[700px] 2xl:max-w-[850px] 12xl:max-w-[370px] object-contain object-bottom select-none pointer-events-none translate-y-[2px] 2xl:translate-x-[20%] translate-x-[2%]"
                 />
               </div>
             </div>
@@ -50,7 +50,7 @@ export default function AuthMarketingLayout({
           <section className="flex min-h-0 flex-1 flex-col justify-center">
             <div className="flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto overscroll-y-contain justify-center bg-white">
               <div className="mx-auto flex w-full max-w-[40rem] flex-col items-center py-4">
-                <div className="mb-6 flex w-full shrink-0 justify-center lg:mb-10">
+                <div className="mb-6 flex w-full shrink-0 justify-center lg:mb-10 12xl:mb-6">
                   <Image
                     src="/login/shiftmate-logo.png"
                     alt="ShiftMate"
