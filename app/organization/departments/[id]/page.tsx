@@ -168,7 +168,7 @@ export default function DepartmentDetailsPage() {
                             </div>
                           </td>
                           <td className="md:py-4 py-2 md:pr-4 pr-11 3xl:text-[13px] md:text-[14px] text-[13px] font-medium text-[#111827]">{emp.id}</td>
-                          <td className="md:py-4 py-2 md:pr-4 pr-16">
+                          <td className="md:py-4 py-2 md:pr-4 pr-16 12xl:pr-13">
                             <Link href={`/employees/${emp.id}`} className="flex items-center gap-3 cursor-pointer transition-colors">
                               <img src={emp.avatar} alt={emp.name} className="h-9 w-9 rounded-full object-cover" />
                               <p className="3xl:text-[13px] md:text-[14px] text-[13px] font-medium text-[#111827]">{emp.name}</p>

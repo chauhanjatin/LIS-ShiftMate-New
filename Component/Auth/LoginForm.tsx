@@ -67,7 +67,7 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-[37.5rem] rounded-[2rem] px-4 py-5 md:px-6 md:py-7 xl:px-8 xl:py-9">
+    <div className="w-full max-w-[37.5rem] rounded-[2rem] px-4 py-5 md:px-6 md:py-7 xl:px-8 xl:py-9 12xl:py-3">
       <div className="text-center">
         <h1 className="xl:text-[32px] text-[30px] font-black text-neutral-900">
           Welcome Back
@@ -77,7 +77,7 @@ export default function LoginForm() {
         </p>
       </div>
 
-      <form className="md:mt-10 mt-8 space-y-5" onSubmit={handleSubmit}>
+      <form className="md:mt-10 mt-8 12xl:mt-5 space-y-5" onSubmit={handleSubmit}>
         <div className="space-y-2">
           <label
             htmlFor="login-email"
@@ -152,7 +152,7 @@ export default function LoginForm() {
         </Button>
       </form>
 
-      <div className="md:mt-8 mt-4 text-center md:text-[16px] text-[14px] text-neutral-400">
+      <div className="md:mt-8 mt-4 12xl:mt-4 text-center md:text-[16px] text-[14px] text-neutral-400">
         Don't have an account?{" "}
         <Link
           href="#"
@@ -162,7 +162,7 @@ export default function LoginForm() {
         </Link>
       </div>
 
-      <div className="mt-5 border-t border-neutral-200 pt-4">
+      <div className="mt-5 12xl:mt-3 border-t border-neutral-200 pt-4 12xl:pt-2">
         <div className="flex flex-wrap items-center justify-center md:gap-x-6 gap-x-5 gap-y-3 md:text-[16px] text-[14px] font-medium text-neutral-400">
           <span className="inline-flex items-center md:gap-2 gap-1">
             <ShieldCheckIcon className="text-neutral-400" />
