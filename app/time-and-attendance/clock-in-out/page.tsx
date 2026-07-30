@@ -38,14 +38,14 @@ export default function ClockInOutPage() {
     <DashboardLayout title="Time & Attendance" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="flex flex-col lg:flex-row gap-6 bg-white p-6 rounded-2xl">
           
           {/* Today's Status (Clock Widget) */}
-          <div className="rounded-xl border border-[#E2E8F0] bg-white shadow-sm p-6 xl:p-8 lg:col-span-8 flex flex-col min-h-[400px]">
+          <div className="rounded-xl border border-[#D0D5DD] p-6 flex-1 flex flex-col min-h-[400px]">
             <h3 className="text-[18px] font-semibold text-[#111827] mb-6">Today's Status</h3>
             <div className="border-b border-[#E2E8F0] w-full mb-8"></div>
             
-            <div className="bg-[#F8F9FC] rounded-2xl flex-1 flex flex-col items-center justify-center p-8 mb-8 border border-[#E5E7EB] relative">
+            <div className="bg-[#F9FAFB] rounded-2xl flex-1 flex flex-col items-center justify-center p-8 mb-8 border border-[#E5E7EB] relative">
               <span className="inline-flex rounded-full bg-[#FEE2E2] px-3 py-1 text-[12px] font-medium text-[#EF4444] mb-4">Clocked Out</span>
               
               <h1 className="text-[54px] md:text-[64px] xl:text-[72px] font-bold text-[#111827] tracking-tight m-0 leading-none">
@@ -81,7 +81,7 @@ export default function ClockInOutPage() {
           </div>
 
           {/* Shift Details Sidebar */}
-          <div className="rounded-xl border border-[#E2E8F0] bg-white shadow-sm p-6 xl:p-8 lg:col-span-4 h-fit">
+          <div className="rounded-xl border border-[#D0D5DD] p-6 xl:p-8 flex-1 h-fit">
             <h3 className="text-[18px] font-semibold text-[#111827] mb-6">Shift Details</h3>
             
             <div className="space-y-5">
