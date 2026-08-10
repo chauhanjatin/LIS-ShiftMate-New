@@ -431,13 +431,13 @@ export default function AddEmployeePage() {
               >
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
-                    <h4 className="text-[20px] font-medium text-[#111827] 2xl:mb-6">
+                    <h4 className="text-[20px] font-medium text-[#111827]">
                       Personal Information
                     </h4>
 
                     <button
                       onClick={() => setCurrentStep(1)}
-                      className="hover:opacity-80 transition"
+                      className="hover:opacity-80 transition cursor-pointer"
                     >
                       <Image src={editIcon} alt="edit" width={20} height={20} />
                     </button>
@@ -506,13 +506,13 @@ export default function AddEmployeePage() {
 
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
-                    <h4 className="text-[20px] font-medium text-[#111827] 2xl:mb-6">
+                    <h4 className="text-[20px] font-medium text-[#111827]">
                       Employment Information
                     </h4>
 
                     <button
                       onClick={() => setCurrentStep(2)}
-                      className="hover:opacity-80 transition"
+                      className="hover:opacity-80 transition cursor-pointer"
                     >
                       <Image src={editIcon} alt="edit" width={20} height={20} />
                     </button>
@@ -579,13 +579,13 @@ export default function AddEmployeePage() {
 
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
-                    <h4 className="text-[16px] font-bold text-[#111827] 2xl:mb-6">
+                    <h4 className="text-[16px] 2xl:text-[20px] font-medium text-[#111827]">
                       Payroll Details
                     </h4>
 
                     <button
                       onClick={() => setCurrentStep(3)}
-                      className="hover:opacity-80 transition"
+                      className="hover:opacity-80 transition cursor-pointer"
                     >
                       <Image src={editIcon} alt="edit" width={20} height={20} />
                     </button>
@@ -640,13 +640,13 @@ export default function AddEmployeePage() {
 
                 <div className="rounded-[16px] bg-[#F9FAFB] p-6">
                   <div className="border-b border-[#D0D5DD] flex items-center justify-between pb-4 mb-5">
-                    <h4 className="text-[16px] font-bold text-[#111827] 2xl:mb-6">
+                    <h4 className="text-[16px] 2xl:text-[20px] font-bold text-[#111827]">
                       Employment Information
                     </h4>
 
                     <button
                       onClick={() => setCurrentStep(4)}
-                      className="hover:opacity-80 transition"
+                      className="hover:opacity-80 transition cursor-pointer"
                     >
                       <Image src={editIcon} alt="edit" width={20} height={20} />
                     </button>
@@ -755,7 +755,7 @@ export default function AddEmployeePage() {
             )}
           </div>
 
-          <div className="md:mt-[48px] mt-3 flex justify-end md:gap-4 gap-2 md:pt-8">
+          <div className="md:mt-[48px] mt-3 flex justify-end md:gap-4 gap-2">
             {currentStep === 1 ? (
               <Link href="/employees/all-employees">
                 <button className="rounded-xl cursor-pointer border border-neutral-300 bg-white 2xl:px-6 xl:px-7 px-4 2xl:py-3 py-2 2xl:text-[16px] text-[14px] font-semibold text-neutral-700 transition hover:bg-neutral-50">

@@ -6,6 +6,7 @@ import Link from "next/link";
 import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import { Lexend_Deca } from "next/font/google";
 import searchIcon from "@/assets/images/icons/search.svg";
+import shiftSwap from "@/assets/images/icons/shift-swap.svg";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -116,8 +117,8 @@ export default function ShiftSchedulePage() {
                 />
               </div>
 
-              <button className="h-11 whitespace-nowrap rounded-xl bg-[#257BFC] px-5 text-[14px] font-medium text-white transition hover:bg-blue-600 flex items-center justify-center gap-2">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 1l4 4-4 4"></path><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><path d="M7 23l-4-4 4-4"></path><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+              <button className="h-11.5 whitespace-nowrap rounded-xl bg-[#257BFC] px-5 text-[14px] 2xl:text-[16px] text-white flex items-center justify-center gap-2 cursor-pointer">
+                <Image src={shiftSwap} alt="Request"/>
                 Request Shift Swap
               </button>
             </div>
