@@ -162,6 +162,18 @@ export default function Sidebar({
       if (pathname.includes("/timesheets")) setActiveSubItem("Timesheets");
       if (pathname.includes("/clock-in-out")) setActiveSubItem("Clock In / Clock Out");
       if (pathname.includes("/shift-schedule")) setActiveSubItem("Shift Schedule");
+    } else if (pathname.includes("/expenses-management")) {
+      setActiveItem("Expenses Management");
+      setOpenMenu("Expenses Management");
+      if (pathname.includes("/expenses-list")) setActiveSubItem("Expenses List");
+      if (pathname.includes("/expense-approvals")) setActiveSubItem("Expense Approvals");
+    } else if (pathname.includes("/reporting-compliance")) {
+      setActiveItem("Reporting Compliance");
+      setOpenMenu("Reporting Compliance");
+      if (pathname.includes("/reports-dashboard")) setActiveSubItem("Reports Dashboard");
+      if (pathname.includes("/payroll-reports")) setActiveSubItem("Payroll Reports");
+      if (pathname.includes("/hr-reports")) setActiveSubItem("HR Reports");
+      if (pathname.includes("/compliance-reports")) setActiveSubItem("Compliance Reports");
     } else {
       setActiveItem("Dashboard");
     }
@@ -264,6 +276,30 @@ export default function Sidebar({
     "Timesheets": "/time-and-attendance/timesheets",
     "Clock In / Clock Out": "/time-and-attendance/clock-in-out",
     "Shift Schedule": "/time-and-attendance/shift-schedule",
+  };
+
+  const expensesManagementSubMenus = [
+    "Expenses List",
+    "Expense Approvals",
+  ];
+
+  const expensesManagementSubRoutes: Record<string, string> = {
+    "Expenses List": "/expenses-management/expenses-list",
+    "Expense Approvals": "/expenses-management/expense-approvals",
+  };
+
+  const reportingComplianceSubMenus = [
+    "Reports Dashboard",
+    "Payroll Reports",
+    "HR Reports",
+    "Compliance Reports",
+  ];
+
+  const reportingComplianceSubRoutes: Record<string, string> = {
+    "Reports Dashboard": "/reporting-compliance/reports-dashboard",
+    "Payroll Reports": "/reporting-compliance/payroll-reports",
+    "HR Reports": "/reporting-compliance/hr-reports",
+    "Compliance Reports": "/reporting-compliance/compliance-reports",
   };
 
   const employeeSubMenus = [
@@ -521,6 +557,62 @@ export default function Sidebar({
                             setActiveSubItem(subLabel);
 
                             const route = timeAttendanceSubRoutes[subLabel];
+                            if (route) router.push(route);
+                          }}
+                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left md:text-[16px] text-[13px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                            }`}
+                        >
+                          {subLabel}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {!collapsed && item.label === "Expenses Management" && activeModule === "Employee Self-Service Portal" && isOpen && (
+                <div
+                  className="relative mt-2 ml-[33px] animate-in slide-in-from-top-2 duration-300"
+                >
+                  <div className="space-y-1">
+                    {expensesManagementSubMenus.map((subLabel) => {
+                      const isSubActive = activeSubItem === subLabel;
+
+                      return (
+                        <button
+                          key={subLabel}
+                          onClick={() => {
+                            setActiveSubItem(subLabel);
+
+                            const route = expensesManagementSubRoutes[subLabel];
+                            if (route) router.push(route);
+                          }}
+                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left md:text-[16px] text-[13px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                            }`}
+                        >
+                          {subLabel}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {!collapsed && item.label === "Reporting Compliance" && activeModule === "Employee Self-Service Portal" && isOpen && (
+                <div
+                  className="relative mt-2 ml-[33px] animate-in slide-in-from-top-2 duration-300"
+                >
+                  <div className="space-y-1">
+                    {reportingComplianceSubMenus.map((subLabel) => {
+                      const isSubActive = activeSubItem === subLabel;
+
+                      return (
+                        <button
+                          key={subLabel}
+                          onClick={() => {
+                            setActiveSubItem(subLabel);
+
+                            const route = reportingComplianceSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
                           className={`flex w-full items-center rounded-xl px-4 py-3 text-left md:text-[16px] text-[13px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"

@@ -9,6 +9,8 @@ import icon from "@/assets/images/icons/total-employee.svg"
 import onTime from "@/assets/images/icons/on-time.svg"
 import weeklyHours from "@/assets/images/icons/weekly-hours.svg"
 import overtime from "@/assets/images/icons/overtime.svg"
+import { BarChart } from '@mui/x-charts/BarChart';
+import infoIcon from "@/assets/images/icons/info-icon.svg"
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -143,9 +145,8 @@ export default function AttendanceDashboardPage() {
             </div>
           </div>
 
-          {/* Main Grid: Clock & Team Attendance */}
-          <div className="flex flex-col lg:flex-row gap-6 mb-6">
 
+          <div className="flex flex-col lg:flex-row gap-6 mb-6">
             {/* Today's Status */}
             <div className="rounded-xl border border-[#D0D5DD] p-5 xl:p-6 w-full lg:w-[350px] xl:w-[450px] 2xl:w-[598px] shrink-0 flex flex-col">
               <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-6">Today's Status</h3>
@@ -210,96 +211,143 @@ export default function AttendanceDashboardPage() {
           </div>
 
           {/* Bottom Grid: Chart & Summary */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="flex flex-col lg:flex-row gap-6">
 
             {/* Weekly Working Hours */}
-            <div className="rounded-xl border border-[#E2E8F0] bg-white shadow-sm p-5 xl:p-6 lg:col-span-2">
-              <h3 className="text-[18px] font-semibold text-[#111827] mb-6">Weekly Working Hours</h3>
+            <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 xl:p-6 flex-1 min-w-0">
+              <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6">Weekly Working Hours</h3>
 
-              <div className="relative h-[240px] w-full flex items-end justify-between pl-8 pb-8 pt-4">
-                {/* Y-axis */}
-                <div className="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-[12px] text-[#9CA3AF] py-4">
-                  <span>12</span>
-                  <span>09</span>
-                  <span>06</span>
-                  <span>03</span>
-                </div>
-
-                {/* Grid Lines */}
-                <div className="absolute left-8 right-0 top-0 bottom-8 flex flex-col justify-between py-6">
-                  <div className="w-full border-t border-[#F3F4F6]"></div>
-                  <div className="w-full border-t border-[#F3F4F6]"></div>
-                  <div className="w-full border-t border-[#F3F4F6]"></div>
-                  <div className="w-full border-t border-[#F3F4F6]"></div>
-                </div>
-
-                {/* Bars */}
-                {[{ day: "Mon", val: 8 }, { day: "Tue", val: 9 }, { day: "Wed", val: 6, active: true }, { day: "Thu", val: 9.5 }, { day: "Fri", val: 7.5 }, { day: "Sat", val: 0 }, { day: "Sun", val: 0 }].map((d, i) => (
-                  <div key={i} className="relative z-10 flex flex-col items-center w-full h-full justify-end group">
-                    {d.val > 0 && (
-                      <div
-                        className={`w-8 md:w-12 rounded-t-sm transition-all duration-300 ${d.active ? 'bg-[#257BFC]' : 'bg-[#257BFC] hover:bg-[#1A5DC2]'}`}
-                        style={{ height: `${(d.val / 12) * 100}%` }}
-                      ></div>
-                    )}
-                    {d.active && (
-                      <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-[#111827] text-white text-[12px] py-1.5 px-3 rounded-lg shadow-lg whitespace-nowrap z-20">
-                        <p className="font-semibold">{d.day}</p>
-                        <p className="text-[#9CA3AF]">{d.val}h</p>
-                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#111827] rotate-45"></div>
-                      </div>
-                    )}
-                    <span className="absolute -bottom-8 text-[12px] text-[#9CA3AF]">{d.day}</span>
-                  </div>
-                ))}
+              <div className="h-[300px] w-full mt-2 -ml-2">
+                <BarChart
+                  xAxis={[
+                    {
+                      scaleType: 'band',
+                      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                      categoryGapRatio: 0.5,
+                      tickLabelStyle: { fill: '#9CA3AF', fontSize: 12, fontFamily: 'inherit' },
+                      disableLine: true,
+                      disableTicks: true,
+                    },
+                  ]}
+                  yAxis={[
+                    {
+                      min: 0,
+                      max: 12,
+                      tickLabelStyle: { fill: '#9CA3AF', fontSize: 12, fontFamily: 'inherit' },
+                      disableLine: true,
+                      disableTicks: true,
+                    },
+                  ]}
+                  series={[
+                    {
+                      data: [8, 9, 6, 9.5, 7.5, 0, 0],
+                      color: '#257BFC',
+                    },
+                  ]}
+                  grid={{ horizontal: true }}
+                  margin={{ left: 30, right: 10, top: 10, bottom: 25 }}
+                  slotProps={{
+                    bar: {
+                      rx: 4,
+                    },
+                    popper: {
+                      sx: {
+                        '& .MuiChartsTooltip-paper': {
+                          backgroundColor: '#111827 !important',
+                          color: 'white !important',
+                          borderRadius: '8px !important',
+                          padding: '6px 12px !important',
+                          boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important',
+                          overflow: 'visible !important',
+                        },
+                        '& .MuiChartsTooltip-paper::after': {
+                          content: '""',
+                          position: 'absolute',
+                          top: '50%',
+                          right: '-4px',
+                          transform: 'translateY(-50%) rotate(45deg)',
+                          width: '10px',
+                          height: '10px',
+                          backgroundColor: '#111827',
+                          borderRadius: '1px',
+                        },
+                        '& .MuiChartsTooltip-markCell': {
+                          display: 'none !important',
+                        },
+                        '& .MuiChartsTooltip-labelCell': {
+                          color: 'white !important',
+                          fontWeight: '600 !important',
+                          fontSize: '14px !important',
+                          borderBottom: 'none !important',
+                          textAlign: 'center !important',
+                          padding: '0 0 2px 0 !important',
+                          display: 'block !important',
+                        },
+                        '& .MuiChartsTooltip-valueCell': {
+                          color: '#4DB949 !important',
+                          fontWeight: '500 !important',
+                          fontSize: '14px !important',
+                          textAlign: 'center !important',
+                          padding: '0 !important',
+                          display: 'block !important',
+                        },
+                        '& .MuiChartsTooltip-row': {
+                          display: 'flex !important',
+                          flexDirection: 'column !important',
+                          alignItems: 'center !important',
+                        }
+                      }
+                    }
+                  }}
+                />
               </div>
             </div>
 
             {/* Overtime Summary */}
-            <div className="rounded-xl border border-[#E2E8F0] bg-white shadow-sm p-5 xl:p-6 lg:col-span-1 flex flex-col">
-              <h3 className="text-[18px] font-semibold text-[#111827] mb-6">Overtime summary</h3>
+            <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 xl:p-6 w-full lg:w-[350px] xl:w-[450px] 2xl:w-[598px] shrink-0 flex flex-col">
+              <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-6">Overtime summary</h3>
 
               <div className="space-y-5 flex-1">
                 <div>
-                  <div className="flex justify-between text-[13px] mb-2">
-                    <span className="text-[#475467] font-medium">Approved</span>
-                    <span className="text-[#111827] font-semibold">9.0h</span>
+                  <div className="flex justify-between text-[14px] mb-2">
+                    <span className="text-[#111827]">Approved</span>
+                    <span className="text-[#98A2B3]">9.0h</span>
                   </div>
-                  <div className="h-2 w-full rounded-full bg-[#F3F4F6] overflow-hidden">
+                  <div className="h-2 w-full rounded-full bg-[#EAF2FF] overflow-hidden">
                     <div className="h-full rounded-full bg-[#257BFC]" style={{ width: '75%' }}></div>
                   </div>
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-[13px] mb-2">
-                    <span className="text-[#475467] font-medium">Pending approval</span>
-                    <span className="text-[#111827] font-semibold">2.4h</span>
+                  <div className="flex justify-between text-[14px] mb-2">
+                    <span className="text-[#111827]">Pending approval</span>
+                    <span className="text-[#98A2B3]">2.4h</span>
                   </div>
-                  <div className="h-2 w-full rounded-full bg-[#F3F4F6] overflow-hidden">
+                  <div className="h-2 w-full rounded-full bg-[#EAF2FF] overflow-hidden">
                     <div className="h-full rounded-full bg-[#257BFC]" style={{ width: '20%' }}></div>
                   </div>
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-[13px] mb-2">
-                    <span className="text-[#475467] font-medium">Rejected</span>
-                    <span className="text-[#111827] font-semibold">1.0h</span>
+                  <div className="flex justify-between text-[14px] mb-2">
+                    <span className="text-[#111827]">Rejected</span>
+                    <span className="text-[#98A2B3]">1.0h</span>
                   </div>
-                  <div className="h-2 w-full rounded-full bg-[#F3F4F6] overflow-hidden">
+                  <div className="h-2 w-full rounded-full bg-[#EAF2FF] overflow-hidden">
                     <div className="h-full rounded-full bg-[#257BFC]" style={{ width: '8%' }}></div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 border-t border-[#E2E8F0] pt-4">
-                <div className="flex justify-between text-[14px] font-semibold text-[#111827] mb-4">
+              <div className="mt-4">
+                <div className="flex justify-between text-[14px] text-[#111827] mb-4">
                   <span>Total this month</span>
                   <span>12.4h</span>
                 </div>
 
-                <div className="bg-[#FFF6E8] border border-[#FFE2B5] rounded-xl p-3 flex gap-3 items-start">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFA100" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                  <p className="text-[13px] text-[#B87400] leading-tight">2.4 hours of overtime are pending manager approval since Wed.</p>
+                <div className="bg-[#FFF6E8] border border-[#FFA100] rounded-xl p-6 flex gap-3">
+                  <Image src={infoIcon} alt="Warning" />
+                  <p className="text-[14px] text-[#111827]">2.4 hours of overtime are pending manager approval since Wed.</p>
                 </div>
               </div>
 

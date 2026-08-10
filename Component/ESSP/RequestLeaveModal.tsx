@@ -16,7 +16,7 @@ export default function RequestLeaveModal({ isOpen, onClose, onSubmit }: Request
     if (!formData.startDate) newErrors.startDate = "Start date is required";
     if (!formData.endDate) newErrors.endDate = "End date is required";
     if (!formData.reason.trim()) newErrors.reason = "Reason is required";
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -33,7 +33,7 @@ export default function RequestLeaveModal({ isOpen, onClose, onSubmit }: Request
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4">
       <div className="w-full max-w-[800px] overflow-hidden rounded-2xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center justify-between border-b border-neutral-100 px-6 py-5">
+        <div className="flex items-center justify-between border-b border-[#D0D5DD] px-6 py-5">
           <h2 className="text-[18px] 2xl:text-[24px] font-semibold text-[#111827]">Request Leave</h2>
           <button
             onClick={onClose}
@@ -42,26 +42,25 @@ export default function RequestLeaveModal({ isOpen, onClose, onSubmit }: Request
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
         </div>
-        
         <div className="p-6">
           <div className="space-y-5">
             <div>
               <label className="mb-2 block text-[14px] font-normal text-[#111827]">Leave Type</label>
-              <CustomSelect 
+              <CustomSelect
                 options={[{ value: 'Annual Leave', label: 'Annual Leave' }, { value: 'Sick Leave', label: 'Sick Leave' }]}
                 value={formData.type}
-                onChange={(val) => setFormData({...formData, type: val})}
+                onChange={(val) => setFormData({ ...formData, type: val })}
               />
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="mb-2 block text-[14px] font-normal text-[#111827]">Start Date</label>
                 <div className="relative">
-                  <input 
-                    type="date" 
+                  <input
+                    type="date"
                     value={formData.startDate}
-                    onChange={(e) => setFormData({...formData, startDate: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
                     className={`w-full h-11 px-4 rounded-xl border ${errors.startDate ? 'border-red-500' : 'border-neutral-200'} text-[14px] outline-none focus:border-[#257BFC] focus:ring-1 focus:ring-[#257BFC] transition-all`}
                   />
                 </div>
@@ -70,10 +69,10 @@ export default function RequestLeaveModal({ isOpen, onClose, onSubmit }: Request
               <div>
                 <label className="mb-2 block text-[14px] font-normal text-[#111827]">End Date</label>
                 <div className="relative">
-                  <input 
-                    type="date" 
+                  <input
+                    type="date"
                     value={formData.endDate}
-                    onChange={(e) => setFormData({...formData, endDate: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
                     className={`w-full h-11 px-4 rounded-xl border ${errors.endDate ? 'border-red-500' : 'border-neutral-200'} text-[14px] outline-none focus:border-[#257BFC] focus:ring-1 focus:ring-[#257BFC] transition-all`}
                   />
                 </div>
@@ -83,10 +82,10 @@ export default function RequestLeaveModal({ isOpen, onClose, onSubmit }: Request
 
             <div>
               <label className="mb-2 block text-[14px] font-normal text-[#111827]">Reason</label>
-              <textarea 
+              <textarea
                 placeholder="Please provide reason for leave..."
                 value={formData.reason}
-                onChange={(e) => setFormData({...formData, reason: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
                 className={`w-full h-24 p-4 rounded-xl border ${errors.reason ? 'border-red-500' : 'border-neutral-200'} text-[14px] outline-none focus:border-[#257BFC] focus:ring-1 focus:ring-[#257BFC] transition-all resize-none`}
               ></textarea>
               {errors.reason && <p className="mt-1 text-[12px] text-red-500">{errors.reason}</p>}
