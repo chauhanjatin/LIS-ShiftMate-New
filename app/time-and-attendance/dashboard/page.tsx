@@ -210,10 +210,8 @@ export default function AttendanceDashboardPage() {
             </div>
           </div>
 
-          {/* Bottom Grid: Chart & Summary */}
           <div className="flex flex-col lg:flex-row gap-6">
 
-            {/* Weekly Working Hours */}
             <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 xl:p-6 flex-1 min-w-0">
               <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6">Weekly Working Hours</h3>
 
@@ -249,54 +247,52 @@ export default function AttendanceDashboardPage() {
                   slotProps={{
                     bar: {
                       rx: 4,
+                    }
+                  }}
+                  sx={{
+                    '& .MuiChartsTooltip-paper': {
+                      backgroundColor: '#111827 !important',
+                      color: 'white !important',
+                      borderRadius: '8px !important',
+                      padding: '6px 12px !important',
+                      boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important',
+                      overflow: 'visible !important',
                     },
-                    popper: {
-                      sx: {
-                        '& .MuiChartsTooltip-paper': {
-                          backgroundColor: '#111827 !important',
-                          color: 'white !important',
-                          borderRadius: '8px !important',
-                          padding: '6px 12px !important',
-                          boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important',
-                          overflow: 'visible !important',
-                        },
-                        '& .MuiChartsTooltip-paper::after': {
-                          content: '""',
-                          position: 'absolute',
-                          top: '50%',
-                          right: '-4px',
-                          transform: 'translateY(-50%) rotate(45deg)',
-                          width: '10px',
-                          height: '10px',
-                          backgroundColor: '#111827',
-                          borderRadius: '1px',
-                        },
-                        '& .MuiChartsTooltip-markCell': {
-                          display: 'none !important',
-                        },
-                        '& .MuiChartsTooltip-labelCell': {
-                          color: 'white !important',
-                          fontWeight: '600 !important',
-                          fontSize: '14px !important',
-                          borderBottom: 'none !important',
-                          textAlign: 'center !important',
-                          padding: '0 0 2px 0 !important',
-                          display: 'block !important',
-                        },
-                        '& .MuiChartsTooltip-valueCell': {
-                          color: '#4DB949 !important',
-                          fontWeight: '500 !important',
-                          fontSize: '14px !important',
-                          textAlign: 'center !important',
-                          padding: '0 !important',
-                          display: 'block !important',
-                        },
-                        '& .MuiChartsTooltip-row': {
-                          display: 'flex !important',
-                          flexDirection: 'column !important',
-                          alignItems: 'center !important',
-                        }
-                      }
+                    '& .MuiChartsTooltip-paper::after': {
+                      content: '""',
+                      position: 'absolute',
+                      top: '50%',
+                      right: '-4px',
+                      transform: 'translateY(-50%) rotate(45deg)',
+                      width: '10px',
+                      height: '10px',
+                      backgroundColor: '#111827',
+                      borderRadius: '1px',
+                    },
+                    '& .MuiChartsTooltip-markCell': {
+                      display: 'none !important',
+                    },
+                    '& .MuiChartsTooltip-labelCell': {
+                      color: 'white !important',
+                      fontWeight: '600 !important',
+                      fontSize: '14px !important',
+                      borderBottom: 'none !important',
+                      textAlign: 'center !important',
+                      padding: '0 0 2px 0 !important',
+                      display: 'block !important',
+                    },
+                    '& .MuiChartsTooltip-valueCell': {
+                      color: '#4DB949 !important',
+                      fontWeight: '500 !important',
+                      fontSize: '14px !important',
+                      textAlign: 'center !important',
+                      padding: '0 !important',
+                      display: 'block !important',
+                    },
+                    '& .MuiChartsTooltip-row': {
+                      display: 'flex !important',
+                      flexDirection: 'column !important',
+                      alignItems: 'center !important',
                     }
                   }}
                 />
