@@ -7,7 +7,7 @@ export default function Test() {
       xAxis={[{ scaleType: 'band', data: ['A', 'B'] }]}
       series={[{ data: [1, 2] }]}
       slots={{
-        itemContent: (props: any) => <div className='my-custom-tooltip'>Test</div>,
+        tooltip: (props: any) => <div className='my-custom-tooltip'>Test</div>,
       }}
     />
   )
