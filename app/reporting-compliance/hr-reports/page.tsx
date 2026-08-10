@@ -12,6 +12,10 @@ const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
 export default function HRReportsPage() {
   const [activeTab, setActiveTab] = useState("Headcount");
+  const [employeeFilter, setEmployeeFilter] = useState("all");
+  const [deptFilter, setDeptFilter] = useState("all");
+  const [fromDate, setFromDate] = useState("2026-05-01");
+  const [toDate, setToDate] = useState("2026-05-31");
 
   const breadcrumb = (
     <span className="text-[#98A2B3]">
@@ -44,8 +48,8 @@ export default function HRReportsPage() {
                   options={[
                     { label: "All Employee", value: "all" },
                   ]}
-                  value="all"
-                  onChange={() => { }}
+                  value={employeeFilter}
+                  onChange={(val) => setEmployeeFilter(val)}
                   placeholder="All Employee"
                 />
               </div>
@@ -57,23 +61,21 @@ export default function HRReportsPage() {
                     { label: "Engineering", value: "engineering" },
                     { label: "Marketing", value: "marketing" },
                   ]}
-                  value="all"
-                  onChange={() => { }}
+                  value={deptFilter}
+                  onChange={(val) => setDeptFilter(val)}
                   placeholder="All"
                 />
               </div>
               <div>
                 <label className="mb-2 block text-[14px] text-[#111827]">From</label>
                 <div className="relative">
-                  <input type="text" value="1 May 2026" readOnly className="w-full rounded-xl border border-[#D0D5DD] px-4 py-[11px] text-[14px] text-[#111827] focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 pr-10" />
-                  <svg className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} className="w-full rounded-xl border border-[#D0D5DD] px-4 py-[11px] text-[14px] text-[#111827] focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 bg-white" />
                 </div>
               </div>
               <div>
                 <label className="mb-2 block text-[14px] text-[#111827]">To</label>
                 <div className="relative">
-                  <input type="text" value="31 May 2026" readOnly className="w-full rounded-xl border border-[#D0D5DD] px-4 py-[11px] text-[14px] text-[#111827] focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 pr-10" />
-                  <svg className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} className="w-full rounded-xl border border-[#D0D5DD] px-4 py-[11px] text-[14px] text-[#111827] focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 bg-white" />
                 </div>
               </div>
             </div>
