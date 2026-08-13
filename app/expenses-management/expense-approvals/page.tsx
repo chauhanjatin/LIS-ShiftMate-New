@@ -7,6 +7,12 @@ import DashboardLayout from "@/Component/Layout/DashboardLayout";
 import { Lexend_Deca } from "next/font/google";
 import eyeIcon from "@/assets/images/icons/eye-view.svg";
 import pendingIcon from "@/assets/images/icons/pending-approval.svg";
+import moneyBag from "@/assets/images/icons/money-bag.svg";
+import onTime from "@/assets/images/icons/on-time.svg";
+import history from "@/assets/images/icons/history.svg";
+import check from "@/assets/images/icons/check-circle.svg";
+import removeCircle from "@/assets/images/icons/remove-circle.svg";
+import Toast from "@/Component/UI/Toast";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -52,6 +58,37 @@ export default function ExpenseApprovalsPage() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [isApproveModalOpen, setIsApproveModalOpen] = useState(false);
+  const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
+  const [selectedExpense, setSelectedExpense] = useState<Expense | null>(null);
+
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
+  const handleApproveClick = (expense: Expense) => {
+    setSelectedExpense(expense);
+    setIsApproveModalOpen(true);
+  };
+
+  const handleRejectClick = (expense: Expense) => {
+    setSelectedExpense(expense);
+    setIsRejectModalOpen(true);
+  };
+
+  const handleConfirmApprove = () => {
+    setIsApproveModalOpen(false);
+    setSelectedExpense(null);
+    setToastMessage("Expense approved successfully!");
+    setShowToast(true);
+  };
+
+  const handleConfirmReject = () => {
+    setIsRejectModalOpen(false);
+    setSelectedExpense(null);
+    setToastMessage("Expense rejected successfully!");
+    setShowToast(true);
+  };
+
   const totalPages = Math.ceil(expenses.length / rowsPerPage) || 1;
   const startIndex = (currentPage - 1) * rowsPerPage;
   const paginatedExpenses = expenses.slice(startIndex, startIndex + rowsPerPage);
@@ -67,6 +104,9 @@ export default function ExpenseApprovalsPage() {
   return (
     <DashboardLayout title="Expenses Management" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+
+        <Toast show={showToast} message={toastMessage} onClose={() => setShowToast(false)} />
+
         <div className="bg-white p-6 rounded-2xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 flex items-center justify-between">
@@ -75,7 +115,7 @@ export default function ExpenseApprovalsPage() {
                 <p className="text-[14px] font-medium text-[#111827]">Pending Approval</p>
               </div>
               <div className="h-[52px] w-[52px] rounded-xl bg-[#FFA100] flex items-center justify-center">
-                <Image src={pendingIcon} alt="Pending" width={24} height={24} className="brightness-0 invert" />
+                <Image src={history} alt="Pending" width={24} height={24} className="brightness-0 invert" />
               </div>
             </div>
             <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 flex items-center justify-between">
@@ -84,7 +124,9 @@ export default function ExpenseApprovalsPage() {
                 <p className="text-[14px] font-medium text-[#111827]">Approved Today</p>
               </div>
               <div className="h-[52px] w-[52px] rounded-xl bg-[#4DB949] flex items-center justify-center text-white">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <Image
+                  src={onTime}
+                  alt="" />
               </div>
             </div>
             <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 flex items-center justify-between">
@@ -93,7 +135,7 @@ export default function ExpenseApprovalsPage() {
                 <p className="text-[14px] font-medium text-[#111827]">Approved This Month</p>
               </div>
               <div className="h-[52px] w-[52px] rounded-xl bg-[#8B5CF6] flex items-center justify-center text-white">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <Image src={moneyBag} alt="" className="brightness-0 invert" />
               </div>
             </div>
           </div>
@@ -106,7 +148,7 @@ export default function ExpenseApprovalsPage() {
             <div className="w-full overflow-x-auto rounded-xl border border-[#D0D5DD]">
               <div className="min-w-[1000px]">
                 <div className="grid grid-cols-7 border-b border-[#D0D5DD] bg-[#F9FAFB] px-6 py-2.5">
-                  <div className="text-[14px] 2xl:text-[16px] font-medium text-[#111827]">Employee</div>  
+                  <div className="text-[14px] 2xl:text-[16px] font-medium text-[#111827]">Employee</div>
                   <div className="text-[14px] 2xl:text-[16px] font-medium text-[#111827]">Category</div>
                   <div className="text-[14px] 2xl:text-[16px] font-medium text-[#111827]">Description</div>
                   <div className="text-[14px] 2xl:text-[16px] font-medium text-[#111827]">Amount</div>
@@ -130,16 +172,16 @@ export default function ExpenseApprovalsPage() {
                       <div className="text-[14px] text-[#111827]">{expense.date}</div>
                       <div>
                         <StatusPill status={expense.status} />
-                      </div>    
+                      </div>
                       <div className="flex items-center gap-3">
-                        <Link href={`/expenses-management/expenses-list/${expense.id}`} className="flex h-8 w-8 items-center justify-center cursor-pointer">
+                        <Link href={`/expenses-management/expenses-list/${expense.id}`} className="flex items-center justify-center cursor-pointer">
                           <Image src={eyeIcon} alt="View" />
                         </Link>
-                        <button className="flex h-6 w-6 items-center justify-center rounded-full border border-[#111827] text-[#111827] cursor-pointer">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <button onClick={() => handleApproveClick(expense)} className="flex items-center justify-center cursor-pointer">
+                          <Image src={check} alt="check" />
                         </button>
-                        <button className="flex h-6 w-6 items-center justify-center rounded-full border border-[#111827] text-[#111827] cursor-pointer">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        <button onClick={() => handleRejectClick(expense)} className="flex items-center justify-center cursor-pointer">
+                          <Image src={removeCircle} alt="removeCircle" className="brightness-100 invert" />
                         </button>
                       </div>
                     </div>
@@ -197,6 +239,160 @@ export default function ExpenseApprovalsPage() {
           </div>
         </div>
       </div>
+
+      {/* Approve Modal */}
+      {isApproveModalOpen && selectedExpense && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-[662px] rounded-2xl bg-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] p-6">
+              <h2 className="text-[20px] font-semibold text-[#111827]">Approve Expense</h2>
+              <button 
+                onClick={() => setIsApproveModalOpen(false)}
+                className="text-[#111827] cursor-pointer"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            
+            <div className="p-6">
+              <div className="rounded-xl bg-[#F9FAFB] p-5 mb-6">
+                <div className="flex items-center justify-between mb-4 border-b border-[#E2E8F0] pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="h-[40px] w-[40px] overflow-hidden rounded-full border border-neutral-200">
+                      <img src={selectedExpense.avatar} alt={selectedExpense.employee} className="h-full w-full object-cover" />
+                    </div>
+                    <div>
+                      <p className="text-[14px] text-[#111827]">{selectedExpense.employee}</p>
+                      <p className="text-[12px] text-[#98A2B3]">No valid tax code assigned for this period.</p>
+                    </div>
+                  </div>
+                  <div className="text-[14px] font-semibold text-[#111827]">{selectedExpense.amount}</div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex justify-between">
+                    <span className="text-[14px] text-[#111827]">Category</span>
+                    <span className="text-[14px] text-[#111827]">{selectedExpense.category}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[14px] text-[#111827]">Date</span>
+                    <span className="text-[14px] text-[#111827]">{selectedExpense.date}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[14px] text-[#111827]">Description</span>
+                    <span className="text-[14px] text-[#111827]">30 min</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[14px] text-[#111827]">Location</span>
+                    <span className="text-[14px] text-[#111827] truncate max-w-[200px]" title={selectedExpense.description}>{selectedExpense.description}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <label className="mb-2 block text-[14px] text-[#111827]">Description (optional)</label>
+                <textarea 
+                  rows={3} 
+                  placeholder="e.g. Approved for Q1 travel"
+                  className="w-full resize-none rounded-xl border border-[#D0D5DD] px-4 py-3 text-[14px] text-[#111827] focus:border-[#257BFC] focus:outline-none focus:ring-1 focus:ring-[#257BFC]"
+                ></textarea>
+              </div>
+
+              <div className="flex justify-end gap-3">
+                <button 
+                  onClick={() => setIsApproveModalOpen(false)}
+                  className="rounded-xl border border-[#111827] px-6 py-2.5 text-[14px] 2xl:text-[16px] font-semibold text-[#111827] cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={handleConfirmApprove}
+                  className="rounded-xl bg-[#257BFC] px-6 py-2.5 text-[14px] 2xl:text-[16px] font-semibold text-white cursor-pointer"
+                >
+                  Confirm Approve
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Reject Modal */}
+      {isRejectModalOpen && selectedExpense && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-[662px] rounded-2xl bg-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] p-6">
+              <h2 className="text-[20px] font-semibold text-[#111827]">Reject Expense</h2>
+              <button 
+                onClick={() => setIsRejectModalOpen(false)}
+                className="text-[#111827] cursor-pointer"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            
+            <div className="p-6">
+              <div className="rounded-xl bg-[#F9FAFB] p-5 mb-6">
+                <div className="flex items-center justify-between mb-4 border-b border-[#E2E8F0] pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="h-[40px] w-[40px] overflow-hidden rounded-full border border-neutral-200">
+                      <img src={selectedExpense.avatar} alt={selectedExpense.employee} className="h-full w-full object-cover" />
+                    </div>
+                    <div>
+                      <p className="text-[14px] text-[#111827]">{selectedExpense.employee}</p>
+                      <p className="text-[12px] text-[#98A2B3]">No valid tax code assigned for this period.</p>
+                    </div>
+                  </div>
+                  <div className="text-[14px] font-semibold text-[#111827]">{selectedExpense.amount}</div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex justify-between">
+                    <span className="text-[14px] text-[#475467]">Category</span>
+                    <span className="text-[14px] text-[#111827]">{selectedExpense.category}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[14px] text-[#475467]">Date</span>
+                    <span className="text-[14px] text-[#111827]">{selectedExpense.date}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[14px] text-[#475467]">Description</span>
+                    <span className="text-[14px] text-[#111827]">30 min</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[14px] text-[#475467]">Location</span>
+                    <span className="text-[14px] text-[#111827] truncate max-w-[200px]" title={selectedExpense.description}>{selectedExpense.description}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <label className="mb-2 block text-[14px] font-medium text-[#111827]">Description (optional)</label>
+                <textarea 
+                  rows={3} 
+                  placeholder="e.g. Missing receipt, please resubmit"
+                  className="w-full resize-none rounded-xl border border-[#D0D5DD] px-4 py-3 text-[14px] text-[#111827] focus:border-[#257BFC] focus:outline-none focus:ring-1 focus:ring-[#257BFC]"
+                ></textarea>
+              </div>
+
+              <div className="flex justify-end gap-3">
+                <button 
+                  onClick={() => setIsRejectModalOpen(false)}
+                  className="rounded-xl border border-[#D0D5DD] px-6 py-2.5 text-[14px] font-medium text-[#344054] cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={handleConfirmReject}
+                  className="rounded-xl bg-[#F04438] px-6 py-2.5 text-[14px] font-medium text-white cursor-pointer"
+                >
+                  Confirm Reject
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </DashboardLayout>
   );
 }

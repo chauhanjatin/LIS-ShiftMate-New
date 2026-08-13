@@ -13,6 +13,12 @@ import eyeIcon from "@/assets/images/icons/eye-view.svg";
 import pendingIcon from "@/assets/images/icons/pending-approval.svg";
 import CustomSelect from "@/Component/UI/CustomSelect";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import fileCheck from "@/assets/images/icons/file-check.svg";
+import history from "@/assets/images/icons/history.svg";
+import onTime from "@/assets/images/icons/on-time.svg";
+import removeCircle from "@/assets/images/icons/remove-circle.svg";
+import deletePopupIcon from "@/assets/images/icons/delete-popup.svg";
+import Toast from "@/Component/UI/Toast";
 
 const lexendDeca = Lexend_Deca({ subsets: ["latin"] });
 
@@ -61,6 +67,13 @@ export default function ExpensesListPage() {
   const [activeFilter, setActiveFilter] = useState("All");
 
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [expenseToDelete, setExpenseToDelete] = useState<string | null>(null);
+
+  // Toast State
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
   const [formData, setFormData] = useState({ type: "", amount: "", date: "", category: "", description: "" });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
@@ -91,11 +104,24 @@ export default function ExpensesListPage() {
 
   const handleSubmitExpense = () => {
     if (validateForm()) {
-      // Mock submit
       setIsSubmitModalOpen(false);
       setFormData({ type: "", amount: "", date: "", category: "", description: "" });
       setReceiptFile(null);
+      setToastMessage("Expense submitted successfully!");
+      setShowToast(true);
     }
+  };
+
+  const handleDeleteClick = (id: string) => {
+    setExpenseToDelete(id);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    setIsDeleteModalOpen(false);
+    setExpenseToDelete(null);
+    setToastMessage("Expense deleted successfully!");
+    setShowToast(true);
   };
 
   const filterRef = React.useRef<HTMLDivElement>(null);
@@ -122,6 +148,8 @@ export default function ExpensesListPage() {
   return (
     <DashboardLayout title="Expenses Management" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+        
+        <Toast show={showToast} message={toastMessage} onClose={() => setShowToast(false)} />
 
         <div className="bg-white p-6 rounded-2xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -131,7 +159,7 @@ export default function ExpensesListPage() {
                 <p className="text-[14px] font-medium text-[#111827]">Total Submitted</p>
               </div>
               <div className="h-12 w-12 rounded-xl bg-[#257BFC] flex items-center justify-center text-white">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <Image src={fileCheck} alt="" />
               </div>
             </div>
             <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 flex items-center justify-between">
@@ -140,7 +168,7 @@ export default function ExpensesListPage() {
                 <p className="text-[14px] font-medium text-[#111827]">Pending Approval</p>
               </div>
               <div className="h-12 w-12 rounded-xl bg-[#8B5CF6] flex items-center justify-center">
-                <Image src={pendingIcon} alt="Pending" width={24} height={24} className="brightness-0 invert" />
+                <Image src={history} alt="history" width={24} height={24} className="brightness-0 invert" />
               </div>
             </div>
             <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 flex items-center justify-between">
@@ -149,7 +177,7 @@ export default function ExpensesListPage() {
                 <p className="text-[14px] font-medium text-[#111827]">Approved This Month</p>
               </div>
               <div className="h-12 w-12 rounded-xl bg-[#4DB949] flex items-center justify-center text-white">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <Image src={onTime} alt="onTime" width={24} height={24} className="brightness-0 invert" />
               </div>
             </div>
             <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 flex items-center justify-between">
@@ -158,7 +186,7 @@ export default function ExpensesListPage() {
                 <p className="text-[14px] font-medium text-[#111827]">Rejected</p>
               </div>
               <div className="h-12 w-12 rounded-xl bg-[#EF4444] flex items-center justify-center text-white">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <Image src={removeCircle} alt="removeCircle" />
               </div>
             </div>
           </div>
@@ -249,7 +277,7 @@ export default function ExpensesListPage() {
                         <button className="text-[#6B7280] hover:text-[#111827] transition-colors cursor-pointer">
                           <Image src={editIcon} alt="Edit" />
                         </button>
-                        <button className="text-[#6B7280] hover:text-[#EF4444] transition-colors cursor-pointer">
+                        <button onClick={() => handleDeleteClick(expense.id)} className="text-[#6B7280] hover:text-[#EF4444] transition-colors cursor-pointer">
                           <Image src={deleteIcon} alt="Delete" />
                         </button>
                       </div>
@@ -340,23 +368,23 @@ export default function ExpensesListPage() {
               </div>
               <div>
                 <label className="mb-2 block text-[14px] font-medium text-[#111827]">Amount($)</label>
-                <input 
-                  type="number" 
+                <input
+                  type="number"
                   value={formData.amount}
                   onChange={(e) => handleInputChange("amount", e.target.value)}
-                  placeholder="0.00" 
-                  className={`w-full rounded-xl border ${formErrors.amount ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 py-3 text-[14px] text-[#111827] focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500`} 
+                  placeholder="0.00"
+                  className={`w-full rounded-xl border ${formErrors.amount ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 py-3 text-[14px] text-[#111827] focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500`}
                 />
                 {formErrors.amount && <p className="mt-1 text-[12px] text-red-500">{formErrors.amount}</p>}
               </div>
               <div>
                 <label className="mb-2 block text-[14px] font-medium text-[#111827]">Date</label>
                 <div className="relative">
-                  <input 
-                    type="date" 
+                  <input
+                    type="date"
                     value={formData.date}
                     onChange={(e) => handleInputChange("date", e.target.value)}
-                    className={`w-full rounded-xl border ${formErrors.date ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 py-3 text-[14px] text-[#111827] focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 bg-white`} 
+                    className={`w-full rounded-xl border ${formErrors.date ? 'border-red-500' : 'border-[#D0D5DD]'} px-4 py-3 text-[14px] text-[#111827] focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 bg-white`}
                   />
                 </div>
                 {formErrors.date && <p className="mt-1 text-[12px] text-red-500">{formErrors.date}</p>}
@@ -379,11 +407,11 @@ export default function ExpensesListPage() {
               </div>
               <div className="md:col-span-2">
                 <label className="mb-2 block text-[14px] font-medium text-[#111827]">Description (optional)</label>
-                <textarea 
-                  rows={3} 
+                <textarea
+                  rows={3}
                   value={formData.description}
                   onChange={(e) => handleInputChange("description", e.target.value)}
-                  placeholder="Describe the purpose of this expense..." 
+                  placeholder="Describe the purpose of this expense..."
                   className="w-full resize-none rounded-xl border border-[#D0D5DD] px-4 py-3 text-[14px] text-[#111827] focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
                 ></textarea>
               </div>
@@ -391,9 +419,9 @@ export default function ExpensesListPage() {
               <div className="md:col-span-2 mt-2">
                 <label className="mb-2 block text-[14px] font-medium text-[#111827]">Receipt Upload</label>
                 <div className={`relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed ${formErrors.receiptFile ? 'border-red-500' : 'border-[#D0D5DD]'} bg-white py-10 px-4 text-center hover:bg-neutral-50 transition-colors`}>
-                  <input 
-                    type="file" 
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
+                  <input
+                    type="file"
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     onChange={handleFileChange}
                     accept=".jpg,.jpeg,.png,.pdf"
                   />
@@ -424,6 +452,36 @@ export default function ExpensesListPage() {
                 className="rounded-xl bg-[#257BFC] px-6 py-2.5 text-[14px] font-semibold text-white transition hover:bg-blue-600 cursor-pointer"
               >
                 Submit Expense
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-[400px] rounded-2xl bg-white shadow-2xl p-6 text-center">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#FEE4E2]">
+              <Image src={deletePopupIcon} alt="Delete" className="h-6 w-6" />
+            </div>
+            
+            <p className="mb-8 text-[16px] text-[#111827] font-medium leading-relaxed px-4">
+              Are you sure you want to delete this expense? This action cannot be undone.
+            </p>
+            
+            <div className="flex justify-center gap-3">
+              <button 
+                onClick={() => setIsDeleteModalOpen(false)}
+                className="rounded-xl border border-[#D0D5DD] px-8 py-2.5 text-[14px] font-medium text-[#344054] hover:bg-neutral-50 transition-colors cursor-pointer w-full"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleConfirmDelete}
+                className="rounded-xl bg-[#F04438] px-8 py-2.5 text-[14px] font-medium text-white hover:bg-red-700 transition-colors cursor-pointer w-full"
+              >
+                Delete
               </button>
             </div>
           </div>

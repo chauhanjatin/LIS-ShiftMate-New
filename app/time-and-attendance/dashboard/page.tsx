@@ -147,7 +147,6 @@ export default function AttendanceDashboardPage() {
 
 
           <div className="flex flex-col lg:flex-row gap-6 mb-6">
-            {/* Today's Status */}
             <div className="rounded-xl border border-[#D0D5DD] p-5 xl:p-6 w-full lg:w-[350px] xl:w-[450px] 2xl:w-[598px] shrink-0 flex flex-col">
               <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-6">Today's Status</h3>
               <div className="bg-[#F9FAFB] rounded-2xl flex-1 flex flex-col items-center justify-center p-12 mb-5 border border-[#E4E7EC]">
