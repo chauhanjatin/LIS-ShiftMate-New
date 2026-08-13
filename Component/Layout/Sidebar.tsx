@@ -21,6 +21,9 @@ import taxRuleIcon from "@/assets/images/icons/tax-rule.svg";
 import nationalRuleIcon from "@/assets/images/icons/national-rule.svg";
 import studentLoanIcon from "@/assets/images/icons/student-loan.svg";
 import payslipListIcon from "@/assets/images/icons/payslip-list.svg";
+import clockCircleIcon from "@/assets/images/icons/clock-circle.svg";
+import moneyBagIcon from "@/assets/images/icons/money-bag.svg";
+import invoiceIcon from "@/assets/images/icons/invoice.svg";
 import Link from "next/link";
 
 export default function Sidebar({
@@ -181,7 +184,7 @@ export default function Sidebar({
 
   const allItems: Array<{
     label: string;
-    icon: "dashboard" | "users" | "role" | "organisation" | "employees" | "payrollsetting" | "paycalendar" | "dollar" | "deduction" | "salarystructure" | "employeepayroll" | "payrollruns" | "payrollapproval" | "taxrules" | "nationalrule" | "studentloan" | "paysliplist" | "leavemanagement" | "pension" | "statutory" | "hmrc";
+    icon: "dashboard" | "users" | "role" | "organisation" | "employees" | "payrollsetting" | "paycalendar" | "dollar" | "deduction" | "salarystructure" | "employeepayroll" | "payrollruns" | "payrollapproval" | "taxrules" | "nationalrule" | "studentloan" | "paysliplist" | "leavemanagement" | "pension" | "statutory" | "hmrc" | "clockcircle" | "moneybag" | "invoice";
     expandable?: boolean;
   }> = [
     { label: "Dashboard", icon: "dashboard", expandable: true },
@@ -205,9 +208,9 @@ export default function Sidebar({
     { label: "Pension", icon: "pension", expandable: true },
     { label: "Statutory Payments", icon: "statutory", expandable: true },
     { label: "HMRC RTI", icon: "hmrc", expandable: true },
-    { label: "Time & Attendance", icon: "dashboard", expandable: true },
-    { label: "Expenses Management", icon: "dollar", expandable: true },
-    { label: "Reporting Compliance", icon: "paysliplist", expandable: true },
+    { label: "Time & Attendance", icon: "clockcircle", expandable: true },
+    { label: "Expenses Management", icon: "moneybag", expandable: true },
+    { label: "Reporting Compliance", icon: "invoice", expandable: true },
   ] as const;
 
   const moduleItemsMap: Record<string, string[]> = {
@@ -402,6 +405,9 @@ export default function Sidebar({
     pension: dollarIcon,
     statutory: organisationIcon,
     hmrc: payslipListIcon,
+    clockcircle: clockCircleIcon,
+    moneybag: moneyBagIcon,
+    invoice: invoiceIcon,
   } as const;
 
   return (
