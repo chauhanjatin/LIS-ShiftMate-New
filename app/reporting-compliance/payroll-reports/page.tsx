@@ -39,9 +39,9 @@ export default function PayrollReportsPage() {
 
   return (
     <DashboardLayout title="Reporting Compliance" subtitle={breadcrumb}>
-      <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
-        <div className="bg-white p-6 rounded-2xl">
-          <div className="flex flex-wrap items-end gap-4 mb-8">
+      <div className={`flex-1 p-4 xl:p-6 ${lexendDeca.className}`}>
+        <div className="bg-white p-4 xl:p-6 rounded-2xl">
+          <div className="flex flex-col flex-wrap  gap-4 mb-8">
             <div className="w-[120px]">
               <label className="mb-2 block text-[15px] 2xl:text-[20px] font-medium text-[#111827]">Filters</label>
             </div>
@@ -61,7 +61,7 @@ export default function PayrollReportsPage() {
               <div>
                 <label className="mb-2 block text-[13px] 2xl:text-[14px] text-[#111827]">Department</label>
                 <CustomSelect
-                  options={[
+                  options={[                                                                                  
                     { label: "All", value: "all" },
                     { label: "Engineering", value: "engineering" },
                     { label: "Marketing", value: "marketing" },
@@ -117,7 +117,7 @@ export default function PayrollReportsPage() {
                 <div className="text-[14px] 2xl:text-[16px] text-[#111827]">Deductions</div>
                 <div className="text-[14px] 2xl:text-[16px] text-[#111827]">Net Pay</div>
                 <div className="text-[14px] 2xl:text-[16px] text-[#111827]">Status</div>
-                <div className="text-[14px] 2xl:text-[16px] text-[#111827]">Action</div>
+                <div className="text-[14px] 2xl:text-[16px] text-[#111827] text-center">Action</div>
               </div>
 
               <div className="divide-y divide-[#D0D5DD]">
@@ -147,7 +147,7 @@ export default function PayrollReportsPage() {
                         <span className="inline-flex rounded-full bg-[#FFF6E8] px-3.5 py-2.5 text-[12px] 2xl:text-[14px] font-medium text-[#FFA100]">Pending</span>
                       )}
                     </div>
-                    <div className="flex">
+                    <div className="flex justify-center">
                       <button className="text-[#6B7280] hover:text-[#111827] transition-colors cursor-pointer">
                         <Image src={eyeIcon} alt="View" />
                       </button>

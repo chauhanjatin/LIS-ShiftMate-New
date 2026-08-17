@@ -565,7 +565,7 @@ export default function Sidebar({
                             const route = timeAttendanceSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
-                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left md:text-[16px] text-[13px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                          className={`flex w-full items-center rounded-xl xl:px-4 px-2 xl:py-3 py-2 text-left xl:text-[16px] text-[14px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
                             }`}
                         >
                           {subLabel}
@@ -593,7 +593,7 @@ export default function Sidebar({
                             const route = expensesManagementSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
-                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left md:text-[16px] text-[13px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                          className={`flex w-full items-center rounded-xl xl:px-4 px-2 xl:py-3 py-2 text-left xl:text-[16px] text-[14px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
                             }`}
                         >
                           {subLabel}
@@ -621,7 +621,7 @@ export default function Sidebar({
                             const route = reportingComplianceSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
-                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left md:text-[16px] text-[13px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                          className={`flex w-full items-center rounded-xl xl:px-4 px-2 xl:py-3 py-2 text-left xl:text-[16px] text-[14px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
                             }`}
                         >
                           {subLabel}
@@ -649,7 +649,7 @@ export default function Sidebar({
                             const route = employeeSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
-                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left md:text-[16px] text-[13px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                          className={`flex w-full items-center rounded-xl xl:px-4 px-2 xl:py-3 py-2 text-left xl:text-[16px] text-[14px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
                             }`}
                         >
                           {subLabel}
@@ -677,7 +677,7 @@ export default function Sidebar({
                             const route = organizationSubRoutes[subLabel];
                             if (route) router.push(route);
                           }}
-                          className={`flex w-full items-center rounded-xl px-4 py-3 text-left md:text-[16px] text-[13px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
+                          className={`flex w-full items-center rounded-xl xl:px-4 px-2 xl:py-3 py-2 text-left xl:text-[16px] text-[14px] font-medium cursor-pointer transition-all duration-300 ${isSubActive ? "bg-[#EAF2FF] text-[#257BFC]" : "bg-transparent text-[#111827]"
                             }`}
                         >
                           {subLabel}

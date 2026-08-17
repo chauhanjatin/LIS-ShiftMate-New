@@ -48,43 +48,43 @@ export default function ReportsDashboardPage() {
 
   return (
     <DashboardLayout title="Reporting Compliance" subtitle={breadcrumb}>
-      <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+      <div className={`flex-1 p-4 xl:p-6 ${lexendDeca.className}`}>
 
         <div className="bg-white p-6 rounded-2xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-            <div className="rounded-2xl border border-[#D0D5DD] bg-white p-6 flex items-center justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-6 mb-6">
+            <div className="rounded-2xl border border-[#D0D5DD] bg-white 3xl:p-4 xl:p-6 p-4 flex items-center justify-between">
               <div>
-                <h2 className="text-[24px] xl:text-[28px] 2xl:text-[32px] font-semibold text-[#111827] mb-1">$485,250</h2>
-                <p className="text-[12px] 2xl:text-[14px] font-medium text-[#111827]">Total Payroll Cost (Mar 2026)</p>
+                <h2 className="text-[24px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[30px] font-semibold text-[#111827] mb-1">$485,250</h2>
+                <p className="text-[12px] 2xl:text-[14px] 3xl:text-[12px] font-medium text-[#111827]">Total Payroll Cost (Mar 2026)</p>
               </div>
-              <div className="h-[54px] w-[54px] rounded-xl bg-[#257BFC] flex items-center justify-center shrink-0">
+              <div className="3xl:h-[48px] 3xl:w-[48px] h-[54px] w-[54px] rounded-xl bg-[#257BFC] flex items-center justify-center shrink-0">
                 <Image src={dollarIcon} alt="Dollar" className="brightness-0 invert" />
               </div>
             </div>
-            <div className="rounded-2xl border border-[#D0D5DD] bg-white p-6 flex items-center justify-between">
+            <div className="rounded-2xl border border-[#D0D5DD] bg-white 3xl:p-4 xl:p-6 p-4 flex items-center justify-between">
               <div>
-                <h2 className="text-[24px] xl:text-[28px] 2xl:text-[32px] font-semibold text-[#111827] mb-1">124</h2>
-                <p className="text-[12px] 2xl:text-[14px] font-medium text-[#111827]">Current Headcount</p>
+                <h2 className="text-[24px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[30px] font-semibold text-[#111827] mb-1">124</h2>
+                <p className="text-[12px] 2xl:text-[14px] 3xl:text-[12px] font-medium text-[#111827]">Current Headcount</p>
               </div>
-              <div className="h-[54px] w-[54px] rounded-xl bg-[#4DB949] flex items-center justify-center shrink-0">
+              <div className="3xl:h-[48px] 3xl:w-[48px] h-[54px] w-[54px] rounded-xl bg-[#4DB949] flex items-center justify-center shrink-0">
                 <Image src={usersIcon} alt="Users" className="brightness-0 invert" />
               </div>
             </div>
-            <div className="rounded-2xl border border-[#D0D5DD] bg-white p-6 flex items-center justify-between">
+            <div className="rounded-2xl border border-[#D0D5DD] bg-white 3xl:p-4 xl:p-6 p-4 flex items-center justify-between">
               <div>
-                <h2 className="text-[24px] xl:text-[28px] 2xl:text-[32px] font-semibold text-[#111827] mb-1">12.5</h2>
-                <p className="text-[12px] 2xl:text-[14px] font-medium text-[#111827]">Avg Leave Days/Employee</p>
+                <h2 className="text-[24px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[30px] font-semibold text-[#111827] mb-1">12.5</h2>
+                <p className="text-[12px] 2xl:text-[14px] 3xl:text-[12px] font-medium text-[#111827]">Avg Leave Days/Employee</p>
               </div>
-              <div className="h-[54px] w-[54px] rounded-xl bg-[#8B5CF6] flex items-center justify-center shrink-0">
+              <div className="3xl:h-[48px] 3xl:w-[48px] h-[54px] w-[54px] rounded-xl bg-[#8B5CF6] flex items-center justify-center shrink-0">
                 <Image src={planeIcon} alt="Plane" className="brightness-0 invert" />
               </div>
             </div>
-            <div className="rounded-2xl border border-[#D0D5DD] bg-white p-6 flex items-center justify-between">
+            <div className="rounded-2xl border border-[#D0D5DD] bg-white 3xl:p-4 xl:p-6 p-4 flex items-center justify-between">
               <div>
-                <h2 className="text-[24px] xl:text-[28px] 2xl:text-[32px] font-semibold text-[#111827] mb-1">245hr</h2>
-                <p className="text-[12px] 2xl:text-[14px] font-medium text-[#111827]">Overtime Hours (This Month)</p>
+                <h2 className="text-[24px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[30px] font-semibold text-[#111827] mb-1">245hr</h2>
+                <p className="text-[12px] 2xl:text-[14px] 3xl:text-[12px] font-medium text-[#111827]">Overtime Hours (This Month)</p>
               </div>
-              <div className="h-[54px] w-[54px] rounded-xl bg-[#FFA100] flex items-center justify-center shrink-0">
+              <div className="3xl:h-[48px] 3xl:w-[48px] h-[54px] w-[54px] rounded-xl bg-[#FFA100] flex items-center justify-center shrink-0">
                 <Image src={overtimeIcon} alt="Overtime" className="brightness-0 invert" />
               </div>
             </div>
@@ -93,9 +93,8 @@ export default function ReportsDashboardPage() {
           <div>
             <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6">Reports & Analytics</h3>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
 
-              {/* Payroll Trend Bar Chart */}
               <div className="rounded-xl border border-[#E2E8F0] p-5">
                 <h4 className="text-[15px] 2xl:text-[20px] font-medium text-[#111827] mb-6">Payroll Trend (Last 5 Months)</h4>
                 <div className="h-[250px] w-full">
@@ -118,7 +117,6 @@ export default function ReportsDashboardPage() {
                 </div>
               </div>
 
-              {/* Headcount by Department Donut Chart */}
               <div className="rounded-xl border border-[#E2E8F0] p-5">
                 <h4 className="text-[15px] font-semibold text-[#111827] mb-6">Headcount by Department</h4>
                 <div className="flex h-[250px] items-center gap-8">

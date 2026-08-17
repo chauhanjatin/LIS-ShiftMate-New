@@ -71,18 +71,17 @@ export default function AttendanceDashboardPage() {
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
 
         <div className="bg-white p-4 2xl:p-6 rounded-2xl">
-          {/* Top Metric Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 2xl:gap-6 mb-6">
-            <div className="rounded-xl border border-[#D0D5DD] p-5 flex items-center justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-4 2xl:gap-6 mb-6">
+            <div className="rounded-xl border border-[#D0D5DD] 3xl:p-3 p-5 flex items-center justify-between">
               <div>
                 <p className="text-[14px] font-medium text-[#111827] mb-2">Today's Attendance</p>
                 <div className="flex items-baseline gap-1">
-                  <h3 className="text-[32px] font-semibold text-[#111827]">4</h3>
+                  <h3 className="3xl:text-[30px] text-[32px] font-semibold text-[#111827]">4</h3>
                   <span className="text-[14px] text-[#98A2B3]">/ 7 days left</span>
                 </div>
                 <p className="text-[14px] font-medium text-[#98A2B3] mt-2">12 days used this year</p>
               </div>
-              <div className="h-[48px] w-[48px] rounded-xl bg-[#4DB949] flex items-center justify-center shrink-0">
+              <div className="3xl:h-[42px] 3xl:w-[42px] h-[48px] w-[48px] rounded-xl bg-[#4DB949] flex items-center justify-center shrink-0">
                 <Image
                   src={icon}
                   alt=""
@@ -93,10 +92,11 @@ export default function AttendanceDashboardPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-[#D0D5DD] p-5 flex items-center justify-between">
+
+            <div className="rounded-xl border border-[#D0D5DD] 3xl:p-3 p-5 flex items-center justify-between">
               <div>
                 <p className="text-[14px] font-medium text-[#111827] mb-2">Clock-in Status</p>
-                <h3 className="text-[32px] font-semibold text-[#111827]">On time</h3>
+                <h3 className="3xl:text-[30px] text-[32px] font-semibold text-[#111827]">On time</h3>
                 <p className="text-[14px] font-medium text-[#9CA3AF] mt-2">Clocked in at 08:54</p>
               </div>
               <div className="h-[48px] w-[48px] rounded-xl bg-[#2BB1FA] flex items-center justify-center shrink-0">
@@ -110,13 +110,13 @@ export default function AttendanceDashboardPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-[#D0D5DD] p-5 flex items-center justify-between">
+            <div className="rounded-xl border border-[#D0D5DD] 3xl:p-3 p-5 flex items-center justify-between">
               <div>
                 <p className="text-[14px] font-medium text-[#111827] mb-2">Weekly Hours</p>
-                <h3 className="text-[32px] font-semibold text-[#111827]">42.1h</h3>
+                <h3 className="3xl:text-[30px] text-[32px] font-semibold text-[#111827]">42.1h</h3>
                 <p className="text-[14px] font-medium text-[#9CA3AF] mt-2">Target 40h - 100% complete</p>
               </div>
-              <div className="h-[48px] w-[48px] rounded-xl bg-[#FFA100] flex items-center justify-center shrink-0">
+              <div className="3xl:h-[42px] 3xl:w-[42px] h-[48px] w-[48px] rounded-xl bg-[#FFA100] flex items-center justify-center shrink-0">
                 <Image
                   src={weeklyHours}
                   alt=""
@@ -127,13 +127,13 @@ export default function AttendanceDashboardPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-[#D0D5DD] p-5 flex items-center justify-between">
+            <div className="rounded-xl border border-[#D0D5DD] 3xl:p-3 p-5 flex items-center justify-between">
               <div>
                 <p className="text-[14px] font-medium text-[#111827] mb-2">Overtime</p>
-                <h3 className="text-[32px] font-semibold text-[#111827]">2.3h</h3>
+                <h3 className="3xl:text-[30px] text-[32px] font-semibold text-[#111827]">2.3h</h3>
                 <p className="text-[14px] font-medium text-[#9CA3AF] mt-2">This week so far</p>
               </div>
-              <div className="h-[48px] w-[48px] rounded-xl bg-[#8B5CF6] flex items-center justify-center shrink-0">
+              <div className="3xl:h-[42px] 3xl:w-[42px] h-[48px] w-[48px] rounded-xl bg-[#8B5CF6] flex items-center justify-center shrink-0">
                 <Image
                   src={overtime}
                   alt=""
@@ -146,8 +146,8 @@ export default function AttendanceDashboardPage() {
           </div>
 
 
-          <div className="flex flex-col lg:flex-row gap-6 mb-6">
-            <div className="rounded-xl border border-[#D0D5DD] p-5 xl:p-6 w-full lg:w-[350px] xl:w-[450px] 2xl:w-[598px] shrink-0 flex flex-col">
+          <div className="flex flex-col xl:flex-row xl:gap-6 gap-4 mb-6">
+            <div className="rounded-xl border border-[#D0D5DD] p-5 xl:p-6 w-full xl:w-[450px] 2xl:w-[598px] shrink-0 flex flex-col">
               <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-6">Today's Status</h3>
               <div className="bg-[#F9FAFB] rounded-2xl flex-1 flex flex-col items-center justify-center p-12 mb-5 border border-[#E4E7EC]">
                 <h1 className="text-[40px] xl:text-[48px] font-bold text-[#111827] tracking-tight m-0">{formatTime(time)}</h1>
@@ -156,16 +156,16 @@ export default function AttendanceDashboardPage() {
               </div>
 
               <div className="grid grid-cols-3 gap-3 xl:gap-4">
-                <div className="bg-[#EDFAF2] border border-[#4DB949] rounded-xl flex flex-col items-center justify-center p-6">
-                  <span className="text-[14px] 2xl:text-[18px] font-medium text-[#111827]">Clock In</span>
+                <div className="bg-[#EDFAF2] border border-[#4DB949] rounded-xl flex flex-col items-center justify-center p-3 2xl:p-6">
+                  <span className="text-[12px] 2xl:text-[14px] font-medium text-[#111827]">Clock In</span>
                   <span className="text-[12px] 2xl:text-[14px] text-[#98A2B3] mt-2">08:54 AM</span>
                 </div>
-                <div className="bg-[#E8F8FF] border border-[#34AFF5] rounded-xl flex flex-col items-center justify-center py-3">
-                  <span className="text-[14px] 2xl:text-[18px] font-medium text-[#111827]">Break</span>
+                <div className="bg-[#E8F8FF] border border-[#34AFF5] rounded-xl flex flex-col items-center justify-center p-3 2xl:p-6">
+                  <span className="text-[12px] 2xl:text-[14px] font-medium text-[#111827]">Break</span>
                   <span className="text-[12px] 2xl:text-[14px] text-[#98A2B3] mt-2">32m</span>
                 </div>
-                <div className="bg-[#F0ECFE] border border-[#775AF4] rounded-xl flex flex-col items-center justify-center py-3">
-                  <span className="text-[14px] 2xl:text-[18px] font-medium text-[#111827]">Expected Out</span>
+                <div className="bg-[#F0ECFE] border border-[#775AF4] rounded-xl flex flex-col items-center justify-center p-3 2xl:p-6">
+                  <span className="text-[12px] 2xl:text-[14px] font-medium text-[#111827]">Expected Out</span>
                   <span className="text-[12px] 2xl:text-[14px] text-[#98A2B3] mt-2">17:30 PM</span>
                 </div>
               </div>
@@ -182,11 +182,11 @@ export default function AttendanceDashboardPage() {
                 <table className="w-full text-left rounded-xl border border-[#D0D5DD] border-separate border-spacing-0 overflow-hidden">
                   <thead className="bg-[#F9FAFB]">
                     <tr>
-                      <th className="py-3 pl-6 pr-4 text-[13px] 2xl:text-[16px] font-normal text-[#111827] border-b border-[#D0D5DD]">Employee</th>
-                      <th className="py-3 px-4 text-[13px] 2xl:text-[16px] font-normal text-[#111827] border-b border-[#D0D5DD]">Clock-in</th>
-                      <th className="py-3 px-4 text-[13px] 2xl:text-[16px] font-normal text-[#111827] border-b border-[#D0D5DD]">Clock-out</th>
-                      <th className="py-3 px-4 text-[13px] 2xl:text-[16px] font-normal text-[#111827] border-b border-[#D0D5DD]">Hours</th>
-                      <th className="py-3 pr-6 pl-4 text-[13px] 2xl:text-[16px] font-normal text-[#111827] border-b border-[#D0D5DD]">Status</th>
+                      <th className="py-3 pl-6 pr-4 text-[14px] xl:text-[16px] font-normal text-[#111827] border-b border-[#D0D5DD]">Employee</th>
+                      <th className="py-3 px-4 text-[14px] xl:text-[16px] font-normal text-[#111827] border-b border-[#D0D5DD]">Clock-in</th>
+                      <th className="py-3 px-4 text-[14px] xl:text-[16px] font-normal text-[#111827] border-b border-[#D0D5DD]">Clock-out</th>
+                      <th className="py-3 px-4 text-[14px] xl:text-[16px] font-normal text-[#111827] border-b border-[#D0D5DD]">Hours</th>
+                      <th className="py-3 pr-6 pl-4 text-[14px] xl:text-[16px] font-normal text-[#111827] border-b border-[#D0D5DD]">Status</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white">
@@ -209,7 +209,7 @@ export default function AttendanceDashboardPage() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-6">
+          <div className="flex flex-col xl:flex-row gap-4 xl:gap-6">
 
             <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 xl:p-6 flex-1 min-w-0">
               <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6">Weekly Working Hours</h3>
@@ -299,7 +299,7 @@ export default function AttendanceDashboardPage() {
             </div>
 
             {/* Overtime Summary */}
-            <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 xl:p-6 w-full lg:w-[350px] xl:w-[450px] 2xl:w-[598px] shrink-0 flex flex-col">
+            <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 xl:p-6 w-full xl:w-[450px] 2xl:w-[598px] shrink-0 flex flex-col">
               <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-6">Overtime summary</h3>
 
               <div className="space-y-5 flex-1">
@@ -340,9 +340,9 @@ export default function AttendanceDashboardPage() {
                   <span>12.4h</span>
                 </div>
 
-                <div className="bg-[#FFF6E8] border border-[#FFA100] rounded-xl p-6 flex gap-3">
+                <div className="bg-[#FFF6E8] border border-[#FFA100] rounded-xl p-3 xl:p-6 flex gap-3">
                   <Image src={infoIcon} alt="Warning" />
-                  <p className="text-[14px] text-[#111827]">2.4 hours of overtime are pending manager approval since Wed.</p>
+                  <p className="xl:text-[14px] text-[12px] text-[#111827]">2.4 hours of overtime are pending manager approval since Wed.</p>
                 </div>
               </div>
 

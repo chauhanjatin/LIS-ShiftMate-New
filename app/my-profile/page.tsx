@@ -48,15 +48,15 @@ export default function MyProfilePage() {
               <div className="space-y-6">
                 <div>
                   <p className="text-[14px] text-[#98A2B3] mb-2">Employee ID</p>
-                  <p className="text-[20px] font-medium text-[#111827]">EMP002</p>
+                  <p className="xl:text-[20px] text-[18px] font-medium text-[#111827]">EMP002</p>
                 </div>
                 <div>
                   <p className="text-[14px] text-[#98A2B3] mb-2">Department</p>
-                  <p className="text-[20px] font-medium text-[#111827]">Engineering</p>
+                  <p className="xl:text-[20px] text-[18px] font-medium text-[#111827]">Engineering</p>
                 </div>
                 <div>
                   <p className="text-[14px] text-[#98A2B3] mb-2">Join Date</p>
-                  <p className="text-[20px] font-medium text-[#111827]">March 13, 2026</p>
+                  <p className="xl:text-[20px] text-[18px] font-medium text-[#111827]">March 13, 2026</p>
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function MyProfilePage() {
                   <p className="text-[14px] text-[#98A2B3]">Quick summary of the employee's profile, role, and current status.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6 mb-8">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 gap-y-6 mb-8">
                   <div>
                     <label className="block text-[12px] 2xl:text-[14px] text-[#111827] mb-2">First name</label>
                     <input 
@@ -164,7 +164,7 @@ export default function MyProfilePage() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-end gap-3 pt-6">
+                <div className="flex items-center justify-end gap-3 xl:pt-6">
                   <button className="h-11 px-6 rounded-xl border border-neutral-200 text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer">
                     Cancel
                   </button>

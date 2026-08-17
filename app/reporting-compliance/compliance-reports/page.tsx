@@ -85,9 +85,9 @@ export default function ComplianceReportsPage() {
 
   return (
     <DashboardLayout title="Reporting Compliance" subtitle={breadcrumb}>
-      <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+      <div className={`flex-1 p-4 xl:p-6 ${lexendDeca.className}`}>
 
-        <div className="bg-white p-6 rounded-2xl min-h-[calc(100vh-140px)]">
+        <div className="bg-white p-4 xl:p-6 rounded-2xl min-h-[calc(100vh-140px)]">
           <div className="flex items-center justify-between mb-6 relative" ref={dropdownRef}>
             <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827]">Audit Logs</h3>
             
@@ -98,7 +98,6 @@ export default function ComplianceReportsPage() {
               <Image src={filterIcon} alt="Filter"/>
             </button>
 
-            {/* Custom Dropdown */}
             {isDropdownOpen && (
               <div className="absolute right-0 top-12 z-50 w-[180px] rounded-xl bg-white p-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.15)] border border-[#E2E8F0]">
                 {filterOptions.map((option) => (

@@ -47,7 +47,7 @@ function StatusPill({ status }: { status: ExpenseStatus }) {
     Rejected: "bg-[#FFE8E8] text-[#EF4444]",
   };
   return (
-    <span className={`inline-flex rounded-full px-3.5 py-2.5 text-[12px] md:text-[14px] ${styles[status]}`}>
+    <span className={`inline-flex rounded-full xl:px-3.5 px-2.5 xl:py-2.5 py-1.5 text-[12px] xl:text-[14px] ${styles[status]}`}>
       {status}
     </span>
   );
@@ -107,8 +107,8 @@ export default function ExpenseApprovalsPage() {
 
         <Toast show={showToast} message={toastMessage} onClose={() => setShowToast(false)} />
 
-        <div className="bg-white p-6 rounded-2xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div className="bg-white p-4 xl:p-6 rounded-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xl:gap-6 gap-4 mb-6">
             <div className="rounded-xl border border-[#D0D5DD] bg-white p-5 flex items-center justify-between">
               <div>
                 <h2 className="text-[24px] 2xl:text-[32px] font-semibold text-[#111827] mb-4">08</h2>
@@ -141,7 +141,7 @@ export default function ExpenseApprovalsPage() {
           </div>
 
           <div className="pb-0">
-            <div className="flex items-center justify-between px-6 py-5">
+            <div className="flex items-center justify-between xl:px-6 py-5">
               <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827]">Pending Expenses</h3>
             </div>
 
@@ -159,17 +159,17 @@ export default function ExpenseApprovalsPage() {
 
                 <div className="divide-y divide-[#D0D5DD]">
                   {paginatedExpenses.map((expense) => (
-                    <div key={expense.id} className="grid grid-cols-7 items-center px-6 py-4 hover:bg-neutral-50 transition-colors">
+                    <div key={expense.id} className="grid grid-cols-7 items-center xl:px-6 px-4 py-4 hover:bg-neutral-50 transition-colors">
                       <div className="flex items-center gap-3">
-                        <div className="relative h-[50px] w-[50px] overflow-hidden rounded-full border border-neutral-200">
+                        <div className="relative xl:h-[50px] xl:w-[50px] h-[40px] w-[40px] overflow-hidden rounded-full border border-neutral-200">
                           <img src={expense.avatar} alt={expense.employee} className="h-full w-full object-cover" />
                         </div>
-                        <span className="text-[14px] text-[#111827]">{expense.employee}</span>
+                        <span className="xl:text-[14px] text-[12px] text-[#111827]">{expense.employee}</span>
                       </div>
-                      <div className="text-[14px] text-[#111827]">{expense.category}</div>
-                      <div className="text-[14px] text-[#111827] truncate pr-4" title={expense.description}>{expense.description}</div>
-                      <div className="text-[14px] text-[#111827]">{expense.amount}</div>
-                      <div className="text-[14px] text-[#111827]">{expense.date}</div>
+                      <div className="xl:text-[14px] text-[12px] text-[#111827] pl-6 xl:pl-0">{expense.category}</div>
+                      <div className="xl:text-[14px] text-[12px] text-[#111827] truncate pr-4" title={expense.description}>{expense.description}</div>
+                      <div className="xl:text-[14px] text-[12px] text-[#111827]">{expense.amount}</div>
+                      <div className="xl:text-[14px] text-[12px] text-[#111827]">{expense.date}</div>
                       <div>
                         <StatusPill status={expense.status} />
                       </div>
