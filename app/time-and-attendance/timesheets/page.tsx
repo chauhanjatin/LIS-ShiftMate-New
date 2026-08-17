@@ -75,25 +75,24 @@ export default function TimesheetsPage() {
         
         <Toast show={showToast} message={toastMessage} onClose={() => setShowToast(false)} />
 
-        <div className="bg-white p-6 rounded-2xl">
-          {/* Top Metric Cards */}
+        <div className="bg-white p-4 xl:p-6 rounded-2xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 2xl:gap-6 mb-6">
-            <div className="rounded-xl border border-[#D0D5DD] p-5 flex items-center justify-between">
+            <div className="rounded-xl border border-[#D0D5DD] xl:p-5 p-3 flex items-center justify-between">
               <div>
-                <h3 className="text-[28px] 2xl:text-[32px] font-semibold text-[#111827] mb-3">41h</h3>
-                <p className="text-[14px] font-medium text-[#111827]">Total Hours (This Week)</p>
+                <h3 className="text-[28px] xl:text-[32px] font-semibold text-[#111827] xl:mb-3 mb-2">41h</h3>
+                <p className="text-[12px] xl:text-[14px] font-medium text-[#111827]">Total Hours (This Week)</p>
               </div>
-              <div className="h-[48px] w-[48px] rounded-xl bg-[#4DB949] flex items-center justify-center shrink-0">
+              <div className="xl:h-[48px] xl:w-[48px] h-[40px] w-[40px] rounded-xl bg-[#4DB949] flex items-center justify-center shrink-0">
                 <Image src={leaveBalance} alt="Leave Balance" />
               </div>
             </div>
 
-            <div className="rounded-xl border border-[#D0D5DD] p-5 flex items-center justify-between">
+            <div className="rounded-xl border border-[#D0D5DD] xl:p-5 p-3 flex items-center justify-between">
               <div>
-                <h3 className="text-[28px] 2xl:text-[32px] font-semibold text-[#111827] mb-3">02h</h3>
-                <p className="text-[14px] font-medium text-[#111827]">Overtime (This Week)</p>
+                <h3 className="text-[28px] xl:text-[32px] font-semibold text-[#111827] xl:mb-3 mb-2">02h</h3>
+                <p className="text-[12px] xl:text-[14px] font-medium text-[#111827]">Overtime (This Week)</p>
               </div>
-              <div className="h-[48px] w-[48px] rounded-xl bg-[#8B5CF6] flex items-center justify-center shrink-0">
+              <div className="xl:h-[48px] xl:w-[48px] h-[40px] w-[40px] rounded-xl bg-[#8B5CF6] flex items-center justify-center shrink-0">
                 <Image
                   src={overtime}
                   alt=""
@@ -104,12 +103,12 @@ export default function TimesheetsPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-[#D0D5DD] p-5 flex items-center justify-between">
+            <div className="rounded-xl border border-[#D0D5DD] xl:p-5 p-3 flex items-center justify-between">
               <div>
-                <h3 className="text-[28px] 2xl:text-[32px] font-semibold text-[#111827] mb-3">03</h3>
-                <p className="text-[14px] font-medium text-[#111827]">Total Approved (This Week)</p>
+                <h3 className="text-[28px] xl:text-[32px] font-semibold text-[#111827] xl:mb-3 mb-2">03</h3>
+                <p className="text-[12px] xl:text-[14px] font-medium text-[#111827]">Total Approved (This Week)</p>
               </div>
-              <div className="h-[48px] w-[48px] rounded-xl bg-[#4DB949] flex items-center justify-center shrink-0">
+              <div className="xl:h-[48px] xl:w-[48px] h-[40px] w-[40px] rounded-xl bg-[#4DB949] flex items-center justify-center shrink-0">
 
                 <Image
                   src={onTime}
@@ -124,11 +123,11 @@ export default function TimesheetsPage() {
           </div>
 
           <div className="overflow-hidden">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 xl:p-6 gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 xl:p-6 gap-4">
               <h2 className="text-[20px] font-semibold text-[#111827] m-0">Timesheets</h2>
               <div className="flex items-center gap-3 w-full sm:w-auto">
                 <div className="relative w-full sm:w-auto">
-                  <select className="appearance-none w-full sm:w-auto h-11 pl-4 pr-10 rounded-xl border border-[#111827] bg-white text-[14px] text-[#111827] outline-none cursor-pointer focus:border-[#111827]">
+                  <select className="appearance-none w-full sm:w-auto h-10 xl:h-11 pl-4 pr-10 rounded-xl border border-[#111827] bg-white text-[13px] xl:text-[14px] text-[#111827] outline-none cursor-pointer focus:border-[#111827]">
                     <option>16 May 2026 - 18 May 2026</option>
                     <option>09 May 2026 - 15 May 2026</option>
                   </select>
@@ -136,7 +135,7 @@ export default function TimesheetsPage() {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                   </div>
                 </div>
-                <button className="h-11 whitespace-nowrap rounded-xl bg-[#257BFC] px-5 text-[14px] font-medium text-white transition hover:bg-blue-600 cursor-pointer">
+                <button className="h-10 xl:h-11 whitespace-nowrap rounded-xl bg-[#257BFC] px-4 xl:px-5 text-[13px] xl:text-[14px] font-medium text-white transition hover:bg-blue-600 cursor-pointer">
                   Submit Timesheet
                 </button>
               </div>
@@ -160,7 +159,7 @@ export default function TimesheetsPage() {
                       <td className="py-5 px-4 text-[14px] text-[#111827]">{record.hours}</td>
                       <td className="py-5 px-4 text-[14px] text-[#111827]">{record.overtime}</td>
                       <td className="py-5 px-4">
-                        <span className={`inline-flex rounded-full px-3.5 py-2.5 text-[14px] font-medium ${getStatusStyles(record.status)}`}>
+                        <span className={`inline-flex rounded-full px-3.5 py-2.5 text-[12px] xl:text-[14px] font-medium ${getStatusStyles(record.status)}`}>
                           {record.status}
                         </span>
                       </td>

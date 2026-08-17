@@ -27,10 +27,10 @@ export default function ExpenseDetailsPage() {
     <DashboardLayout title="Expenses Management" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
 
-        <div className="bg-white p-6 rounded-2xl">
+        <div className="bg-white p-4 xl:p-6 rounded-2xl">
           <h2 className="text-[20px] font-medium text-[#111827] mb-6">Expense Details</h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
             <div className="lg:col-span-2 space-y-6">
 

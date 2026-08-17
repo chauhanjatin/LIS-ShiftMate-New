@@ -82,11 +82,11 @@ export default function ClockInOutPage() {
 
   return (
     <DashboardLayout title="Time & Attendance" subtitle={breadcrumb}>
-      <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+      <div className={`flex-1 p-4 xl:p-6 ${lexendDeca.className}`}>
         
         <Toast show={showToast} message={toastMessage} onClose={() => setShowToast(false)} />
 
-        <div className="flex flex-col lg:flex-row gap-6 bg-white p-6 rounded-2xl">
+        <div className="flex flex-col xl:flex-row gap-6 bg-white p-6 rounded-2xl">
           
           <div className="rounded-xl border border-[#D0D5DD] p-6 flex-1 flex flex-col min-h-[400px]">
             <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6">Today's Status</h3>

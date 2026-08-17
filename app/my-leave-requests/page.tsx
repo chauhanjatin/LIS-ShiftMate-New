@@ -95,7 +95,7 @@ function MyLeaveRequestsContent() {
                       <span className="text-[14px] text-[#98A2B3]">/ {stat.total} days left</span>
                     </div>
                   </div>
-                  <div className="md:w-[54px] md:h-[54px] w-[45px] h-[45px] rounded-[14px] flex items-center justify-center shrink-0" style={{ backgroundColor: stat.color }}>
+                  <div className="3xl:w-[42px] 3xl:h-[42px] md:w-[54px] md:h-[54px] w-[45px] h-[45px] rounded-[14px] flex items-center justify-center shrink-0" style={{ backgroundColor: stat.color }}>
                     {stat.icon}
                   </div>
                 </div>
@@ -107,12 +107,11 @@ function MyLeaveRequestsContent() {
             ))}
           </div>
 
-          {/* Content Box */}
           <div className="overflow-hidden">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6 gap-4">
               <h2 className="lg:text-[18px] text-[20px] 2xl:text-[20px] font-medium text-[#111827]">Leave Request History</h2>
 
-              <div className="flex flex-wrap lg:flex-nowrap items-center xl:gap-6 gap-3 w-full md:w-auto">
+              <div className="flex flex-wrap lg:flex-nowrap items-center 3xl:gap-3 xl:gap-6 gap-3 w-full md:w-auto">
                 <div className="relative">
                   <input
                     type="text"

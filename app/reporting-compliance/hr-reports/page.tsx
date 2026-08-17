@@ -35,7 +35,7 @@ export default function HRReportsPage() {
 
   return (
     <DashboardLayout title="Reporting Compliance" subtitle={breadcrumb}>
-      <div className={`flex-1 p-4 2xl:p-6 ${lexendDeca.className}`}>
+      <div className={`flex-1 p-4 xl:p-6 ${lexendDeca.className}`}>
         <div className="bg-white p-6 rounded-2xl">
           <div className="flex flex-wrap items-end gap-4 mb-8">
             <div className="w-[120px]">

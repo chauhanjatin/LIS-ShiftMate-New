@@ -53,7 +53,7 @@ function StatusPill({ status }: { status: ExpenseStatus }) {
     Rejected: "bg-[#FFE8E8] text-[#EF4444]",
   };
   return (
-    <span className={`inline-flex rounded-full px-3.5 py-2.5 text-[12px] md:text-[14px] font-medium ${styles[status]}`}>
+    <span className={`inline-flex rounded-full px-2.5 xl:px-3.5 py-1.5 xl:py-2.5 text-[12px] xl:text-[14px] font-medium ${styles[status]}`}>
       {status}
     </span>
   );
@@ -151,8 +151,8 @@ export default function ExpensesListPage() {
         
         <Toast show={showToast} message={toastMessage} onClose={() => setShowToast(false)} />
 
-        <div className="bg-white p-6 rounded-2xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="bg-white p-4 xl:p-6 rounded-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
             <div className="rounded-xl border border-[#D0D5DD] p-5 flex items-center justify-between">
               <div>
                 <h2 className="text-[24px] 2xl:text-[32px] font-semibold text-[#111827] mb-4">$1,842</h2>
@@ -192,11 +192,11 @@ export default function ExpensesListPage() {
           </div>
 
           <div className="pb-0">
-            <div className="flex flex-wrap items-center justify-between px-6 py-5">
+            <div className="flex flex-wrap items-center justify-between px-3 xl:px-6 py-3 xl:py-5">
               <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827]">Expenses Lists</h3>
 
               <div className="flex items-center gap-3">
-                <div className="flex items-center border border-[#D0D5DD] rounded-xl px-4 py-2 gap-2 text-[#111827] text-[14px]">
+                <div className="flex items-center border border-[#D0D5DD] rounded-xl px-4 py-2 gap-2 text-[#111827] text-[13px] xl:text-[14px]">
                   <span>16 May 2026 - 18 May 2026</span>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                 </div>
@@ -204,7 +204,7 @@ export default function ExpensesListPage() {
                 <div className="relative" ref={filterRef}>
                   <button
                     onClick={() => setFilterOpen(!filterOpen)}
-                    className="flex h-10 w-10 md:h-[44px] md:w-[44px] items-center justify-center rounded-xl border border-[#D0D5DD] bg-white transition hover:bg-neutral-50 cursor-pointer"
+                    className="flex h-10 w-10 xl:h-[44px] xl:w-[44px] items-center justify-center rounded-xl border border-[#D0D5DD] bg-white transition hover:bg-neutral-50 cursor-pointer"
                   >
                     <Image src={filterIcon} alt="Filter" className="h-4 w-4 md:h-5 md:w-5" />
                   </button>
@@ -230,7 +230,7 @@ export default function ExpensesListPage() {
 
                 <button
                   onClick={() => setIsSubmitModalOpen(true)}
-                  className="h-[44px] rounded-xl bg-[#257BFC] px-5 text-[14px] 2xl:text-[16px] text-white transition hover:bg-blue-600 flex items-center justify-center gap-2 cursor-pointer"
+                  className="xl:h-[44px] h-[40px] rounded-xl bg-[#257BFC] xl:px-5 px-3 text-[13px] xl:text-[16px] text-white transition hover:bg-blue-600 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span className="text-xl leading-none font-light mb-[2px]">+</span>
                   Submit Expense
@@ -240,7 +240,7 @@ export default function ExpensesListPage() {
 
             <div className="w-full overflow-x-auto border border-[#D0D5DD] rounded-xl">
               <div className="min-w-[1000px]">
-                <div className="grid grid-cols-7 border-b border-[#D0D5DD] bg-[#F9FAFB] px-6 py-2.5">
+                <div className="grid grid-cols-7 border-b border-[#D0D5DD] bg-[#F9FAFB] xl:px-6 px-4 py-2.5">
                   <div className="text-[14px] 2xl:text-[16px] text-[#111827]">Expense ID</div>
                   <div className="text-[14px] 2xl:text-[16px] text-[#111827]">Employee</div>
                   <div className="text-[14px] 2xl:text-[16px] text-[#111827]">Category</div>
@@ -252,33 +252,33 @@ export default function ExpensesListPage() {
 
                 <div className="divide-y divide-[#D0D5DD]">
                   {paginatedExpenses.map((expense) => (
-                    <div key={expense.id} className="grid grid-cols-7 items-center px-6 py-5 hover:bg-neutral-50 transition-colors">
-                      <div className="text-[14px] font-medium text-[#111827]">
+                    <div key={expense.id} className="grid grid-cols-7 items-center xl:px-6 xl:py-5 px-4 py-4 hover:bg-neutral-50 transition-colors">
+                      <div className="text-[12px] xl:text-[14px] font-medium text-[#111827]">
                         <Link href={`/expenses-management/expenses-list/${expense.id}`} className="hover:text-brand-500">
                           {expense.id}
                         </Link>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <div className="relative h-[50px] w-[50px] overflow-hidden rounded-full border border-neutral-200">
+                      <div className="flex items-center gap-1.5 xl:gap-3">
+                        <div className="relative h-[30px] w-[30px] xl:h-[50px] xl:w-[50px] overflow-hidden rounded-full border border-neutral-200">
                           <img src={expense.avatar} alt={expense.employee} className="h-full w-full object-cover" />
                         </div>
-                        <span className="text-[14px] font-medium text-[#111827]">{expense.employee}</span>
+                        <span className="text-[12px] xl:text-[14px] font-medium text-[#111827]">{expense.employee}</span>
                       </div>
-                      <div className="text-[14px] font-medium text-[#111827]">{expense.category}</div>
-                      <div className="text-[14px] font-medium text-[#111827]">{expense.amount}</div>
-                      <div className="text-[14px] font-medium text-[#111827]">{expense.date}</div>
+                      <div className="text-[12px] xl:text-[14px] font-medium text-[#111827]">{expense.category}</div>
+                      <div className="text-[12px] xl:text-[14px] font-medium text-[#111827]">{expense.amount}</div>
+                      <div className="text-[12px] xl:text-[14px] font-medium text-[#111827]">{expense.date}</div>
                       <div>
                         <StatusPill status={expense.status} />
                       </div>
-                      <div className="flex gap-3">
+                      <div className="flex gap-2.5 xl:gap-3">
                         <Link href={`/expenses-management/expenses-list/${expense.id}`} className="text-[#6B7280] hover:text-[#111827] transition-colors">
-                          <Image src={eyeIcon} alt="View" />
+                          <Image src={eyeIcon} alt="View" className="w-[20px] h-[20px] xl:w-[24px] xl:h-[24px]" />
                         </Link>
                         <button className="text-[#6B7280] hover:text-[#111827] transition-colors cursor-pointer">
-                          <Image src={editIcon} alt="Edit" />
+                          <Image src={editIcon} alt="Edit" className="w-[20px] h-[20px] xl:w-[24px] xl:h-[24px]" />
                         </button>
                         <button onClick={() => handleDeleteClick(expense.id)} className="text-[#6B7280] hover:text-[#EF4444] transition-colors cursor-pointer">
-                          <Image src={deleteIcon} alt="Delete" />
+                          <Image src={deleteIcon} alt="Delete" className="w-[20px] h-[20px] xl:w-[24px] xl:h-[24px]" />
                         </button>
                       </div>
                     </div>
