@@ -37,7 +37,7 @@ export default function HRReportsPage() {
     <DashboardLayout title="Reporting Compliance" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 xl:p-6 ${lexendDeca.className}`}>
         <div className="bg-white p-6 rounded-2xl">
-          <div className="flex flex-wrap items-end gap-4 mb-8">
+          <div className="flex flex-col xl:flex-row flex-wrap xl:items-end gap-4 mb-8">
             <div className="w-[120px]">
               <label className="mb-2 block text-[15px] 2xl:text-[20px] font-medium text-[#111827]">Filters</label>
             </div>
@@ -88,13 +88,13 @@ export default function HRReportsPage() {
           </div>
 
           <div className="flex flex-wrap items-center justify-between mb-4">
-            <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827]">Employee Headcount</h3>
-            <div className="flex items-center gap-2 rounded-xl p-1 border border-[#E4E7EC]">
+            <h3 className="text-[16px] xl:text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-2 md:mb-0">Employee Headcount</h3>
+            <div className="flex items-center gap-1 xl:gap-2 rounded-xl p-1 border border-[#E4E7EC]">
               {["Headcount", "Turnover Rate", "Leave Usage", "Absence Tracking"].map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 rounded-lg text-[14px] transition-colors cursor-pointer ${activeTab === tab ? "bg-[#111827] text-white" : "text-[#475467] hover:text-[#111827]"}`}
+                  className={`xl:px-4 px-2 py-2 rounded-lg xl:text-[14px] text-[12px] transition-colors cursor-pointer ${activeTab === tab ? "bg-[#111827] text-white" : "text-[#475467] hover:text-[#111827]"}`}
                 >
                   {tab}
                 </button>
@@ -114,10 +114,10 @@ export default function HRReportsPage() {
               <div className="divide-y divide-[#D0D5DD]">
                 {mockData.map((item) => (
                   <div key={item.id} className="grid grid-cols-4 items-center px-6 py-6.5 hover:bg-neutral-50 transition-colors">
-                    <div className="text-[14px] text-[#111827]">{item.dept}</div>
-                    <div className="text-[14px] text-[#111827]">{item.headcount}</div>
-                    <div className="text-[14px] text-[#111827]">{item.prev}</div>
-                    <div className="text-[14px] font-medium">
+                    <div className="md:text-[14px] text-[12px] text-[#111827]">{item.dept}</div>
+                    <div className="md:text-[14px] text-[12px] text-[#111827]">{item.headcount}</div>
+                    <div className="md:text-[14px] text-[12px] text-[#111827]">{item.prev}</div>
+                    <div className="md:text-[14px] text-[12px] font-medium">
                       {item.change}
                     </div>
                   </div>

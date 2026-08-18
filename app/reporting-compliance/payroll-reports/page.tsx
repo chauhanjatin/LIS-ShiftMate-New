@@ -41,7 +41,7 @@ export default function PayrollReportsPage() {
     <DashboardLayout title="Reporting Compliance" subtitle={breadcrumb}>
       <div className={`flex-1 p-4 xl:p-6 ${lexendDeca.className}`}>
         <div className="bg-white p-4 xl:p-6 rounded-2xl">
-          <div className="flex flex-col flex-wrap  gap-4 mb-8">
+          <div className="flex flex-col xl:flex-row flex-wrap xl:items-end gap-4 mb-8">
             <div className="w-[120px]">
               <label className="mb-2 block text-[15px] 2xl:text-[20px] font-medium text-[#111827]">Filters</label>
             </div>
@@ -93,13 +93,13 @@ export default function PayrollReportsPage() {
           </div>
 
           <div className="flex flex-wrap items-center justify-between mb-4">
-            <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827]">Payroll Summary</h3>
+            <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-2 md:mb-0">Payroll Summary</h3>
             <div className="flex items-center gap-2 rounded-xl p-1 border border-[#E4E7EC]">
               {["Payroll Summary", "PAYE", "NI Contributions", "Pension"].map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 rounded-lg text-[13px] 2xl:text-[14px] transition-colors cursor-pointer ${activeTab === tab ? "bg-[#111827] text-white" : "text-[#475467] hover:text-[#111827]"}`}
+                  className={`md:px-4 px-2 py-2 rounded-lg text-[11px] md:text-[13px] 2xl:text-[14px] transition-colors cursor-pointer ${activeTab === tab ? "bg-[#111827] text-white" : "text-[#475467] hover:text-[#111827]"}`}
                 >
                   {tab}
                 </button>
@@ -122,9 +122,9 @@ export default function PayrollReportsPage() {
 
               <div className="divide-y divide-[#D0D5DD]">
                 {mockData.map((item) => (
-                  <div key={item.id} className="grid grid-cols-[2fr_1.5fr_1.5fr_1fr_1.5fr_1.5fr_1fr_1fr] items-center px-6 py-6.5 hover:bg-neutral-50 transition-colors">
+                  <div key={item.id} className="grid grid-cols-[2fr_1.5fr_1.5fr_1fr_1.5fr_1.5fr_1fr_1fr] items-center md:px-6 px-4 md:py-6.5 py-4 hover:bg-neutral-50 transition-colors">
                     <div className="flex items-center gap-3">
-                      <div className="relative h-12 w-12 overflow-hidden rounded-full border border-neutral-200">
+                      <div className="relative md:h-12 md:w-12 w-10 h-10 overflow-hidden rounded-full border border-neutral-200">
                         {item.id === 6 ? (
                           <div className="h-full w-full bg-[#F2F4F7] flex items-center justify-center text-[#475467]">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -133,13 +133,13 @@ export default function PayrollReportsPage() {
                           <img src={item.avatar} alt={item.employee} className="h-full w-full object-cover" />
                         )}
                       </div>
-                      <span className="text-[14px] text-[#111827]">{item.employee}</span>
+                      <span className="md:text-[14px] text-[12px] text-[#111827]">{item.employee}</span>
                     </div>
-                    <div className="text-[14px] text-[#111827]">{item.dept}</div>
-                    <div className="text-[14px] text-[#111827]">{item.basic}</div>
-                    <div className="text-[14px] text-[#111827]">{item.bonus}</div>
-                    <div className="text-[14px] text-[#111827]">{item.ded}</div>
-                    <div className="text-[14px] text-[#111827]">{item.net}</div>
+                    <div className="md:text-[14px] text-[12px]   text-[#111827]">{item.dept}</div>
+                    <div className="md:text-[14px] text-[12px] text-[#111827]">{item.basic}</div>
+                    <div className="md:text-[14px] text-[12px] text-[#111827]">{item.bonus}</div>
+                    <div className="md:text-[14px] text-[12px] text-[#111827]">{item.ded}</div>
+                    <div className="md:text-[14px] text-[12px] text-[#111827]">{item.net}</div>
                     <div>
                       {item.status === "Processed" ? (
                         <span className="inline-flex rounded-full bg-[#EAF9EA] px-3.5 py-2.5 text-[12px] 2xl:text-[14px] font-medium text-[#4DB949]">Processed</span>

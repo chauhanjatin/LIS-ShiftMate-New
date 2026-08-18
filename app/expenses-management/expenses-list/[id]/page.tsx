@@ -34,15 +34,15 @@ export default function ExpenseDetailsPage() {
 
             <div className="lg:col-span-2 space-y-6">
 
-              <div className="rounded-xl bg-[#F9FAFB] p-6">
+              <div className="rounded-xl bg-[#F9FAFB] md:p-6 p-4">
                 <div className="flex items-center justify-between border-b border-[#D0D5DD] pb-5 mb-5">
-                  <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827]">Expense Information</h3>
-                  <span className="inline-flex rounded-full bg-[#EAF9EA] px-3.5 py-1.5 text-[12px] text-[#4DB949]">
+                  <h3 className="text-[15px] md:text-[18px] 2xl:text-[20px] font-medium text-[#111827]">Expense Information</h3>
+                  <span className="inline-flex rounded-full bg-[#EAF9EA] md:px-3.5 px-2 md:py-1.5 py-1 text-[12px] text-[#4DB949]">
                     Approved - Reimbursed
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-y-6 gap-x-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-4">
                   <div>
                     <p className="text-[14px] text-[#98A2B3] mb-2">Expense ID</p>
                     <p className="text-[16px] font-medium text-[#111827]">{expenseId}</p>
@@ -78,10 +78,10 @@ export default function ExpenseDetailsPage() {
                 </div>
               </div>
 
-              <div className="rounded-xl bg-[#F9FAFB] p-6">
+              <div className="rounded-xl bg-[#F9FAFB] md:p-6 p-4">
                 <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-6">Approval History</h3>
 
-                <div className="relative pl-7 space-y-8 before:absolute before:left-[11px] before:top-2 before:h-[calc(100%-4rem)] before:w-1 before:bg-[#257BFC]">
+                <div className="relative pl-7 space-y-8 before:absolute before:left-[11px] md:before:top-2 before:top-1 before:h-[calc(100%-4rem)] before:w-1 before:bg-[#257BFC]">
                   <div className="relative">
                     <div className="absolute -left-[30px] top-0 h-8 w-8 rounded-full bg-[#257BFC] flex items-center justify-center">
                       <div className="border rounded-full p-0.5 border-white">
@@ -134,7 +134,7 @@ export default function ExpenseDetailsPage() {
 
             </div>
 
-            <div className="rounded-xl bg-[#F9FAFB] p-6">
+            <div className="rounded-xl bg-[#F9FAFB] md:p-6 p-4">
               <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-6">Receipt Preview</h3>
 
               <div className="relative w-full aspect-[3/4] bg-[#F3F4F6] rounded-xl overflow-hidden mb-4 checkerboard">

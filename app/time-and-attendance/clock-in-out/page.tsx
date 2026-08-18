@@ -97,19 +97,19 @@ export default function ClockInOutPage() {
                 {shiftStatus}
               </span>
               
-              <h1 className="text-[54px] md:text-[64px] font-semibold text-[#111827] tracking-tight m-0 leading-none">
+              <h1 className="text-[34px] md:text-[54px] lg:text-[64px] font-semibold text-[#111827] tracking-tight m-0 leading-none">
                 {formatTimer(elapsedSeconds)}
               </h1>
               <p className="text-[14px] text-[#98A2B3] mt-4 mb-5">
                 {formatDate(currentDate)}
               </p>
               
-              <div className="flex items-center gap-6">
-                <button onClick={handleStartBreak} className="h-11 md:h-12 px-6 md:px-8 rounded-lg bg-[#FFE4B5] text-[#ffffff] text-[16px] flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity">
+              <div className="flex items-center md:gap-6 gap-3">
+                <button onClick={handleStartBreak} className="h-10 md:h-12 px-4 md:px-8 rounded-lg bg-[#FFE4B5] text-[#ffffff] md:text-[16px] text-[12px] flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity">
                   <Image src={breakIcon} alt="break" />
                   Start Break
                 </button>
-                <button onClick={handleStartShift} className="h-11 md:h-12 px-6 md:px-8 rounded-lg bg-[#257BFC] text-white cursor-pointer hover:bg-blue-600 transition-colors">
+                <button onClick={handleStartShift} className="h-10 md:h-12 px-4 md:px-8 rounded-lg bg-[#257BFC] text-white md:text-[16px] text-[12px] cursor-pointer hover:bg-blue-600 transition-colors">
                   {elapsedSeconds > 0 && shiftStatus === "On Break" ? "Resume Shift" : "Start Shift"}
                 </button>
               </div>
@@ -128,7 +128,7 @@ export default function ClockInOutPage() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-[#D0D5DD] p-6 flex-1 h-fit">
+          <div className="rounded-xl border border-[#D0D5DD] md:p-6 p-4 flex-1 h-fit">
             <h3 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827] mb-6 border-b border-[#D0D5DD] pb-6">Shift Details</h3>
             
             <div className="space-y-5">

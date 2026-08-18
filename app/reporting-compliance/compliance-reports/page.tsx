@@ -42,7 +42,7 @@ function EventPill({ type }: { type: EventType }) {
     Approval: "bg-[#EAF9EA] text-[#4DB949]",
   };
   return (
-    <span className={`inline-flex rounded-full px-3.5 py-2.5 text-[14px] ${styles[type]}`}>
+    <span className={`inline-flex rounded-full xl:px-3.5 px-2.5 xl:py-2.5 py-1.5 xl:text-[14px] text-[12px] text-nowrap ${styles[type]}`}>
       {type}
     </span>
   );
@@ -134,25 +134,25 @@ export default function ComplianceReportsPage() {
               <tbody className="">
                 {filteredLogs.map((log, index) => (
                   <tr key={`${log.id}-${index}`} className="border-b border-[#E2E8F0] last:border-none hover:bg-neutral-50 transition-colors">
-                    <td className="py-6.5 pl-6 pr-4 text-[14px] text-[#111827] whitespace-nowrap">{log.timestamp}</td>
-                    <td className="py-6.5 px-4">
+                    <td className="xl:py-6.5 py-4 pl-6 pr-4 xl:text-[14px] text-[12px] text-[#111827] whitespace-nowrap">{log.timestamp}</td>
+                    <td className="xl:py-6.5 py-4 px-4">
                       <div className="flex items-center gap-3">
-                        <div className="h-12.5 w-12.5 overflow-hidden rounded-full shrink-0">
+                        <div className="xl:h-12.5 xl:w-12.5 h-10 w-10 overflow-hidden rounded-full shrink-0">
                           <img src={log.avatar} alt={log.employeeName} className="h-full w-full object-cover" />
                         </div>
-                        <span className="text-[14px] text-[#111827] whitespace-nowrap">{log.employeeName}</span>
+                        <span className="xl:text-[14px] text-[12px] text-[#111827] whitespace-nowrap">{log.employeeName}</span>
                       </div>
                     </td>
-                    <td className="py-6.5 px-4 text-[14px] text-[#111827] max-w-[400px] truncate" title={log.description}>{log.description}</td>
-                    <td className="py-6.5 px-4 text-[14px] text-[#111827]">{log.ipAddress}</td>
-                    <td className="py-6.5 pr-6 pl-4">
+                    <td className="xl:py-6.5 py-4 px-4 xl:text-[14px] text-[12px] text-[#111827] max-w-[400px] truncate" title={log.description}>{log.description}</td>
+                    <td className="xl:py-6.5 py-4 px-4 xl:text-[14px] text-[12px] text-[#111827]">{log.ipAddress}</td>
+                    <td className="xl:py-6.5 py-4 pr-6 pl-4">
                       <EventPill type={log.eventType} />
                     </td>
                   </tr>
                 ))}
                 {filteredLogs.length === 0 && (
                   <tr>
-                    <td colSpan={5} className="py-8 text-center text-[#475467]">No audit logs found for this filter.</td>
+                    <td colSpan={5} className="xl:py-8 py-4 text-center text-[#475467]">No audit logs found for this filter.</td>
                   </tr>
                 )}
               </tbody>

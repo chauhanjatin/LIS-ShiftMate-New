@@ -65,11 +65,11 @@ export default function MyDocumentsPage() {
     <DashboardLayout title="Dashboard" subtitle={<><Link href="/dashboard" className="text-[#98A2B3] hover:text-brand-500 transition-colors">Home</Link> <span className="text-[#98A2B3]">/</span> <span className="text-[#111827]">My Documents</span></>}>
       <div className={`p-4 xl:p-6 ${lexendDeca.className}`}>
         
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-neutral-200">
+        <div className="bg-white rounded-2xl lg:p-6 p-4 shadow-sm border border-neutral-200">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
             <h2 className="text-[18px] 2xl:text-[20px] font-medium text-[#111827]">My Documents</h2>
             
-            <div className="grid grid-cols-2 md:flex items-center xl:gap-6 md:gap-4 gap-2 w-full md:w-auto">  
+            <div className="flex items-center xl:gap-6 md:gap-4 gap-2 w-full md:w-auto">
               <div className="relative flex-1 md:flex-none">
                 <input 
                   type="text" 
