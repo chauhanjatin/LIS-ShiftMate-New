@@ -166,7 +166,7 @@ export default function TimesheetsPage() {
                       <td className="py-5 pr-6 pl-4">
                         <div className="flex items-center gap-3">
                           <button onClick={() => handleEditClick(record)} className="text-[#111827] hover:text-[#257BFC] transition-colors cursor-pointer">
-                            <Image src={editIcon} alt="Edit" className="pointer-events-none" />
+                            <Image src={editIcon} alt="Edit" className="pointer-events-none lg:w-6 lg:h-6 w-5 h-5" />
                           </button>
                           <button className="text-[#111827] hover:text-[#257BFC] transition-colors cursor-pointer">
                             <Image src={viewIcon} alt="View" />

@@ -119,7 +119,7 @@ export default function ReportsDashboardPage() {
 
               <div className="rounded-xl border border-[#E2E8F0] p-5">
                 <h4 className="text-[15px] font-semibold text-[#111827] mb-6">Headcount by Department</h4>
-                <div className="flex h-[250px] items-center gap-8">
+                <div className="grid md:flex h-[250px] items-center gap-8">
                   <div className="h-[200px] flex-1">
                     <PieChart
                       series={[
@@ -150,7 +150,6 @@ export default function ReportsDashboardPage() {
                 </div>
               </div>
 
-              {/* Overtime by Department Donut Chart */}
               <div className="rounded-xl border border-[#E2E8F0] p-5">
                 <h4 className="text-[15px] font-semibold text-[#111827] mb-6">Overtime by Department</h4>
                 <div className="flex h-[250px] items-center gap-8">

@@ -117,7 +117,7 @@ export default function ShiftSchedulePage() {
                 />
               </div>
 
-              <button className="h-11.5 whitespace-nowrap rounded-xl bg-[#257BFC] px-5 text-[14px] 2xl:text-[16px] text-white flex items-center justify-center gap-2 cursor-pointer">
+              <button className="lg:h-11.5 h-10 whitespace-nowrap rounded-xl bg-[#257BFC] lg:px-5 px-3 text-[12px] lg:text-[14px] 2xl:text-[16px] text-white flex items-center justify-center gap-2 cursor-pointer">
                 <Image src={shiftSwap} alt="Request"/>
                 Request Shift Swap
               </button>
